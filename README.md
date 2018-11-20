@@ -4,7 +4,7 @@ Goal: Most Modern Android App Possible ( Tech wise )
 
 # Project Description
 
-Currenty project consists of two apps, on of them being Android application and other being Spring REST API. Both written in Kotlin
+Currenty project consists of 4 apps, on of them being Android application and other being Spring REST API. Both written in Kotlin
 
 ## Technical Description
 
@@ -47,6 +47,19 @@ using good filtering options. If find some particular notebook interesting I wan
 
 An example of learning features: *As an app user I want to take advantages of Challenges which will allow me to learn content made by me or other users.*
 
+### Possible use-cases
+
+- Create/Edit/Delete notes
+- Create/Edit/Delete notebooks
+- Publish/share your notebook with others
+- Leave/Delete comment on someones notebook
+- Download and add  notebook to library
+- Login/Register using Email
+- Authentication using Facebook
+- Authentication using Google
+- Account Edition
+- Access to content using deep links
+-Challenges
 
 ## Existing solutions - Quizlet
 
