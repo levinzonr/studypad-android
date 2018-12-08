@@ -1,4 +1,4 @@
-package cz.levinzonr.studyhub.presentation.screens
+package cz.levinzonr.studyhub.presentation.screens.challenges
 
 
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package cz.levinzonr.studyhub.presentation.screens
+package cz.levinzonr.studyhub.presentation.screens.library
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle

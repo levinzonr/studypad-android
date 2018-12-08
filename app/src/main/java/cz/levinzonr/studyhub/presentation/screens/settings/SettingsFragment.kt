@@ -1,4 +1,4 @@
-package cz.levinzonr.studyhub.presentation.screens
+package cz.levinzonr.studyhub.presentation.screens.settings
 
 import android.content.Context
 import android.net.Uri
