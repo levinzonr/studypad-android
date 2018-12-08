@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation_main"
+            app:startDestination="@id/notebookListFragment">
+
+    <fragment android:id="@+id/notebookListFragment"
+              android:name="cz.levinzonr.studyhub.presentation.screens.NotebookListFragment"
+              android:label="fragment_notebook_list" tools:layout="@layout/fragment_notebook_list">
+        <action android:id="@+id/action_notebookListFragment_to_notesListFragment"
+                app:destination="@id/notesListFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_enter_anim"
+                app:popExitAnim="@anim/nav_default_exit_anim"/>
+    </fragment>
+    <fragment android:id="@+id/notesListFragment"
+              android:name="cz.levinzonr.studyhub.presentation.screens.NotesListFragment"
+              android:label="fragment_notes_list" tools:layout="@layout/fragment_notes_list">
+        <argument android:name="NOTEBOOK_ID" app:argType="integer"/>
+    </fragment>
+</navigation>

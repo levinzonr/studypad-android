@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import cz.levinzonr.studyhub.R
 import cz.levinzonr.studyhub.domain.Note
 import cz.levinzonr.studyhub.presentation.adapters.NotesAdapter
 import cz.levinzonr.studyhub.presentation.base.BaseFragment
-import kotlinx.android.synthetic.main.notes_list_fragment.*
+import kotlinx.android.synthetic.main.fragment_notes_list.*
 
 class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
 
@@ -27,27 +28,28 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.notes_list_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_notes_list, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(NotesListViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         viewModel.dataSource.observe(this, Observer {
             adapter.items  = it
         })
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+    }
+
 
     private fun setupRecyclerView() {
         adapter = NotesAdapter()
         adapter.listener = this
+        notesRv.layoutManager = LinearLayoutManager(context)
         notesRv.adapter = adapter
     }
 
