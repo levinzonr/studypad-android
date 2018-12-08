@@ -16,6 +16,9 @@
               android:name="cz.levinzonr.studyhub.presentation.screens.NotesListFragment"
               android:label="fragment_notes_list" tools:layout="@layout/fragment_notes_list">
         <argument android:name="NOTEBOOK_ID" app:argType="integer"/>
+        <action android:id="@+id/action_notesListFragment_to_editNoteFragment" app:destination="@id/editNoteFragment"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <fragment android:id="@+id/settingsFragment"
               android:name="cz.levinzonr.studyhub.presentation.screens.SettingsFragment"
@@ -25,4 +28,9 @@
     <fragment android:id="@+id/challengesFragment"
               android:name="cz.levinzonr.studyhub.presentation.screens.ChallengesFragment"
               android:label="fragment_challenges" tools:layout="@layout/fragment_challenges"></fragment>
+    <fragment android:id="@+id/editNoteFragment"
+              android:name="cz.levinzonr.studyhub.presentation.screens.EditNoteFragment"
+              android:label="fragment_edit_note" tools:layout="@layout/fragment_edit_note">
+        <argument android:name="NOTE" app:argType="cz.levinzonr.studyhub.domain.Note"/>
+    </fragment>
 </navigation>

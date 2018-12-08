@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import cz.levinzonr.studyhub.R
+import cz.levinzonr.studyhub.presentation.showNotes
+import kotlinx.android.synthetic.main.fragment_shared.*
 
 
 class SharedFragment : Fragment() {
@@ -22,5 +24,11 @@ class SharedFragment : Fragment() {
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        shar.setOnClickListener {
+
+        }
+    }
 
 }
