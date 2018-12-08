@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/sharedFragment"
+            android:title="Item 1"/>
+    <item android:id="@+id/notebookListFragment" android:title="Item 2"/>
+    <item android:id="@+id/settingsFragment" android:title="Item 3"/>
+    <item android:id="@+id/challengesFragment" android:title="Item 4"/>
+</menu>

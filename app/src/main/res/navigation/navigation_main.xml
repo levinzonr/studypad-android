@@ -17,4 +17,12 @@
               android:label="fragment_notes_list" tools:layout="@layout/fragment_notes_list">
         <argument android:name="NOTEBOOK_ID" app:argType="integer"/>
     </fragment>
+    <fragment android:id="@+id/settingsFragment"
+              android:name="cz.levinzonr.studyhub.presentation.screens.SettingsFragment"
+              android:label="fragment_settings" tools:layout="@layout/fragment_settings"/>
+    <fragment android:id="@+id/sharedFragment" android:name="cz.levinzonr.studyhub.presentation.screens.SharedFragment"
+              android:label="fragment_shared" tools:layout="@layout/fragment_shared"/>
+    <fragment android:id="@+id/challengesFragment"
+              android:name="cz.levinzonr.studyhub.presentation.screens.ChallengesFragment"
+              android:label="fragment_challenges" tools:layout="@layout/fragment_challenges"></fragment>
 </navigation>
