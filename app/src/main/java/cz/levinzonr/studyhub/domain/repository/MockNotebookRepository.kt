@@ -3,14 +3,16 @@ package cz.levinzonr.studyhub.domain.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studyhub.domain.Notebook
+import kotlinx.coroutines.delay
 
 class MockNotebookRepository : NotebookRepository {
 
-    override fun getNotebooks(): LiveData<List<Notebook>> {
+    override suspend fun getNotebooks(): List<Notebook> {
         val list = mutableListOf<Notebook>()
         repeat(10) {
             list.add(it, Notebook(it.toLong(), "Notebook $it", it))
         }
-        return MutableLiveData<List<Notebook>>().apply { value = list }
+        delay(5000)
+        return list
     }
 }
