@@ -1,5 +1,6 @@
 package cz.levinzonr.studyhub.presentation.adapters
 
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,8 @@ class NotebooksAdapter : RecyclerView.Adapter<NotebooksAdapter.ViewHolder>() {
         fun bindView(notebook: Notebook) {
             view.notebookNameTv.text = notebook.name
             view.notebookNotesCountTv.text = "Notes count: ${notebook.notesCount}"
+            val gradient = GradientDrawable(GradientDrawable.Orientation.BL_TR, notebook.color.toIntArray())
+            view.notebookColor.background = gradient
             view.setOnClickListener { listener?.onNotebookSelected(notebook) }
         }
     }

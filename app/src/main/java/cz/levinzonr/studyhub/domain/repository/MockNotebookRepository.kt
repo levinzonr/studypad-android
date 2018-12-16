@@ -12,7 +12,7 @@ class MockNotebookRepository : NotebookRepository {
         repeat(10) {
             list.add(it, Notebook(it.toLong(), "Notebook $it", it))
         }
-        delay(5000)
+        delay(1000)
         return list
     }
 }

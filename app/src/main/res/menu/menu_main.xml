@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <item
+            android:icon="@drawable/ic_library"
+            android:id="@+id/notebookListFragment"
+            android:title="@string/navigation_library"/>
+
+    <item
+            android:icon="@drawable/ic_search"
             android:id="@+id/sharedFragment"
-            android:title="Item 1"/>
-    <item android:id="@+id/notebookListFragment" android:title="Item 2"/>
-    <item android:id="@+id/settingsFragment" android:title="Item 3"/>
-    <item android:id="@+id/challengesFragment" android:title="Item 4"/>
+            android:title="@string/navigation_sharing_hub"/>
+
+    <item
+            android:icon="@drawable/ic_challenges"
+            android:id="@+id/challengesFragment"
+          android:title="@string/navigation_challenges"/>
+
+    <item
+            android:icon="@drawable/ic_person"
+            android:id="@+id/settingsFragment"
+            android:title="@string/navigation_settings"/>
 </menu>
