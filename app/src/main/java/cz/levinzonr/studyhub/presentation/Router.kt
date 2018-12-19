@@ -2,6 +2,7 @@ package cz.levinzonr.studyhub.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import cz.levinzonr.studyhub.R
 import cz.levinzonr.studyhub.domain.Note

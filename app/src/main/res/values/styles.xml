@@ -6,6 +6,21 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:textAppearance">@style/TextStyle</item>
     </style>
 
+
+    <style name="TextStyle">
+        <item name="android:textColor">#99000000</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+
+    <style name="TextStyle.Header">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">21sp</item>
+    </style>
 </resources>
