@@ -21,19 +21,18 @@ import kotlinx.android.synthetic.main.fragment_notes_list.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
 
     private lateinit var adapter: NotesAdapter
 
-    private val repo : NotesRepository by inject()
-
     companion object {
         fun newInstance() = NotesListFragment()
     }
 
-    private lateinit var viewModel: NotesListViewModel
+    private val viewModel: NotesListViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +43,6 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(NotesListViewModel::class.java)
         setupRecyclerView()
         viewModel.dataSource.observe(this, Observer {
             adapter.items  = it
@@ -55,9 +53,7 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         supportActionBar?.title = notebook?.name
-        repo.getNotesFromNotebook(1).observe(this, Observer {
-            Timber.d("Test,$it")
-        })
+
     }
 
 

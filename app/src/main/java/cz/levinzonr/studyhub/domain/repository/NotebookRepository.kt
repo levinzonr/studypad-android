@@ -5,6 +5,6 @@ import cz.levinzonr.studyhub.domain.Notebook
 
 interface NotebookRepository {
 
-    suspend fun getNotebooks() : List<Notebook>
+    fun getNotebooks() : List<Notebook>
 
 }

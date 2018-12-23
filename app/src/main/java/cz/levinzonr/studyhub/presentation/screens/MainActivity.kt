@@ -14,7 +14,6 @@ import timber.log.Timber
 
 class MainActivity : BaseActivity() {
 
-    private val repository: NotesRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +24,5 @@ class MainActivity : BaseActivity() {
             setupActionBarWithNavController(this)
         }
 
-        repository.getNotesFromNotebook(1).observe(this, Observer {
-            Timber.d("Reposriroy test: $it" )
-        })
     }
 }
