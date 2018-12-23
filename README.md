@@ -33,7 +33,7 @@ App will communicate with different services, including third parties services
 - `Room` as a local persistent storage
 - `Android Navigation Component` is used for Navigation
 - `ViewModel` as ViewModel ..
-- Koin for dependency injection
+- `Koin` for dependency injection
 - Heavy usage of `Kotlin Coroutines`
 - `LiveData` as main app state holder
 - `Material Design v2`
