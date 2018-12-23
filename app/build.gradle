@@ -18,6 +18,13 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+
+        debug {
+            applicationIdSuffix ".dev"
+            buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com/api\""
+
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -26,13 +33,15 @@ android {
 }
 
 dependencies {
-    def koin_version = '1.0.2'
-    def nav_version = "1.0.0-alpha08"
+    def koin_version = '1.0.2',
+        nav_version = "1.0.0-alpha08",
+        retrofit_version = "2.5.0",
+        okhttp_version = "3.9.0"
 
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version" // use -ktx for Kotlin
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version" // use -ktx for Kotlin
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1'
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1"
 
     api "com.android.support:design:28.0.0"
     implementation "com.android.support:support-v4:28.0.0"
@@ -43,6 +52,16 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version") {
+        exclude module: "retrofit:$retrofit_version"
+    }
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
 
     // DI
     implementation "org.koin:koin-android:$koin_version"

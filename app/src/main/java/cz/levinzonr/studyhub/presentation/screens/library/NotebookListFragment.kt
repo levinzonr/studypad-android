@@ -14,6 +14,7 @@ import cz.levinzonr.studyhub.presentation.adapters.NotebooksAdapter
 import cz.levinzonr.studyhub.presentation.base.BaseFragment
 import cz.levinzonr.studyhub.presentation.screens.showNotes
 import kotlinx.android.synthetic.main.fragment_notebook_list.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListener {
 
@@ -21,7 +22,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
         fun newInstance() = NotebookListFragment()
     }
 
-    private lateinit var viewModel: NotebookListViewModel
+    private val viewModel: NotebookListViewModel by viewModel()
     private lateinit var adapter: NotebooksAdapter
 
     override fun onCreateView(
@@ -33,7 +34,6 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(NotebookListViewModel::class.java)
         viewModel.dataSource.observe(this, Observer {
             showNotebooks(it)
         })

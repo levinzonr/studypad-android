@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class NotebookListViewModel : ViewModel() {
+class NotebookListViewModel(private val getNotebooksInteractor: GetNotebooksInteractor) : ViewModel() {
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -17,7 +17,7 @@ class NotebookListViewModel : ViewModel() {
     val dataSource = MutableLiveData<List<Notebook>>()
     init {
         runInteractor {
-            dataSource.postValue(GetNotebooksInteractor().run())
+            dataSource.postValue(getNotebooksInteractor.run())
         }
     }
 
