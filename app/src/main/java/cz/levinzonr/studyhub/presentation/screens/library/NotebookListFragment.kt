@@ -12,7 +12,7 @@ import cz.levinzonr.studyhub.R
 import cz.levinzonr.studyhub.domain.Notebook
 import cz.levinzonr.studyhub.presentation.adapters.NotebooksAdapter
 import cz.levinzonr.studyhub.presentation.base.BaseFragment
-import cz.levinzonr.studyhub.presentation.showNotes
+import cz.levinzonr.studyhub.presentation.screens.showNotes
 import kotlinx.android.synthetic.main.fragment_notebook_list.*
 
 class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListener {
@@ -55,7 +55,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
     }
 
     override fun onNotebookSelected(notebook: Notebook) {
-        showNotes(notebook.id)
+        showNotes(notebook)
     }
 
     private fun showNotebooks(list: List<Notebook>) {

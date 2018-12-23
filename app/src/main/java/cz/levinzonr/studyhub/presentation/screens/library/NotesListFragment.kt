@@ -10,14 +10,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import cz.levinzonr.studyhub.R
 import cz.levinzonr.studyhub.domain.Note
+import cz.levinzonr.studyhub.domain.repository.NotebookRepository
+import cz.levinzonr.studyhub.domain.repository.NotesRepository
 import cz.levinzonr.studyhub.presentation.adapters.NotesAdapter
 import cz.levinzonr.studyhub.presentation.base.BaseFragment
-import cz.levinzonr.studyhub.presentation.showNoteEdit
+import cz.levinzonr.studyhub.presentation.screens.notebook
+import cz.levinzonr.studyhub.presentation.screens.showNoteDetail
+import cz.levinzonr.studyhub.supportActionBar
 import kotlinx.android.synthetic.main.fragment_notes_list.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
 
     private lateinit var adapter: NotesAdapter
+
+    private val repo : NotesRepository by inject()
 
     companion object {
         fun newInstance() = NotesListFragment()
@@ -44,6 +54,10 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        supportActionBar?.title = notebook?.name
+        repo.getNotesFromNotebook(1).observe(this, Observer {
+            Timber.d("Test,$it")
+        })
     }
 
 
@@ -55,6 +69,6 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
     }
 
     override fun onNoteSelected(note: Note) {
-        showNoteEdit(note)
+        showNoteDetail(note)
     }
 }

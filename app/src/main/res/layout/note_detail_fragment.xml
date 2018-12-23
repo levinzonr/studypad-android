@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".presentation.screens.library.NoteDetailFragment">
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:src="@drawable/ic_edit"
+            android:id="@+id/noteDetailEditFab"
+            android:layout_width="wrap_content"
+            app:layout_anchor="@id/bottomAppBar"
+            android:layout_height="wrap_content"/>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_gravity="bottom"
+            android:elevation="10dp"
+            android:backgroundTint="#fafafa"
+            app:fabAlignmentMode="center"
+            android:layout_height="wrap_content"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

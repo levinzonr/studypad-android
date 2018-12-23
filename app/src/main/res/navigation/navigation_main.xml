@@ -6,7 +6,7 @@
 
     <fragment android:id="@+id/notebookListFragment"
               android:name="cz.levinzonr.studyhub.presentation.screens.library.NotebookListFragment"
-              android:label="fragment_notebook_list" tools:layout="@layout/fragment_notebook_list">
+              android:label="@string/screen_notebooks" tools:layout="@layout/fragment_notebook_list">
         <action android:id="@+id/action_notebookListFragment_to_notesListFragment"
                 app:destination="@id/notesListFragment" app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_enter_anim"
@@ -14,23 +14,38 @@
     </fragment>
     <fragment android:id="@+id/notesListFragment"
               android:name="cz.levinzonr.studyhub.presentation.screens.library.NotesListFragment"
-              android:label="fragment_notes_list" tools:layout="@layout/fragment_notes_list">
-        <argument android:name="NOTEBOOK_ID" app:argType="integer"/>
-        <action android:id="@+id/action_notesListFragment_to_editNoteFragment" app:destination="@id/editNoteFragment"
-                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+              android:label="fragment_notes_list"
+              tools:layout="@layout/fragment_notes_list">
+        <argument android:name="NOTEBOOK" app:argType="cz.levinzonr.studyhub.domain.Notebook"/>
+        <action android:id="@+id/action_notesListFragment_to_editNoteFragment"
+                app:destination="@id/editNoteFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_notesListFragment_to_noteDetailFragment"
+                app:destination="@id/noteDetailFragment"/>
     </fragment>
+
     <fragment android:id="@+id/settingsFragment"
               android:name="cz.levinzonr.studyhub.presentation.screens.settings.SettingsFragment"
-              android:label="fragment_settings" tools:layout="@layout/fragment_settings"/>
-    <fragment android:id="@+id/sharedFragment" android:name="cz.levinzonr.studyhub.presentation.screens.sharedbooks.SharedFragment"
-              android:label="fragment_shared" tools:layout="@layout/fragment_shared"/>
+              android:label="Settings" tools:layout="@layout/fragment_settings"/>
+    <fragment android:id="@+id/sharedFragment"
+              android:name="cz.levinzonr.studyhub.presentation.screens.sharedbooks.SharedFragment"
+              android:label="@string/screen_sharing_hub" tools:layout="@layout/fragment_shared"/>
+
     <fragment android:id="@+id/challengesFragment"
               android:name="cz.levinzonr.studyhub.presentation.screens.challenges.ChallengesFragment"
-              android:label="fragment_challenges" tools:layout="@layout/fragment_challenges"></fragment>
+              android:label="@string/screen_challenges" tools:layout="@layout/fragment_challenges"></fragment>
+
     <fragment android:id="@+id/editNoteFragment"
               android:name="cz.levinzonr.studyhub.presentation.screens.library.EditNoteFragment"
               android:label="fragment_edit_note" tools:layout="@layout/fragment_edit_note">
         <argument android:name="NOTE" app:argType="cz.levinzonr.studyhub.domain.Note"/>
+    </fragment>
+    <fragment android:id="@+id/noteDetailFragment"
+              android:name="cz.levinzonr.studyhub.presentation.screens.library.NoteDetailFragment"
+              android:label="note_detail_fragment" tools:layout="@layout/note_detail_fragment">
+    <argument android:name="NOTE" app:argType="cz.levinzonr.studyhub.domain.Note"/>
     </fragment>
 </navigation>
