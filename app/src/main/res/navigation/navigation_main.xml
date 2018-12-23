@@ -48,4 +48,7 @@
               android:label="note_detail_fragment" tools:layout="@layout/note_detail_fragment">
     <argument android:name="NOTE" app:argType="cz.levinzonr.studyhub.domain.Note"/>
     </fragment>
+    <fragment android:id="@+id/loginFragment"
+              android:name="cz.levinzonr.studyhub.presentation.screens.onboarding.LoginFragment"
+              android:label="fragment_login" tools:layout="@layout/fragment_login"/>
 </navigation>

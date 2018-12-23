@@ -2,11 +2,14 @@ package cz.levinzonr.studyhub.injection
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.TypeAdapterFactory
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import cz.levinzonr.studyhub.BuildConfig
 import cz.levinzonr.studyhub.rest.utils.Api
 import cz.levinzonr.studyhub.rest.utils.ItemTypeAdaperFactory
 import okhttp3.OkHttpClient
 import org.koin.dsl.module.module
+import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,7 +19,7 @@ import java.util.concurrent.TimeUnit
 
 val rest = module {
 
-    single { ItemTypeAdaperFactory() }
+    single<TypeAdapterFactory> { ItemTypeAdaperFactory() }
 
 
     // Okhttp
@@ -39,8 +42,11 @@ val rest = module {
     single<Gson> {
         GsonBuilder()
             .registerTypeAdapterFactory(get())
-            .registerTypeAdapter(Date::class.java, get())
             .create()
+    }
+
+    single<Converter.Factory> {
+        GsonConverterFactory.create(get())
     }
 
     // Retrofit
@@ -49,15 +55,14 @@ val rest = module {
             .client(get())
             .baseUrl(BuildConfig.API_URL)
             .addConverterFactory(get())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
     }
 
     single { GsonConverterFactory.create(get()) }
 
     single<Api> {
-        val retrofit : Retrofit = get()
-        retrofit.create(Api::class.java)
+        get<Retrofit>().create<Api>(Api::class.java)
     }
 
 }

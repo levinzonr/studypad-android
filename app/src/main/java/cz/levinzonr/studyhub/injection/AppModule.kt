@@ -5,5 +5,6 @@ val appModule = listOf(
     repositoryModule,
     rest,
     interacorModule,
-    viewModelModule
+    viewModelModule,
+    managerModule
 )
