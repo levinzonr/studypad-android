@@ -7,7 +7,7 @@ import androidx.navigation.findNavController
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.Note
 import cz.levinzonr.studypad.domain.Notebook
-import cz.levinzonr.studypad.presentation.screens.library.NotesListFragment
+import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListFragment
 
 private const val ARG_NOTEBOOK = "NOTEBOOK"
 private const val ARG_NOTE = "NOTE"

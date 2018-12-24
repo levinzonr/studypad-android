@@ -5,4 +5,6 @@ interface TokenRepository {
     fun saveToken(token: String)
 
     fun getToken() : String?
+
+    fun clear()
 }

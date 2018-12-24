@@ -25,4 +25,8 @@ class UserManagerImpl(private val api: Api,
     override fun isLoggedIn(): Boolean {
         return tokenRepository.getToken() != null
     }
+
+    override fun logout() {
+        tokenRepository.clear()
+    }
 }

@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.library
+package cz.levinzonr.studypad.presentation.screens.library.notebooks
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -49,7 +49,9 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
     private fun setupListeners() {
         notebooksAddFab.setOnClickListener {
 
-            EditNotebookDialog.show(fragmentManager) {
+            EditNotebookDialog.show(
+                fragmentManager
+            ) {
                 viewModel.createNewNotebook(it)
             }
         }

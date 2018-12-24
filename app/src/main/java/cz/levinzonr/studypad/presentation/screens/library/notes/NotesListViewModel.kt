@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.library
+package cz.levinzonr.studypad.presentation.screens.library.notes
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;

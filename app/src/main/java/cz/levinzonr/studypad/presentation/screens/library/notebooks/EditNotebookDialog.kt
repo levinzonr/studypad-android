@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.library
+package cz.levinzonr.studypad.presentation.screens.library.notebooks
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -32,7 +32,9 @@ class EditNotebookDialog : DialogFragment() {
             val fragment = fm.findFragmentByTag(TAG) as? EditNotebookDialog? ?: EditNotebookDialog()
             fragment.arguments = Bundle().apply { putParcelable(ARG_NOTEBOOK, notebook) }
             fragment.callback = onComplete
-            fragment.show(fm, TAG)
+            fragment.show(fm,
+                TAG
+            )
         }
     }
 

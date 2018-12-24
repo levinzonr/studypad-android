@@ -14,4 +14,6 @@ val interacorModule = module {
     factory { PostNotebookInteractor(get()) }
 
     factory { FacebookLoginInteractor(get()) }
+
+    factory { LogoutInteractor(get()) }
 }

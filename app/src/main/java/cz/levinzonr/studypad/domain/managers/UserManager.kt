@@ -8,4 +8,6 @@ interface UserManager {
 
     fun isLoggedIn() : Boolean
 
+    fun logout()
+
 }

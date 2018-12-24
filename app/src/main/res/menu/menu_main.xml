@@ -19,6 +19,6 @@
 
     <item
             android:icon="@drawable/ic_person"
-            android:id="@+id/loginFragment"
+            android:id="@+id/profileFragment"
             android:title="@string/navigation_settings"/>
 </menu>

@@ -13,4 +13,8 @@ class TokenRepositoryImpl(private val prefManager: PrefManager) : TokenRepositor
     override fun getToken(): String? {
         return prefManager.getString(PREF_TOKEN, null)
     }
+
+    override fun clear() {
+        prefManager.remove(PREF_TOKEN)
+    }
 }
