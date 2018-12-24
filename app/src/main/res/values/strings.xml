@@ -17,4 +17,8 @@
     <string name="login_login_button">Login</string>
     <string name="login_password_hint">Password</string>
     <string name="login_email_hint">E-MAIL</string>
+
+    <string name="facebook_app_id">1993571567628934</string>
+    <string name="fb_login_protocol_scheme">fb1993571567628934</string>
+
 </resources>

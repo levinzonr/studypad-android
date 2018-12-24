@@ -22,6 +22,9 @@ android {
         debug {
             applicationIdSuffix ".dev"
             buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com\""
+            manifestPlaceholders = [
+                    FB_APP_ID: "1993571567628934"
+            ]
 
         }
 
@@ -70,6 +73,10 @@ dependencies {
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
+
+    // Facebook
+    implementation 'com.facebook.android:facebook-android-sdk:4.36.0'
+    implementation 'com.facebook.android:facebook-login:4.36.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1-beta01'

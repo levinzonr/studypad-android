@@ -3,6 +3,7 @@ package cz.levinzonr.studyhub.rest
 import cz.levinzonr.studyhub.data.AuthResponse
 import cz.levinzonr.studyhub.data.CreateNotebookRequest
 import cz.levinzonr.studyhub.data.EmailLoginRequest
+import cz.levinzonr.studyhub.data.FacebookLoginRequest
 import cz.levinzonr.studyhub.domain.Note
 import cz.levinzonr.studyhub.domain.Notebook
 import kotlinx.coroutines.Deferred
@@ -26,6 +27,9 @@ interface Api {
     @POST("$API/notebooks")
     fun postNotebook(@Body createNotebookRequest: CreateNotebookRequest) : Deferred<Notebook>
 
+
+    @POST("$AUTH/facebook")
+    fun loginViaFacebook(@Body facebookLoginRequest: FacebookLoginRequest) : Deferred<AuthResponse>
 
     @GET("$API/notebooks/{id}/notes")
     fun getNotesFromNotebook(@Path("id") notebookId: Long) : Deferred<List<Note>>

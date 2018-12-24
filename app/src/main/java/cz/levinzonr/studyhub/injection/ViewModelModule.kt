@@ -12,5 +12,5 @@ val viewModelModule = module {
 
     viewModel { (id: Long) -> NotesListViewModel(id, get()) }
 
-    viewModel { LoginViewModel(get(), get() )}
+    viewModel { LoginViewModel(get(), get(), get())}
 }

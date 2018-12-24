@@ -1,5 +1,6 @@
 package cz.levinzonr.studyhub.presentation.screens.onboarding
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -66,6 +67,15 @@ class LoginFragment : BaseFragment() {
             viewModel.login()
         }
 
+        loginUsingFacebookBtn.setOnClickListener {
+            viewModel.loginViaFacebook(this)
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        viewModel.handleFacebookLoginResult(requestCode, resultCode, data)
     }
 
 
