@@ -11,6 +11,7 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
+import cz.levinzonr.studypad.call
 import cz.levinzonr.studypad.domain.interactors.FacebookLoginInteractor
 import cz.levinzonr.studypad.domain.interactors.LoginInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
@@ -46,7 +47,7 @@ class LoginViewModel(
 
     init {
         if (userManager.isLoggedIn()) {
-          loginSuccessEvent.postValue(SimpleEvent())
+          loginSuccessEvent.call()
         }
     }
 
@@ -59,7 +60,7 @@ class LoginViewModel(
         loginInteractor.execute {
             onComplete {
                 toggleLoading(false)
-                loginSuccessEvent.postValue(SimpleEvent())
+                loginSuccessEvent.call()
                 Timber.d("Success $it")
             }
             onError {
@@ -96,7 +97,7 @@ class LoginViewModel(
             facebookLoginInteractor.execute {
                 onComplete {
                    toggleLoading(false)
-                    loginSuccessEvent.postValue(SimpleEvent())
+                    loginSuccessEvent.call()
                 }
             }
         }

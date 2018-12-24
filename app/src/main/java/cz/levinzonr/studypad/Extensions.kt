@@ -4,9 +4,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.appcompat.app.ActionBar
+import androidx.lifecycle.MutableLiveData
 import com.google.android.material.textfield.TextInputEditText
 import cz.levinzonr.studypad.presentation.base.BaseActivity
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.events.SimpleEvent
 
 
 val BaseFragment.baseActivity : BaseActivity?
@@ -33,4 +35,8 @@ fun TextInputEditText.onTextChanged(onChange: (String) -> Unit) {
 
 fun View.setVisible(visible: Boolean, fallback: Int = View.GONE) {
     visibility =  if (visible)  View.VISIBLE else fallback
+}
+
+fun MutableLiveData<SimpleEvent>.call() {
+    postValue(SimpleEvent())
 }

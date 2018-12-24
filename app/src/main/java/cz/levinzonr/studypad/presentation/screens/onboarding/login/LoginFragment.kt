@@ -15,6 +15,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import cz.levinzonr.studypad.presentation.screens.MainActivity
 import cz.levinzonr.studypad.presentation.screens.showAccountCreation
 import cz.levinzonr.studypad.setVisible
 import timber.log.Timber
@@ -68,6 +69,14 @@ class LoginFragment : BaseFragment() {
             loginProgress.setVisible(it)
             Timber.d("Loading: $it")
         })
+
+        viewModel.loginSuccessEvent.observe(this, Observer {
+            it.handle {
+                startActivity(Intent(activity, MainActivity::class.java))
+                activity?.finish()
+            }
+
+        })
     }
 
     private fun setupListeners() {
@@ -89,7 +98,8 @@ class LoginFragment : BaseFragment() {
         }
 
         sign_in_button.setOnClickListener {
-            startActivityForResult(googleClient.signInIntent,
+            startActivityForResult(
+                googleClient.signInIntent,
                 REQUEST_SIGNIN
             )
         }
@@ -109,7 +119,6 @@ class LoginFragment : BaseFragment() {
 
         }
     }
-
 
 
 }
