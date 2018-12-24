@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.onboarding
+package cz.levinzonr.studypad.presentation.screens.onboarding.login
 
 import android.content.Intent
 import androidx.lifecycle.LiveData
@@ -14,22 +14,19 @@ import com.google.android.gms.tasks.Task
 import cz.levinzonr.studypad.domain.interactors.FacebookLoginInteractor
 import cz.levinzonr.studypad.domain.interactors.LoginInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
+import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import cz.levinzonr.studypad.presentation.events.SimpleEvent
 import timber.log.Timber
 
 class LoginViewModel(
     private val userManager: UserManager,
     private val facebookLoginInteractor: FacebookLoginInteractor,
-    private val loginInteractor: LoginInteractor) : ViewModel() {
-
-
-
-    val stateLiveDate : LiveData<State>
-        get() = mutableStateLiveData
+    private val loginInteractor: LoginInteractor) : BaseViewModel() {
 
     val PERMISSIONS = listOf("email, public_profile")
 
+    val loginSuccessEvent = MutableLiveData<SimpleEvent>()
 
-    private val mutableStateLiveData = MutableLiveData<State>()
 
     private var facebookActivityResultManager: CallbackManager? = null
     private val facebookLoginResultCallback = object : FacebookCallback<LoginResult> {
@@ -49,7 +46,7 @@ class LoginViewModel(
 
     init {
         if (userManager.isLoggedIn()) {
-            mutableStateLiveData.postValue(State.SUCCESS)
+          loginSuccessEvent.postValue(SimpleEvent())
         }
     }
 
@@ -58,14 +55,15 @@ class LoginViewModel(
 
     fun login() {
         loginInteractor.input = LoginInteractor.Input(email, password)
-        mutableStateLiveData.postValue(State.LOADING)
+        toggleLoading(true)
         loginInteractor.execute {
             onComplete {
-                mutableStateLiveData.postValue(State.SUCCESS)
+                toggleLoading(false)
+                loginSuccessEvent.postValue(SimpleEvent())
                 Timber.d("Success $it")
             }
             onError {
-                mutableStateLiveData.postValue(State.ERROR)
+                postError("Error")
                 Timber.d("Fail: $it")
             }
         }
@@ -76,7 +74,7 @@ class LoginViewModel(
     }
 
     fun loginViaFacebook(fragment: LoginFragment) {
-        mutableStateLiveData.postValue(State.LOADING)
+        toggleLoading(true)
         LoginManager.getInstance().apply {
             logOut()
             facebookActivityResultManager = CallbackManager.Factory.create()
@@ -97,19 +95,10 @@ class LoginViewModel(
             facebookLoginInteractor.input = FacebookLoginInteractor.Input(it.token)
             facebookLoginInteractor.execute {
                 onComplete {
-                    mutableStateLiveData.postValue(State.SUCCESS)
+                   toggleLoading(false)
+                    loginSuccessEvent.postValue(SimpleEvent())
                 }
             }
         }
     }
-
-
-
-
-    enum class State {
-        LOADING, ERROR, SUCCESS
-    }
-
-
-
 }

@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.onboarding
+package cz.levinzonr.studypad.presentation.screens.onboarding.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,6 +15,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import cz.levinzonr.studypad.presentation.screens.showAccountCreation
+import cz.levinzonr.studypad.setVisible
+import timber.log.Timber
 
 
 class LoginFragment : BaseFragment() {
@@ -54,15 +57,16 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun subscribe() {
-        viewModel.stateLiveDate.observe(this, Observer {
-            when (it) {
-                LoginViewModel.State.ERROR -> {
-                    loginProgress.visibility = View.GONE
-
-                }
-                LoginViewModel.State.LOADING -> loginProgress.visibility = View.VISIBLE
-                LoginViewModel.State.SUCCESS -> showMain()
+        viewModel.errorLiveData.observe(this, Observer {
+            it.getContentIfNotHandled()?.let {
+                showToast(it)
+                Timber.d("Error data: $it")
             }
+        })
+
+        viewModel.loadingLiveData.observe(this, Observer {
+            loginProgress.setVisible(it)
+            Timber.d("Loading: $it")
         })
     }
 
@@ -85,7 +89,13 @@ class LoginFragment : BaseFragment() {
         }
 
         sign_in_button.setOnClickListener {
-            startActivityForResult(googleClient.signInIntent, REQUEST_SIGNIN)
+            startActivityForResult(googleClient.signInIntent,
+                REQUEST_SIGNIN
+            )
+        }
+
+        materialButton.setOnClickListener {
+            showAccountCreation()
         }
 
     }

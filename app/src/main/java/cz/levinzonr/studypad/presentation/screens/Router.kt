@@ -37,4 +37,12 @@ fun Fragment.showMain() {
     activity?.finish()
 }
 
+fun Fragment.showAccountCreation() {
+    view?.findNavController()?.navigate(R.id.action_loginFragment2_to_accountInfoFragment)
+}
+
+fun Fragment.showAccounCreationNextStep() {
+    view?.findNavController()?.navigate(R.id.action_accountInfoFragment_to_credentialsInfoFragment)
+}
+
 

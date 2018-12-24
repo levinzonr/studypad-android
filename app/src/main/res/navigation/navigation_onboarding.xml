@@ -7,12 +7,28 @@
 
     <fragment
         android:id="@+id/loginFragment2"
-        android:name="cz.levinzonr.studypad.presentation.screens.onboarding.LoginFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment2_to_navigation_main"
-            app:destination="@id/navigation_main" />
+            android:id="@+id/action_loginFragment2_to_accountInfoFragment"
+            app:destination="@id/accountInfoFragment" />
     </fragment>
-    <include app:graph="@navigation/navigation_main" />
+
+
+    <fragment
+        android:id="@+id/accountInfoFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountInfoFragment"
+        android:label="fragmne_info"
+        tools:layout="@layout/fragment_account_info">
+        <action
+            android:id="@+id/action_accountInfoFragment_to_credentialsInfoFragment"
+            app:destination="@id/credentialsInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/credentialsInfoFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.onboarding.signup.CredentialsInfoFragment"
+        android:label="fragment_credentials_info"
+        tools:layout="@layout/fragment_credentials_info" />
+
 </navigation>

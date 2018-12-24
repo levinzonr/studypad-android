@@ -2,6 +2,7 @@ package cz.levinzonr.studypad
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.appcompat.app.ActionBar
 import com.google.android.material.textfield.TextInputEditText
 import cz.levinzonr.studypad.presentation.base.BaseActivity
@@ -28,4 +29,8 @@ fun TextInputEditText.onTextChanged(onChange: (String) -> Unit) {
             onChange.invoke(p0.toString())
         }
     })
+}
+
+fun View.setVisible(visible: Boolean, fallback: Int = View.GONE) {
+    visibility =  if (visible)  View.VISIBLE else fallback
 }
