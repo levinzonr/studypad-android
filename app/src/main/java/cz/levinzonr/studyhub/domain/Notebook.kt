@@ -42,6 +42,6 @@ data class Color(
     val endColor: String
 ) {
     fun toIntArray(): IntArray {
-        return intArrayOf(android.graphics.Color.parseColor(startColor), android.graphics.Color.parseColor(endColor))
+        return intArrayOf(android.graphics.Color.parseColor(startColor.trim()), android.graphics.Color.parseColor(endColor.trim()))
     }
 }

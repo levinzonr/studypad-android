@@ -5,15 +5,14 @@ import com.google.gson.GsonBuilder
 import com.google.gson.TypeAdapterFactory
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import cz.levinzonr.studyhub.BuildConfig
-import cz.levinzonr.studyhub.rest.utils.Api
+import cz.levinzonr.studyhub.rest.Api
+import cz.levinzonr.studyhub.rest.AuthTokenInterceptor
 import cz.levinzonr.studyhub.rest.utils.ItemTypeAdaperFactory
 import okhttp3.OkHttpClient
 import org.koin.dsl.module.module
 import retrofit2.Converter
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 
@@ -24,11 +23,12 @@ val rest = module {
 
     // Okhttp
     single<OkHttpClient> {
+
         val clientBuilder = OkHttpClient.Builder()
             .connectTimeout(45, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
-
+            .addInterceptor(AuthTokenInterceptor(get()))
         if (BuildConfig.DEBUG) {
             val logging = okhttp3.logging.HttpLoggingInterceptor()
             logging.level = okhttp3.logging.HttpLoggingInterceptor.Level.BODY

@@ -5,6 +5,6 @@ import cz.levinzonr.studyhub.domain.Note
 
 interface NotesRepository {
 
-    fun getNotesFromNotebook(notebookId: Long) : List<Note>
+    suspend fun getNotesFromNotebook(notebookId: Long) : List<Note>
 
 }

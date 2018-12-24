@@ -34,6 +34,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         viewModel.dataSource.observe(this, Observer {
             showNotebooks(it)
         })
@@ -43,8 +44,17 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setupListeners()
     }
 
+    private fun setupListeners() {
+        notebooksAddFab.setOnClickListener {
+
+            EditNotebookDialog.show(fragmentManager) {
+                viewModel.createNewNotebook(it)
+            }
+        }
+    }
 
     private fun setupRecyclerView() {
         adapter = NotebooksAdapter()

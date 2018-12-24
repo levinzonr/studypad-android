@@ -4,8 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 import cz.levinzonr.studyhub.domain.interactors.GetNotebooksInteractor
 import cz.levinzonr.studyhub.domain.Notebook
+import cz.levinzonr.studyhub.domain.interactors.PostNotebookInteractor
 
-class NotebookListViewModel(private val getNotebooksInteractor: GetNotebooksInteractor) : ViewModel() {
+class NotebookListViewModel(private val getNotebooksInteractor: GetNotebooksInteractor,
+                            private val postNoteookInteractor: PostNotebookInteractor) : ViewModel() {
 
 
     val dataSource = MutableLiveData<List<Notebook>>()
@@ -17,4 +19,14 @@ class NotebookListViewModel(private val getNotebooksInteractor: GetNotebooksInte
             }
         }
     }
+
+    fun createNewNotebook(name: String) {
+        postNoteookInteractor.input = PostNotebookInteractor.Input(name)
+        postNoteookInteractor.execute {
+            onComplete {
+                dataSource.postValue(dataSource.value?.toMutableList()?.apply { add(it)})
+            }
+        }
+    }
+
 }

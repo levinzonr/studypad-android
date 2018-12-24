@@ -1,7 +1,7 @@
 package cz.levinzonr.studyhub.domain.managers
 
 import cz.levinzonr.studyhub.data.EmailLoginRequest
-import cz.levinzonr.studyhub.rest.utils.Api
+import cz.levinzonr.studyhub.rest.Api
 import cz.levinzonr.studyhub.storage.TokenRepository
 
 class UserManagerImpl(private val api: Api,
