@@ -12,4 +12,9 @@
     <string name="screen_profile">Profile</string>
     <string name="screen_sharing_hub">Sharing Hub</string>
     <string name="screen_challenges">Challenges</string>
+
+
+    <string name="login_login_button">Login</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_email_hint">E-MAIL</string>
 </resources>

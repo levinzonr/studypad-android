@@ -12,5 +12,5 @@ val viewModelModule = module {
 
     viewModel { NotesListViewModel(get()) }
 
-    viewModel { LoginViewModel(get()) }
+    viewModel { LoginViewModel(get(), get() )}
 }

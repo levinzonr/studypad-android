@@ -1,5 +1,6 @@
 package cz.levinzonr.studyhub.presentation.screens
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -29,3 +30,11 @@ fun Fragment.showNoteDetail(note: Note) {
 
 val NotesListFragment.notebook: Notebook?
     get() =  arguments?.getParcelable(ARG_NOTEBOOK)
+
+
+fun Fragment.showMain() {
+    startActivity(Intent(activity, MainActivity::class.java))
+    activity?.finish()
+}
+
+

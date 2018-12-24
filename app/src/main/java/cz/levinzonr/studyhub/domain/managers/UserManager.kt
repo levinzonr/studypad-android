@@ -4,4 +4,6 @@ interface UserManager {
 
     suspend fun login(email: String, password: String)
 
+    fun isLoggedIn() : Boolean
+
 }

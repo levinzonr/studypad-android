@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import cz.levinzonr.studyhub.R
 import cz.levinzonr.studyhub.onTextChanged
 import cz.levinzonr.studyhub.presentation.base.BaseFragment
+import cz.levinzonr.studyhub.presentation.screens.showMain
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,13 +35,24 @@ class LoginFragment : BaseFragment() {
         loginPasswordEt.setText(viewModel.password)
         loginEmailEt.setText(viewModel.email)
         setupListeners()
-
+        subscribe()
 
     }
 
+    private fun subscribe() {
+        viewModel.stateLiveDate.observe(this, Observer {
+            when (it) {
+                LoginViewModel.State.ERROR -> {
+                    loginProgress.visibility = View.GONE
+
+                }
+                LoginViewModel.State.LOADING -> loginProgress.visibility = View.VISIBLE
+                LoginViewModel.State.SUCCESS -> showMain()
+            }
+        })
+    }
+
     private fun setupListeners() {
-
-
 
         loginEmailEt.onTextChanged {
             viewModel.email = it
