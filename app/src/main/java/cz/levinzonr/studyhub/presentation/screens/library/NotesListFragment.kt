@@ -22,6 +22,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
 class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
@@ -32,7 +33,7 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
         fun newInstance() = NotesListFragment()
     }
 
-    private val viewModel: NotesListViewModel by viewModel()
+    private val viewModel: NotesListViewModel by viewModel { parametersOf(notebook!!.id) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

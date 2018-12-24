@@ -10,7 +10,7 @@ val viewModelModule = module {
 
     viewModel  { NotebookListViewModel(get(), get()) }
 
-    viewModel { NotesListViewModel(get()) }
+    viewModel { (id: Long) -> NotesListViewModel(id, get()) }
 
     viewModel { LoginViewModel(get(), get() )}
 }

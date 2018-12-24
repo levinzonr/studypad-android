@@ -5,8 +5,12 @@ import cz.levinzonr.studyhub.domain.repository.NotesRepository
 
 class GetNotesInteractor(private val notesRepository: NotesRepository) : BaseInteractor<List<Note>>() {
 
+    data class Input(val id: Long)
+
+    var input: Input? = null
+
     override suspend fun executeOnBackground(): List<Note> {
-        return notesRepository.getNotesFromNotebook(1)
+        return notesRepository.getNotesFromNotebook(input!!.id)
     }
 
 
