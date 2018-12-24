@@ -10,7 +10,7 @@ apply plugin: "androidx.navigation.safeargs"
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "cz.levinzonr.studyhub"
+        applicationId "cz.levinzonr.studypad"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -65,7 +65,8 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-
+//776080318800-3l21qogmj2ir05fvmnqooib4qrs53olk.apps.googleusercontent.com
+    //lhx8a061Ii-NBWylMfIK2lj5
     // DI
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-androidx-scope:$koin_version"
@@ -77,6 +78,10 @@ dependencies {
     // Facebook
     implementation 'com.facebook.android:facebook-android-sdk:4.36.0'
     implementation 'com.facebook.android:facebook-login:4.36.0'
+
+    //Google Auth
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1-beta01'

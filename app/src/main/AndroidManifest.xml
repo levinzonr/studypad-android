@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cz.levinzonr.studyhub">
+    package="cz.levinzonr.studypad">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".presentation.App"
+        android:name="cz.levinzonr.studypad.presentation.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.screens.MainActivity"/>
-        <activity android:name=".presentation.screens.onboarding.OnboardingActivity">
+        <activity android:name="cz.levinzonr.studypad.presentation.screens.MainActivity"/>
+        <activity android:name="cz.levinzonr.studypad.presentation.screens.onboarding.OnboardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

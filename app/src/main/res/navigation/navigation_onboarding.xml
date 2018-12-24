@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment2"
-        android:name="cz.levinzonr.studyhub.presentation.screens.onboarding.LoginFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.onboarding.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
