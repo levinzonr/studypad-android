@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.Notebook
+import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.presentation.adapters.NotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.showNotes

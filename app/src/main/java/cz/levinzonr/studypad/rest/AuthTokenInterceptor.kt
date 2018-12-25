@@ -9,8 +9,7 @@ class AuthTokenInterceptor(private val tokenRepository: TokenRepository) : Inter
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
             .newBuilder()
-            .addHeader("Authorization", "Bearer ${tokenRepository.getToken()}")
-            .build()
-        return chain.proceed(request)
+        tokenRepository.getToken()?.let { request.header("Authorization", "Bearer $it") }
+        return chain.proceed(request.build())
     }
 }

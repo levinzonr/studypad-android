@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.Notebook
+import cz.levinzonr.studypad.domain.models.Notebook
 import kotlinx.android.synthetic.main.dialog_edit_notebook.*
 
 class EditNotebookDialog : DialogFragment() {

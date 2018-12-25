@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.domain
+package cz.levinzonr.studypad.domain.models
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -7,7 +7,10 @@ data class Notebook(
     val id: Long,
     val name: String,
     val notesCount: Int,
-    val color: Color = Color("#33ccff", "#ff99cc")
+    val color: Color = Color(
+        "#33ccff",
+        "#ff99cc"
+    )
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readLong(),

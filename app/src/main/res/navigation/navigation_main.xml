@@ -16,7 +16,7 @@
               android:name="cz.levinzonr.studypad.presentation.screens.library.notes.NotesListFragment"
               android:label="fragment_notes_list"
               tools:layout="@layout/fragment_notes_list">
-        <argument android:name="NOTEBOOK" app:argType="cz.levinzonr.studypad.domain.Notebook"/>
+        <argument android:name="NOTEBOOK" app:argType="cz.levinzonr.studypad.domain.models.Notebook"/>
         <action android:id="@+id/action_notesListFragment_to_editNoteFragment"
                 app:destination="@id/editNoteFragment"
                 app:enterAnim="@anim/nav_default_enter_anim"
@@ -41,12 +41,12 @@
     <fragment android:id="@+id/editNoteFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.library.notes.EditNoteFragment"
               android:label="fragment_edit_note" tools:layout="@layout/fragment_edit_note">
-        <argument android:name="NOTE" app:argType="cz.levinzonr.studypad.domain.Note"/>
+        <argument android:name="NOTE" app:argType="cz.levinzonr.studypad.domain.models.Note"/>
     </fragment>
     <fragment android:id="@+id/noteDetailFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailFragment"
               android:label="note_detail_fragment" tools:layout="@layout/note_detail_fragment">
-    <argument android:name="NOTE" app:argType="cz.levinzonr.studypad.domain.Note"/>
+    <argument android:name="NOTE" app:argType="cz.levinzonr.studypad.domain.models.Note"/>
     </fragment>
     <fragment android:id="@+id/loginFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginFragment"

@@ -16,4 +16,8 @@ val interacorModule = module {
     factory { FacebookLoginInteractor(get()) }
 
     factory { LogoutInteractor(get()) }
+
+    factory { GetUniversitiesInteractor(get() ) }
+
+    factory { SignupInteractor(get()) }
 }

@@ -1,6 +1,6 @@
 package cz.levinzonr.studypad.domain.repository
 
-import cz.levinzonr.studypad.domain.Notebook
+import cz.levinzonr.studypad.domain.models.Notebook
 
 interface NotebookRepository {
 

@@ -1,16 +1,11 @@
 package cz.levinzonr.studypad.rest
 
-import cz.levinzonr.studypad.data.AuthResponse
-import cz.levinzonr.studypad.data.CreateNotebookRequest
-import cz.levinzonr.studypad.data.EmailLoginRequest
-import cz.levinzonr.studypad.data.FacebookLoginRequest
-import cz.levinzonr.studypad.domain.Note
-import cz.levinzonr.studypad.domain.Notebook
+import cz.levinzonr.studypad.data.*
+import cz.levinzonr.studypad.domain.models.Note
+import cz.levinzonr.studypad.domain.models.Notebook
+import cz.levinzonr.studypad.domain.models.University
 import kotlinx.coroutines.Deferred
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 private const val API = "api"
 private const val AUTH = "/auth"
@@ -21,6 +16,16 @@ interface Api {
     @POST("$AUTH/email")
     fun loginUsingEmail(@Body emailLoginRequest: EmailLoginRequest) : Deferred<AuthResponse>
 
+    @POST("$AUTH/facebook")
+    fun loginViaFacebook(@Body facebookLoginRequest: FacebookLoginRequest) : Deferred<AuthResponse>
+
+    @POST("$API/users")
+    fun createAccount(@Body createAccountRequest: CreateAccountRequest) : Deferred<AuthResponse>
+
+    @GET("$API/university/find")
+    fun getUniversities(@Query("query") query: String) : Deferred<List<University>>
+
+
     @GET("$API/notebooks")
     fun getNotebooks() : Deferred<List<Notebook>>
 
@@ -28,10 +33,10 @@ interface Api {
     fun postNotebook(@Body createNotebookRequest: CreateNotebookRequest) : Deferred<Notebook>
 
 
-    @POST("$AUTH/facebook")
-    fun loginViaFacebook(@Body facebookLoginRequest: FacebookLoginRequest) : Deferred<AuthResponse>
 
     @GET("$API/notebooks/{id}/notes")
     fun getNotesFromNotebook(@Path("id") notebookId: Long) : Deferred<List<Note>>
+
+
 
 }

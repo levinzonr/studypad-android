@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.Note
-import cz.levinzonr.studypad.domain.Notebook
+import cz.levinzonr.studypad.domain.models.Note
+import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListFragment
 
 private const val ARG_NOTEBOOK = "NOTEBOOK"
@@ -43,6 +43,14 @@ fun Fragment.showAccountCreation() {
 
 fun Fragment.showAccounCreationNextStep() {
     view?.findNavController()?.navigate(R.id.action_accountInfoFragment_to_credentialsInfoFragment)
+}
+
+fun Fragment.showUniversitySelector() {
+    view?.findNavController()?.navigate(R.id.action_accountInfoFragment_to_universitySelectorFragment)
+}
+
+fun Fragment.navigateBack() {
+    view?.findNavController()?.popBackStack()
 }
 
 

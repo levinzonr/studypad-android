@@ -1,6 +1,6 @@
 package cz.levinzonr.studypad.domain.repository
 
-import cz.levinzonr.studypad.domain.Note
+import cz.levinzonr.studypad.domain.models.Note
 
 interface NotesRepository {
 

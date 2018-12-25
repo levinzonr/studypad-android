@@ -1,6 +1,6 @@
 package cz.levinzonr.studypad.domain.interactors
 
-import cz.levinzonr.studypad.domain.Notebook
+import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.repository.NotebookRepository
 
 class GetNotebooksInteractor(private val repository: NotebookRepository) : BaseInteractor<List<Notebook>>(){

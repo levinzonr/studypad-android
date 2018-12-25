@@ -1,5 +1,6 @@
 package cz.levinzonr.studypad.domain.managers
 
+import cz.levinzonr.studypad.data.CreateAccountRequest
 import cz.levinzonr.studypad.data.EmailLoginRequest
 import cz.levinzonr.studypad.data.FacebookLoginRequest
 import cz.levinzonr.studypad.rest.Api
@@ -19,6 +20,12 @@ class UserManagerImpl(private val api: Api,
     override suspend fun loginViaFacebook(token: String) {
         val request = FacebookLoginRequest(token)
         val response = api.loginViaFacebook(request).await()
+        tokenRepository.saveToken(response.token)
+    }
+
+    override suspend fun createAccount(email: String, password: String, firstName: String, lasName: String) {
+        val request = CreateAccountRequest(firstName, lasName, email, password)
+        val response = api.createAccount(request).await()
         tokenRepository.saveToken(response.token)
     }
 

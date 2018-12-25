@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.domain
+package cz.levinzonr.studypad.domain.models
 
 import android.os.Parcel
 import android.os.Parcelable

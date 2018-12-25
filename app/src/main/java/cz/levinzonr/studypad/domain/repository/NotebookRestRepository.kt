@@ -1,7 +1,7 @@
 package cz.levinzonr.studypad.domain.repository
 
 import cz.levinzonr.studypad.data.CreateNotebookRequest
-import cz.levinzonr.studypad.domain.Notebook
+import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.rest.Api
 
 class NotebookRestRepository(private val api: Api) : NotebookRepository {

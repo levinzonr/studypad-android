@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.Notebook
+import cz.levinzonr.studypad.domain.models.Notebook
 import kotlinx.android.synthetic.main.item_notebook.view.*
 
 class NotebooksAdapter : RecyclerView.Adapter<NotebooksAdapter.ViewHolder>() {

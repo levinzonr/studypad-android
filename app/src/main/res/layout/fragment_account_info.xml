@@ -23,6 +23,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/accountInfoFirstNameEt"
             android:hint="First name"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -43,6 +44,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/accountInfoLastNameEt"
             android:hint="Last name"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -59,6 +61,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/accountInfoUniversityEt"
             android:cursorVisible="false"
             android:focusable="false"
             android:clickable="true"
@@ -69,7 +72,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/nextBtn"
+        android:id="@+id/accountInfoProceedBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_big"

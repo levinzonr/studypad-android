@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.Note
+import cz.levinzonr.studypad.domain.models.Note
 
 
 class EditNoteFragment : Fragment() {

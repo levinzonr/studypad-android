@@ -101,6 +101,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginUsingFacebookBtn"
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
         android:backgroundTint="@color/facebookBlue"
         android:layout_marginBottom="@dimen/space_huge"

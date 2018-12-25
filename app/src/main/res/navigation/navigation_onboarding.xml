@@ -24,11 +24,19 @@
         <action
             android:id="@+id/action_accountInfoFragment_to_credentialsInfoFragment"
             app:destination="@id/credentialsInfoFragment" />
+        <action
+            android:id="@+id/action_accountInfoFragment_to_universitySelectorFragment"
+            app:destination="@id/universitySelectorFragment" />
     </fragment>
     <fragment
         android:id="@+id/credentialsInfoFragment"
         android:name="cz.levinzonr.studypad.presentation.screens.onboarding.signup.CredentialsInfoFragment"
         android:label="fragment_credentials_info"
         tools:layout="@layout/fragment_credentials_info" />
+    <fragment
+        android:id="@+id/universitySelectorFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment"
+        android:label="fragment_university_selector"
+        tools:layout="@layout/fragment_university_selector" />
 
 </navigation>
