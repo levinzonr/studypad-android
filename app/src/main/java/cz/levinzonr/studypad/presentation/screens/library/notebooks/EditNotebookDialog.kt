@@ -15,24 +15,26 @@ import kotlinx.android.synthetic.main.dialog_edit_notebook.*
 
 class EditNotebookDialog : DialogFragment() {
 
-    private val notebook : Notebook?
+    private val notebook: Notebook?
         get() = arguments?.getParcelable(ARG_NOTEBOOK)
 
-    private var callback: (String) -> Unit = {}
+    private var onEdit: ((Notebook?, String) -> Unit) = { notebook, name -> }
 
     private lateinit var inputEditText: TextInputEditText
     private lateinit var button: MaterialButton
+
     companion object {
 
         private const val TAG = "EditNotebook"
         private const val ARG_NOTEBOOK = "Notebook"
 
-        fun show(fm: FragmentManager?, notebook: Notebook? = null, onComplete: (String) -> Unit) {
+        fun show(fm: FragmentManager?, notebook: Notebook? = null, onComplete: ((Notebook?, String) -> Unit)) {
             fm ?: return
             val fragment = fm.findFragmentByTag(TAG) as? EditNotebookDialog? ?: EditNotebookDialog()
             fragment.arguments = Bundle().apply { putParcelable(ARG_NOTEBOOK, notebook) }
-            fragment.callback = onComplete
-            fragment.show(fm,
+            fragment.onEdit = onComplete
+            fragment.show(
+                fm,
                 TAG
             )
         }
@@ -48,24 +50,17 @@ class EditNotebookDialog : DialogFragment() {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        view.findViewById<TextInputEditText>(R.id.notebookEditEt).setText(notebook?.name ?: "")
-
-        view.findViewById<MaterialButton>(R.id.confirmBtn).setOnClickListener {
-            callback.invoke(notebookEditEt.text.toString())
-            dismiss()
-        }
-    }
 
     private fun initView(view: View) {
         inputEditText = view.findViewById(R.id.notebookEditEt)
         button = view.findViewById(R.id.confirmBtn)
 
-       button?.setOnClickListener {
-           callback?.invoke(inputEditText.text.toString())
-           dismiss()
-       }
+        inputEditText.setText(notebook?.name ?: "")
 
+
+        button.setOnClickListener {
+            onEdit.invoke(notebook, inputEditText.text.toString())
+            dismiss()
+        }
     }
 }

@@ -26,13 +26,25 @@ interface Api {
     fun getUniversities(@Query("query") query: String) : Deferred<List<University>>
 
 
+    //-----------------------------------------------------------------------------
+
+
     @GET("$API/notebooks")
     fun getNotebooks() : Deferred<List<Notebook>>
 
     @POST("$API/notebooks")
     fun postNotebook(@Body createNotebookRequest: CreateNotebookRequest) : Deferred<Notebook>
 
+    @PATCH("$API/notebooks/{id}")
+    fun updateNotebook(@Path("id") id: Long, @Body updateNotebookRequest: UpdateNotebookRequest) : Deferred<Notebook>
 
+    @DELETE("$API/notebooks/{id}")
+    fun deleteNotebook(@Path("id") id: Long) : Deferred<Unit>
+
+
+
+
+    //-----------------------------------------------------------------------------
 
     @GET("$API/notebooks/{id}/notes")
     fun getNotesFromNotebook(@Path("id") notebookId: Long) : Deferred<List<Note>>

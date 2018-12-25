@@ -15,12 +15,13 @@ import cz.levinzonr.studypad.presentation.screens.notebook
 import cz.levinzonr.studypad.presentation.screens.showNoteDetail
 import cz.levinzonr.studypad.supportActionBar
 import kotlinx.android.synthetic.main.fragment_notes_list.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
 
-    private lateinit var adapter: NotesAdapter
+    private val adapter: NotesAdapter by inject()
 
     companion object {
         fun newInstance() = NotesListFragment()
@@ -52,7 +53,6 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
 
 
     private fun setupRecyclerView() {
-        adapter = NotesAdapter()
         adapter.listener = this
         notesRv.layoutManager = LinearLayoutManager(context)
         notesRv.adapter = adapter

@@ -8,4 +8,8 @@ interface NotebookRepository {
 
     suspend fun createNotebook(name: String) : Notebook
 
+    suspend fun updateNotebook(id: Long, name: String) : Notebook
+
+    suspend fun deleteNotebook(id: Long)
+
 }

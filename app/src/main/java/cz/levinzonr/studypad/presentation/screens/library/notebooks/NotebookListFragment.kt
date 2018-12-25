@@ -13,6 +13,7 @@ import cz.levinzonr.studypad.presentation.adapters.NotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.showNotes
 import kotlinx.android.synthetic.main.fragment_notebook_list.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListener {
@@ -22,7 +23,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
     }
 
     private val viewModel: NotebookListViewModel by viewModel()
-    private lateinit var adapter: NotebooksAdapter
+    private val adapter: NotebooksAdapter by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,17 +49,14 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
 
     private fun setupListeners() {
         notebooksAddFab.setOnClickListener {
-
-            EditNotebookDialog.show(
-                fragmentManager
-            ) {
-                viewModel.createNewNotebook(it)
+            EditNotebookDialog.show(fragmentManager, null) { _, name: String ->
+                viewModel.createNewNotebook(name)
             }
+
         }
     }
 
     private fun setupRecyclerView() {
-        adapter = NotebooksAdapter()
         adapter.listener = this
         notebooksRv.layoutManager = LinearLayoutManager(context)
         notebooksRv.adapter = adapter
@@ -66,7 +64,12 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
     }
 
     override fun onNotebookSelected(notebook: Notebook) {
-        showNotes(notebook)
+       // showNotes(notebook)
+       /* EditNotebookDialog.show(fragmentManager, notebook) {notebook, name ->
+            notebook?.let { viewModel.updateNotebook(it, name) }
+        }*/
+
+        viewModel.deleteNotebook(notebook)
     }
 
     private fun showNotebooks(list: List<Notebook>) {

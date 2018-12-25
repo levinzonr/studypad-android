@@ -20,4 +20,8 @@ val interacorModule = module {
     factory { GetUniversitiesInteractor(get() ) }
 
     factory { SignupInteractor(get()) }
+
+    factory { UpdateNotebookInteractor(get()) }
+
+    factory { DeleteNotebookInteractor(get()) }
 }
