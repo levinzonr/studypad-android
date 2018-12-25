@@ -1,6 +1,8 @@
 package cz.levinzonr.studypad.injection
 
+import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListViewModel
+import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewModel
@@ -19,4 +21,6 @@ val viewModelModule = module {
     viewModel { ProfileViewModel(get()) }
 
     viewModel { SignupViewModel(get(), get()) }
+
+    viewModel { (note: Note?) -> NoteDetailViewModel(note, get(), get(), get()) }
 }

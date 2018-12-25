@@ -7,9 +7,12 @@ import androidx.navigation.findNavController
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
+import cz.levinzonr.studypad.presentation.screens.library.notes.EditNoteFragment
+import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailFragment
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListFragment
 
 private const val ARG_NOTEBOOK = "NOTEBOOK"
+private const val ARG_NOTEBOOK_ID = "NOTEBOOK_ID"
 private const val ARG_NOTE = "NOTE"
 
 fun Fragment.showNotes(notebook: Notebook) {
@@ -18,12 +21,24 @@ fun Fragment.showNotes(notebook: Notebook) {
     )
 }
 
-fun Fragment.showNoteEdit(note: Note?) {
+fun NotesListFragment.showNoteEdit(notebookId: Long, note: Note?) {
     view?.findNavController()?.navigate(R.id.action_notesListFragment_to_editNoteFragment,
-        Bundle().apply { putParcelable(ARG_NOTE, note) })
+        Bundle().apply {
+            putParcelable(ARG_NOTE, note)
+            putLong(ARG_NOTEBOOK_ID, notebookId)
+        })
 }
 
-fun Fragment.showNoteDetail(note: Note) {
+fun NoteDetailFragment.showNoteEdit(notebookId: Long, note: Note?) {
+    view?.findNavController()?.navigate(R.id.action_noteDetailFragment_to_editNoteFragment,
+        Bundle().apply {
+            putParcelable(ARG_NOTE, note)
+            putLong(ARG_NOTEBOOK_ID, notebookId)
+        })
+}
+
+
+fun NotesListFragment.showNoteDetail(note: Note) {
     view?.findNavController()?.navigate(R.id.action_notesListFragment_to_noteDetailFragment,
         Bundle().apply { putParcelable(ARG_NOTE, note) })
 }
@@ -31,6 +46,15 @@ fun Fragment.showNoteDetail(note: Note) {
 val NotesListFragment.notebook: Notebook?
     get() =  arguments?.getParcelable(ARG_NOTEBOOK)
 
+val EditNoteFragment.note: Note?
+    get() = arguments?.getParcelable(ARG_NOTE)
+
+val NoteDetailFragment.note: Note
+    get() = arguments?.getParcelable(ARG_NOTE)!!
+
+
+val EditNoteFragment.notebookId: Long
+    get() = arguments?.getLong(ARG_NOTEBOOK_ID)!!
 
 fun Fragment.showMain() {
     startActivity(Intent(activity, MainActivity::class.java))

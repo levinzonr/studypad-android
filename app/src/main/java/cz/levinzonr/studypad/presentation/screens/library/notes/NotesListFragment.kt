@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import cz.levinzonr.studypad.R
@@ -13,6 +14,7 @@ import cz.levinzonr.studypad.presentation.adapters.NotesAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.notebook
 import cz.levinzonr.studypad.presentation.screens.showNoteDetail
+import cz.levinzonr.studypad.presentation.screens.showNoteEdit
 import cz.levinzonr.studypad.supportActionBar
 import kotlinx.android.synthetic.main.fragment_notes_list.*
 import org.koin.android.ext.android.inject
@@ -48,6 +50,11 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         supportActionBar?.title = notebook?.name
+
+        notesCreateNoteBtn.setOnClickListener {
+            showNoteEdit(notebook!!.id, null)
+        }
+
 
     }
 

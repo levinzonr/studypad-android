@@ -64,12 +64,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
     }
 
     override fun onNotebookSelected(notebook: Notebook) {
-       // showNotes(notebook)
-       /* EditNotebookDialog.show(fragmentManager, notebook) {notebook, name ->
-            notebook?.let { viewModel.updateNotebook(it, name) }
-        }*/
-
-        viewModel.deleteNotebook(notebook)
+        showNotes(notebook)
     }
 
     private fun showNotebooks(list: List<Notebook>) {

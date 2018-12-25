@@ -9,7 +9,11 @@ import android.view.ViewGroup
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.baseActivity
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.screens.note
+import cz.levinzonr.studypad.presentation.screens.showNoteEdit
 import kotlinx.android.synthetic.main.note_detail_fragment.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.core.parameter.parametersOf
 
 class NoteDetailFragment : BaseFragment() {
 
@@ -17,7 +21,7 @@ class NoteDetailFragment : BaseFragment() {
         fun newInstance() = NoteDetailFragment()
     }
 
-    private lateinit var viewModel: NoteDetailViewModel
+    private val viewModel: NoteDetailViewModel by sharedViewModel { parametersOf(note) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,9 +32,14 @@ class NoteDetailFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        baseActivity?.setSupportActionBar(bottomAppBar)
-        viewModel = ViewModelProviders.of(this).get(NoteDetailViewModel::class.java)
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        noteDetailEditFab.setOnClickListener {
+            showNoteEdit(note.id, note)
+        }
     }
 
 }
