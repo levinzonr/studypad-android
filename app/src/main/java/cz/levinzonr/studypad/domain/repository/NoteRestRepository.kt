@@ -1,5 +1,7 @@
 package cz.levinzonr.studypad.domain.repository
 
+import cz.levinzonr.studypad.data.CreateNoteRequest
+import cz.levinzonr.studypad.data.UpdateNoteRequest
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.rest.Api
 
@@ -10,4 +12,17 @@ class NoteRestRepository(private val api: Api) : NotesRepository {
     }
 
 
+    override suspend fun createNote(notebookId: Long, title: String, content: String): Note {
+        val request = CreateNoteRequest(notebookId, title, content)
+        return api.createNote(request).await()
+    }
+
+    override suspend fun updateNote(note: Long, title: String, content: String): Note {
+        val request = UpdateNoteRequest(title, content)
+        return api.updateNote(note, request).await()
+    }
+
+    override suspend fun deleteNote(noteId: Long) {
+        return api.deleteNote(noteId).await()
+    }
 }

@@ -24,4 +24,11 @@ val interacorModule = module {
     factory { UpdateNotebookInteractor(get()) }
 
     factory { DeleteNotebookInteractor(get()) }
+
+
+    factory { DeleteNoteInteractor(get()) }
+
+    factory { UpdateNoteInteractor(get()) }
+
+    factory { PostNoteInteractor(get()) }
 }

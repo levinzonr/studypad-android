@@ -42,12 +42,19 @@ interface Api {
     fun deleteNotebook(@Path("id") id: Long) : Deferred<Unit>
 
 
-
-
     //-----------------------------------------------------------------------------
 
     @GET("$API/notebooks/{id}/notes")
     fun getNotesFromNotebook(@Path("id") notebookId: Long) : Deferred<List<Note>>
+
+    @POST("$API/notes")
+    fun createNote(@Body createNoteRequest: CreateNoteRequest) : Deferred<Note>
+
+    @PATCH("$API/notes/{id}")
+    fun updateNote(@Path("id") noteId: Long, @Body updateNoteRequest: UpdateNoteRequest) : Deferred<Note>
+
+    @DELETE("$API/notes/{id}")
+    fun deleteNote(@Path("id") noteId: Long) : Deferred<Unit>
 
 
 
