@@ -20,7 +20,7 @@ val viewModelModule = module {
 
     viewModel { ProfileViewModel(get()) }
 
-    viewModel { SignupViewModel(get(), get()) }
+    viewModel { SignupViewModel(get(), get(), get()) }
 
     viewModel { (note: Note?) -> NoteDetailViewModel(note, get(), get(), get()) }
 }

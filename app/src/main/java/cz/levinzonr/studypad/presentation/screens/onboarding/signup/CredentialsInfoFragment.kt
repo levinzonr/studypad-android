@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.screens.showAccountCreated
 import cz.levinzonr.studypad.presentation.screens.showMain
 import kotlinx.android.synthetic.main.fragment_credentials_info.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -57,7 +58,10 @@ class CredentialsInfoFragment : BaseFragment() {
             credentialsInfoEmailEt.setText(email)
 
             viewModel.accountCreatedSuccessEvent.observe(this@CredentialsInfoFragment, Observer {
-                it.handle { showMain() }
+                it.handle {
+                    if (!it) showMain()
+                    else showAccountCreated()
+                }
             })
 
         }

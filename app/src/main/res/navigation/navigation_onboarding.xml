@@ -32,11 +32,24 @@
         android:id="@+id/credentialsInfoFragment"
         android:name="cz.levinzonr.studypad.presentation.screens.onboarding.signup.CredentialsInfoFragment"
         android:label="fragment_credentials_info"
-        tools:layout="@layout/fragment_credentials_info" />
+        tools:layout="@layout/fragment_credentials_info" >
+        <action
+            android:id="@+id/action_credentialsInfoFragment_to_accountCreatedFragment"
+            app:destination="@id/accountCreatedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/universitySelectorFragment"
         android:name="cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment"
         android:label="fragment_university_selector"
         tools:layout="@layout/fragment_university_selector" />
+    <fragment
+        android:id="@+id/accountCreatedFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountCreatedFragment"
+        android:label="fragment_account_created"
+        tools:layout="@layout/fragment_account_created" >
+        <action
+            android:id="@+id/action_accountCreatedFragment_to_universitySelectorFragment"
+            app:destination="@id/universitySelectorFragment" />
+    </fragment>
 
 </navigation>

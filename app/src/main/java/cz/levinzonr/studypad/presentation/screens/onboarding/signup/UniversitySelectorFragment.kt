@@ -1,16 +1,17 @@
 package cz.levinzonr.studypad.presentation.screens.onboarding.signup
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.baseActivity
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.adapters.UniversityAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.navigateBack
+import cz.levinzonr.studypad.presentation.screens.showMain
 import kotlinx.android.synthetic.main.fragment_university_selector.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -20,14 +21,20 @@ class UniversitySelectorFragment : BaseFragment() {
 
 
     private val viewModel: SignupViewModel by sharedViewModel()
+
     private val adapter: UniversityAdapter by inject()
+
+    private lateinit var searchMenuItem: MenuItem
+
+    private val searchView: SearchView?
+        get() = searchMenuItem.actionView as SearchView?
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_university_selector, container, false)
     }
 
@@ -35,21 +42,39 @@ class UniversitySelectorFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        editText.onTextChanged {
-            viewModel.findUnversities(it)
-        }
-
         universitiesRv.layoutManager = LinearLayoutManager(context)
         universitiesRv.adapter = adapter
         adapter.onUniversitySelected = {
-            viewModel.university = it
-            navigateBack()
+            viewModel.updateUniversity(it)
         }
+        baseActivity?.setSupportActionBar(appToolbar)
 
         viewModel.universitiesLiveData.observe(this, Observer {
             adapter.items = it
         })
 
+        viewModel.universitySelectedEvent.observe(this, Observer {
+            it.handle { showMain() }
+        })
+
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_university, menu)
+        searchMenuItem = menu.findItem(R.id.actionSearch)
+
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                viewModel.findUnversities(p0 ?: "")
+                return true
+            }
+        })
+    }
+
 
 }

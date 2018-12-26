@@ -10,6 +10,8 @@ import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.presentation.screens.library.notes.EditNoteFragment
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailFragment
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListFragment
+import cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountCreatedFragment
+import cz.levinzonr.studypad.presentation.screens.onboarding.signup.CredentialsInfoFragment
 
 private const val ARG_NOTEBOOK = "NOTEBOOK"
 private const val ARG_NOTEBOOK_ID = "NOTEBOOK_ID"
@@ -77,4 +79,10 @@ fun Fragment.navigateBack() {
     view?.findNavController()?.popBackStack()
 }
 
+fun CredentialsInfoFragment.showAccountCreated() {
+    view?.findNavController()?.navigate(R.id.action_credentialsInfoFragment_to_accountCreatedFragment)
+}
 
+fun AccountCreatedFragment.showUniversitySelector() {
+    view?.findNavController()?.navigate(R.id.action_accountCreatedFragment_to_universitySelectorFragment)
+}

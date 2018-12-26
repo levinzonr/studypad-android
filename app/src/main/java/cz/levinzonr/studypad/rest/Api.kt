@@ -25,6 +25,9 @@ interface Api {
     @GET("$API/university/find")
     fun getUniversities(@Query("query") query: String) : Deferred<List<University>>
 
+    @POST("$API/users/signup/finish")
+    fun updateUniversity(@Body updateUniversityRequest: UpdateUniversityRequest) : Deferred<Any>
+
 
     //-----------------------------------------------------------------------------
 
