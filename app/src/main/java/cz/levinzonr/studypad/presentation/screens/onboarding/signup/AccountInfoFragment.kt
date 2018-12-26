@@ -38,7 +38,6 @@ class AccountInfoFragment : BaseFragment() {
         with(viewModel) {
             accountInfoLastNameEt.setText(lastName)
             accountInfoFirstNameEt.setText(firstName)
-            accountInfoUniversityEt.setText(university?.fullName)
         }
     }
 
@@ -46,11 +45,6 @@ class AccountInfoFragment : BaseFragment() {
         accountInfoProceedBtn.setOnClickListener {
             showAccounCreationNextStep()
         }
-
-        accountInfoUniversityEt.setOnClickListener {
-            showUniversitySelector()
-        }
-
 
         accountInfoFirstNameEt.onTextChanged {
             viewModel.firstName = it
