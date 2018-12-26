@@ -41,6 +41,11 @@ class ProfileFragment : BaseFragment() {
                 activity?.finish()
             }
         })
+
+        viewModel.profileLiveData.observe(this, Observer {
+            profileUserNae.text = "${it.firstName} ${it.lastName}"
+            profileUserUni.text = it.university?.fullName ?: ""
+        })
     }
 
 }

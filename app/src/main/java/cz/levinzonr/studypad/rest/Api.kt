@@ -4,6 +4,7 @@ import cz.levinzonr.studypad.data.*
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.University
+import cz.levinzonr.studypad.domain.models.UserProfile
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
 
@@ -28,6 +29,8 @@ interface Api {
     @POST("$API/users/signup/finish")
     fun updateUniversity(@Body updateUniversityRequest: UpdateUniversityRequest) : Deferred<Any>
 
+    @GET("$API/users/me")
+    fun getAuthenticatedUserProfile() : Deferred<UserProfile>
 
     //-----------------------------------------------------------------------------
 

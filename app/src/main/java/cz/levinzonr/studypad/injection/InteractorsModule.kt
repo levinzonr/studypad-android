@@ -33,4 +33,6 @@ val interacorModule = module {
     factory { PostNoteInteractor(get()) }
 
     factory { UpdateUserUniversityInteractor(get()) }
+
+    factory { GetUserProfileInteractor(get()) }
 }

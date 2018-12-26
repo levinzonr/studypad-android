@@ -3,17 +3,26 @@ package cz.levinzonr.studypad.presentation.screens.profile
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import cz.levinzonr.studypad.domain.interactors.GetUserProfileInteractor
 import cz.levinzonr.studypad.domain.interactors.LogoutInteractor
+import cz.levinzonr.studypad.domain.models.UserProfile
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
 
-class ProfileViewModel(private val logoutInteractor: LogoutInteractor) : ViewModel() {
+class ProfileViewModel(
+    private val getUserProfileInteractor: GetUserProfileInteractor,
+    private val logoutInteractor: LogoutInteractor) : ViewModel() {
 
+
+    init {
+        loadProfile()
+    }
 
     val openLoginEvent: LiveData<SimpleEvent>
         get() = userLoggedOutEvent
 
 
     private val userLoggedOutEvent = MutableLiveData<SimpleEvent>()
+    val profileLiveData = MutableLiveData<UserProfile>()
 
     fun logout() {
 
@@ -21,6 +30,12 @@ class ProfileViewModel(private val logoutInteractor: LogoutInteractor) : ViewMod
             onComplete {
                 userLoggedOutEvent.postValue(SimpleEvent())
             }
+        }
+    }
+
+    fun loadProfile() {
+        getUserProfileInteractor.execute {
+            onComplete { profileLiveData.postValue(it) }
         }
     }
 
