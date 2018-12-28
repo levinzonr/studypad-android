@@ -16,6 +16,7 @@ import cz.levinzonr.studypad.domain.interactors.FacebookLoginInteractor
 import cz.levinzonr.studypad.domain.interactors.LoginInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
 import timber.log.Timber
 
@@ -26,7 +27,7 @@ class LoginViewModel(
 
     val PERMISSIONS = listOf("email, public_profile")
 
-    val loginSuccessEvent = MutableLiveData<SimpleEvent>()
+    val loginSuccessEvent = MutableLiveData<Event<Boolean>>()
 
 
     private var facebookActivityResultManager: CallbackManager? = null
@@ -47,7 +48,7 @@ class LoginViewModel(
 
     init {
         if (userManager.isLoggedIn()) {
-          loginSuccessEvent.call()
+          loginSuccessEvent.call(false)
         }
     }
 
@@ -60,7 +61,7 @@ class LoginViewModel(
         loginInteractor.execute {
             onComplete {
                 toggleLoading(false)
-                loginSuccessEvent.call()
+                loginSuccessEvent.call(false)
                 Timber.d("Success $it")
             }
             onError {
@@ -93,11 +94,10 @@ class LoginViewModel(
 
     private fun onFacebookLoginSuccess(loginResult: LoginResult?) {
         loginResult?.accessToken?.let {
-            facebookLoginInteractor.input = FacebookLoginInteractor.Input(it.token)
-            facebookLoginInteractor.execute {
+            facebookLoginInteractor.executeWithInput(it.token) {
                 onComplete {
                    toggleLoading(false)
-                    loginSuccessEvent.call()
+                    loginSuccessEvent.call(it.isNewUser)
                 }
             }
         }

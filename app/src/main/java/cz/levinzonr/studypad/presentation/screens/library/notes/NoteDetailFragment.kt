@@ -13,6 +13,7 @@ import cz.levinzonr.studypad.presentation.screens.note
 import cz.levinzonr.studypad.presentation.screens.showNoteEdit
 import kotlinx.android.synthetic.main.note_detail_fragment.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class NoteDetailFragment : BaseFragment() {
@@ -21,7 +22,7 @@ class NoteDetailFragment : BaseFragment() {
         fun newInstance() = NoteDetailFragment()
     }
 
-    private val viewModel: NoteDetailViewModel by sharedViewModel { parametersOf(note) }
+    private val viewModel: NoteDetailViewModel by viewModel { parametersOf(note) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,9 +38,14 @@ class NoteDetailFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         noteDetailEditFab.setOnClickListener {
             showNoteEdit(note.id, note)
         }
+
+        noteContentTv.text = note.content
+
+        noteTitleTv.text = note.title
     }
 
 }

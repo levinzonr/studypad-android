@@ -11,6 +11,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.presentation.adapters.NotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.showNotes
 import kotlinx.android.synthetic.main.fragment_notebook_list.*
 import org.koin.android.ext.android.inject
@@ -59,12 +60,24 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
     private fun setupRecyclerView() {
         adapter.listener = this
         notebooksRv.layoutManager = LinearLayoutManager(context)
+        notebooksRv.addItemDecoration(VerticalSpaceItemDecoration(16))
         notebooksRv.adapter = adapter
 
     }
 
     override fun onNotebookSelected(notebook: Notebook) {
         showNotes(notebook)
+    }
+
+    override fun onNotebookMoreClicked(notebook: Notebook) {
+        NotebookBottomMenu.show(fragmentManager!!) {
+            when (it) {
+                R.id.notebookDeleteBtn -> viewModel.deleteNotebook(notebook)
+                R.id.notebookEditBtn -> EditNotebookDialog.show(fragmentManager, notebook) { n, s ->
+                    viewModel.updateNotebook(notebook, s)
+                }
+            }
+        }
     }
 
     private fun showNotebooks(list: List<Notebook>) {

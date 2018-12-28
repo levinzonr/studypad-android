@@ -40,11 +40,13 @@ class NotebooksAdapter : RecyclerView.Adapter<NotebooksAdapter.ViewHolder>() {
             val gradient = GradientDrawable(GradientDrawable.Orientation.BL_TR, notebook.color.toIntArray())
             view.notebookColor.background = gradient
             view.setOnClickListener { listener?.onNotebookSelected(notebook) }
+            view.notebookMoreBtn.setOnClickListener { listener?.onNotebookMoreClicked(notebook) }
         }
     }
 
     interface NotebookItemListener {
         fun onNotebookSelected(notebook: Notebook)
+        fun onNotebookMoreClicked(notebook: Notebook)
     }
 
 }

@@ -1,15 +1,60 @@
 package cz.levinzonr.studypad
 
+import android.content.res.Resources
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.MutableLiveData
 import com.google.android.material.textfield.TextInputEditText
 import cz.levinzonr.studypad.presentation.base.BaseActivity
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
 
+
+fun ViewGroup.asSequence(): Sequence<View> = object : Sequence<View> {
+    override fun iterator(): Iterator<View> = object : Iterator<View> {
+        private var nextValue: View? = null
+        private var done = false
+        private var position: Int = 0
+
+        override fun hasNext(): Boolean {
+            if (nextValue == null && !done) {
+                nextValue = getChildAt(position)
+                position++
+                if (nextValue == null) done = true
+            }
+            return nextValue != null
+        }
+
+        override fun next(): View {
+            if (!hasNext()) {
+                throw NoSuchElementException()
+            }
+            val answer = nextValue
+            nextValue = null
+            return answer!!
+        }
+    }
+}
+
+// Dp to int or vice versa
+val Int.dp: Int
+    get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+val Float.dp: Float
+    get() = (this * Resources.getSystem().displayMetrics.density)
+val Float.px: Float
+    get() = (this / Resources.getSystem().displayMetrics.density)
+
+
+val ViewGroup.views: List<View>
+    get() = asSequence().toList()
+
+inline fun <T> T.guard(block: T.() -> Unit): T {
+    if (this == null) block(); return this
+}
 
 val BaseFragment.baseActivity : BaseActivity?
     get() = activity as? BaseActivity?
@@ -39,4 +84,8 @@ fun View.setVisible(visible: Boolean, fallback: Int = View.GONE) {
 
 fun MutableLiveData<SimpleEvent>.call() {
     postValue(SimpleEvent())
+}
+
+fun <T> MutableLiveData<Event<T>>.call(value: T) {
+    postValue(Event(value))
 }

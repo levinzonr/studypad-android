@@ -8,6 +8,47 @@
 
 
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_margin="@dimen/space_big"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_margin="@dimen/space_big"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/noteTitleTv"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+                <TextView
+                    android:layout_marginTop="@dimen/space_big"
+                    android:id="@+id/noteContentTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:src="@drawable/ic_edit"
             android:id="@+id/noteDetailEditFab"

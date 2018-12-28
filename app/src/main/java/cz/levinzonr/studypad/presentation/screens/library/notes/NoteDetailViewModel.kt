@@ -41,8 +41,7 @@ class NoteDetailViewModel(
 
     fun deleteNote() {
         note ?: return
-        deleteNoteInteractor.input = DeleteNoteInteractor.Input(note.id)
-        deleteNoteInteractor.execute {
+        deleteNoteInteractor.executeWithInput(note.id) {
             onComplete { noteDeletedEvent.call() }
         }
     }

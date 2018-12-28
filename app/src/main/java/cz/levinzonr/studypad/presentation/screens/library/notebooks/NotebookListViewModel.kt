@@ -32,8 +32,7 @@ class NotebookListViewModel(
     }
 
     fun createNewNotebook(name: String) {
-        postNoteookInteractor.input = PostNotebookInteractor.Input(name)
-        postNoteookInteractor.execute {
+        postNoteookInteractor.executeWithInput(name) {
             onComplete {
                 dataSource.postValue(dataSource.value?.toMutableList()?.apply { add(it) })
             }
@@ -43,7 +42,6 @@ class NotebookListViewModel(
 
     fun updateNotebook(notebook: Notebook, name: String) {
         if (name != notebook.name) {
-            updateNotebookInteractor.input = UpdateNotebookInteractor.Input(notebook.id, name)
             updateNotebookInteractor.execute {
                 onComplete {
                     loadNotebooks()

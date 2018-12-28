@@ -10,7 +10,9 @@ import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.presentation.screens.library.notes.EditNoteFragment
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailFragment
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListFragment
+import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginFragment
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountCreatedFragment
+import cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountInfoFragment
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.CredentialsInfoFragment
 
 private const val ARG_NOTEBOOK = "NOTEBOOK"
@@ -71,7 +73,7 @@ fun Fragment.showAccounCreationNextStep() {
     view?.findNavController()?.navigate(R.id.action_accountInfoFragment_to_credentialsInfoFragment)
 }
 
-fun Fragment.showUniversitySelector() {
+fun AccountInfoFragment.showUniversitySelector() {
     view?.findNavController()?.navigate(R.id.action_accountInfoFragment_to_universitySelectorFragment)
 }
 
@@ -85,4 +87,8 @@ fun CredentialsInfoFragment.showAccountCreated() {
 
 fun AccountCreatedFragment.showUniversitySelector() {
     view?.findNavController()?.navigate(R.id.action_accountCreatedFragment_to_universitySelectorFragment)
+}
+
+fun LoginFragment.showUniversitySelector() {
+    view?.findNavController()?.navigate(R.id.action_loginFragment2_to_universitySelectorFragment)
 }

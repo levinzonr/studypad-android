@@ -1,15 +1,12 @@
 package cz.levinzonr.studypad.domain.interactors
 
 import cz.levinzonr.studypad.domain.managers.UserManager
+import cz.levinzonr.studypad.domain.models.UserProfile
 
-class FacebookLoginInteractor(private val userManager: UserManager) : BaseInteractor<Unit>() {
+class FacebookLoginInteractor(private val userManager: UserManager) : BaseInputInteractor<String, UserProfile>() {
 
-    data class Input(val token: String)
 
-    var input: Input? = null
-
-    override suspend fun executeOnBackground() {
-        val token = input?.token ?: return
-        userManager.loginViaFacebook(token)
+    override suspend fun executeOnBackground(input: String) : UserProfile {
+        return userManager.loginViaFacebook(input)
     }
 }

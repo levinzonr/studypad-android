@@ -17,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import cz.levinzonr.studypad.presentation.screens.MainActivity
 import cz.levinzonr.studypad.presentation.screens.showAccountCreation
+import cz.levinzonr.studypad.presentation.screens.showUniversitySelector
 import cz.levinzonr.studypad.setVisible
 import timber.log.Timber
 
@@ -71,9 +72,9 @@ class LoginFragment : BaseFragment() {
         })
 
         viewModel.loginSuccessEvent.observe(this, Observer {
-            it.handle {
-                startActivity(Intent(activity, MainActivity::class.java))
-                activity?.finish()
+            it.handle {isNewUser ->
+                if (isNewUser) showUniversitySelector()
+                else showMain()
             }
 
         })

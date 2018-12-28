@@ -13,8 +13,7 @@ class NotesListViewModel(
     val dataSource = MutableLiveData<List<Note>>()
 
     init {
-        getNotesInteractor.input = GetNotesInteractor.Input(notebookId)
-        getNotesInteractor.execute {
+        getNotesInteractor.executeWithInput(notebookId) {
             onComplete { dataSource.postValue(it) }
         }
     }

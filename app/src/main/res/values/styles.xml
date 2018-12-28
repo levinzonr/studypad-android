@@ -31,4 +31,12 @@
         <item name="android:textSize">21sp</item>
         <item name="android:drawableEnd">@drawable/ic_chevron_right_black_24dp</item>
     </style>
+
+    <style name="BottomMenuButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="iconTint">@color/colorAccent</item>
+        <item name="iconPadding">@dimen/space_big</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/space_big</item>
+    </style>
 </resources>

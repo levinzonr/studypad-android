@@ -35,8 +35,7 @@ class SignupViewModel(
     fun findUnversities(query: String) {
         toggleLoading(true)
         getUniversitiesInteractor.unsubscribe()
-        getUniversitiesInteractor.input = GetUniversitiesInteractor.Input(query)
-        getUniversitiesInteractor.execute {
+        getUniversitiesInteractor.executeWithInput(query) {
             onComplete {
                 toggleLoading(false)
                 universitiesLiveData.postValue(it)
