@@ -3,10 +3,13 @@ package cz.levinzonr.studypad
 import android.content.res.Resources
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Patterns
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBar
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputEditText
 import cz.levinzonr.studypad.presentation.base.BaseActivity
 import cz.levinzonr.studypad.presentation.base.BaseFragment
@@ -89,3 +92,25 @@ fun MutableLiveData<SimpleEvent>.call() {
 fun <T> MutableLiveData<Event<T>>.call(value: T) {
     postValue(Event(value))
 }
+
+fun MutableLiveData<SimpleEvent>.callIf(a: Boolean) {
+    if (a) call()
+}
+
+fun MutableLiveData<SimpleEvent>.onHandle(lifecycleOwner: LifecycleOwner, block: () -> Unit) {
+    observe(lifecycleOwner, Observer { it.handle(block) })
+}
+
+fun String.isValidEmail() : Boolean {
+    return this.matches(Patterns.EMAIL_ADDRESS.toRegex())
+}
+
+fun String.isValidPassword() : Boolean {
+    return this.length >= 6
+}
+
+fun String.isValidName() : Boolean {
+    return this.matches(Regex("([A-Z][a-zA-Z]*)+( [A-Z][a-zA-Z]*)*"))
+}
+
+fun liveEvent() = MutableLiveData<SimpleEvent>()

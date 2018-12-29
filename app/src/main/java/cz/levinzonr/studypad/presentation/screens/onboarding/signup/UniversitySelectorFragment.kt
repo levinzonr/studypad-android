@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.baseActivity
@@ -44,6 +45,7 @@ class UniversitySelectorFragment : BaseFragment() {
 
         universitiesRv.layoutManager = LinearLayoutManager(context)
         universitiesRv.adapter = adapter
+        universitiesRv.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         adapter.onUniversitySelected = {
             viewModel.updateUniversity(it)
         }

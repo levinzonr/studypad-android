@@ -2,7 +2,7 @@ package cz.levinzonr.studypad.presentation.screens.onboarding.signup
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import cz.levinzonr.studypad.call
+import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.interactors.GetUniversitiesInteractor
 import cz.levinzonr.studypad.domain.interactors.SignupInteractor
 import cz.levinzonr.studypad.domain.interactors.UpdateUserUniversityInteractor
@@ -10,6 +10,7 @@ import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
+import timber.log.Timber
 
 class SignupViewModel(
     private val updateUserUniversityInteractor: UpdateUserUniversityInteractor,
@@ -18,14 +19,31 @@ class SignupViewModel(
 
     var email : String = ""
     var password: String = ""
+
+
     var firstName: String = ""
+        set(value) {
+            field = value
+            validateAccountInfo()
+        }
+
     var lastName: String = ""
+        set(value) {
+            field = value
+            validateAccountInfo()
+        }
+
     var university: University? = null
 
 
     val accountCreatedSuccessEvent: MutableLiveData<Event<Boolean>> = MutableLiveData()
     val universitiesLiveData = MutableLiveData<List<University>>()
     val universitySelectedEvent = MutableLiveData<SimpleEvent>()
+
+    val validAccountInfoEvent = MutableLiveData<Boolean>()
+
+    val invalidPasswordEvent = liveEvent()
+    val invalidEmmailEvent = liveEvent()
 
 
     init {
@@ -41,20 +59,25 @@ class SignupViewModel(
                 universitiesLiveData.postValue(it)
             }
             onError {
-                postError("Error loading unis")
+                postError(it.message)
             }
         }
     }
 
     fun createAccount() {
-        toggleLoading(true)
-        signupInteractor.input = SignupInteractor.Input(firstName, lastName, email, password)
-        signupInteractor.execute {
-            onComplete {
-                toggleLoading(false)
-                accountCreatedSuccessEvent.postValue(Event(true))
-            }
+        if (validateCredentials()) {
+            toggleLoading(true)
+            signupInteractor.input = SignupInteractor.Input(firstName, lastName, email, password)
+            signupInteractor.execute {
+                onComplete {
+                    toggleLoading(false)
+                    accountCreatedSuccessEvent.postValue(Event(true))
+                }
+                onError {
+                    postError(it.message)
+                }
 
+            }
         }
     }
 
@@ -64,6 +87,21 @@ class SignupViewModel(
             onComplete {
                 universitySelectedEvent.call()
             }
+            onError {
+                postError(it.message)
+            }
         }
     }
+
+
+    private fun validateCredentials() : Boolean {
+        invalidEmmailEvent.callIf(!email.isValidEmail())
+        invalidPasswordEvent.callIf(!password.isValidPassword())
+        return password.isValidPassword() && email.isValidEmail()
+    }
+
+    private fun validateAccountInfo() {
+        validAccountInfoEvent.postValue(firstName.isNotEmpty() && lastName.isNotEmpty())
+    }
+
 }

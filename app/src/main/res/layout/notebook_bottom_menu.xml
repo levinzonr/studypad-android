@@ -7,25 +7,17 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/notebookEditBtn"
-        app:iconTint="@color/colorAccent"
-        app:icon="@drawable/ic_search"
+        app:icon="@drawable/ic_edit"
         android:text="Edit"
         style="@style/BottomMenuButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.google.android.material.button.MaterialButton
-        app:iconTint="@color/colorAccent"
-        app:icon="@drawable/ic_search"
-        android:text="Edit"
-        style="@style/BottomMenuButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/notebookDeleteBtn"
-        app:iconTint="@color/colorAccent"
-        app:icon="@drawable/ic_search"
+        app:icon="@drawable/ic_outline_delete_24px"
         android:text="Delete"
         style="@style/BottomMenuButton"
         android:layout_width="match_parent"

@@ -21,6 +21,7 @@
         android:id="@+id/notebooksAddFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/ic_round_add_24px"
         android:layout_marginEnd="@dimen/space_big"
         android:layout_marginBottom="@dimen/space_big"
         app:fabSize="normal"

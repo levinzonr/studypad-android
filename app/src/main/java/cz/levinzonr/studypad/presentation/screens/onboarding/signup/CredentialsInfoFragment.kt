@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.onHandle
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.showAccountCreated
@@ -39,14 +40,24 @@ class CredentialsInfoFragment : BaseFragment() {
 
         credentialsInfoEmailEt.onTextChanged {
             viewModel.email = it
+            credentialsInfoEmailInputLayout.error = null
         }
 
         credentialsInfoPasswordEt.onTextChanged {
             viewModel.password = it
+            credentialsInfoPasswordInputLayout.error = null
         }
 
         credentialsInfoCreateAccount.setOnClickListener {
             viewModel.createAccount()
+        }
+
+        viewModel.invalidPasswordEvent.onHandle(this) {
+            credentialsInfoPasswordInputLayout.error = "Invalid password"
+
+        }
+        viewModel.invalidEmmailEvent.onHandle(this) {
+            credentialsInfoEmailInputLayout.error = "Invalid email"
         }
 
     }

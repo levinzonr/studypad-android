@@ -7,32 +7,32 @@
     tools:context="cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountInfoFragment">
 
 
-
-
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
+        android:id="@+id/accountFirstNameInputLayout"
+        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_big"
-        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox"
         android:layout_marginEnd="@dimen/space_big"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/accountInfoFirstNameEt"
-            android:hint="First name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:hint="First name"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout4"
+        android:id="@+id/accountLastNameInputLayout"
         android:layout_width="0dp"
         style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox"
         android:layout_height="wrap_content"
@@ -40,11 +40,12 @@
         android:layout_marginEnd="@dimen/space_big"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/accountFirstNameInputLayout">
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/accountInfoLastNameEt"
+            android:maxLines="1"
             android:hint="Last name"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -60,6 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_big"
+        android:src="@drawable/ic_round_arrow_forward_24px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

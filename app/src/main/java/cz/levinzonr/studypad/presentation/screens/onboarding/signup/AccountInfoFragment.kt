@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.base.BaseFragment
@@ -48,11 +50,16 @@ class AccountInfoFragment : BaseFragment() {
 
         accountInfoFirstNameEt.onTextChanged {
             viewModel.firstName = it
+
         }
 
         accountInfoLastNameEt.onTextChanged {
             viewModel.lastName = it
         }
+
+        viewModel.validAccountInfoEvent.observe(this, Observer {
+            accountInfoProceedBtn.isEnabled = it
+        })
 
     }
 

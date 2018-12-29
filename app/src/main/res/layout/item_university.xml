@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-
+        android:fontFamily="sans-serif"
         android:id="@+id/universityNameTv"
         style="@style/TextStyle.Header"
         android:layout_width="0dp"

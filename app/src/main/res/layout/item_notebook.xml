@@ -51,13 +51,12 @@
 
 
         <ImageButton
+            android:padding="@dimen/space_big"
             android:id="@+id/notebookMoreBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_big"
-            android:layout_marginBottom="@dimen/space_big"
-            android:background="?selectableItemBackground"
-            android:src="@drawable/ic_search"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_round_more_vert_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

@@ -78,16 +78,30 @@ class LoginFragment : BaseFragment() {
             }
 
         })
+
+        viewModel.passwordValidationEvent.observe(this, Observer {
+            it.handle {
+               loginPasswordInputLayout.error = "Incorrect password"
+            }
+        })
+
+        viewModel.emailValidationEvent.observe(this, Observer {
+            it.handle {
+                loginEmailInputLayout.error = "Incorrect email"
+            }
+        })
     }
 
     private fun setupListeners() {
 
         loginEmailEt.onTextChanged {
             viewModel.email = it
+            loginEmailInputLayout.error = null
         }
 
         loginPasswordEt.onTextChanged {
             viewModel.password = it
+            loginPasswordInputLayout.error = null
         }
 
         loginButton.setOnClickListener {
@@ -113,7 +127,9 @@ class LoginFragment : BaseFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        Timber.d("Acitivirt reseult")
         if (requestCode == REQUEST_SIGNIN) {
+            Timber.d("Google result")
             viewModel.handleGoogleSigninResult(GoogleSignIn.getSignedInAccountFromIntent(data))
         } else {
             viewModel.handleFacebookLoginResult(requestCode, resultCode, data)

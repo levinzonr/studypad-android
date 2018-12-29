@@ -1,6 +1,7 @@
 package cz.levinzonr.studypad.presentation.screens.onboarding.login
 
 import android.content.Intent
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,9 +13,12 @@ import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
 import cz.levinzonr.studypad.call
+import cz.levinzonr.studypad.callIf
 import cz.levinzonr.studypad.domain.interactors.FacebookLoginInteractor
 import cz.levinzonr.studypad.domain.interactors.LoginInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
+import cz.levinzonr.studypad.isValidEmail
+import cz.levinzonr.studypad.isValidPassword
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
@@ -23,12 +27,16 @@ import timber.log.Timber
 class LoginViewModel(
     private val userManager: UserManager,
     private val facebookLoginInteractor: FacebookLoginInteractor,
-    private val loginInteractor: LoginInteractor) : BaseViewModel() {
+    private val loginInteractor: LoginInteractor
+) : BaseViewModel() {
 
     val PERMISSIONS = listOf("email, public_profile")
 
     val loginSuccessEvent = MutableLiveData<Event<Boolean>>()
 
+
+    val emailValidationEvent = MutableLiveData<SimpleEvent>()
+    val passwordValidationEvent = MutableLiveData<SimpleEvent>()
 
     private var facebookActivityResultManager: CallbackManager? = null
     private val facebookLoginResultCallback = object : FacebookCallback<LoginResult> {
@@ -48,7 +56,7 @@ class LoginViewModel(
 
     init {
         if (userManager.isLoggedIn()) {
-          loginSuccessEvent.call(false)
+            loginSuccessEvent.call(false)
         }
     }
 
@@ -56,24 +64,29 @@ class LoginViewModel(
     var password: String = ""
 
     fun login() {
-        loginInteractor.input = LoginInteractor.Input(email, password)
-        toggleLoading(true)
-        loginInteractor.execute {
-            onComplete {
-                toggleLoading(false)
-                loginSuccessEvent.call(false)
-                Timber.d("Success $it")
-            }
-            onError {
-                postError("Error")
-                Timber.d("Fail: $it")
+
+        if (allFieldsValid()) {
+
+            loginInteractor.input = LoginInteractor.Input(email, password)
+            toggleLoading(true)
+            loginInteractor.execute {
+                onComplete {
+                    toggleLoading(false)
+                    loginSuccessEvent.call(false)
+                    Timber.d("Success $it")
+                }
+                onError {
+                    postError(it.message)
+                    Timber.d("Fail: $it")
+                }
             }
         }
     }
 
-     fun handleFacebookLoginResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    fun handleFacebookLoginResult(requestCode: Int, resultCode: Int, data: Intent?) {
         facebookActivityResultManager?.onActivityResult(requestCode, resultCode, data)
     }
+
 
     fun loginViaFacebook(fragment: LoginFragment) {
         toggleLoading(true)
@@ -88,7 +101,7 @@ class LoginViewModel(
 
     fun handleGoogleSigninResult(task: Task<GoogleSignInAccount>) {
         val token = task.result?.idToken
-        Timber.d(token)
+        Timber.d("Token: $token")
     }
 
 
@@ -96,10 +109,18 @@ class LoginViewModel(
         loginResult?.accessToken?.let {
             facebookLoginInteractor.executeWithInput(it.token) {
                 onComplete {
-                   toggleLoading(false)
+                    toggleLoading(false)
                     loginSuccessEvent.call(it.isNewUser)
                 }
             }
         }
+    }
+
+    private fun allFieldsValid(): Boolean {
+        val validEmail = email.isValidEmail()
+        val passwordEmail = password.isValidPassword()
+        emailValidationEvent.callIf(!validEmail)
+        passwordValidationEvent.callIf(!passwordEmail)
+        return validEmail && passwordEmail
     }
 }
