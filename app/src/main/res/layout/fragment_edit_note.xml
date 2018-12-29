@@ -9,17 +9,21 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout5"
         android:layout_width="0dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/space_big"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="@dimen/space_big"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/noteTitleEt"
-            android:inputType="textMultiLine"
+            android:inputType="text"
+            android:gravity="center"
+            android:maxLines="1"
+            android:fontFamily="sans-serif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="hint" />
@@ -27,9 +31,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="@dimen/space_big"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,20 +42,14 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/noteContentEt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:fontFamily="sans-serif"
+            android:background="@null"
             android:hint="hint"
             android:inputType="textMultiLine" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/doneBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 
 

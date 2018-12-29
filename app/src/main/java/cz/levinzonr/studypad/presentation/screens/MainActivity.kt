@@ -1,6 +1,7 @@
 package cz.levinzonr.studypad.presentation.screens
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -19,6 +20,7 @@ class MainActivity : BaseActivity() {
             bottom_nav.setupWithNavController(this)
             setupActionBarWithNavController(this)
         }
-
     }
+
+    override val navHostFragment: Fragment by lazy { fragment }
 }

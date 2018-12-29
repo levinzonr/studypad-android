@@ -1,5 +1,7 @@
 package cz.levinzonr.studypad.domain.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.data.CreateNoteRequest
 import cz.levinzonr.studypad.data.UpdateNoteRequest
 import cz.levinzonr.studypad.domain.models.Note
@@ -24,5 +26,9 @@ class NoteRestRepository(private val api: Api) : NotesRepository {
 
     override suspend fun deleteNote(noteId: Long) {
         return api.deleteNote(noteId).await()
+    }
+
+    override fun notesLiveData(notebookId: Long): LiveData<List<Note>> {
+        return MutableLiveData()
     }
 }

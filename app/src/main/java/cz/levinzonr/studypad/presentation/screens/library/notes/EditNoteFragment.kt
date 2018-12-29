@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.onTextChanged
+import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.navigateBack
 import cz.levinzonr.studypad.presentation.screens.note
@@ -19,14 +20,15 @@ import cz.levinzonr.studypad.presentation.screens.notebookId
 import kotlinx.android.synthetic.main.dialog_edit_notebook.*
 import kotlinx.android.synthetic.main.fragment_edit_note.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
 
-class EditNoteFragment : BaseFragment() {
+class EditNoteFragment : BaseFragment(), BackButtonHandler{
 
 
-    private val viewModel: NoteDetailViewModel by sharedViewModel { parametersOf(note) }
+    private val viewModel: NoteDetailViewModel by viewModel { parametersOf(note) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,13 +51,6 @@ class EditNoteFragment : BaseFragment() {
         })
 
 
-        doneBtn.setOnClickListener {
-            if (note == null)
-                viewModel.createNote(notebookId)
-            else
-                viewModel.editNote()
-        }
-
         noteContentEt.onTextChanged {
             viewModel.content = it
         }
@@ -75,4 +70,8 @@ class EditNoteFragment : BaseFragment() {
         }
     }
 
+    override fun handleBackButton() {
+        if (note == null) viewModel.createNote(notebookId)
+        else viewModel.editNote()
+    }
 }

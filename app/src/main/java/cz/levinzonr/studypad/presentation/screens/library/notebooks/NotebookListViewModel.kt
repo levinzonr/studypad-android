@@ -7,34 +7,30 @@ import cz.levinzonr.studypad.domain.interactors.GetNotebooksInteractor
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.interactors.PostNotebookInteractor
 import cz.levinzonr.studypad.domain.interactors.UpdateNotebookInteractor
+import cz.levinzonr.studypad.domain.repository.NotebookRepository
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import timber.log.Timber
 
 class NotebookListViewModel(
     private val deleteNotebookInteractor: DeleteNotebookInteractor,
     private val updateNotebookInteractor: UpdateNotebookInteractor,
-    private val getNotebooksInteractor: GetNotebooksInteractor,
+    private val notebookRepository: NotebookRepository,
+    getNotebooksInteractor: GetNotebooksInteractor,
     private val postNoteookInteractor: PostNotebookInteractor
 ) : BaseViewModel() {
 
 
-    val dataSource = MutableLiveData<List<Notebook>>()
+    val dataSource = notebookRepository.notebooksLiveData()
 
     init {
-      loadNotebooks()
+        getNotebooksInteractor.execute {  }
     }
 
-    private fun loadNotebooks() {
-        getNotebooksInteractor.execute {
-            onComplete {
-                dataSource.postValue(it)
-            }
-        }
-    }
 
     fun createNewNotebook(name: String) {
         postNoteookInteractor.executeWithInput(name) {
             onComplete {
-                dataSource.postValue(dataSource.value?.toMutableList()?.apply { add(it) })
+               Timber.d("Done")
             }
         }
     }
@@ -44,7 +40,7 @@ class NotebookListViewModel(
         if (name != notebook.name) {
             updateNotebookInteractor.execute {
                 onComplete {
-                    loadNotebooks()
+                  Timber.d("Updated")
                 }
             }
         }
@@ -54,7 +50,7 @@ class NotebookListViewModel(
         deleteNotebookInteractor.input = DeleteNotebookInteractor.Input(notebook.id)
         deleteNotebookInteractor.execute {
             onComplete {
-                loadNotebooks()
+                Timber.d("Updated")
             }
         }
     }

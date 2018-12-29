@@ -1,18 +1,23 @@
 package cz.levinzonr.studypad.injection
 
+import androidx.room.Room
 import cz.levinzonr.studypad.domain.repository.*
 import cz.levinzonr.studypad.storage.TokenRepository
 import cz.levinzonr.studypad.storage.TokenRepositoryImpl
+import cz.levinzonr.studypad.storage.database.AppDatabase
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module.module
 
 
 val repositoryModule = module {
-    single<NotesRepository> { NoteRestRepository(get()) }
+    single<NotesRepository> { NotesRepositoryImpl(get(), get()) }
 
-    single<NotebookRepository> { NotebookRestRepository(get()) }
+    single<NotebookRepository> { NotebookRepositoryImpl(get(), get()) }
 
     single<ProfileRepository> { ProfileRestRepository(get()) }
 
     single<TokenRepository> {  TokenRepositoryImpl(get()) }
+
+    single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, "Database").build() }
 }
 

@@ -1,5 +1,6 @@
 package cz.levinzonr.studypad.domain.repository
 
+import androidx.lifecycle.LiveData
 import cz.levinzonr.studypad.domain.models.Note
 
 interface NotesRepository {
@@ -11,5 +12,7 @@ interface NotesRepository {
     suspend fun updateNote(note: Long, title: String, content: String) : Note
 
     suspend fun deleteNote(noteId: Long)
+
+    fun notesLiveData(notebookId: Long) : LiveData<List<Note>>
 
 }

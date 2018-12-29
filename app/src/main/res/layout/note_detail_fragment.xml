@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".presentation.screens.library.notes.NoteDetailFragment">
-
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.screens.library.notes.NoteDetailFragment">
 
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_margin="@dimen/space_big"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_big"
+        app:cardElevation="6dp">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -19,25 +19,24 @@
 
 
             <LinearLayout
-                android:layout_margin="@dimen/space_big"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_big"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/noteTitleTv"
-                    android:textStyle="bold"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold" />
 
 
                 <TextView
-                    android:layout_marginTop="@dimen/space_big"
                     android:id="@+id/noteContentTv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_big" />
 
 
             </LinearLayout>
@@ -50,19 +49,20 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:src="@drawable/ic_edit"
-            android:id="@+id/noteDetailEditFab"
-            android:layout_width="wrap_content"
-            app:layout_anchor="@id/bottomAppBar"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/noteDetailEditFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_edit"
+        app:layout_anchor="@id/bottomAppBar" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
-            android:layout_width="match_parent"
-            android:layout_gravity="bottom"
-            android:elevation="10dp"
-            android:backgroundTint="#fafafa"
-            app:fabAlignmentMode="center"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/bottomAppBar"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:elevation="10dp"
+        app:fabAlignmentMode="end"
+        app:hideOnScroll="true" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

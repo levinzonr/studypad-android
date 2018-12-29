@@ -1,5 +1,7 @@
 package cz.levinzonr.studypad.domain.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.data.CreateNotebookRequest
 import cz.levinzonr.studypad.data.UpdateNotebookRequest
 import cz.levinzonr.studypad.domain.models.Notebook
@@ -19,6 +21,9 @@ class NotebookRestRepository(private val api: Api) : NotebookRepository {
         return api.updateNotebook(id, UpdateNotebookRequest(name)).await()
     }
 
+    override fun notebooksLiveData(): LiveData<List<Notebook>> {
+        return MutableLiveData()
+    }
 
     override suspend fun deleteNotebook(id: Long) {
         return api.deleteNotebook(id).await()

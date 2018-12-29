@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 apply plugin: "androidx.navigation.safeargs"
 
@@ -39,7 +40,8 @@ dependencies {
     def koin_version = '1.0.2',
         nav_version = "1.0.0-alpha08",
         retrofit_version = "2.5.0",
-        okhttp_version = "3.9.0"
+        okhttp_version = "3.9.0",
+        room_version = "2.1.0-alpha03"
 
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version" // use -ktx for Kotlin
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version" // use -ktx for Kotlin
@@ -65,8 +67,16 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-//776080318800-3l21qogmj2ir05fvmnqooib4qrs53olk.apps.googleusercontent.com
-    //lhx8a061Ii-NBWylMfIK2lj5
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version" // use kapt for Kotlin
+
+    // optional - Coroutines support for Room
+    implementation "androidx.room:room-coroutines:$room_version"
+
+    // Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
+
     // DI
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-androidx-scope:$koin_version"
