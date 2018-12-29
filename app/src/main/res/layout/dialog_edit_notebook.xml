@@ -4,14 +4,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_margin="@dimen/space_big"
+        style="@style/TextStyle.Header"
+        android:text="Edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_margin="@dimen/space_big"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/notebookEditEt"
+            android:maxLines="1"
+            android:hint="A"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -15,7 +15,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import cz.levinzonr.studypad.presentation.screens.MainActivity
 import cz.levinzonr.studypad.presentation.screens.showAccountCreation
 import cz.levinzonr.studypad.presentation.screens.showUniversitySelector
 import cz.levinzonr.studypad.setVisible
@@ -50,12 +49,17 @@ class LoginFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Timber.d("onViewCreated")
         loginPasswordEt.setText(viewModel.password)
         loginEmailEt.setText(viewModel.email)
         setupListeners()
         subscribe()
         googleClient = GoogleSignIn.getClient(context!!, gso)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.d("onStart")
     }
 
     private fun subscribe() {
@@ -112,7 +116,7 @@ class LoginFragment : BaseFragment() {
             viewModel.loginViaFacebook(this)
         }
 
-        sign_in_button.setOnClickListener {
+        loginUsingGoogle.setOnClickListener {
             startActivityForResult(
                 googleClient.signInIntent,
                 REQUEST_SIGNIN
