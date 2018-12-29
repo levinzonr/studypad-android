@@ -1,7 +1,6 @@
 package cz.levinzonr.studypad.presentation.screens.onboarding.signup
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.interactors.GetUniversitiesInteractor
 import cz.levinzonr.studypad.domain.interactors.SignupInteractor
@@ -10,7 +9,6 @@ import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
-import timber.log.Timber
 
 class SignupViewModel(
     private val updateUserUniversityInteractor: UpdateUserUniversityInteractor,

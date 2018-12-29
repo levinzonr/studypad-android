@@ -1,10 +1,7 @@
 package cz.levinzonr.studypad.presentation.screens.onboarding.login
 
 import android.content.Intent
-import android.util.Patterns
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
