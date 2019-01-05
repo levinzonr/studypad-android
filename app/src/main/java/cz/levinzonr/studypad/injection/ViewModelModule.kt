@@ -1,9 +1,11 @@
-package cz.levinzonr.studypad.injection
+ package cz.levinzonr.studypad.injection
 
 import cz.levinzonr.studypad.domain.models.Note
+import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListViewModel
+import cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewModel
 import cz.levinzonr.studypad.presentation.screens.profile.ProfileViewModel
@@ -23,4 +25,6 @@ val viewModelModule = module {
     viewModel { SignupViewModel(get(), get(), get()) }
 
     viewModel { (note: Note?) -> NoteDetailViewModel(note, get(), get(), get()) }
+
+    viewModel { (notebook: Notebook) -> PublishNotebookViewModel(notebook, get(), get()) }
 }

@@ -7,9 +7,11 @@ import androidx.navigation.findNavController
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
+import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListFragment
 import cz.levinzonr.studypad.presentation.screens.library.notes.EditNoteFragment
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailFragment
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListFragment
+import cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookFragment
 import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginFragment
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountCreatedFragment
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountInfoFragment
@@ -48,7 +50,7 @@ fun NotesListFragment.showNoteDetail(note: Note) {
 }
 
 val NotesListFragment.notebook: Notebook?
-    get() =  arguments?.getParcelable(ARG_NOTEBOOK)
+    get() = arguments?.getParcelable(ARG_NOTEBOOK)
 
 val EditNoteFragment.note: Note?
     get() = arguments?.getParcelable(ARG_NOTE)
@@ -56,6 +58,8 @@ val EditNoteFragment.note: Note?
 val NoteDetailFragment.note: Note
     get() = arguments?.getParcelable(ARG_NOTE)!!
 
+val PublishNotebookFragment.notebook: Notebook
+    get() = arguments?.getParcelable(ARG_NOTEBOOK)!!
 
 val EditNoteFragment.notebookId: Long
     get() = arguments?.getLong(ARG_NOTEBOOK_ID)!!
@@ -91,4 +95,11 @@ fun AccountCreatedFragment.showUniversitySelector() {
 
 fun LoginFragment.showUniversitySelector() {
     view?.findNavController()?.navigate(R.id.action_loginFragment2_to_universitySelectorFragment)
+}
+
+fun NotebookListFragment.showPublishNotebookView(notebook: Notebook) {
+    view?.findNavController()?.navigate(R.id.action_notebookListFragment_to_publishNotebookFragment,
+        Bundle().apply {
+            putParcelable(ARG_NOTEBOOK, notebook)
+        })
 }

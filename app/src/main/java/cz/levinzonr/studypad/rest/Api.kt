@@ -1,10 +1,7 @@
 package cz.levinzonr.studypad.rest
 
 import cz.levinzonr.studypad.data.*
-import cz.levinzonr.studypad.domain.models.Note
-import cz.levinzonr.studypad.domain.models.Notebook
-import cz.levinzonr.studypad.domain.models.University
-import cz.levinzonr.studypad.domain.models.UserProfile
+import cz.levinzonr.studypad.domain.models.*
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
 
@@ -62,6 +59,20 @@ interface Api {
     @DELETE("$API/notes/{id}")
     fun deleteNote(@Path("id") noteId: Long) : Deferred<Unit>
 
+
+    //-----------------------------------------------------------------------------
+
+    @GET("$API/shared")
+    fun getRelevantNotebooks() : Deferred<List<PublishedNotebook.Feed>>
+
+    @GET("$API/shared/{id}")
+    fun getPublishedNotebookDetail(@Path("id") id: String) : Deferred<PublishedNotebook.Detail>
+
+    @GET("$API/shared/find")
+    fun findNotebooks(@Query("tags") tags: Set<String>, @Query("topic") topic: String) : Deferred<List<PublishedNotebook>>
+
+    @POST("$API/shared")
+    fun publishNotebook(@Body publishNotebookRequest: PublishNotebookRequest) : Deferred<PublishedNotebook.Feed>
 
 
 }

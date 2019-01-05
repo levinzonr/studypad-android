@@ -13,6 +13,7 @@ import cz.levinzonr.studypad.presentation.adapters.NotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.showNotes
+import cz.levinzonr.studypad.presentation.screens.showPublishNotebookView
 import kotlinx.android.synthetic.main.fragment_notebook_list.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -76,6 +77,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
                 R.id.notebookEditBtn -> EditNotebookDialog.show(fragmentManager, notebook) { n, s ->
                     viewModel.updateNotebook(notebook, s)
                 }
+                R.id.notebookPublishBtn -> showPublishNotebookView(notebook)
             }
         }
     }

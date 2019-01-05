@@ -6,6 +6,15 @@
     android:orientation="vertical">
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/notebookPublishBtn"
+        app:icon="@drawable/ic_outline_delete_24px"
+        android:text="Publish"
+        style="@style/BottomMenuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/notebookEditBtn"
         app:icon="@drawable/ic_edit"
         android:text="Edit"

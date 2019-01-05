@@ -14,4 +14,6 @@ interface UserManager {
 
     fun logout()
 
+    fun getUserInfo() : UserProfile?
+
 }

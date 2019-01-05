@@ -101,6 +101,10 @@ fun MutableLiveData<SimpleEvent>.onHandle(lifecycleOwner: LifecycleOwner, block:
     observe(lifecycleOwner, Observer { it.handle(block) })
 }
 
+fun <T> MutableLiveData<Event<T>>.onHandle(lifecycleOwner: LifecycleOwner, block: (T) -> Unit) {
+    observe(lifecycleOwner, Observer { it.handle(block) })
+}
+
 fun String.isValidEmail() : Boolean {
     return this.matches(Patterns.EMAIL_ADDRESS.toRegex())
 }
