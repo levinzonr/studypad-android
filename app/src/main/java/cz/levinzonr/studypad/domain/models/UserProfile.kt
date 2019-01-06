@@ -6,4 +6,8 @@ data class UserProfile(
     val university: University?,
     val photoUrl: String?,
     val isNewUser: Boolean = false
-)
+) {
+
+    val displayName: String
+        get() = "$firstName $lastName"
+}

@@ -13,9 +13,16 @@ class PublishNotebookViewModel(private val notebook: Notebook,
 
     val notebookPublishedEvent = liveEvent()
 
+    var title = notebook.name
+    var description = ""
+
+    var tags : MutableSet<String> = mutableSetOf()
+
+
+
     fun publish() {
         toggleLoading(true)
-        publishNotebookInteractor.executeWithInput(PublishNotebookInteractor.Input(notebook.id, notebook.name)) {
+        publishNotebookInteractor.executeWithInput(PublishNotebookInteractor.Input(notebook.id, title, description, tags)) {
             onComplete {
                 toggleLoading(false)
                 notebookPublishedEvent.call()

@@ -9,6 +9,7 @@ import cz.levinzonr.studypad.presentation.screens.library.publish.PublishNoteboo
 import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewModel
 import cz.levinzonr.studypad.presentation.screens.profile.ProfileViewModel
+import cz.levinzonr.studypad.presentation.screens.sharedbooks.ShareHubViewModel
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
@@ -27,4 +28,6 @@ val viewModelModule = module {
     viewModel { (note: Note?) -> NoteDetailViewModel(note, get(), get(), get()) }
 
     viewModel { (notebook: Notebook) -> PublishNotebookViewModel(notebook, get(), get()) }
+
+    viewModel { ShareHubViewModel(get()) }
 }

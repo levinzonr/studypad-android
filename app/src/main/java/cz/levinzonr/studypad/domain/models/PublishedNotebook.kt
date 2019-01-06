@@ -4,8 +4,9 @@ object PublishedNotebook {
 
     data class Feed(
         val title: String,
-        val description: String,
+        val description: String?,
         val notesCount: Int,
+        val tags: Set<String>,
         val commentCount: Int,
         val author: UserProfile,
         val id: String
