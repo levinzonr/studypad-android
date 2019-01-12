@@ -6,6 +6,8 @@ import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookList
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListViewModel
 import cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookViewModel
+import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialog
+import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewModel
 import cz.levinzonr.studypad.presentation.screens.profile.ProfileViewModel
@@ -27,7 +29,9 @@ val viewModelModule = module {
 
     viewModel { (note: Note?) -> NoteDetailViewModel(note, get(), get(), get()) }
 
-    viewModel { (notebook: Notebook) -> PublishNotebookViewModel(notebook, get(), get()) }
+    viewModel { (notebook: Notebook) -> PublishNotebookViewModel(notebook, get(), get(), get()) }
 
     viewModel { ShareHubViewModel(get()) }
+
+    viewModel { TagSearchViewModel(get()) }
 }

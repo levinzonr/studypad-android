@@ -5,9 +5,6 @@ data class UserProfile(
     val lastName: String,
     val university: University?,
     val photoUrl: String?,
-    val isNewUser: Boolean = false
-) {
-
+    val isNewUser: Boolean = false,
     val displayName: String
-        get() = "$firstName $lastName"
-}
+)

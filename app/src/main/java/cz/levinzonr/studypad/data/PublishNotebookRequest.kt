@@ -1,6 +1,6 @@
 package cz.levinzonr.studypad.data
 
-class PublishNotebookRequest(
+data class PublishNotebookRequest(
         val title: String?,
         val universityId: Long?,
         val tags: Set<String>?,

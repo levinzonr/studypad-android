@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
@@ -15,6 +16,7 @@ import cz.levinzonr.studypad.presentation.base.BaseActivity
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
+import timber.log.Timber
 
 
 fun ViewGroup.asSequence(): Sequence<View> = object : Sequence<View> {
@@ -41,6 +43,26 @@ fun ViewGroup.asSequence(): Sequence<View> = object : Sequence<View> {
             return answer!!
         }
     }
+}
+
+fun ViewGroup.removeAllBut(id: Int) {
+    asSequence().forEach { if (it.id != id)  {
+        Timber.d("Remove view")
+        removeView(it) }}
+
+}
+
+fun SearchView.onQueryTextChanged(onChange: (String) -> Unit) {
+    setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(p0: String?): Boolean {
+            return true
+        }
+
+        override fun onQueryTextChange(p0: String?): Boolean {
+            onChange(p0 ?: "")
+            return true
+        }
+    })
 }
 
 // Dp to int or vice versa

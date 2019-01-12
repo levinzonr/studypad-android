@@ -39,4 +39,6 @@ val interacorModule = module {
     factory { PublishNotebookInteractor(get()) }
 
     factory { GetRelevantNotebooks(get()) }
+
+    factory { GetTagsInteractor() }
 }

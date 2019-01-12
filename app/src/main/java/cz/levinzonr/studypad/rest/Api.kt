@@ -74,5 +74,6 @@ interface Api {
     @POST("$API/shared")
     fun publishNotebook(@Body publishNotebookRequest: PublishNotebookRequest) : Deferred<PublishedNotebook.Feed>
 
-
+    @GET("$API/shared/tags")
+    fun getTags() : Deferred<List<String>>
 }

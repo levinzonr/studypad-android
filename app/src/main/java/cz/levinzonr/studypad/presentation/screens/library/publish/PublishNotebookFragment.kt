@@ -8,15 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.google.android.material.chip.Chip
-import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.onHandle
-import cz.levinzonr.studypad.onTextChanged
+import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.EntryChip
 import cz.levinzonr.studypad.presentation.screens.navigateBack
 import cz.levinzonr.studypad.presentation.screens.notebook
-import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_publish_notebook.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
@@ -51,7 +49,9 @@ class PublishNotebookFragment : BaseFragment() {
         }
 
         notebookAddTagChip.setOnClickListener {
-            addTag("TText ${Date().time}")
+            TagSearchDialog.show(fragmentManager!!, viewModel.selectedTags.value ?: setOf()) { tag, selected ->
+                viewModel.setTagSelected(tag, selected)
+            }
         }
     }
 
@@ -60,8 +60,6 @@ class PublishNotebookFragment : BaseFragment() {
         with(viewModel) {
             notebookDescriptionEt.setText(description)
             notebookTitleEt.setText(title)
-            tags.forEach { addTag(it) }
-            Timber.d("Tags: $tags")
 
         }
     }
@@ -71,11 +69,10 @@ class PublishNotebookFragment : BaseFragment() {
 
         chip.setOnCloseIconClickListener {
             notebookTags.removeView(chip)
-            viewModel.tags.remove(tag)
+            viewModel.setTagSelected(tag, false)
         }
 
         notebookTags.addView(chip)
-        viewModel.tags.add(tag)
     }
 
     private fun subscribe() {
@@ -83,16 +80,29 @@ class PublishNotebookFragment : BaseFragment() {
             viewModel.publish()
         }
 
-        viewModel.notebookPublishedEvent.onHandle(this) {
+        viewModel.notebookPublishedEvent.onHandle(viewLifecycleOwner) {
             navigateBack()
         }
 
-        viewModel.errorLiveData.observe(this, Observer {
+        viewModel.errorLiveData.observe(viewLifecycleOwner, Observer {
             it.handle { showToast(it) }
         })
 
-        viewModel.loadingLiveData.observe(this, Observer {
+        viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
             progressBar.setVisible(it)
+        })
+
+        viewModel.selectedTags.observe(viewLifecycleOwner, Observer {
+            Timber.d("Tag: $it")
+            notebookTags.asSequence().toList().forEach {
+                if (it == notebookAddTagChip) {
+                    Timber.d("Slip view")
+                } else {
+                    notebookTags.removeView(it)
+                    Timber.d("remove ${(it as Chip).text}")
+                }
+            }
+            it.forEach { addTag(it) }
         })
     }
 }

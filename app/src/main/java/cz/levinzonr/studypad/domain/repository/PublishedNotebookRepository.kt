@@ -8,5 +8,6 @@ interface PublishedNotebookRepository {
 
     suspend fun getPublishedNotebookDetail(id: String) : PublishedNotebook.Detail
 
-    suspend fun publishNotebook(notebookId: Long, title: String, description: String?, tags: Set<String>) : PublishedNotebook.Feed
+    suspend fun publishNotebook(notebookId: Long, title: String, description: String?, tags: Set<String>, topicId: Long?) : PublishedNotebook.Feed
+
 }
