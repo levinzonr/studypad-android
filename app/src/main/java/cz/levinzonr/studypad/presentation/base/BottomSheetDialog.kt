@@ -4,29 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.fragment.app.DialogFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.button.MaterialButton
-import cz.levinzonr.studypad.views
+import cz.levinzonr.studypad.R
 
 abstract class BottomSheetDialog : BottomSheetDialogFragment() {
 
-    abstract val layoutResource: Int
-
-    var onOptionSelected: (Int) -> Unit = {}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(layoutResource, container, false)
+        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        return super.onCreateView(inflater, container, savedInstanceState)
+
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        (view as ViewGroup).views.forEach {
-            (it as MaterialButton).setOnClickListener {
-                dismiss()
-                onOptionSelected.invoke(it.id)
-            }
-        }
-    }
-
-
 }

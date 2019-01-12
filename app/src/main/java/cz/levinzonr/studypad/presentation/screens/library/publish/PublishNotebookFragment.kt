@@ -53,6 +53,13 @@ class PublishNotebookFragment : BaseFragment() {
                 viewModel.setTagSelected(tag, selected)
             }
         }
+
+        notebookTopic.setOnClickListener {
+            TopicSearchDialog.show(fragmentManager!!) {
+                viewModel.topic = it
+                notebookTopic.setText(it.name)
+            }
+        }
     }
 
     override fun onStart() {
@@ -60,6 +67,7 @@ class PublishNotebookFragment : BaseFragment() {
         with(viewModel) {
             notebookDescriptionEt.setText(description)
             notebookTitleEt.setText(title)
+            notebookTopic.setText(topic?.name ?: "")
 
         }
     }

@@ -1,9 +1,6 @@
 package cz.levinzonr.studypad.injection
 
-import cz.levinzonr.studypad.presentation.adapters.NotebooksAdapter
-import cz.levinzonr.studypad.presentation.adapters.NotesAdapter
-import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
-import cz.levinzonr.studypad.presentation.adapters.UniversityAdapter
+import cz.levinzonr.studypad.presentation.adapters.*
 import org.koin.dsl.module.module
 
 
@@ -17,4 +14,6 @@ val adapterModule = module {
     factory { NotebooksAdapter() }
 
     factory { PublishedNotebooksAdapter() }
+
+    factory { (listner: TopicsAdapter.TopicListener) -> TopicsAdapter(listner) }
 }

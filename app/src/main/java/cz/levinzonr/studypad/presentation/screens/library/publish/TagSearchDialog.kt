@@ -17,6 +17,7 @@ import com.google.android.material.chip.ChipGroup
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.onQueryTextChanged
+import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
 import kotlinx.android.synthetic.main.fragment_tag_search_dialog.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,7 +25,7 @@ import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
 
-class TagSearchDialog : BottomSheetDialogFragment(){
+class TagSearchDialog : BottomSheetDialog(){
 
     private lateinit var searchView: SearchView
     private lateinit var chipBox: ChipGroup
@@ -52,10 +53,6 @@ class TagSearchDialog : BottomSheetDialogFragment(){
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +61,6 @@ class TagSearchDialog : BottomSheetDialogFragment(){
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_tag_search_dialog, container, false)
         searchView = view.findViewById(R.id.tagSearchView)
-        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         chipBox = view.findViewById(R.id.tagsChipBox)
         return view
     }

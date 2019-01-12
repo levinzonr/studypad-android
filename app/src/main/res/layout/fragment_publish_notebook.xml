@@ -1,5 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,17 +7,19 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_marginStart="@dimen/space_normal"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/space_normal"
+        android:hint="Title"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/notebookTitleEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
             android:inputType="text"
             android:maxLines="1" />
 
@@ -30,14 +31,41 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_normal"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/space_normal"
+        android:hint="Description"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/notebookDescriptionEt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@null" />
+           />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_normal"
+        android:layout_marginTop="8dp"
+
+        android:layout_marginEnd="@dimen/space_normal"
+        android:hint="Topic"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/notebookTopic"
+            android:clickable="true"
+            android:drawableEnd="@drawable/ic_expand_more_black_24dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -46,21 +74,25 @@
         android:id="@+id/notebookTags"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+        android:layout_marginStart="@dimen/space_normal"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/space_normal"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/notebookAddTagChip"
             style="@style/Widget.MaterialComponents.Chip.Action"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_normal"
+            android:layout_marginEnd="@dimen/space_normal"
             android:text="Add Tag"
-            app:chipIconTint="@color/colorAccent"
-            app:chipIcon="@drawable/ic_round_add_24px" />
+            app:chipIcon="@drawable/ic_round_add_24px"
+            app:chipIconTint="@color/colorAccent" />
 
     </com.google.android.material.chip.ChipGroup>
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,17 +100,18 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/publishButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:text="Publish"
         android:id="@+id/publishButton"
-        android:layout_margin="@dimen/space_big"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_big"
+        android:text="Publish"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

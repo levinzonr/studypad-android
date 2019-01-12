@@ -71,7 +71,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
     }
 
     override fun onNotebookMoreClicked(notebook: Notebook) {
-        NotebookBottomMenu.show(fragmentManager!!) {
+        NotebookBottomMenuOptions.show(fragmentManager!!) {
             when (it) {
                 R.id.notebookDeleteBtn -> viewModel.deleteNotebook(notebook)
                 R.id.notebookEditBtn -> EditNotebookDialog.show(fragmentManager, notebook) { n, s ->

@@ -6,6 +6,7 @@ import cz.levinzonr.studypad.domain.interactors.GetTagsInteractor
 import cz.levinzonr.studypad.domain.interactors.PublishNotebookInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.Notebook
+import cz.levinzonr.studypad.domain.models.Topic
 import cz.levinzonr.studypad.liveEvent
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import timber.log.Timber
@@ -21,6 +22,7 @@ class PublishNotebookViewModel(
 
     var title = notebook.name
     var description = ""
+    var topic: Topic? = null
 
     var selectedTags = MutableLiveData<Set<String>>()
     init {
@@ -35,7 +37,8 @@ class PublishNotebookViewModel(
                 notebookId = notebook.id,
                 title = title,
                 description = description,
-                tags = selectedTags.value?.toSet() ?: setOf()
+                tags = selectedTags.value?.toSet() ?: setOf(),
+                topic = topic
             )
         ) {
             onComplete {

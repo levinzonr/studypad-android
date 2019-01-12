@@ -8,6 +8,7 @@ import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListViewMod
 import cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookViewModel
 import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialog
 import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchViewModel
+import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewModel
 import cz.levinzonr.studypad.presentation.screens.profile.ProfileViewModel
@@ -34,4 +35,6 @@ val viewModelModule = module {
     viewModel { ShareHubViewModel(get()) }
 
     viewModel { TagSearchViewModel(get()) }
+
+    viewModel { TopicSearchViewModel(get()) }
 }
