@@ -1,5 +1,8 @@
 package cz.levinzonr.studypad.domain.models
 
+import android.os.Parcel
+import android.os.Parcelable
+
 object PublishedNotebook {
 
     data class Feed(
@@ -10,7 +13,42 @@ object PublishedNotebook {
         val commentCount: Int,
         val author: UserProfile,
         val id: String
-    )
+    ) : Parcelable {
+        constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readInt(),
+            setOf<String>(),
+            parcel.readInt(),
+            parcel.readParcelable(UserProfile::class.java.classLoader),
+            parcel.readString()
+        ) {
+        }
+
+        override fun writeToParcel(parcel: Parcel, flags: Int) {
+            parcel.writeString(title)
+            parcel.writeString(description)
+            parcel.writeInt(notesCount)
+            parcel.writeStringList(tags.toList())
+            parcel.writeInt(commentCount)
+            parcel.writeParcelable(author, flags)
+            parcel.writeString(id)
+        }
+
+        override fun describeContents(): Int {
+            return 0
+        }
+
+        companion object CREATOR : Parcelable.Creator<Feed> {
+            override fun createFromParcel(parcel: Parcel): Feed {
+                return Feed(parcel)
+            }
+
+            override fun newArray(size: Int): Array<Feed?> {
+                return arrayOfNulls(size)
+            }
+        }
+    }
 
     data class Detail(
         val id: String,

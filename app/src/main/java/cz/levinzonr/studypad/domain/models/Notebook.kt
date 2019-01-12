@@ -15,19 +15,26 @@ data class Notebook(
     val color: Color = Color(
         "#33ccff",
         "#ff99cc"
-    )
+    ),
+    val importedId: String? = null,
+    val exportedId: String? = null
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
         parcel.readString(),
         parcel.readInt(),
-        Color("#33ccff", "#ff99cc")
+        Color("#33ccff", "#ff99cc"),
+        parcel.readString(),
+        parcel.readString()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeLong(id)
         parcel.writeString(name)
         parcel.writeInt(notesCount)
+        parcel.writeString(importedId)
+        parcel.writeString(exportedId)
+
     }
 
     override fun describeContents(): Int {

@@ -13,6 +13,7 @@ import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
+import cz.levinzonr.studypad.presentation.screens.showDetail
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_shared.*
 import org.koin.android.ext.android.inject
@@ -65,6 +66,6 @@ class SharedFragment : BaseFragment(), PublishedNotebooksAdapter.PublishedNotebo
     }
 
     override fun onPublishedNotebookClicked(publishedNotebook: PublishedNotebook.Feed) {
-
+        showDetail(publishedNotebook)
     }
 }

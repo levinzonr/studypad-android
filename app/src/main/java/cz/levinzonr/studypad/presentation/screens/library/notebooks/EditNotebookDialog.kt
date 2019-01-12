@@ -1,19 +1,16 @@
 package cz.levinzonr.studypad.presentation.screens.library.notebooks
 
-import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.fragment.app.DialogFragment
+import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
-import kotlinx.android.synthetic.main.dialog_edit_notebook.*
 
-class EditNotebookDialog : DialogFragment() {
+class EditNotebookDialog : cz.levinzonr.studypad.presentation.base.BottomSheetDialog() {
 
     private val notebook: Notebook?
         get() = arguments?.getParcelable(ARG_NOTEBOOK)
@@ -41,13 +38,10 @@ class EditNotebookDialog : DialogFragment() {
     }
 
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val view = LayoutInflater.from(context).inflate(R.layout.dialog_edit_notebook, null, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.dialog_edit_notebook, container, false)
         initView(view)
-        return AlertDialog.Builder(context)
-            .setView(view)
-            .create()
-
+        return view
     }
 
 
@@ -63,4 +57,10 @@ class EditNotebookDialog : DialogFragment() {
             dismiss()
         }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        inputEditText.requestFocus()
+    }
+
 }

@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
+import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListFragment
 import cz.levinzonr.studypad.presentation.screens.library.notes.EditNoteFragment
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailFragment
@@ -16,10 +17,13 @@ import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginFragment
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountCreatedFragment
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountInfoFragment
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.CredentialsInfoFragment
+import cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotebookDetailFragment
+import cz.levinzonr.studypad.presentation.screens.sharedbooks.SharedFragment
 
 private const val ARG_NOTEBOOK = "NOTEBOOK"
 private const val ARG_NOTEBOOK_ID = "NOTEBOOK_ID"
 private const val ARG_NOTE = "NOTE"
+private const val ARG_PUBLISHED_NOTEBOOK = "PUBLISHED_NOTEBOOK"
 
 fun Fragment.showNotes(notebook: Notebook) {
     view?.findNavController()?.navigate(R.id.action_notebookListFragment_to_notesListFragment,
@@ -103,3 +107,12 @@ fun NotebookListFragment.showPublishNotebookView(notebook: Notebook) {
             putParcelable(ARG_NOTEBOOK, notebook)
         })
 }
+
+fun SharedFragment.showDetail(notebook: PublishedNotebook.Feed) {
+    view?.findNavController()?.navigate(R.id.action_sharedFragment_to_publishedNotebookDetailFragment,
+        Bundle().apply { putParcelable(ARG_PUBLISHED_NOTEBOOK, notebook) }
+    )
+}
+
+val PublishedNotebookDetailFragment.feedItem: PublishedNotebook.Feed
+    get() = arguments!!.getParcelable(ARG_PUBLISHED_NOTEBOOK) !!

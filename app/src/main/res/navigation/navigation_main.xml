@@ -35,7 +35,13 @@
               android:label="Settings" tools:layout="@layout/fragment_settings"/>
     <fragment android:id="@+id/sharedFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.sharedbooks.SharedFragment"
-              android:label="@string/screen_sharing_hub" tools:layout="@layout/fragment_shared"/>
+              android:label="@string/screen_sharing_hub" tools:layout="@layout/fragment_shared">
+        <action
+            android:id="@+id/action_sharedFragment_to_publishedNotebookDetailFragment"
+            app:destination="@id/publishedNotebookDetailFragment">
+            <argument android:name="PUBLISHED_NOTEBOOK" app:argType="cz.levinzonr.studypad.domain.models.PublishedNotebook.Feed"/>
+        </action>
+    </fragment>
 
     <fragment android:id="@+id/challengesFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.challenges.ChallengesFragment"
@@ -67,4 +73,9 @@
         android:name="cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookFragment"
         android:label="fragment_publish_notebook"
         tools:layout="@layout/fragment_publish_notebook" />
+    <fragment
+        android:id="@+id/publishedNotebookDetailFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotebookDetailFragment"
+        android:label="fragment_published_notebook_detail"
+        tools:layout="@layout/fragment_published_notebook_detail" />
 </navigation>
