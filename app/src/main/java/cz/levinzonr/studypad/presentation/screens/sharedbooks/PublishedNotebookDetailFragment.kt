@@ -7,14 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.presentation.adapters.CommentsAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.feedItem
 import kotlinx.android.synthetic.main.fragment_publish_notebook.*
 import kotlinx.android.synthetic.main.fragment_published_notebook_detail.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -22,6 +26,7 @@ import org.koin.core.parameter.parametersOf
 class PublishedNotebookDetailFragment : BaseFragment() {
 
     private val viewModel: PublishedNotebookDetailViewModel by viewModel { parametersOf(feedItem.id) }
+    private val adapter: CommentsAdapter by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +41,7 @@ class PublishedNotebookDetailFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         showInitial(feedItem)
         subscribe()
+        setupRecyclerView()
     }
 
     private fun subscribe() {
@@ -49,11 +55,16 @@ class PublishedNotebookDetailFragment : BaseFragment() {
                 showDetail(it)
             }
         })
+
+        viewModel.getCommentsLiveData().observe(viewLifecycleOwner, Observer {
+            adapter.items = it
+        })
     }
 
     private fun showInitial(feed: PublishedNotebook.Feed) {
         publishedBookNameTv.text = feed.title
         publishedBookDescriptionTv.text = feed.description
+        publishedNotebookAuthorTv.text = feed.author.displayName
     }
 
     private fun showDetail(detail: PublishedNotebook.Detail) {
@@ -64,6 +75,12 @@ class PublishedNotebookDetailFragment : BaseFragment() {
             publishedBookTagsCg.addView(it)
         }
 
+    }
+
+    private fun setupRecyclerView() {
+        commentsRecyclerView.layoutManager = LinearLayoutManager(context)
+        commentsRecyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        commentsRecyclerView.adapter = adapter
     }
 
 

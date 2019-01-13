@@ -11,7 +11,7 @@ data class Note(
     val id: Long,
     val title: String? = null,
     val content: String? = null,
-    val notebookId: Long = -1
+    val notebookId: Long
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readLong(),

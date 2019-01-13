@@ -16,4 +16,6 @@ val adapterModule = module {
     factory { PublishedNotebooksAdapter() }
 
     factory { (listner: TopicsAdapter.TopicListener) -> TopicsAdapter(listner) }
+
+    factory { CommentsAdapter() }
 }
