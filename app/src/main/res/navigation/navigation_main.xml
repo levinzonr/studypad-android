@@ -14,6 +14,11 @@
         <action
             android:id="@+id/action_notebookListFragment_to_publishNotebookFragment"
             app:destination="@id/publishNotebookFragment" />
+        <action
+            android:id="@+id/action_notebookListFragment_to_publishedNotebookDetailFragment"
+            app:destination="@id/publishedNotebookDetailFragment">
+            <argument android:name="PUBLISHED_NOTEBOOK" app:argType="cz.levinzonr.studypad.domain.models.PublishedNotebook.Feed"/>
+        </action>
     </fragment>
     <fragment android:id="@+id/notesListFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.library.notes.NotesListFragment"

@@ -116,3 +116,8 @@ fun SharedFragment.showDetail(notebook: PublishedNotebook.Feed) {
 
 val PublishedNotebookDetailFragment.feedItem: PublishedNotebook.Feed
     get() = arguments!!.getParcelable(ARG_PUBLISHED_NOTEBOOK) !!
+
+fun NotebookListFragment.showPublishedNotebookDetail(nb: PublishedNotebook.Feed) {
+    view?.findNavController()?.navigate(R.id.action_notebookListFragment_to_publishedNotebookDetailFragment,
+        Bundle().apply { putParcelable(ARG_PUBLISHED_NOTEBOOK, nb) })
+}

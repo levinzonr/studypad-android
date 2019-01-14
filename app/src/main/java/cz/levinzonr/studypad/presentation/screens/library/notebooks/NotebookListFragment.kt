@@ -9,11 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
+import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.domain.models.UserProfile
 import cz.levinzonr.studypad.presentation.adapters.NotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.showNotes
 import cz.levinzonr.studypad.presentation.screens.showPublishNotebookView
+import cz.levinzonr.studypad.presentation.screens.showPublishedNotebookDetail
 import kotlinx.android.synthetic.main.fragment_notebook_list.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -71,13 +74,17 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
     }
 
     override fun onNotebookMoreClicked(notebook: Notebook) {
-        NotebookBottomMenuOptions.show(fragmentManager!!) {
+        NotebookBottomMenuOptions.show(fragmentManager!!, notebook) {
             when (it) {
                 R.id.notebookDeleteBtn -> viewModel.deleteNotebook(notebook)
                 R.id.notebookEditBtn -> EditNotebookDialog.show(fragmentManager, notebook) { n, s ->
                     viewModel.updateNotebook(notebook, s)
                 }
                 R.id.notebookPublishBtn -> showPublishNotebookView(notebook)
+                R.id.notebookOpenShared -> {
+                    val mockFeed = PublishedNotebook.Feed("", "", 0, setOf(), 0, UserProfile("", "", null, null, false, ""), notebook.exportedId!!)
+                    showPublishedNotebookDetail(mockFeed)
+                }
             }
         }
     }
