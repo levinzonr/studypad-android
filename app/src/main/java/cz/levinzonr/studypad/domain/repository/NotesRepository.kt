@@ -15,4 +15,8 @@ interface NotesRepository {
 
     fun notesLiveData(notebookId: Long) : LiveData<List<Note>>
 
+    fun getStoredNotes(notebookId: Long) : List<Note>
+
+    fun deleteLocally(list: List<Note>)
+
 }

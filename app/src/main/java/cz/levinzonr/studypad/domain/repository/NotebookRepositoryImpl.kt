@@ -33,10 +33,18 @@ class NotebookRepositoryImpl(
 
     override suspend fun deleteNotebook(id: Long) {
         remoteDataSource.deleteNotebook(id).await()
-        localDataSource.notebookDao().delete(id)
+        deleteLocally(id)
     }
 
     override fun notebooksLiveData(): LiveData<List<Notebook>> {
+        return localDataSource.notebookDao().getAllLiveData()
+    }
+
+    override fun getStoredNotebooks(): List<Notebook> {
         return localDataSource.notebookDao().getAll()
+    }
+
+    override fun deleteLocally(id: Long) {
+        localDataSource.notebookDao().delete(id)
     }
 }

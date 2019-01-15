@@ -17,7 +17,6 @@
         <action
             android:id="@+id/action_notebookListFragment_to_publishedNotebookDetailFragment"
             app:destination="@id/publishedNotebookDetailFragment">
-            <argument android:name="PUBLISHED_NOTEBOOK" app:argType="cz.levinzonr.studypad.domain.models.PublishedNotebook.Feed"/>
         </action>
     </fragment>
     <fragment android:id="@+id/notesListFragment"
@@ -44,7 +43,6 @@
         <action
             android:id="@+id/action_sharedFragment_to_publishedNotebookDetailFragment"
             app:destination="@id/publishedNotebookDetailFragment">
-            <argument android:name="PUBLISHED_NOTEBOOK" app:argType="cz.levinzonr.studypad.domain.models.PublishedNotebook.Feed"/>
         </action>
     </fragment>
 
@@ -55,12 +53,10 @@
     <fragment android:id="@+id/editNoteFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.library.notes.EditNoteFragment"
               android:label="fragment_edit_note" tools:layout="@layout/fragment_edit_note">
-        <argument android:name="NOTE" app:argType="cz.levinzonr.studypad.domain.models.Note"/>
     </fragment>
     <fragment android:id="@+id/noteDetailFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailFragment"
               android:label="note_detail_fragment" tools:layout="@layout/note_detail_fragment">
-    <argument android:name="NOTE" app:argType="cz.levinzonr.studypad.domain.models.Note"/>
         <action
             android:id="@+id/action_noteDetailFragment_to_editNoteFragment"
             app:destination="@id/editNoteFragment" />

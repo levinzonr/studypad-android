@@ -15,4 +15,7 @@ interface NotebookRepository {
 
     fun notebooksLiveData() : LiveData<List<Notebook>>
 
+    fun getStoredNotebooks() : List<Notebook>
+
+    fun deleteLocally(id: Long)
 }

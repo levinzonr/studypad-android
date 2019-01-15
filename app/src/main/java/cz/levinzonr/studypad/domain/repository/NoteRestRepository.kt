@@ -31,4 +31,10 @@ class NoteRestRepository(private val api: Api) : NotesRepository {
     override fun notesLiveData(notebookId: Long): LiveData<List<Note>> {
         return MutableLiveData()
     }
+
+    override fun getStoredNotes(notebookId: Long): List<Note> {
+        return listOf()
+    }
+
+    override fun deleteLocally(list: List<Note>) {}
 }

@@ -28,4 +28,12 @@ class NotebookRestRepository(private val api: Api) : NotebookRepository {
     override suspend fun deleteNotebook(id: Long) {
         return api.deleteNotebook(id).await()
     }
+
+    override fun getStoredNotebooks(): List<Notebook> {
+        return listOf()
+    }
+
+    override fun deleteLocally(id: Long) {
+
+    }
 }

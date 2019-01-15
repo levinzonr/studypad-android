@@ -14,14 +14,14 @@ class NotesRepositoryImpl(
 
 
     override suspend fun getNotesFromNotebook(notebookId: Long): List<Note> {
-        val notes = remoteDataSource.getNotesFromNotebook(notebookId).await().map { it.copy(notebookId = notebookId) }
+        val notes = remoteDataSource.getNotesFromNotebook(notebookId).await()
         localDataSource.notesDao().putAll(notes)
        return notes
     }
 
     override suspend fun createNote(notebookId: Long, title: String, content: String): Note {
         val note = remoteDataSource.createNote(CreateNoteRequest(notebookId, title, content)).await()
-        localDataSource.notesDao().put(note.copy(notebookId = notebookId))
+        localDataSource.notesDao().put(note)
         return note
     }
 
@@ -37,5 +37,13 @@ class NotesRepositoryImpl(
 
     override fun notesLiveData(notebookId: Long): LiveData<List<Note>> {
         return localDataSource.notesDao().getNotesFromNotebook(notebookId)
+    }
+
+    override fun getStoredNotes(notebookId: Long): List<Note> {
+        return localDataSource.notesDao().getList(notebookId)
+    }
+
+    override fun deleteLocally(list: List<Note>) {
+        localDataSource.notesDao().deleteAll(list)
     }
 }

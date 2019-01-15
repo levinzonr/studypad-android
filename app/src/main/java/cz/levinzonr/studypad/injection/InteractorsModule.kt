@@ -45,4 +45,6 @@ val interacorModule = module {
     factory { GetTopicsInteractor(get()) }
 
     factory { GetPublishedNotebookDetail(get()) }
+
+    factory { LibrarySyncInteractor(get(), get()) }
 }

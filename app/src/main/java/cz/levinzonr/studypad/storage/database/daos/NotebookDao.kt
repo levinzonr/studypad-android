@@ -1,14 +1,22 @@
-package cz.levinzonr.studypad.storage.database
+package cz.levinzonr.studypad.storage.database.daos
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Update
+import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
 
 @Dao
 interface NotebookDao {
 
     @Query("SELECT * FROM notebook")
-    fun getAll() : LiveData<List<Notebook>>
+    fun getAllLiveData() : LiveData<List<Notebook>>
+
+    @Query("SELECT * FROM notebook")
+    fun getAll() : List<Notebook>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun put(notebook: Notebook)

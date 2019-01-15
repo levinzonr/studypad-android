@@ -11,6 +11,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.UserProfile
+import cz.levinzonr.studypad.onHandle
 import cz.levinzonr.studypad.presentation.adapters.NotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
@@ -44,6 +45,9 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
             showNotebooks(it)
         })
 
+        viewModel.syncCompletedEvent.onHandle(viewLifecycleOwner) {
+            showToast("Library is Synchronized")
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
