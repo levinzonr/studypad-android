@@ -76,27 +76,29 @@
         </com.google.android.material.chip.ChipGroup>
 
         <TextView
+            android:drawablePadding="@dimen/space_normal"
             android:id="@+id/notebookCommentsTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/space_big"
             android:drawableStart="@drawable/ic_comment"
             android:text="13"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/notebookAuthorIv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/notebookAuthorIv" />
 
 
         <TextView
+            android:drawablePadding="@dimen/space_small"
             android:id="@+id/notebookNotesCountTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/space_big"
             android:drawableStart="@drawable/ic_note"
             android:text="13 notes"
-            app:layout_constraintBottom_toTopOf="@+id/notebookCommentsTv"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/notebookCommentsTv"
+            app:layout_constraintStart_toEndOf="@+id/notebookCommentsTv"
+            app:layout_constraintTop_toTopOf="@+id/notebookCommentsTv" />
 
         <ImageButton
             android:id="@+id/notebookOptionsBtn"
@@ -104,6 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginStart="@dimen/space_big"
             android:background="?selectableItemBackgroundBorderless"
             android:padding="@dimen/space_normal"
             android:src="@drawable/ic_round_more_vert_24px"

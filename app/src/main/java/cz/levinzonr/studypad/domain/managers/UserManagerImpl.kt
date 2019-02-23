@@ -25,6 +25,7 @@ class UserManagerImpl(private val api: Api,
         val userToken = result.user.getCurrentToken() ?: return
         val response = api.login(userToken.token!!).await()
         tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
+        Timber.d("Save" + response)
         userProfileRepository.saveUserProfile(response)
     }
 

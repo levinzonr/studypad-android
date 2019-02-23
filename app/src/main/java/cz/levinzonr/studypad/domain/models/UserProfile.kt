@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class UserProfile(
+    val uuid: String,
     val firstName: String,
     val lastName: String,
     val university: University?,
@@ -14,6 +15,7 @@ data class UserProfile(
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
         parcel.readParcelable(University::class.java.classLoader),
         parcel.readString(),
         parcel.readByte() != 0.toByte(),
@@ -22,6 +24,7 @@ data class UserProfile(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(uuid)
         parcel.writeString(firstName)
         parcel.writeString(lastName)
         parcel.writeParcelable(university, flags)

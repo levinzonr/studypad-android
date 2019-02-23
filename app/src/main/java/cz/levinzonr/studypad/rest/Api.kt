@@ -88,12 +88,14 @@ interface Api {
     //-----------------------------------------------------------------------------
 
     @GET("$API/shared/{id}/comments")
-    fun getSharedNotebookComments() : Deferred<List<PublishedNotebook.Comment>>
+    fun getSharedNotebookComments(@Path("id") notebookId: String) : Deferred<List<PublishedNotebook.Comment>>
 
-    @POST("$API/shared/{id}/comments")
-    fun createComment() : Deferred<PublishedNotebook.Comment>
+    @POST("$API/shared/{id}/comment")
+    fun createComment(@Path("id") notebookId: String, @Query("comment") body: String) : Deferred<PublishedNotebook.Comment>
 
+    @DELETE("$API/shared/comments/{id}")
+    fun deleteComment(@Path("id") commentId: Long)  : Deferred<Unit>
 
-
-
+    @POST("$API/shared/comments/{id}")
+    fun editComment(@Path("id") commentId: Long, @Query("comment") body: String) : Deferred<PublishedNotebook.Comment>
 }

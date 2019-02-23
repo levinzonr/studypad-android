@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.SearchView
 import androidx.appcompat.app.ActionBar
@@ -91,6 +92,21 @@ val BaseFragment.supportActionBar: ActionBar?
 
 
 fun TextInputEditText.onTextChanged(onChange: (String) -> Unit) {
+    this.addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) {
+
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            onChange.invoke(p0.toString())
+        }
+    })
+}
+
+fun EditText.onTextChanged(onChange: (String) -> Unit) {
     this.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {
 
