@@ -7,3 +7,5 @@ class AuthResponse(
     @SerializedName("access_token") val token: String,
     val user: UserProfile
 )
+
+data  class FirebaseResponse(val token: String)

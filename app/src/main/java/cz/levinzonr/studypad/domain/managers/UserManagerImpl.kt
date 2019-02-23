@@ -31,7 +31,7 @@ class UserManagerImpl(private val api: Api,
 
     override suspend fun createAccount(email: String, password: String, firstName: String, lasName: String) : String {
         val request = CreateAccountRequest(firstName, lasName, email, password)
-        return api.createAccount(request).await()
+        return api.createAccount(request).await().token
     }
 
     override fun isLoggedIn(): Boolean {

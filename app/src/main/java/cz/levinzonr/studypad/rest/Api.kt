@@ -18,7 +18,7 @@ interface Api {
     fun loginViaFacebook(@Body facebookLoginRequest: FacebookLoginRequest) : Deferred<AuthResponse>
 
     @POST("$AUTH/register")
-    fun createAccount(@Body createAccountRequest: CreateAccountRequest) : Deferred<String>
+    fun createAccount(@Body createAccountRequest: CreateAccountRequest) : Deferred<FirebaseResponse>
 
     @GET("$API/university/find")
     fun getUniversities(@Query("query") query: String) : Deferred<List<University>>
