@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "776080318800",
+    "firebase_url": "https://studypad-30c94.firebaseio.com",
+    "project_id": "studypad",
+    "storage_bucket": "studypad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776080318800:android:f13fb7e4ff18514e",
+        "android_client_info": {
+          "package_name": "cz.levinzonr.studypad.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776080318800-vng4d01jio16386ghbun1enbqo9gt6k4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cz.levinzonr.studypad.dev",
+            "certificate_hash": "faeda4180222e6a4d1cb6e940bc4ccbd9f36382c"
+          }
+        },
+        {
+          "client_id": "776080318800-bauvbv9e53pf6vl9spjrh49h520gmas4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6gLFaiQFG4EoyyHclhTRD8X6sbxeaeAw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776080318800-bauvbv9e53pf6vl9spjrh49h520gmas4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

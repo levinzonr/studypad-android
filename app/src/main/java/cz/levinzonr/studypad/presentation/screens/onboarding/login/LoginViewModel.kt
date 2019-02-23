@@ -9,6 +9,7 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import cz.levinzonr.studypad.call
 import cz.levinzonr.studypad.callIf
 import cz.levinzonr.studypad.domain.interactors.keychain.FacebookLoginInteractor

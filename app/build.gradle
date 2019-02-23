@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: "androidx.navigation.safeargs"
+apply plugin: 'io.fabric'
 
 
 android {
@@ -94,6 +95,11 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
+    //Firebase
+    implementation 'com.google.firebase:firebase-core:16.0.7'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
+    implementation 'com.google.firebase:firebase-messaging:17.4.0'
 
     // Facebook
     implementation 'com.facebook.android:facebook-android-sdk:4.36.0'
@@ -109,3 +115,5 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }
+
+apply plugin: 'com.google.gms.google-services'

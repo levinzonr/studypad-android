@@ -14,6 +14,10 @@ interface Api {
     @POST("$AUTH/email")
     fun loginUsingEmail(@Body emailLoginRequest: EmailLoginRequest) : Deferred<AuthResponse>
 
+
+    @POST("$AUTH/login")
+    fun login(@Query("token") token: String) : Deferred<UserProfile>
+
     @POST("$AUTH/facebook")
     fun loginViaFacebook(@Body facebookLoginRequest: FacebookLoginRequest) : Deferred<AuthResponse>
 
