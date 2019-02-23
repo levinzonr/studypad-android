@@ -6,11 +6,13 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.SearchView
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
 import cz.levinzonr.studypad.presentation.base.BaseActivity
 import cz.levinzonr.studypad.presentation.base.BaseFragment
@@ -140,3 +142,12 @@ fun String.isValidName() : Boolean {
 }
 
 fun liveEvent() = MutableLiveData<SimpleEvent>()
+
+fun ImageView.loadAuthorImage(imageUrl: String?) {
+    Glide.with(this)
+        .load(imageUrl)
+        .error(R.drawable.no_profile_image)
+        .fallback(R.drawable.no_profile_image)
+        .into(this)
+
+}

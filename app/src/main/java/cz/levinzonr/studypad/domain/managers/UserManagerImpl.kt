@@ -48,9 +48,14 @@ class UserManagerImpl(private val api: Api,
         return response
     }
 
-    override suspend fun createAccount(email: String, password: String, firstName: String, lasName: String) : String {
+    override suspend fun createAccount(email: String, password: String, firstName: String, lasName: String) : UserProfile {
         val request = CreateAccountRequest(firstName, lasName, email, password)
-        return api.createAccount(request).await().token
+        val response =  api.createAccount(request).await()
+        val result = firebaseAuth.loginWihtCustomToken(response.token)!!
+        val userToken = result.user.getCurrentToken()!!
+        tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
+        userProfileRepository.saveUserProfile(response.user)
+        return response.user
     }
 
     override fun isLoggedIn(): Boolean {
@@ -62,6 +67,7 @@ class UserManagerImpl(private val api: Api,
     }
 
     override fun logout() {
+        firebaseAuth.signOut()
         tokenRepository.clear()
         userProfileRepository.clear()
     }
@@ -71,6 +77,19 @@ class UserManagerImpl(private val api: Api,
             signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener { cont.resume(it) }
                 .addOnFailureListener { cont.resumeWithException(it) }
+        }
+    }
+
+    private suspend fun FirebaseAuth.loginWihtCustomToken(token: String) : AuthResult? {
+        return suspendCoroutine { cont ->
+            signInWithCustomToken(token)
+                .addOnCompleteListener {
+                    if (it.isComplete && it.isSuccessful) {
+                        cont.resume(it.result)
+                    } else {
+                        cont.resume(null)
+                    }
+                }
         }
     }
 

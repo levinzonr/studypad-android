@@ -8,4 +8,4 @@ class AuthResponse(
     val user: UserProfile
 )
 
-data  class FirebaseResponse(val token: String)
+data  class FirebaseResponse(val token: String, val user: UserProfile)

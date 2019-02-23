@@ -10,7 +10,7 @@ interface UserManager {
 
     suspend fun loginViaGoogle(token: String) : UserProfile
 
-    suspend fun createAccount(email: String, password: String, firstName: String, lasName: String) : String
+    suspend fun createAccount(email: String, password: String, firstName: String, lasName: String) : UserProfile
 
     fun isLoggedIn() : Boolean
 

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.loadAuthorImage
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.onboarding.OnboardingActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -45,6 +46,7 @@ class ProfileFragment : BaseFragment() {
         viewModel.profileLiveData.observe(this, Observer {
             profileUserNae.text = "${it.firstName} ${it.lastName}"
             profileUserUni.text = it.university?.fullName ?: ""
+            circleImageView.loadAuthorImage(it.photoUrl)
         })
     }
 

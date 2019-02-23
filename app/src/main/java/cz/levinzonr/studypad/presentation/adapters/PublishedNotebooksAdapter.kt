@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.loadAuthorImage
 import kotlinx.android.synthetic.main.item_published_notebook.view.*
 
 class PublishedNotebooksAdapter : RecyclerView.Adapter<PublishedNotebooksAdapter.ViewHolder>(){
@@ -49,6 +51,7 @@ class PublishedNotebooksAdapter : RecyclerView.Adapter<PublishedNotebooksAdapter
                 }
             }
 
+            view.notebookAuthorIv.loadAuthorImage(notebook.author.photoUrl)
             view.setOnClickListener { listener?.onPublishedNotebookClicked(notebook) }
         }
     }

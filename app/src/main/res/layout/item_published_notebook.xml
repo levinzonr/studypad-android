@@ -49,10 +49,10 @@
             app:layout_constraintTop_toTopOf="@+id/notebookAuthorIv" />
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/notebookAuthorIv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="@dimen/space_big"
             android:src="@drawable/ic_google"
