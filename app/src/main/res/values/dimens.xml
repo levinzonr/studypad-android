@@ -6,4 +6,6 @@
     <dimen name="space_big">16dp</dimen>
     <dimen name="space_large">24dp</dimen>
     <dimen name="space_huge">32dp</dimen>
+
+    <dimen name="corner_radius">12dp</dimen>
 </resources>
