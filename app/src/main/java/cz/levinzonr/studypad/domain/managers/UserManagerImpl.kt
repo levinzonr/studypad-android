@@ -1,9 +1,6 @@
 package cz.levinzonr.studypad.domain.managers
 
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.GetTokenResult
+import com.google.firebase.auth.*
 import cz.levinzonr.studypad.data.CreateAccountRequest
 import cz.levinzonr.studypad.data.EmailLoginRequest
 import cz.levinzonr.studypad.data.FacebookLoginRequest
@@ -11,6 +8,7 @@ import cz.levinzonr.studypad.domain.models.UserProfile
 import cz.levinzonr.studypad.rest.Api
 import cz.levinzonr.studypad.storage.TokenRepository
 import cz.levinzonr.studypad.storage.UserProfileRepository
+import timber.log.Timber
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -31,11 +29,13 @@ class UserManagerImpl(private val api: Api,
     }
 
     override suspend fun loginViaFacebook(token: String) : UserProfile {
-        val request = FacebookLoginRequest(token)
-        val response = api.loginViaFacebook(request).await()
-        // romatokenRepository.saveToken(response.token)
-        userProfileRepository.saveUserProfile(response.user)
-        return response.user
+        val credentials = FacebookAuthProvider.getCredential(token)
+        val authResult =  firebaseAuth.loginWithCredentials(credentials)!!
+        val userToken = authResult.user.getCurrentToken()!!
+        val response = api.login(userToken.token!!).await()
+        tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
+        userProfileRepository.saveUserProfile(response)
+        return response
     }
 
     override suspend fun createAccount(email: String, password: String, firstName: String, lasName: String) : String {
@@ -64,11 +64,26 @@ class UserManagerImpl(private val api: Api,
         }
     }
 
+    private suspend fun FirebaseAuth.loginWithCredentials(credential: AuthCredential) : AuthResult? {
+        return suspendCoroutine { cont ->
+            signInWithCredential(credential)
+                .addOnCompleteListener {
+                    if (it.isComplete && it.isSuccessful) {
+                        cont.resume(it.result)
+                    } else {
+                        cont.resume(null)
+                    }
+                }
+        }
+    }
+
     private suspend fun FirebaseUser.getCurrentToken() : GetTokenResult?? {
         return suspendCoroutine {cont ->
             getIdToken(true)
                 .addOnSuccessListener { cont.resume(it) }
-                .addOnFailureListener { cont.resume(null) }
+                .addOnFailureListener {
+                    Timber.d("Fail: $it")
+                    cont.resume(null) }
 
         }
     }
