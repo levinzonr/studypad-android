@@ -32,8 +32,10 @@ class LoginFragment : BaseFragment() {
 
     private val viewModel: LoginViewModel by viewModel()
 
-    var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestEmail()
+        .requestIdToken("776080318800-3l21qogmj2ir05fvmnqooib4qrs53olk.apps.googleusercontent.com")
+        .requestProfile()
         .build()
 
     private lateinit var googleClient: GoogleSignInClient

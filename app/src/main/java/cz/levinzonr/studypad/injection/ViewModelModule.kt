@@ -22,7 +22,7 @@ val viewModelModule = module {
 
     viewModel { (id: Long) -> NotesListViewModel(id, get(), get()) }
 
-    viewModel { LoginViewModel(get(), get(), get()) }
+    viewModel { LoginViewModel(get(), get(), get(), get()) }
 
     viewModel { ProfileViewModel(get(), get()) }
 

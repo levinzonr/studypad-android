@@ -21,10 +21,14 @@ import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
 import timber.log.Timber
+import com.google.android.gms.common.api.ApiException
+import cz.levinzonr.studypad.domain.interactors.keychain.GoogleLoginInteractor
+
 
 class LoginViewModel(
     private val userManager: UserManager,
     private val facebookLoginInteractor: FacebookLoginInteractor,
+    private val googleLoginInteractor: GoogleLoginInteractor,
     private val loginInteractor: LoginInteractor
 ) : BaseViewModel() {
 
@@ -98,10 +102,30 @@ class LoginViewModel(
     }
 
     fun handleGoogleSigninResult(task: Task<GoogleSignInAccount>) {
-        val token = task.result?.idToken
-        Timber.d("Token: $token")
+        try {
+            val account = task.getResult(ApiException::class.java)
+            Timber.d("Token: ${account?.idToken} ${account?.familyName}")
+            account?.idToken?.let(this::onGoogleLoginSuccess)
+            // Signed in successfully, show authenticated UI.
+        } catch (e: ApiException) {
+            Timber.d("Handle google result: $e")
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+        }
+
     }
 
+    private fun onGoogleLoginSuccess(token: String) {
+        googleLoginInteractor.executeWithInput(token) {
+            onComplete {
+                toggleLoading(false)
+                loginSuccessEvent.call(it.isNewUser)
+            }
+            onError {
+                Timber.d("Error: $it")
+            }
+        }
+    }
 
     private fun onFacebookLoginSuccess(loginResult: LoginResult?) {
         loginResult?.accessToken?.let {

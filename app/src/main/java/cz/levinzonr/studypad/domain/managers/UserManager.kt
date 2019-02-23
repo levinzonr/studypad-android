@@ -8,6 +8,8 @@ interface UserManager {
 
     suspend fun loginViaFacebook(token: String) : UserProfile
 
+    suspend fun loginViaGoogle(token: String) : UserProfile
+
     suspend fun createAccount(email: String, password: String, firstName: String, lasName: String) : String
 
     fun isLoggedIn() : Boolean

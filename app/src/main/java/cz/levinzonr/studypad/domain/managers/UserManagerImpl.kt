@@ -38,6 +38,16 @@ class UserManagerImpl(private val api: Api,
         return response
     }
 
+    override suspend fun loginViaGoogle(token: String): UserProfile {
+        val credential = GoogleAuthProvider.getCredential(token, null)
+        val authResult =  firebaseAuth.loginWithCredentials(credential)!!
+        val userToken = authResult.user.getCurrentToken()!!
+        val response = api.login(userToken.token!!).await()
+        tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
+        userProfileRepository.saveUserProfile(response)
+        return response
+    }
+
     override suspend fun createAccount(email: String, password: String, firstName: String, lasName: String) : String {
         val request = CreateAccountRequest(firstName, lasName, email, password)
         return api.createAccount(request).await().token

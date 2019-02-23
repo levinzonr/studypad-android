@@ -50,4 +50,6 @@ val interacorModule = module {
     factory { GetPublishedNotebookDetail(get()) }
 
     factory { LibrarySyncInteractor(get(), get()) }
+
+    factory { GoogleLoginInteractor(get()) }
 }
