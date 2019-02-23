@@ -2,9 +2,9 @@ package cz.levinzonr.studypad.presentation.screens.library.notes
 
 import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.call
-import cz.levinzonr.studypad.domain.interactors.DeleteNoteInteractor
-import cz.levinzonr.studypad.domain.interactors.PostNoteInteractor
-import cz.levinzonr.studypad.domain.interactors.UpdateNoteInteractor
+import cz.levinzonr.studypad.domain.interactors.library.DeleteNoteInteractor
+import cz.levinzonr.studypad.domain.interactors.library.PostNoteInteractor
+import cz.levinzonr.studypad.domain.interactors.library.UpdateNoteInteractor
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.SimpleEvent

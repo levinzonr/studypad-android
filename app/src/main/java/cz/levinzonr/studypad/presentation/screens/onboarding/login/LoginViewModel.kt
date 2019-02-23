@@ -11,8 +11,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
 import cz.levinzonr.studypad.call
 import cz.levinzonr.studypad.callIf
-import cz.levinzonr.studypad.domain.interactors.FacebookLoginInteractor
-import cz.levinzonr.studypad.domain.interactors.LoginInteractor
+import cz.levinzonr.studypad.domain.interactors.keychain.FacebookLoginInteractor
+import cz.levinzonr.studypad.domain.interactors.keychain.LoginInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.isValidEmail
 import cz.levinzonr.studypad.isValidPassword

@@ -2,7 +2,7 @@ package cz.levinzonr.studypad.presentation.screens.sharedbooks
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import cz.levinzonr.studypad.domain.interactors.GetPublishedNotebookDetail
+import cz.levinzonr.studypad.domain.interactors.sharinghub.GetPublishedNotebookDetail
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
@@ -13,7 +13,8 @@ private const val string2 = "Aenean lacinia bibendum nulla sed consec\ntetur. Ma
 
 class PublishedNotebookDetailViewModel(
     notebookId: String,
-    private val getPublishedNotebookDetail: GetPublishedNotebookDetail) : BaseViewModel(){
+    private val getPublishedNotebookDetail: GetPublishedNotebookDetail
+) : BaseViewModel(){
 
     private val sharedDetailLiveData = MutableLiveData<Event<PublishedNotebook.Detail>>()
     private val commentsLiveData = MutableLiveData<List<PublishedNotebook.Comment>>()

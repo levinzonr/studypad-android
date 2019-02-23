@@ -3,7 +3,7 @@ package cz.levinzonr.studypad.presentation.screens.library.publish
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import cz.levinzonr.studypad.domain.interactors.GetTopicsInteractor
+import cz.levinzonr.studypad.domain.interactors.sharinghub.GetTopicsInteractor
 import cz.levinzonr.studypad.domain.models.Topic
 
 class TopicSearchViewModel(private val getTopicsInteractor: GetTopicsInteractor) : ViewModel() {

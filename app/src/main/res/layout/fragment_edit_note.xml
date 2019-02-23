@@ -31,9 +31,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_height="0dp"
         android:layout_margin="@dimen/space_big"
+        android:background="@drawable/background_input"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top"
+            android:padding="16dp"
             android:fontFamily="sans-serif"
             android:background="@null"
             android:hint="hint"

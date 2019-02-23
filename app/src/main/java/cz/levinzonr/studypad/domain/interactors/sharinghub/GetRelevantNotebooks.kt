@@ -1,5 +1,6 @@
-package cz.levinzonr.studypad.domain.interactors
+package cz.levinzonr.studypad.domain.interactors.sharinghub
 
+import cz.levinzonr.studypad.domain.interactors.BaseInteractor
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.repository.PublishedNotebookRepository
 

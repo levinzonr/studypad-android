@@ -1,5 +1,6 @@
-package cz.levinzonr.studypad.domain.interactors
+package cz.levinzonr.studypad.domain.interactors.keychain
 
+import cz.levinzonr.studypad.domain.interactors.BaseInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
 
 class LoginInteractor(private val userManager: UserManager) : BaseInteractor<Boolean>() {

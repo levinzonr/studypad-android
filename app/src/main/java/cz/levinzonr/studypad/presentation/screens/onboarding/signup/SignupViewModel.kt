@@ -3,12 +3,13 @@ package cz.levinzonr.studypad.presentation.screens.onboarding.signup
 import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.interactors.GetUniversitiesInteractor
-import cz.levinzonr.studypad.domain.interactors.SignupInteractor
-import cz.levinzonr.studypad.domain.interactors.UpdateUserUniversityInteractor
+import cz.levinzonr.studypad.domain.interactors.keychain.SignupInteractor
+import cz.levinzonr.studypad.domain.interactors.keychain.UpdateUserUniversityInteractor
 import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
+import timber.log.Timber
 
 class SignupViewModel(
     private val updateUserUniversityInteractor: UpdateUserUniversityInteractor,
@@ -69,7 +70,7 @@ class SignupViewModel(
             signupInteractor.execute {
                 onComplete {
                     toggleLoading(false)
-                    accountCreatedSuccessEvent.postValue(Event(true))
+                    Timber.d("Firebase token: $it")
                 }
                 onError {
                     postError(it.message)

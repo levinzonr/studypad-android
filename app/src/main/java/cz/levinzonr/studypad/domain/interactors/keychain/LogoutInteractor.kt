@@ -1,5 +1,6 @@
-package cz.levinzonr.studypad.domain.interactors
+package cz.levinzonr.studypad.domain.interactors.keychain
 
+import cz.levinzonr.studypad.domain.interactors.BaseInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.storage.database.AppDatabase
 

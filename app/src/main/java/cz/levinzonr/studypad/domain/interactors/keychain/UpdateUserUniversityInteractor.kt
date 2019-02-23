@@ -1,6 +1,7 @@
-package cz.levinzonr.studypad.domain.interactors
+package cz.levinzonr.studypad.domain.interactors.keychain
 
 import cz.levinzonr.studypad.data.UpdateUniversityRequest
+import cz.levinzonr.studypad.domain.interactors.BaseInteractor
 import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.rest.Api
 

@@ -1,5 +1,6 @@
-package cz.levinzonr.studypad.domain.interactors
+package cz.levinzonr.studypad.domain.interactors.library
 
+import cz.levinzonr.studypad.domain.interactors.BaseInteractor
 import cz.levinzonr.studypad.domain.repository.NotebookRepository
 import cz.levinzonr.studypad.domain.repository.NotesRepository
 import timber.log.Timber

@@ -1,9 +1,10 @@
 package cz.levinzonr.studypad.presentation.screens.library.notebooks
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel;
 import cz.levinzonr.studypad.call
-import cz.levinzonr.studypad.domain.interactors.*
+import cz.levinzonr.studypad.domain.interactors.library.DeleteNotebookInteractor
+import cz.levinzonr.studypad.domain.interactors.library.LibrarySyncInteractor
+import cz.levinzonr.studypad.domain.interactors.library.PostNotebookInteractor
+import cz.levinzonr.studypad.domain.interactors.library.UpdateNotebookInteractor
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.repository.NotebookRepository
 import cz.levinzonr.studypad.liveEvent
@@ -45,6 +46,7 @@ class NotebookListViewModel(
 
     fun updateNotebook(notebook: Notebook, name: String) {
         if (name != notebook.name) {
+            updateNotebookInteractor.input = UpdateNotebookInteractor.Input(notebook.id, name)
             updateNotebookInteractor.execute {
                 onComplete {
                   Timber.d("Updated")

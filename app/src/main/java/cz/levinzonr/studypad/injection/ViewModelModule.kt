@@ -1,13 +1,11 @@
  package cz.levinzonr.studypad.injection
 
-import cz.levinzonr.studypad.domain.interactors.GetPublishedNotebookDetail
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListViewModel
 import cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookViewModel
-import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialog
 import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchViewModel
 import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewModel

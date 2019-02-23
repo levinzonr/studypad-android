@@ -1,7 +1,7 @@
 package cz.levinzonr.studypad.presentation.screens.sharedbooks
 
 import androidx.lifecycle.MutableLiveData
-import cz.levinzonr.studypad.domain.interactors.GetRelevantNotebooks
+import cz.levinzonr.studypad.domain.interactors.sharinghub.GetRelevantNotebooks
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 

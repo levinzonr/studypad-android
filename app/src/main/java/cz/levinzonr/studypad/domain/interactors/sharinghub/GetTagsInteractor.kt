@@ -1,4 +1,6 @@
-package cz.levinzonr.studypad.domain.interactors
+package cz.levinzonr.studypad.domain.interactors.sharinghub
+
+import cz.levinzonr.studypad.domain.interactors.BaseInputInteractor
 
 class GetTagsInteractor : BaseInputInteractor<String, Set<String>>() {
 

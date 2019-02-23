@@ -1,6 +1,9 @@
 package cz.levinzonr.studypad.injection
 
 import cz.levinzonr.studypad.domain.interactors.*
+import cz.levinzonr.studypad.domain.interactors.keychain.*
+import cz.levinzonr.studypad.domain.interactors.library.*
+import cz.levinzonr.studypad.domain.interactors.sharinghub.*
 import org.koin.dsl.module.module
 
 val interacorModule = module {

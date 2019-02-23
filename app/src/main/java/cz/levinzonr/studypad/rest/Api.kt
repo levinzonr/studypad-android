@@ -17,8 +17,8 @@ interface Api {
     @POST("$AUTH/facebook")
     fun loginViaFacebook(@Body facebookLoginRequest: FacebookLoginRequest) : Deferred<AuthResponse>
 
-    @POST("$API/users")
-    fun createAccount(@Body createAccountRequest: CreateAccountRequest) : Deferred<AuthResponse>
+    @POST("$AUTH/register")
+    fun createAccount(@Body createAccountRequest: CreateAccountRequest) : Deferred<String>
 
     @GET("$API/university/find")
     fun getUniversities(@Query("query") query: String) : Deferred<List<University>>
@@ -79,4 +79,17 @@ interface Api {
 
     @GET("$API/shared/topic")
     fun getTopics() : Deferred<List<Topic>>
+
+
+    //-----------------------------------------------------------------------------
+
+    @GET("$API/shared/{id}/comments")
+    fun getSharedNotebookComments() : Deferred<List<PublishedNotebook.Comment>>
+
+    @POST("$API/shared/{id}/comments")
+    fun createComment() : Deferred<PublishedNotebook.Comment>
+
+
+
+
 }

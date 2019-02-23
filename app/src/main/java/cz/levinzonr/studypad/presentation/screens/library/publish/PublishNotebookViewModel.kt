@@ -2,8 +2,8 @@ package cz.levinzonr.studypad.presentation.screens.library.publish
 
 import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.call
-import cz.levinzonr.studypad.domain.interactors.GetTagsInteractor
-import cz.levinzonr.studypad.domain.interactors.PublishNotebookInteractor
+import cz.levinzonr.studypad.domain.interactors.sharinghub.GetTagsInteractor
+import cz.levinzonr.studypad.domain.interactors.sharinghub.PublishNotebookInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.Topic
