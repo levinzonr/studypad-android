@@ -17,5 +17,5 @@ val adapterModule = module {
 
     factory { (listner: TopicsAdapter.TopicListener) -> TopicsAdapter(listner) }
 
-    factory { CommentsAdapter() }
+    factory { (listener: CommentsAdapter.CommentsItemListener,authorId: String?) -> CommentsAdapter(listener, authorId) }
 }

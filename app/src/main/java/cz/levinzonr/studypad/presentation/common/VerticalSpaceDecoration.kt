@@ -12,10 +12,15 @@ class VerticalSpaceItemDecoration(private val spaceInDp: Int) : RecyclerView.Ite
         state: RecyclerView.State) {
             outRect.bottom = spaceInDp.dp
 
-        // Leave some space at the bottom to display FAB so that share button is clickable
         parent.adapter?.let {
+            // Leave some space at the bottom to display FAB so that share button is clickable
             if (parent.getChildAdapterPosition(view) == it.itemCount - 1) {
                 outRect.bottom = 64.dp
+            }
+
+            // Leave space for the first in line
+            if (parent.getChildAdapterPosition(view) == 0) {
+                outRect.top = spaceInDp.dp
             }
         }
 

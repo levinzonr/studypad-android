@@ -14,8 +14,8 @@
             android:id="@+id/action_loginFragment2_to_accountInfoFragment"
             app:destination="@id/accountInfoFragment" />
         <action
-            android:id="@+id/action_loginFragment2_to_universitySelectorFragment"
-            app:destination="@id/universitySelectorFragment" />
+            android:id="@+id/action_loginFragment2_to_accountCreatedFragment"
+            app:destination="@id/accountCreatedFragment" />
     </fragment>
 
 
@@ -27,9 +27,6 @@
         <action
             android:id="@+id/action_accountInfoFragment_to_credentialsInfoFragment"
             app:destination="@id/credentialsInfoFragment" />
-        <action
-            android:id="@+id/action_accountInfoFragment_to_universitySelectorFragment"
-            app:destination="@id/universitySelectorFragment" />
     </fragment>
     <fragment
         android:id="@+id/credentialsInfoFragment"

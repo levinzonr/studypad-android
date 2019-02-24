@@ -57,7 +57,8 @@ object PublishedNotebook {
         val notes: List<Note>,
         val tags: Set<String>,
         val author: UserProfile,
-        val comments: List<Comment>
+        val comments: List<Comment>,
+        val topic: String
     )
 
     data class Note(

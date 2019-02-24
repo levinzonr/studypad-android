@@ -36,7 +36,8 @@ class UniversityAdapter : RecyclerView.Adapter<UniversityAdapter.ViewHolder>() {
 
         fun bindView(university: University) {
 
-            view.universityNameTv.text = "${university.fullName} (${university.shortName})"
+            view.universityNameTv.text = "${university.fullName}"
+            view.universityLocationTv.text = university.location.country
             view.setOnClickListener {
                 onUniversitySelected(university)
             }

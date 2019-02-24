@@ -11,8 +11,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
 import cz.levinzonr.studypad.call
 import cz.levinzonr.studypad.callIf
-import cz.levinzonr.studypad.domain.interactors.FacebookLoginInteractor
-import cz.levinzonr.studypad.domain.interactors.LoginInteractor
+import cz.levinzonr.studypad.domain.interactors.keychain.FacebookLoginInteractor
+import cz.levinzonr.studypad.domain.interactors.keychain.LoginInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.isValidEmail
 import cz.levinzonr.studypad.isValidPassword
@@ -20,10 +20,14 @@ import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
 import timber.log.Timber
+import com.google.android.gms.common.api.ApiException
+import cz.levinzonr.studypad.domain.interactors.keychain.GoogleLoginInteractor
+
 
 class LoginViewModel(
     private val userManager: UserManager,
     private val facebookLoginInteractor: FacebookLoginInteractor,
+    private val googleLoginInteractor: GoogleLoginInteractor,
     private val loginInteractor: LoginInteractor
 ) : BaseViewModel() {
 
@@ -97,17 +101,38 @@ class LoginViewModel(
     }
 
     fun handleGoogleSigninResult(task: Task<GoogleSignInAccount>) {
-        val token = task.result?.idToken
-        Timber.d("Token: $token")
+        toggleLoading(true)
+        try {
+            val account = task.getResult(ApiException::class.java)
+            Timber.d("Token: ${account?.idToken} ${account?.familyName}")
+            account?.idToken?.let(this::onGoogleLoginSuccess)
+            // Signed in successfully, show authenticated UI.
+        } catch (e: ApiException) {
+            Timber.d("Handle google result: $e")
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+        }
+
     }
 
+    private fun onGoogleLoginSuccess(token: String) {
+        googleLoginInteractor.executeWithInput(token) {
+            onComplete {
+                toggleLoading(false)
+                loginSuccessEvent.call(it.newUser)
+            }
+            onError {
+                Timber.d("Error: $it")
+            }
+        }
+    }
 
     private fun onFacebookLoginSuccess(loginResult: LoginResult?) {
         loginResult?.accessToken?.let {
             facebookLoginInteractor.executeWithInput(it.token) {
                 onComplete {
                     toggleLoading(false)
-                    loginSuccessEvent.call(it.isNewUser)
+                    loginSuccessEvent.call(it.newUser)
                 }
             }
         }

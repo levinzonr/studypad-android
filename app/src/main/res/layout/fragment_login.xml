@@ -10,7 +10,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginEmailInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_big"
@@ -94,12 +94,14 @@
         android:id="@+id/loginUsingGoogle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_big"
         android:layout_marginEnd="8dp"
+        app:borderWidth="0dp"
         android:backgroundTint="@color/colorPrimary"
+        android:background="@color/colorPrimary"
         android:src="@drawable/ic_google"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:layout_marginBottom="@dimen/space_big"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -107,13 +109,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="@dimen/space_big"
+        app:borderWidth="0dp"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_facebook"
         android:textAllCaps="false"
         android:tint="@color/facebookBlue"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/loginUsingGoogle"
-        tools:layout_editor_absoluteY="664dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -127,16 +130,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_normal"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="@dimen/space_big"
         android:gravity="center"
         android:text="Or continue with"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/loginUsingFacebookBtn"
         app:layout_constraintEnd_toStartOf="@+id/button5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/materialButton"
-        app:layout_constraintVertical_bias="0.41000003" />
+        app:layout_constraintStart_toEndOf="@+id/button4" />
 
     <View
         android:layout_marginStart="@dimen/space_big"

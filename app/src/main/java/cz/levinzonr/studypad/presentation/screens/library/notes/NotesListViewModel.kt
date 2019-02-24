@@ -1,8 +1,6 @@
 package cz.levinzonr.studypad.presentation.screens.library.notes
 
-import androidx.lifecycle.MutableLiveData
-import cz.levinzonr.studypad.domain.models.Note
-import cz.levinzonr.studypad.domain.interactors.GetNotesInteractor
+import cz.levinzonr.studypad.domain.interactors.library.GetNotesInteractor
 import cz.levinzonr.studypad.domain.repository.NotesRepository
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 

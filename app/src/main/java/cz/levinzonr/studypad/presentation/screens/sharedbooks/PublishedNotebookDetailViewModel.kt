@@ -2,18 +2,25 @@ package cz.levinzonr.studypad.presentation.screens.sharedbooks
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import cz.levinzonr.studypad.domain.interactors.GetPublishedNotebookDetail
+import cz.levinzonr.studypad.domain.interactors.comments.CreateCommentInteractor
+import cz.levinzonr.studypad.domain.interactors.comments.DeleteCommentInteractor
+import cz.levinzonr.studypad.domain.interactors.comments.EditCommentInteractor
+import cz.levinzonr.studypad.domain.interactors.comments.GetCommentsInteractor
+import cz.levinzonr.studypad.domain.interactors.sharinghub.GetPublishedNotebookDetail
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
 import java.util.*
 
-private const val string1 = "Vestibulum id ligula porta felis euismod semper."
-private const val string2 = "Aenean lacinia bibendum nulla sed consec\ntetur. Maecenas fauinterdum.'nninterdu.cibus mollis interdum."
 
 class PublishedNotebookDetailViewModel(
-    notebookId: String,
-    private val getPublishedNotebookDetail: GetPublishedNotebookDetail) : BaseViewModel(){
+    val notebookId: String,
+    private val getPublishedNotebookDetail: GetPublishedNotebookDetail,
+    private val createCommentInteractor: CreateCommentInteractor,
+    private val editCommentInteractor: EditCommentInteractor,
+    private val deleteCommentInteractor: DeleteCommentInteractor,
+    private val getCommentsInteractor: GetCommentsInteractor
+) : BaseViewModel(){
 
     private val sharedDetailLiveData = MutableLiveData<Event<PublishedNotebook.Detail>>()
     private val commentsLiveData = MutableLiveData<List<PublishedNotebook.Comment>>()
@@ -24,12 +31,16 @@ class PublishedNotebookDetailViewModel(
             onComplete {
                 sharedDetailLiveData.postValue(Event(it))
                 toggleLoading(false)
-                commentsLiveData.postValue(
-                    List(10) { index ->
-                        val comment = if (index % 2 == 0) string1 else string2
-                        PublishedNotebook.Comment(index.toLong(), it.author, comment, Date().time)}
-                )
+
             }
+        }
+        loadComments()
+    }
+
+
+    private fun loadComments() {
+        getCommentsInteractor.executeWithInput(notebookId) {
+            onComplete { commentsLiveData.postValue(it) }
         }
     }
 
@@ -42,5 +53,21 @@ class PublishedNotebookDetailViewModel(
     }
 
 
+    fun createComment(body: String) {
+        createCommentInteractor.executeWithInput(CreateCommentInteractor.Input(notebookId, body)) {
+            onComplete { loadComments() }
+        }
+    }
 
+    fun deleteComment(comment: PublishedNotebook.Comment) {
+        deleteCommentInteractor.executeWithInput(comment.id) {
+            onComplete { loadComments() }
+        }
+    }
+
+    fun editComment(comment: PublishedNotebook.Comment, newBody: String) {
+        editCommentInteractor.executeWithInput(EditCommentInteractor.Input(comment.id, newBody)) {
+            onComplete { loadComments() }
+        }
+    }
 }

@@ -14,11 +14,15 @@ interface Api {
     @POST("$AUTH/email")
     fun loginUsingEmail(@Body emailLoginRequest: EmailLoginRequest) : Deferred<AuthResponse>
 
+
+    @POST("$AUTH/login")
+    fun login(@Query("token") token: String) : Deferred<UserProfile>
+
     @POST("$AUTH/facebook")
     fun loginViaFacebook(@Body facebookLoginRequest: FacebookLoginRequest) : Deferred<AuthResponse>
 
-    @POST("$API/users")
-    fun createAccount(@Body createAccountRequest: CreateAccountRequest) : Deferred<AuthResponse>
+    @POST("$AUTH/register")
+    fun createAccount(@Body createAccountRequest: CreateAccountRequest) : Deferred<FirebaseResponse>
 
     @GET("$API/university/find")
     fun getUniversities(@Query("query") query: String) : Deferred<List<University>>
@@ -77,6 +81,21 @@ interface Api {
     @GET("$API/shared/tags")
     fun getTags() : Deferred<List<String>>
 
-    @GET("$API/shared/topic")
+    @GET("$API/config/topics")
     fun getTopics() : Deferred<List<Topic>>
+
+
+    //-----------------------------------------------------------------------------
+
+    @GET("$API/shared/{id}/comments")
+    fun getSharedNotebookComments(@Path("id") notebookId: String) : Deferred<List<PublishedNotebook.Comment>>
+
+    @POST("$API/shared/{id}/comment")
+    fun createComment(@Path("id") notebookId: String, @Query("comment") body: String) : Deferred<PublishedNotebook.Comment>
+
+    @DELETE("$API/shared/comments/{id}")
+    fun deleteComment(@Path("id") commentId: Long)  : Deferred<Unit>
+
+    @POST("$API/shared/comments/{id}")
+    fun editComment(@Path("id") commentId: Long, @Query("comment") body: String) : Deferred<PublishedNotebook.Comment>
 }

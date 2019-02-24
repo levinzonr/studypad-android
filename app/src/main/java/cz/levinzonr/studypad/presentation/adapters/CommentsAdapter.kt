@@ -6,9 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.loadAuthorImage
+import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.item_comment.view.*
+import timber.log.Timber
 
-class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.ViewHolder>(){
+class CommentsAdapter(val listener: CommentsItemListener, val authorId: String? = null) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>(){
 
     var items : List<PublishedNotebook.Comment> = listOf()
         set(value) {
@@ -34,9 +37,17 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.ViewHolder>(){
 
             view.commentAuthorTv.text = comment.author.displayName
             view.commentContentTv.text = comment.content
-
-
+            view.commentAuthorIv.loadAuthorImage(comment.author.photoUrl)
+            Timber.d("${authorId} == ${comment.author.uuid}")
+            view.commentMorBtn.setVisible(authorId == comment.author.uuid)
+            view.commentMorBtn.setOnClickListener {
+                listener.onCommentMoreButtonPressed(comment)
+            }
         }
-
     }
+
+    interface CommentsItemListener {
+        fun onCommentMoreButtonPressed(comment: PublishedNotebook.Comment)
+    }
+
 }

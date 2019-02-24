@@ -25,5 +25,7 @@ val repositoryModule = module {
     single<UserProfileRepository> { UserProfileRepositoryImpl(get(), get())  }
 
     single<PublishedNotebookRepository> { PublishedNotebookRepositoryImpl(get()) }
+
+    single<CommentsRepository> { CommentsRepositoryImpl(get()) }
 }
 

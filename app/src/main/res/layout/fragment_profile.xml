@@ -7,69 +7,63 @@
     tools:context="cz.levinzonr.studypad.presentation.screens.profile.ProfileFragment">
 
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/materialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+
+        android:layout_margin="@dimen/space_big"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="@dimen/space_small"
+            android:src="@drawable/no_profile_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circleImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/ic_person"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/profileUserNae"
+            style="@style/TextStyle.Header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/space_normal"
+            android:gravity="center"
+            android:text="Roman Levinzon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
 
 
-            <TextView
-                android:id="@+id/profileUserNae"
-                style="@style/TextStyle.Header"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Roman Levinzon"
-                app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/circleImageView"
-                app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+        <TextView
+            android:id="@+id/profileUserUni"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_small"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:text="Czech Technical University (CTU)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/profileUserNae"
+            app:layout_constraintTop_toBottomOf="@+id/profileUserNae" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <TextView
-                android:id="@+id/profileUserUni"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="Czech Technical University (CTU)"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/profileUserNae"
-                app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="bottom"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/profileLogoutBtn"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView">
@@ -87,16 +81,6 @@
 
         <include layout="@layout/view_divider"/>
 
-        <TextView
-            style="@style/TextStyle.Preference"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Prefrence"
-            app:layout_constraintBottom_toTopOf="@+id/profileLogoutBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <include layout="@layout/view_divider"/>
 
         <TextView
             style="@style/TextStyle.Preference"
@@ -107,28 +91,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <include layout="@layout/view_divider"/>
-
-        <TextView
-            style="@style/TextStyle.Preference"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Prefrence"
-            app:layout_constraintBottom_toTopOf="@+id/profileLogoutBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-        <include layout="@layout/view_divider"/>
-
-        <TextView
-            style="@style/TextStyle.Preference"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Prefrence"
-            app:layout_constraintBottom_toTopOf="@+id/profileLogoutBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

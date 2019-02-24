@@ -15,25 +15,27 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.firebase.auth.FirebaseAuth
 import cz.levinzonr.studypad.presentation.screens.showAccountCreation
 import cz.levinzonr.studypad.presentation.screens.showUniversitySelector
 import cz.levinzonr.studypad.setVisible
+import org.koin.android.ext.android.inject
 import timber.log.Timber
 
 
 class LoginFragment : BaseFragment() {
 
     companion object {
-        fun newInstance() = LoginFragment()
-
         private const val REQUEST_SIGNIN = 12
 
     }
 
     private val viewModel: LoginViewModel by viewModel()
 
-    var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestEmail()
+        .requestIdToken("776080318800-3l21qogmj2ir05fvmnqooib4qrs53olk.apps.googleusercontent.com")
+        .requestProfile()
         .build()
 
     private lateinit var googleClient: GoogleSignInClient

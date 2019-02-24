@@ -3,7 +3,7 @@ package cz.levinzonr.studypad.presentation.screens.library.publish
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import cz.levinzonr.studypad.domain.interactors.GetTagsInteractor
+import cz.levinzonr.studypad.domain.interactors.sharinghub.GetTagsInteractor
 
 class TagSearchViewModel(private val gatTagsInteractor: GetTagsInteractor) : ViewModel() {
 

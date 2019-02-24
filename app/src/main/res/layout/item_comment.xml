@@ -4,16 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:minHeight="100dp"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/commentAuthorIv"
         android:layout_width="50dp"
-        android:layout_height="0dp"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/space_big"
+        android:padding="@dimen/space_small"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@drawable/com_facebook_button_icon_blue" />
@@ -23,20 +24,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="Author"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/commentAuthorIv"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/commentAuthorIv" />
 
     <TextView
         android:id="@+id/commentContentTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_normal"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        app:layout_constraintVertical_bias="0.1"
+        android:layout_marginBottom="@dimen/space_big"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/commentMorBtn"
         app:layout_constraintStart_toEndOf="@+id/commentAuthorIv"
         app:layout_constraintTop_toBottomOf="@+id/commentAuthorTv" />
 
@@ -48,6 +52,8 @@
         android:padding="@dimen/space_normal"
         android:src="@drawable/ic_round_more_vert_24px"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

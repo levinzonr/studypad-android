@@ -9,6 +9,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
+import kotlinx.android.synthetic.main.dialog_edit_notebook.*
 
 class EditNotebookDialog : cz.levinzonr.studypad.presentation.base.BottomSheetDialog() {
 
@@ -19,6 +20,7 @@ class EditNotebookDialog : cz.levinzonr.studypad.presentation.base.BottomSheetDi
 
     private lateinit var inputEditText: TextInputEditText
     private lateinit var button: MaterialButton
+    private lateinit var cancelButton : MaterialButton
 
     companion object {
 
@@ -48,12 +50,17 @@ class EditNotebookDialog : cz.levinzonr.studypad.presentation.base.BottomSheetDi
     private fun initView(view: View) {
         inputEditText = view.findViewById(R.id.notebookEditEt)
         button = view.findViewById(R.id.confirmBtn)
+        cancelButton = view.findViewById(R.id.cancelBtn)
 
         inputEditText.setText(notebook?.name ?: "")
 
 
         button.setOnClickListener {
             onEdit.invoke(notebook, inputEditText.text.toString())
+            dismiss()
+        }
+
+        cancelButton.setOnClickListener {
             dismiss()
         }
     }

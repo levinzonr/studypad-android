@@ -4,13 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cz.levinzonr.studypad.domain.interactors.GetUserProfileInteractor
-import cz.levinzonr.studypad.domain.interactors.LogoutInteractor
+import cz.levinzonr.studypad.domain.interactors.keychain.LogoutInteractor
 import cz.levinzonr.studypad.domain.models.UserProfile
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
 
 class ProfileViewModel(
     private val getUserProfileInteractor: GetUserProfileInteractor,
-    private val logoutInteractor: LogoutInteractor) : ViewModel() {
+    private val logoutInteractor: LogoutInteractor
+) : ViewModel() {
 
 
     init {

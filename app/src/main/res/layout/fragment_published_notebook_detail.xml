@@ -68,6 +68,25 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 tools:text="Notebook title" />
 
+                            <TextView
+                                android:id="@+id/publishedBookTopicTv"
+                                style="@style/TextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/space_normal"
+                                android:textSize="18sp"
+                                tools:text="Topic: " />
+
+                            <include layout="@layout/view_divider" />
+
+                            <TextView
+                                style="@style/TextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/space_normal"
+                                android:text="Description"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/publishedBookDescriptionTv"
@@ -75,22 +94,88 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="@dimen/space_normal"
+                                android:textSize="16sp"
                                 tools:text="Description" />
 
 
+                            <include layout="@layout/view_divider" />
+
+
                             <TextView
-                                android:id="@+id/publishedBookTopicTv"
+                                android:layout_marginTop="@dimen/space_big"
                                 style="@style/TextStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:padding="@dimen/space_normal"
-                                tools:text="Topic: " />
-
+                                android:text="Tags"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
                             <com.google.android.material.chip.ChipGroup
                                 android:id="@+id/publishedBookTagsCg"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/space_normal" />
+
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_marginTop="@dimen/space_big"
+                                app:cardElevation="@dimen/space_normal"
+                                app:contentPadding="@dimen/space_normal"
+                                android:backgroundTint="#fff"
+                                android:layout_margin="@dimen/space_normal"
+                                app:cardCornerRadius="@dimen/corner_radius"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+
+                                    <TextView
+
+                                        style="@style/TextStyle"
+                                        android:textStyle="bold"
+                                        android:id="@+id/textView4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:padding="8dp"
+                                        android:text="Notes"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                                    <TextView
+                                        android:drawablePadding="4dp"
+                                        style="@style/TextStyle"
+                                        android:id="@+id/textView5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="?selectableItemBackground"
+                                        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                                        android:padding="@dimen/space_normal"
+                                        android:text="See All"
+                                        android:textStyle="bold"
+                                        app:icon="@drawable/ic_chevron_right_black_24dp"
+                                        app:iconGravity="textStart"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/notesPreviewRv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                            </com.google.android.material.card.MaterialCardView>
+
 
 
                         </LinearLayout>
@@ -125,9 +210,6 @@
             </com.google.android.material.appbar.AppBarLayout>
 
 
-
-
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/commentsRecyclerView"
                 android:layout_width="match_parent"
@@ -156,7 +238,9 @@
                 android:layout_marginTop="9dp"
                 android:layout_marginBottom="9dp"
                 android:layout_weight="9"
-                android:hint="{annotations_commentPlaceholder}" />
+                android:background="@drawable/background_input"
+                android:hint="Enter comment"
+                android:padding="8dp" />
 
             <ImageButton
                 android:id="@+id/sendButton"
@@ -167,7 +251,8 @@
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_send_black_24dp" />
 
         </LinearLayout>
 

@@ -70,8 +70,7 @@ class CredentialsInfoFragment : BaseFragment() {
 
             viewModel.accountCreatedSuccessEvent.observe(this@CredentialsInfoFragment, Observer {
                 it.handle {
-                    if (!it) showMain()
-                    else showAccountCreated()
+                    showAccountCreated()
                 }
             })
 
