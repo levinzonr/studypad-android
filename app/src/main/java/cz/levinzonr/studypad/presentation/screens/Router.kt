@@ -81,9 +81,7 @@ fun Fragment.showAccounCreationNextStep() {
     view?.findNavController()?.navigate(R.id.action_accountInfoFragment_to_credentialsInfoFragment)
 }
 
-fun AccountInfoFragment.showUniversitySelector() {
-    view?.findNavController()?.navigate(R.id.action_accountInfoFragment_to_universitySelectorFragment)
-}
+
 
 fun Fragment.navigateBack() {
     view?.findNavController()?.popBackStack()
@@ -98,7 +96,7 @@ fun AccountCreatedFragment.showUniversitySelector() {
 }
 
 fun LoginFragment.showUniversitySelector() {
-    view?.findNavController()?.navigate(R.id.action_loginFragment2_to_universitySelectorFragment)
+    view?.findNavController()?.navigate(R.id.action_loginFragment2_to_accountCreatedFragment)
 }
 
 fun NotebookListFragment.showPublishNotebookView(notebook: Notebook) {

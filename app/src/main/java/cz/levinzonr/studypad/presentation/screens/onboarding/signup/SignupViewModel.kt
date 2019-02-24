@@ -71,7 +71,7 @@ class SignupViewModel(
                 onComplete {
                     toggleLoading(false)
                     Timber.d("Firebase token: $it")
-                    accountCreatedSuccessEvent.call(it.isNewUser)
+                    accountCreatedSuccessEvent.call(it.newUser)
                 }
                 onError {
                     postError(it.message)

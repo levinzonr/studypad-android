@@ -8,6 +8,7 @@
 
 
     <TextView
+        style="@style/TextStyle"
         tools:text="He;;p"
         android:padding="@dimen/space_big"
         android:id="@+id/topicName"

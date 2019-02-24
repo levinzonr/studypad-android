@@ -9,7 +9,7 @@ data class UserProfile(
     val lastName: String,
     val university: University?,
     val photoUrl: String?,
-    val isNewUser: Boolean = false,
+    val newUser: Boolean = false,
     val displayName: String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
@@ -29,7 +29,7 @@ data class UserProfile(
         parcel.writeString(lastName)
         parcel.writeParcelable(university, flags)
         parcel.writeString(photoUrl)
-        parcel.writeByte(if (isNewUser) 1 else 0)
+        parcel.writeByte(if (newUser) 1 else 0)
         parcel.writeString(displayName)
     }
 

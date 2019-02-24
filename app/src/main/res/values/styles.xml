@@ -9,8 +9,8 @@
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:fontFamily">@font/open_sans</item>
-        <item name="android:textAppearance">@style/TextStyle</item>
         <item name="bottomSheetDialogTheme">@style/BottomSheetTheme</item>
+        <item name="android:textAppearance">@style/TextStyle</item>
     </style>
 
 
@@ -19,7 +19,7 @@
         <item name="android:letterSpacing">0.02</item>
     </style>
 
-    <style name="BottomSheetTheme" parent="Theme.MaterialComponents.BottomSheetDialog">
+    <style name="BottomSheetTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/ModalTheme</item>
     </style>
 

@@ -9,7 +9,6 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.FirebaseAuth
 import cz.levinzonr.studypad.call
 import cz.levinzonr.studypad.callIf
 import cz.levinzonr.studypad.domain.interactors.keychain.FacebookLoginInteractor
@@ -102,6 +101,7 @@ class LoginViewModel(
     }
 
     fun handleGoogleSigninResult(task: Task<GoogleSignInAccount>) {
+        toggleLoading(true)
         try {
             val account = task.getResult(ApiException::class.java)
             Timber.d("Token: ${account?.idToken} ${account?.familyName}")
@@ -119,7 +119,7 @@ class LoginViewModel(
         googleLoginInteractor.executeWithInput(token) {
             onComplete {
                 toggleLoading(false)
-                loginSuccessEvent.call(it.isNewUser)
+                loginSuccessEvent.call(it.newUser)
             }
             onError {
                 Timber.d("Error: $it")
@@ -132,7 +132,7 @@ class LoginViewModel(
             facebookLoginInteractor.executeWithInput(it.token) {
                 onComplete {
                     toggleLoading(false)
-                    loginSuccessEvent.call(it.isNewUser)
+                    loginSuccessEvent.call(it.newUser)
                 }
             }
         }
