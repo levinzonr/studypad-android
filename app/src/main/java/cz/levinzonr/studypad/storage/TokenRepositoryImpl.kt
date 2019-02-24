@@ -1,5 +1,6 @@
 package cz.levinzonr.studypad.storage
 
+import timber.log.Timber
 import java.util.*
 
 class TokenRepositoryImpl(private val prefManager: PrefManager) : TokenRepository {
@@ -10,11 +11,13 @@ class TokenRepositoryImpl(private val prefManager: PrefManager) : TokenRepositor
     }
 
     override fun saveToken(token: String, expiresAt: Long) {
+        Timber.d("save token ${Date(expiresAt)}")
         prefManager.setString(PREF_TOKEN, token)
         prefManager.setLong(PREF_EXPIRES, expiresAt)
     }
 
     override fun getToken(): String? {
+        Timber.d("Expires at: ${Date(prefManager.getLong(PREF_EXPIRES, -1L) * 1000)}")
         return prefManager.getString(PREF_TOKEN, null)
     }
 
@@ -25,5 +28,6 @@ class TokenRepositoryImpl(private val prefManager: PrefManager) : TokenRepositor
 
     override fun clear() {
         prefManager.remove(PREF_TOKEN)
+        prefManager.remove(PREF_EXPIRES)
     }
 }

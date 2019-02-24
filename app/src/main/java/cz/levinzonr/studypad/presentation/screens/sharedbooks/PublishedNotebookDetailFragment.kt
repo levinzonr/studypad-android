@@ -17,6 +17,7 @@ import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.loadAuthorImage
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.adapters.CommentsAdapter
+import cz.levinzonr.studypad.presentation.adapters.NotePreviewAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.feedItem
 import kotlinx.android.synthetic.main.fragment_publish_notebook.*
@@ -88,11 +89,16 @@ class PublishedNotebookDetailFragment: BaseFragment(), CommentsAdapter.CommentsI
     private fun showDetail(detail: PublishedNotebook.Detail) {
         publishedBookNameTv.text = detail.title
         imageView2.loadAuthorImage(detail.author.photoUrl)
+        publishedBookTopicTv.text = "Topic: ${detail.topic}"
         publishedBookDescriptionTv.text = detail.description
-        publishedBookTopicTv.text = "Topic"
         detail.tags.map { Chip(context).apply { text = it } }.forEach {
             publishedBookTagsCg.addView(it)
         }
+
+        notesPreviewRv.adapter = NotePreviewAdapter(detail.notes)
+        notesPreviewRv.layoutManager = LinearLayoutManager(context)
+        notesPreviewRv.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+
 
     }
 

@@ -81,7 +81,7 @@ interface Api {
     @GET("$API/shared/tags")
     fun getTags() : Deferred<List<String>>
 
-    @GET("$API/shared/topic")
+    @GET("$API/config/topics")
     fun getTopics() : Deferred<List<Topic>>
 
 

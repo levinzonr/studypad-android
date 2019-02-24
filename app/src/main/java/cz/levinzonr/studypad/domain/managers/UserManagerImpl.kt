@@ -45,6 +45,7 @@ class UserManagerImpl(private val api: Api,
         val userToken = authResult.user.getCurrentToken()!!
         val response = api.login(userToken.token!!).await()
         tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
+        Timber.d("Login via google, ${userToken.expirationTimestamp}, ${userToken.token}")
         userProfileRepository.saveUserProfile(response)
         return response
     }
@@ -107,7 +108,7 @@ class UserManagerImpl(private val api: Api,
         }
     }
 
-    private suspend fun FirebaseUser.getCurrentToken() : GetTokenResult?? {
+    private suspend fun FirebaseUser.getCurrentToken() : GetTokenResult? {
         return suspendCoroutine {cont ->
             getIdToken(true)
                 .addOnSuccessListener { cont.resume(it) }
