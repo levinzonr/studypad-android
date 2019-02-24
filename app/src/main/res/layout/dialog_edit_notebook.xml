@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:gravity="center"
         android:layout_margin="@dimen/space_big"
         style="@style/TextStyle.Header"
         android:text="Edit"
@@ -12,16 +13,25 @@
         android:layout_height="wrap_content" />
 
 
+    <TextView
+        style="@style/TextStyle"
+        android:layout_marginEnd="@dimen/space_big"
+        android:layout_marginStart="@dimen/space_big"
+        android:gravity="center"
+        android:text="Etiam porta sem malesuada magna mollis euismod."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_margin="@dimen/space_big"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/notebookEditEt"
+            style="@style/TextStyle"
             android:maxLines="1"
-            android:hint="A"
+            android:hint="Notebook name"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -33,6 +43,15 @@
         android:layout_gravity="center"
         android:text="ok"
         android:id="@+id/confirmBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancelBtn"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:text="Cancel"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
