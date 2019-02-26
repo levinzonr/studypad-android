@@ -167,3 +167,7 @@ fun ImageView.loadAuthorImage(imageUrl: String?) {
         .into(this)
 
 }
+
+fun <T> List<T>.first(n: Int) : List<T> {
+    return if (n > size) this else subList(0, n)
+}
