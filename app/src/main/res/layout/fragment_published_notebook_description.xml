@@ -1,0 +1,249 @@
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/lightGrey"
+    android:layout_height="match_parent"
+    tools:context="cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotebookDetailFragment">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentPadding="@dimen/space_big"
+            app:layout_constraintTop_toBottomOf="@+id/publishedNotebookAuthorTv">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/publishedNotebookAuthorTv"
+                    style="@style/TextStyle.Header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Name to display"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/publishedBookAuthorIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_google"
+                    app:layout_constraintBottom_toBottomOf="@+id/publishedNotebookAuthorTv"
+                    app:layout_constraintEnd_toStartOf="@+id/publishedNotebookAuthorTv"
+                    app:layout_constraintTop_toTopOf="@+id/publishedNotebookAuthorTv"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/publishedNotebookNameTv"
+                    style="@style/TextStyle.Header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_huge"
+                    android:text="BI-LIN"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/publishedNotebookAuthorTv" />
+
+
+                <TextView
+                    android:layout_marginTop="@dimen/space_big"
+                    android:id="@+id/publishedBookTopicTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subject: Algere"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/publishedNotebookNameTv" />
+
+                <TextView
+                    android:layout_marginTop="@dimen/space_big"
+                    android:id="@+id/publishedBookDescriptionTv"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/space_normal"
+                    android:layout_height="wrap_content"
+                    android:text="Nulla vitae elit libero, a ae elit libero, a pharetra augueae elit libero, a pharetra augueae elit libero, a pharetra auguepharetra augue. Curabitur blandit tempus porttitor."
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    app:layout_constraintTop_toBottomOf="@+id/publishedBookTopicTv" />
+
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_subject"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/publishedBookDescriptionTv" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_big"
+            app:layout_constraintTop_toBottomOf="@+id/publishedBookDescriptionTv">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/textView6"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_big"
+                    android:layout_marginTop="@dimen/space_big"
+                    android:text="Tags"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/publishedBookTagsCG"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_big"
+                    android:layout_marginBottom="@dimen/space_big"
+                    android:layout_marginEnd="@dimen/space_big"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView6"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_big"
+            android:layout_marginTop="@dimen/space_big"
+            android:layout_marginEnd="@dimen/space_big"
+            android:elevation="@dimen/space_normal"
+            app:cardCornerRadius="@dimen/corner_radius"
+            app:contentPadding="@dimen/space_big"
+            app:layout_constraintTop_toBottomOf="@id/materialCardView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="425dp">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/space_normal"
+                    android:text="Notes"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?selectableItemBackground"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/space_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="See All"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/ic_chevron_right_black_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+                </LinearLayout>
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/publishedBookNotesRv"
+                    android:layout_width="0dp"
+                    android:focusable="false"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>
