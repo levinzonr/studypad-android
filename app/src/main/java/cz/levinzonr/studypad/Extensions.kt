@@ -174,6 +174,10 @@ fun <T> List<T>.first(n: Int) : List<T> {
     return if (n > size) this else subList(0, n)
 }
 
+inline fun <T> List<T>.indexOfFirstOrNull(condition: (T) -> Boolean) : Int? {
+    return if (indexOfFirst { condition.invoke(it) } == -1) null else  indexOfFirst { condition.invoke(it) }
+}
+
 fun Long.formatTime() : String {
     val date = DateTime(this)
     val now = DateTime()

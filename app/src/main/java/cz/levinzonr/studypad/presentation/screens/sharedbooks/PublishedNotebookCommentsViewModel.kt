@@ -8,6 +8,7 @@ import cz.levinzonr.studypad.domain.interactors.comments.EditCommentInteractor
 import cz.levinzonr.studypad.domain.interactors.comments.GetCommentsInteractor
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import cz.levinzonr.studypad.presentation.events.Event
 
 class PublishedNotebookCommentsViewModel(
     val notebookId: String,
@@ -18,6 +19,7 @@ class PublishedNotebookCommentsViewModel(
 ) : BaseViewModel() {
 
     private val commentsLiveData = MutableLiveData<List<PublishedNotebook.Comment>>()
+    val commentsStateLiveData = MutableLiveData<Event<CommentsState>>()
 
     init {
         toggleLoading(true)
@@ -38,19 +40,26 @@ class PublishedNotebookCommentsViewModel(
 
     fun createComment(body: String) {
         createCommentInteractor.executeWithInput(CreateCommentInteractor.Input(notebookId, body)) {
-            onComplete { loadComments() }
+            onComplete {
+                commentsStateLiveData.postValue(Event(CommentsState(commentAdded = it)))
+            }
         }
     }
 
     fun deleteComment(comment: PublishedNotebook.Comment) {
         deleteCommentInteractor.executeWithInput(comment.id) {
-            onComplete { loadComments() }
+            onComplete {
+                commentsStateLiveData.postValue(Event(CommentsState(commentDeleted = comment)))
+            }
         }
     }
 
     fun editComment(comment: PublishedNotebook.Comment, newBody: String) {
         editCommentInteractor.executeWithInput(EditCommentInteractor.Input(comment.id, newBody)) {
-            onComplete { loadComments() }
+            onComplete {
+                commentsStateLiveData.postValue(Event(CommentsState(commentUpdated = it)))
+
+            }
         }
     }
 }

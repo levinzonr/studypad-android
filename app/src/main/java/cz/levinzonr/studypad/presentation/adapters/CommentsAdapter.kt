@@ -4,17 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
-import cz.levinzonr.studypad.formatTime
-import cz.levinzonr.studypad.loadAuthorImage
-import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.item_comment.view.*
 import timber.log.Timber
 
 class CommentsAdapter(val listener: CommentsItemListener, val authorId: String? = null) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>(){
 
-    var items : List<PublishedNotebook.Comment> = listOf()
+    var items : MutableList<PublishedNotebook.Comment> = mutableListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -50,8 +47,27 @@ class CommentsAdapter(val listener: CommentsItemListener, val authorId: String? 
         }
     }
 
+    fun updateComment(comment: PublishedNotebook.Comment) {
+        items.indexOfFirstOrNull { comment.id == it.id }?.let { index ->
+            items[index] = comment
+            notifyItemChanged(index)
+        }
+    }
+
+    fun deleteComment(comment: PublishedNotebook.Comment) {
+        items.indexOfFirstOrNull { comment.id == it.id }?.let { index ->
+            items.removeAt(index)
+            notifyItemRemoved(index)
+        }
+    }
+
+    fun addComment(comment: PublishedNotebook.Comment) {
+            items.add(0, comment)
+            notifyItemInserted(0)
+
+    }
+
     interface CommentsItemListener {
         fun onCommentMoreButtonPressed(comment: PublishedNotebook.Comment)
     }
-
 }

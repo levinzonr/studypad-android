@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.onHandle
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.adapters.CommentsAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
@@ -21,6 +22,10 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 import java.security.InvalidParameterException
+import android.app.Activity
+import androidx.core.content.ContextCompat.getSystemService
+import android.view.inputmethod.InputMethodManager
+
 
 class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.CommentsItemListener {
 
@@ -52,10 +57,22 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
 
         })
 
-
         viewModel.getCommentsLiveData().observe(viewLifecycleOwner, Observer {
-            adapter.items = it
+            adapter.items = MutableList(it.size) { index: Int -> it[index] }
         })
+
+        viewModel.commentsStateLiveData.onHandle(viewLifecycleOwner) {
+            Timber.d("State $it")
+            it.commentAdded?.let {
+                commentInputField.text.clear()
+                commentsRecyclerView.smoothScrollToPosition(0)
+                adapter.addComment(it)
+                val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(commentInputField.getWindowToken(), 0)
+            }
+            it.commentDeleted?.let { adapter.deleteComment(it) }
+            it.commentUpdated?.let { adapter.updateComment(it) }
+        }
     }
 
 
