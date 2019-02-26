@@ -44,6 +44,9 @@ class PublishedNotebooksAdapter : RecyclerView.Adapter<PublishedNotebooksAdapter
             view.notebookDescriptionTv.text = notebook.description
             view.notebookCommentsTv.text = notebook.commentCount.toString()
             view.notebookNotesCountTv.text = notebook.notesCount.toString()
+
+            view.notebookTopicTv.text = "Subject: ${notebook.topic}"
+
             view.notebookTagsChips.apply {
                 removeAllViews()
                 notebook.tags.map { Chip(view.context).apply { text = it } }.forEach {

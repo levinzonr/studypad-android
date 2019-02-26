@@ -32,12 +32,14 @@
                     style="@style/TextStyle.Header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginTop="@dimen/space_big"
+                    android:layout_marginBottom="@dimen/space_big"
                     android:text="Name to display"
                     android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/publishBookDateTv" />
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -55,13 +57,13 @@
                     android:id="@+id/publishedNotebookNameTv"
                     style="@style/TextStyle.Header"
                     android:layout_width="0dp"
-                    android:textSize="24sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_huge"
+                    android:layout_marginTop="8dp"
                     android:text="BI-LIN"
+                    android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publishedNotebookAuthorTv" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
@@ -96,14 +98,12 @@
 
                 <TextView
                     android:id="@+id/publishBookDateTv"
-                    android:drawablePadding="@dimen/space_normal"
                     android:layout_width="0dp"
-                    android:layout_marginTop="@dimen/space_big"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/space_big"
+                    android:layout_marginTop="@dimen/space_big"
                     android:drawableStart="@drawable/ic_round_timelapse_24px"
+                    android:drawablePadding="@dimen/space_normal"
                     android:text="Last updated"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/imageView3"
                     app:layout_constraintTop_toBottomOf="@+id/publishedBookDescriptionTv" />

@@ -1,61 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        app:cardCornerRadius="@dimen/space_normal"
-        app:cardElevation="@dimen/corner_radius"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_height="100dp">
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:background="?selectableItemBackground"
+
+    app:cardCornerRadius="@dimen/space_normal"
+    app:cardElevation="@dimen/corner_radius">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:background="?selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <View
-                android:background="@color/colorAccent"
-                android:id="@+id/notebookColor"
-                android:layout_width="36dp"
-                android:layout_height="0dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+            android:id="@+id/notebookColor"
+            android:layout_width="36dp"
+            android:layout_height="0dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-                style="@style/TextStyle.Header"
-                android:id="@+id/notebookNameTv"
-                android:textStyle="bold"
-                android:textSize="21sp"
-                android:text="TextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintStart_toEndOf="@+id/notebookColor"
-                android:layout_marginStart="8dp"/>
+            android:id="@+id/notebookNameTv"
+            style="@style/TextStyle.Header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/notebookColor"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-                style="@style/TextStyle"
-                android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/notebookNotesCountTv"
-                app:layout_constraintStart_toStartOf="@+id/notebookNameTv"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/notebookNameTv"/>
+            android:id="@+id/notebookNotesCountTv"
+            style="@style/TextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/notebookNameTv"
+            app:layout_constraintTop_toBottomOf="@+id/notebookNameTv" />
 
 
         <ImageButton
-            android:padding="@dimen/space_big"
             android:id="@+id/notebookMoreBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?selectableItemBackgroundBorderless"
+            android:padding="@dimen/space_big"
             android:src="@drawable/ic_round_more_vert_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

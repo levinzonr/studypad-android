@@ -46,6 +46,7 @@ class CommentsAdapter(val listener: CommentsItemListener, val authorId: String? 
             view.commentMorBtn.setOnClickListener {
                 listener.onCommentMoreButtonPressed(comment)
             }
+
         }
     }
 

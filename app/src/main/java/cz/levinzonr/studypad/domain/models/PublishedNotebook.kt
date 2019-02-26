@@ -12,7 +12,9 @@ object PublishedNotebook {
         val tags: Set<String>,
         val commentCount: Int,
         val author: UserProfile,
-        val id: String
+        val id: String,
+        val topic: String
+
     ) : Parcelable {
         constructor(parcel: Parcel) : this(
             parcel.readString(),
@@ -21,6 +23,7 @@ object PublishedNotebook {
             setOf<String>(),
             parcel.readInt(),
             parcel.readParcelable(UserProfile::class.java.classLoader),
+            parcel.readString(),
             parcel.readString()
         ) {
         }
@@ -33,6 +36,7 @@ object PublishedNotebook {
             parcel.writeInt(commentCount)
             parcel.writeParcelable(author, flags)
             parcel.writeString(id)
+            parcel.writeString(topic)
         }
 
         override fun describeContents(): Int {

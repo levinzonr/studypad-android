@@ -71,7 +71,6 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
 
     private fun setupRecyclerView() {
         commentsRecyclerView.layoutManager = LinearLayoutManager(context)
-        commentsRecyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         commentsRecyclerView.adapter = adapter
     }
 

@@ -59,7 +59,6 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
 
         publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes.first(5))
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
-        publishedBookNotesRv.addItemDecoration(DividerItemDecorator(context!!))
 
         publishBookDateTv.text = "last updated: ${System.currentTimeMillis().formatTime()}"
 
