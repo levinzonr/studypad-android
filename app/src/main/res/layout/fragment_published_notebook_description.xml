@@ -33,24 +33,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginTop="@dimen/space_big"
-                    android:layout_marginBottom="@dimen/space_big"
                     android:text="Name to display"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/publishedBookAuthorIv"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publishBookDateTv" />
+                    app:layout_constraintTop_toTopOf="@+id/publishedBookAuthorIv" />
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/publishedBookAuthorIv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="@dimen/space_big"
+                    android:layout_marginEnd="@dimen/space_normal"
+                    android:layout_marginBottom="@dimen/space_normal"
                     android:src="@drawable/ic_google"
-                    app:layout_constraintBottom_toBottomOf="@+id/publishedNotebookAuthorTv"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/publishedNotebookAuthorTv"
-                    app:layout_constraintTop_toTopOf="@+id/publishedNotebookAuthorTv"
+                    app:layout_constraintTop_toBottomOf="@+id/publishBookDateTv"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
