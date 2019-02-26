@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.formatTime
 import cz.levinzonr.studypad.loadAuthorImage
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.item_comment.view.*
@@ -38,8 +39,10 @@ class CommentsAdapter(val listener: CommentsItemListener, val authorId: String? 
             view.commentAuthorTv.text = comment.author.displayName
             view.commentContentTv.text = comment.content
             view.commentAuthorIv.loadAuthorImage(comment.author.photoUrl)
+            view.commentDateTv.text = comment.dateCreated.formatTime()
             Timber.d("${authorId} == ${comment.author.uuid}")
             view.commentMorBtn.setVisible(authorId == comment.author.uuid)
+
             view.commentMorBtn.setOnClickListener {
                 listener.onCommentMoreButtonPressed(comment)
             }

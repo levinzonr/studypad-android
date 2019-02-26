@@ -29,20 +29,33 @@
         app:layout_constraintStart_toEndOf="@+id/commentAuthorIv"
         app:layout_constraintTop_toTopOf="@+id/commentAuthorIv" />
 
+
     <TextView
+        android:textSize="12sp"
+        android:id="@+id/commentDateTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="one hour ago"
+        android:textColor="@color/grey"
+        app:layout_constraintStart_toStartOf="@+id/commentAuthorTv"
+        app:layout_constraintTop_toBottomOf="@+id/commentAuthorTv" />
+
+
+
+    <TextView
+        android:layout_marginTop="@dimen/space_normal"
         android:id="@+id/commentContentTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_normal"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintVertical_bias="0.1"
         android:layout_marginBottom="@dimen/space_big"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/commentMorBtn"
         app:layout_constraintStart_toEndOf="@+id/commentAuthorIv"
-        app:layout_constraintTop_toBottomOf="@+id/commentAuthorTv" />
+        app:layout_constraintTop_toBottomOf="@+id/commentDateTv"
+        app:layout_constraintVertical_bias="0.1" />
 
     <ImageButton
         android:id="@+id/commentMorBtn"
@@ -55,5 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

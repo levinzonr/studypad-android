@@ -19,7 +19,9 @@ import cz.levinzonr.studypad.presentation.base.BaseActivity
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
+import org.joda.time.*
 import timber.log.Timber
+import java.util.*
 
 
 fun ViewGroup.asSequence(): Sequence<View> = object : Sequence<View> {
@@ -170,4 +172,38 @@ fun ImageView.loadAuthorImage(imageUrl: String?) {
 
 fun <T> List<T>.first(n: Int) : List<T> {
     return if (n > size) this else subList(0, n)
+}
+
+fun Long.formatTime() : String {
+    val date = DateTime(this)
+    val now = DateTime()
+
+
+    val minutesBetween = Minutes.minutesBetween(date, now).minutes
+    val hoursBetween = Hours.hoursBetween(date, now).hours
+    val daysBetween = Days.daysBetween(date, now).days
+    val monthsBetween = Months.monthsBetween(date, now).months
+
+
+    Timber.d("Mins: $minutesBetween, hours: $hoursBetween, days: $daysBetween")
+
+
+    return when {
+        monthsBetween >= 12 -> "more than a year ago"
+        monthsBetween > 1 -> "$monthsBetween months ago"
+        monthsBetween == 1 -> "month ago"
+
+        daysBetween > 1 -> "$daysBetween days ago"
+        daysBetween == 1 -> "yesterday"
+
+        hoursBetween > 1 -> "$hoursBetween hours ago"
+        hoursBetween == 1 -> "an hour ago"
+
+        minutesBetween > 1 -> "$minutesBetween minutes ago"
+        minutesBetween < 1 -> "just now"
+        minutesBetween == 1 -> "one minute ago"
+        else -> "${date.toLocalTime()}"
+
+    }
+
 }
