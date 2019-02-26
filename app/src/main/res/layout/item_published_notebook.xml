@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     app:cardCornerRadius="@dimen/space_normal"
     app:cardElevation="@dimen/corner_radius"
+    app:contentPadding="@dimen/space_normal"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
-    android:layout_height="300dp">
+
+    android:layout_height="wrap_content">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,6 +17,7 @@
         android:layout_height="match_parent">
 
         <TextView
+            style="@style/TextStyle.Header"
             android:id="@+id/notebookTitleTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -27,6 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/notebookDescriptionTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -60,17 +64,19 @@
             app:layout_constraintEnd_toStartOf="@+id/notebookAuthorTv" />
 
         <com.google.android.material.chip.ChipGroup
-            android:gravity="end"
             android:id="@+id/notebookTagsChips"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_normal"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="@dimen/space_big"
+            android:gravity="end"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/notebookNotesCountTv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/notebookTitleTv">
+            app:layout_constraintStart_toStartOf="@+id/notebookTitleTv"
+            app:layout_constraintTop_toBottomOf="@+id/notebookDescriptionTv">
 
 
         </com.google.android.material.chip.ChipGroup>

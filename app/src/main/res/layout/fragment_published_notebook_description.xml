@@ -35,7 +35,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:text="Name to display"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,6 +55,7 @@
                     android:id="@+id/publishedNotebookNameTv"
                     style="@style/TextStyle.Header"
                     android:layout_width="0dp"
+                    android:textSize="24sp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_huge"
                     android:text="BI-LIN"
@@ -73,11 +74,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/publishedNotebookNameTv" />
 
                 <TextView
-                    android:layout_marginTop="@dimen/space_big"
                     android:id="@+id/publishedBookDescriptionTv"
                     android:layout_width="0dp"
-                    android:layout_marginStart="@dimen/space_normal"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_normal"
+                    android:layout_marginTop="@dimen/space_big"
                     android:text="Nulla vitae elit libero, a ae elit libero, a pharetra augueae elit libero, a pharetra augueae elit libero, a pharetra auguepharetra augue. Curabitur blandit tempus porttitor."
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -91,6 +92,21 @@
                     android:src="@drawable/ic_subject"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/publishedBookDescriptionTv" />
+
+
+                <TextView
+                    android:id="@+id/publishBookDateTv"
+                    android:drawablePadding="@dimen/space_normal"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/space_big"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space_big"
+                    android:drawableStart="@drawable/ic_round_timelapse_24px"
+                    android:text="Last updated"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/imageView3"
+                    app:layout_constraintTop_toBottomOf="@+id/publishedBookDescriptionTv" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

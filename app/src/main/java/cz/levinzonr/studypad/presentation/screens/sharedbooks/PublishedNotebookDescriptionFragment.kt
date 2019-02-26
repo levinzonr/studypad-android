@@ -13,6 +13,7 @@ import com.google.android.material.chip.Chip
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.first
+import cz.levinzonr.studypad.formatTime
 import cz.levinzonr.studypad.loadAuthorImage
 import cz.levinzonr.studypad.presentation.adapters.NotePreviewAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
@@ -59,6 +60,8 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
         publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes.first(5))
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
         publishedBookNotesRv.addItemDecoration(DividerItemDecorator(context!!))
+
+        publishBookDateTv.text = "last updated: ${System.currentTimeMillis().formatTime()}"
 
 
     }
