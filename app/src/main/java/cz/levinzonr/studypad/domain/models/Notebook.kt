@@ -37,6 +37,15 @@ data class Notebook(
 
     }
 
+    val shareableId: String?
+        get() {
+            return exportedId ?: if (importedId != null) {
+                importedId
+            } else {
+                null
+            }
+        }
+
     override fun describeContents(): Int {
         return 0
     }

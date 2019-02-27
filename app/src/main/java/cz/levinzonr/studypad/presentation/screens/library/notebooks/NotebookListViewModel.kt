@@ -1,20 +1,25 @@
 package cz.levinzonr.studypad.presentation.screens.library.notebooks
 
+import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.call
 import cz.levinzonr.studypad.domain.interactors.library.DeleteNotebookInteractor
 import cz.levinzonr.studypad.domain.interactors.library.LibrarySyncInteractor
 import cz.levinzonr.studypad.domain.interactors.library.PostNotebookInteractor
 import cz.levinzonr.studypad.domain.interactors.library.UpdateNotebookInteractor
+import cz.levinzonr.studypad.domain.interactors.sharinghub.QuiclPublishInteractor
 import cz.levinzonr.studypad.domain.models.Notebook
+import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.repository.NotebookRepository
 import cz.levinzonr.studypad.liveEvent
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import cz.levinzonr.studypad.presentation.events.Event
 import timber.log.Timber
 
 class NotebookListViewModel(
     private val deleteNotebookInteractor: DeleteNotebookInteractor,
     private val updateNotebookInteractor: UpdateNotebookInteractor,
     private val notebookRepository: NotebookRepository,
+    private val quiclPublishInteractor: QuiclPublishInteractor,
     private val librarySyncInteractor: LibrarySyncInteractor,
     private val postNoteookInteractor: PostNotebookInteractor
 ) : BaseViewModel() {
@@ -22,6 +27,7 @@ class NotebookListViewModel(
 
     val dataSource = notebookRepository.notebooksLiveData()
     val syncCompletedEvent = liveEvent()
+    val notebookPublishedEven = MutableLiveData<Event<PublishedNotebook.Feed>>()
 
     init {
         synchronize()
@@ -61,6 +67,12 @@ class NotebookListViewModel(
             onComplete {
                 Timber.d("Updated")
             }
+        }
+    }
+
+    fun publishNotebook(notebook: Notebook) {
+        quiclPublishInteractor.executeWithInput(notebook.id) {
+            onComplete { notebookPublishedEven.call(it) }
         }
     }
 }

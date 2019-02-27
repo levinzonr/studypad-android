@@ -30,7 +30,7 @@ val rest = module {
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .addInterceptor(AuthTokenInterceptor(get()))
-            .authenticator(FirebaseAuthenticator())
+            .authenticator(FirebaseAuthenticator(get()))
         if (BuildConfig.DEBUG) {
             val logging = okhttp3.logging.HttpLoggingInterceptor()
             logging.level = okhttp3.logging.HttpLoggingInterceptor.Level.BODY

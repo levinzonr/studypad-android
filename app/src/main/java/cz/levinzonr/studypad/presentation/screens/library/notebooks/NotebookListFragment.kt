@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import cz.levinzonr.studypad.BuildConfig
 
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
@@ -48,6 +49,11 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
         viewModel.syncCompletedEvent.onHandle(viewLifecycleOwner) {
             showToast("Library is Synchronized")
         }
+
+        viewModel.notebookPublishedEven.onHandle(viewLifecycleOwner) {
+             val link = "${BuildConfig.API_URL}/shared/${it.id}"
+            shareMessage(link)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -88,6 +94,14 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
                 R.id.notebookOpenShared -> {
                     val mockFeed = PublishedNotebook.Feed("", "", 0, setOf(), 0, UserProfile("", "", "", null, null, false, ""), notebook.exportedId!!, "")
                     showPublishedNotebookDetail(mockFeed)
+                }
+                R.id.notebookShareBtn -> {
+                    if (notebook.shareableId == null) {
+                        viewModel.publishNotebook(notebook)
+                    } else {
+                        val link = "${BuildConfig.API_URL}/shared/${notebook.shareableId}"
+                        shareMessage(link)
+                    }
                 }
             }
         }

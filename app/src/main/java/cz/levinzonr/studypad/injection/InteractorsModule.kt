@@ -65,4 +65,6 @@ val interacorModule = module {
 
     factory { GetCommentsInteractor(get()) }
 
+    factory { QuiclPublishInteractor(get()) }
+
 }

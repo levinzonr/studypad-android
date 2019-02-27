@@ -6,16 +6,8 @@
     android:orientation="vertical">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/notebookPublishBtn"
-        app:icon="@drawable/ic_outline_delete_24px"
-        android:text="Publish"
-        style="@style/BottomMenuButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.google.android.material.button.MaterialButton
         android:id="@+id/notebookOpenShared"
-        app:icon="@drawable/ic_outline_delete_24px"
+        app:icon="@drawable/ic_round_open_in_browser_24px"
         android:text="Open Shared Notebook"
         style="@style/BottomMenuButton"
         android:layout_width="match_parent"
@@ -23,8 +15,17 @@
 
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/notebookPublishBtn"
+        app:icon="@drawable/ic_round_publish_24px"
+        android:text="Publish"
+        style="@style/BottomMenuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/notebookShareBtn"
-        app:icon="@drawable/ic_outline_delete_24px"
+        app:icon="@drawable/ic_round_share_24px"
         android:text="Share"
         style="@style/BottomMenuButton"
         android:layout_width="match_parent"

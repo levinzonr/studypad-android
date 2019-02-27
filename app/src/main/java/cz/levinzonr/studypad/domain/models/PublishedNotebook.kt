@@ -52,6 +52,7 @@ object PublishedNotebook {
                 return arrayOfNulls(size)
             }
         }
+
     }
 
     data class Detail(

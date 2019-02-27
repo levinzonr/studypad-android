@@ -167,6 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_big"
             android:layout_marginTop="@dimen/space_big"
+            android:layout_marginBottom="@dimen/space_big"
             android:layout_marginEnd="@dimen/space_big"
             android:elevation="@dimen/space_normal"
             app:cardCornerRadius="@dimen/corner_radius"
