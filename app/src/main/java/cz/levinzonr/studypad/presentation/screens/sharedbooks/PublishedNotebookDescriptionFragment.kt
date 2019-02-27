@@ -60,7 +60,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
         publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes.first(5))
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
 
-        publishBookDateTv.text = "last updated: ${System.currentTimeMillis().formatTime()}"
+        publishBookDateTv.text = "last updated: ${detail.lastUpdate.formatTime()}"
 
 
     }

@@ -13,7 +13,9 @@ object PublishedNotebook {
         val commentCount: Int,
         val author: UserProfile,
         val id: String,
-        val topic: String
+        val topic: String,
+        val lastUpdate: Long = System.currentTimeMillis(),
+        val languageCode: String? = null
 
     ) : Parcelable {
         constructor(parcel: Parcel) : this(
@@ -63,7 +65,9 @@ object PublishedNotebook {
         val tags: Set<String>,
         val author: UserProfile,
         val comments: List<Comment>,
-        val topic: String
+        val topic: String,
+        val lastUpdate: Long,
+        val languageCode: String? = null
     )
 
     data class Note(

@@ -28,6 +28,17 @@
 
 
                 <TextView
+                    android:drawablePadding="@dimen/space_normal"
+                    android:id="@+id/publishBookLanguageTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_huge"
+                    android:drawableStart="@drawable/ic_round_language_24px"
+                    android:text="English"
+                    app:layout_constraintStart_toStartOf="@+id/publishedBookTopicTv"
+                    app:layout_constraintTop_toBottomOf="@+id/publishedBookTopicTv" />
+
+                <TextView
                     android:id="@+id/publishedNotebookAuthorTv"
                     style="@style/TextStyle.Header"
                     android:layout_width="wrap_content"
@@ -44,13 +55,13 @@
                     android:id="@+id/publishedBookAuthorIv"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginTop="@dimen/space_big"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="@dimen/space_normal"
-                    android:layout_marginBottom="@dimen/space_normal"
+                    android:layout_marginBottom="16dp"
                     android:src="@drawable/ic_google"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/publishedNotebookAuthorTv"
-                    app:layout_constraintTop_toBottomOf="@+id/publishBookDateTv"
+                    app:layout_constraintTop_toBottomOf="@+id/publishedBookDescriptionTv"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
@@ -67,10 +78,10 @@
 
 
                 <TextView
-                    android:layout_marginTop="@dimen/space_big"
                     android:id="@+id/publishedBookTopicTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_normal"
                     android:text="Subject: Algere"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/publishedNotebookNameTv" />
@@ -83,8 +94,9 @@
                     android:layout_marginTop="@dimen/space_big"
                     android:text="Nulla vitae elit libero, a ae elit libero, a pharetra augueae elit libero, a pharetra augueae elit libero, a pharetra auguepharetra augue. Curabitur blandit tempus porttitor."
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/publishedBookTopicTv" />
+                    app:layout_constraintTop_toBottomOf="@+id/publishBookDateTv" />
 
 
                 <ImageView
@@ -105,8 +117,9 @@
                     android:drawablePadding="@dimen/space_normal"
                     android:text="Last updated"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/imageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/publishedBookDescriptionTv" />
+                    app:layout_constraintTop_toBottomOf="@+id/publishBookLanguageTv" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

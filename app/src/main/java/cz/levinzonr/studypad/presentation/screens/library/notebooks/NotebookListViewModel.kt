@@ -2,10 +2,7 @@ package cz.levinzonr.studypad.presentation.screens.library.notebooks
 
 import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.call
-import cz.levinzonr.studypad.domain.interactors.library.DeleteNotebookInteractor
-import cz.levinzonr.studypad.domain.interactors.library.LibrarySyncInteractor
-import cz.levinzonr.studypad.domain.interactors.library.PostNotebookInteractor
-import cz.levinzonr.studypad.domain.interactors.library.UpdateNotebookInteractor
+import cz.levinzonr.studypad.domain.interactors.library.*
 import cz.levinzonr.studypad.domain.interactors.sharinghub.QuiclPublishInteractor
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
@@ -19,6 +16,7 @@ class NotebookListViewModel(
     private val deleteNotebookInteractor: DeleteNotebookInteractor,
     private val updateNotebookInteractor: UpdateNotebookInteractor,
     private val notebookRepository: NotebookRepository,
+    private val getNotebooksInteractor: GetNotebooksInteractor,
     private val quiclPublishInteractor: QuiclPublishInteractor,
     private val librarySyncInteractor: LibrarySyncInteractor,
     private val postNoteookInteractor: PostNotebookInteractor
@@ -72,7 +70,10 @@ class NotebookListViewModel(
 
     fun publishNotebook(notebook: Notebook) {
         quiclPublishInteractor.executeWithInput(notebook.id) {
-            onComplete { notebookPublishedEven.call(it) }
+            onComplete {
+                getNotebooksInteractor.execute {  }
+                notebookPublishedEven.call(it)
+            }
         }
     }
 }

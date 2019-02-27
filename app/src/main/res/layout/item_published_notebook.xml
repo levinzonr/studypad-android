@@ -97,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_big"
-            android:drawableStart="@drawable/ic_comment"
+            android:drawableStart="@drawable/ic_speech_bubbles_comment_option"
             android:text="13"
             app:layout_constraintBottom_toBottomOf="@+id/notebookAuthorIv"
             app:layout_constraintStart_toStartOf="parent"
