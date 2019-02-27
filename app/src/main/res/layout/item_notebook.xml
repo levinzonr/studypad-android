@@ -30,6 +30,8 @@
             android:id="@+id/notebookNameTv"
             style="@style/TextStyle.Header"
             android:layout_width="0dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"

@@ -79,7 +79,8 @@ object PublishedNotebook {
         val id: Long,
         val author: UserProfile,
         val content: String,
-        val dateCreated: Long
+        val dateCreated: Long,
+        val edited: Boolean
     )
 
 }

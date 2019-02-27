@@ -26,7 +26,7 @@ abstract class BaseFragment : Fragment() {
     protected fun shareMessage(message: String) {
         ShareCompat.IntentBuilder.from(activity)
             .setText(message)
-            .setType("text/text")
+            .setType("*/*")
             .startChooser()
     }
 

@@ -40,6 +40,8 @@ class CommentsAdapter(val listener: CommentsItemListener, val authorId: String? 
             Timber.d("${authorId} == ${comment.author.uuid}")
             view.commentMorBtn.setVisible(authorId == comment.author.uuid)
 
+            if (comment.edited) view.commentDateTv.text = "${view.commentDateTv.text} • edited"
+
             view.commentMorBtn.setOnClickListener {
                 listener.onCommentMoreButtonPressed(comment)
             }
