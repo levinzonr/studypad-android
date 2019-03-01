@@ -69,6 +69,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
+        style="@style/Button.Primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_big"

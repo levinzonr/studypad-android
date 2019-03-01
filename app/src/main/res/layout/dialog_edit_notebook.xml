@@ -42,6 +42,7 @@
 
 
     <com.google.android.material.button.MaterialButton
+        style="@style/Button.Primary"
         android:layout_gravity="center"
         android:text="ok"
         android:id="@+id/confirmBtn"
