@@ -16,7 +16,7 @@ data class Notebook(
         "#33ccff",
         "#ff99cc"
     ),
-    val importedId: String? = null,
+    val sourceId: String? = null,
     val exportedId: String? = null
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
@@ -32,15 +32,15 @@ data class Notebook(
         parcel.writeLong(id)
         parcel.writeString(name)
         parcel.writeInt(notesCount)
-        parcel.writeString(importedId)
+        parcel.writeString(sourceId)
         parcel.writeString(exportedId)
 
     }
 
     val shareableId: String?
         get() {
-            return exportedId ?: if (importedId != null) {
-                importedId
+            return exportedId ?: if (sourceId != null) {
+                sourceId
             } else {
                 null
             }
