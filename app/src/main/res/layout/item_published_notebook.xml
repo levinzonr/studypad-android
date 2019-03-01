@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    app:cardCornerRadius="@dimen/space_normal"
-    app:cardElevation="@dimen/corner_radius"
+    app:cardCornerRadius="@dimen/corner_radius"
+    app:cardElevation="5dp"
     app:contentPadding="@dimen/space_normal"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
@@ -97,6 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_big"
+            android:drawableTint="#707070"
             android:drawableStart="@drawable/ic_speech_bubbles_comment_option"
             android:text="13"
             app:layout_constraintBottom_toBottomOf="@+id/notebookAuthorIv"
@@ -106,6 +107,7 @@
 
         <TextView
             android:drawablePadding="@dimen/space_small"
+            android:drawableTint="#707070"
             android:id="@+id/notebookNotesCountTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

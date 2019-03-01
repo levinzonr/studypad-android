@@ -7,5 +7,5 @@
     <dimen name="space_large">24dp</dimen>
     <dimen name="space_huge">32dp</dimen>
 
-    <dimen name="corner_radius">12dp</dimen>
+    <dimen name="corner_radius">8dp</dimen>
 </resources>
