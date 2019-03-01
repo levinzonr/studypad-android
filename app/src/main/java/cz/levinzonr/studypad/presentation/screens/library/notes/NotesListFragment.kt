@@ -12,6 +12,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.presentation.adapters.NotesAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.notebook
 import cz.levinzonr.studypad.presentation.screens.showNoteDetail
 import cz.levinzonr.studypad.presentation.screens.showNoteEdit
@@ -62,6 +63,7 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
     private fun setupRecyclerView() {
         adapter.listener = this
         notesRv.layoutManager = LinearLayoutManager(context)
+        notesRv.addItemDecoration(VerticalSpaceItemDecoration(8))
         notesRv.adapter = adapter
     }
 
