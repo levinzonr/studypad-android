@@ -7,6 +7,7 @@ import cz.levinzonr.studypad.data.UpdateNotebookRequest
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.rest.Api
 
+/*
 class NotebookRestRepository(private val api: Api) : NotebookRepository {
 
     override suspend fun getNotebooks(): List<Notebook> {
@@ -36,4 +37,4 @@ class NotebookRestRepository(private val api: Api) : NotebookRepository {
     override fun deleteLocally(id: Long) {
 
     }
-}
+}*/

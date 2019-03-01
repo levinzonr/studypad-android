@@ -48,6 +48,8 @@ interface Api {
     @DELETE("$API/notebooks/{id}")
     fun deleteNotebook(@Path("id") id: Long) : Deferred<Unit>
 
+    @POST("$API/notebooks/import")
+    fun importPublisheNotebook(@Query("id") id: String) : Deferred<Notebook>
 
     //-----------------------------------------------------------------------------
 

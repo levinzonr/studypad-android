@@ -13,6 +13,8 @@ interface NotebookRepository {
 
     suspend fun deleteNotebook(id: Long)
 
+    suspend fun importNotebook(id: String) : Notebook
+
     fun notebooksLiveData() : LiveData<List<Notebook>>
 
     fun getStoredNotebooks() : List<Notebook>

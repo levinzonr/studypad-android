@@ -67,8 +67,12 @@ object PublishedNotebook {
         val comments: List<Comment>,
         val topic: String,
         val lastUpdate: Long,
-        val languageCode: String? = null
-    )
+        val languageCode: String? = null,
+        val status: String
+    ) {
+
+        val isSavedAlready: Boolean = status == "update"
+    }
 
     data class Note(
         val title: String,

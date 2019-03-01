@@ -78,7 +78,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_normal"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/space_huge"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="@dimen/space_big"
             android:gravity="end"

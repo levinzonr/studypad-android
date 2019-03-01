@@ -47,4 +47,10 @@ class NotebookRepositoryImpl(
     override fun deleteLocally(id: Long) {
         localDataSource.notebookDao().delete(id)
     }
+
+    override suspend fun importNotebook(id: String): Notebook {
+        val created = remoteDataSource.importPublisheNotebook(id).await()
+        localDataSource.notebookDao().put(created)
+        return created
+    }
 }

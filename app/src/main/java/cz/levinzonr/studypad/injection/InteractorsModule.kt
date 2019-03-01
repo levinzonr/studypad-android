@@ -67,4 +67,6 @@ val interacorModule = module {
 
     factory { QuiclPublishInteractor(get()) }
 
+    factory { ImportPublishedNotebookInteractor(get()) }
+
 }

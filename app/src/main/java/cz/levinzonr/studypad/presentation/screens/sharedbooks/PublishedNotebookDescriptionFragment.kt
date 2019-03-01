@@ -41,8 +41,17 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        saveButton.setOnClickListener {
+            viewModel.handleSaveAction()
+        }
+
         viewModel.getSharedDetailLiveData().observe(viewLifecycleOwner, Observer {
             showDetail(it)
+        })
+
+        viewModel.updated.observe(viewLifecycleOwner, Observer {
+            it.handle { showToast("Done") }
         })
     }
 
@@ -62,12 +71,13 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
 
         publishBookDateTv.text = "last updated: ${detail.lastUpdate.formatTime()}"
 
+        saveButton.text = detail.status
 
     }
 
     companion object {
         private const val ARG_NOTEBOOK_ID = "notebookid"
-        fun newInstance(notebookId: String) : PublishedNotebookDescriptionFragment {
+        fun newInstance(notebookId: String): PublishedNotebookDescriptionFragment {
             return PublishedNotebookDescriptionFragment().apply {
                 arguments = Bundle().apply { putString(ARG_NOTEBOOK_ID, notebookId) }
             }

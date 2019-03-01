@@ -23,8 +23,8 @@ android {
 
         debug {
             applicationIdSuffix ".dev"
-            //buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com\""
-              buildConfigField "String", "API_URL", "\"http://10.0.2.2:8080\""
+              buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com\""
+              // buildConfigField "String", "API_URL", "\"http://10.0.2.2:8080\""
 
             manifestPlaceholders = [
                     FB_APP_ID: "1993571567628934"
