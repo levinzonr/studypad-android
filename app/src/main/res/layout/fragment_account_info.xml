@@ -24,6 +24,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/accountInfoFirstNameEt"
             android:layout_width="match_parent"
+            android:inputType="textPersonName"
+            android:imeOptions="actionNext"
             android:layout_height="match_parent"
             android:hint="First name"
             android:maxLines="1" />
@@ -46,6 +48,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/accountInfoLastNameEt"
             android:maxLines="1"
+            android:imeOptions="actionDone"
+            android:inputType="textPersonName"
             android:hint="Last name"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
