@@ -9,9 +9,9 @@ interface NotebookRepository {
 
     suspend fun createNotebook(name: String) : Notebook
 
-    suspend fun updateNotebook(id: Long, name: String) : Notebook
+    suspend fun updateNotebook(id: String, name: String) : Notebook
 
-    suspend fun deleteNotebook(id: Long)
+    suspend fun deleteNotebook(id: String)
 
     suspend fun importNotebook(id: String) : Notebook
 
@@ -19,5 +19,5 @@ interface NotebookRepository {
 
     fun getStoredNotebooks() : List<Notebook>
 
-    fun deleteLocally(id: Long)
+    fun deleteLocally(id: String)
 }

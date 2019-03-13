@@ -9,7 +9,7 @@ import timber.log.Timber
 class PublishNotebookInteractor(private val publishedNotebookRepository: PublishedNotebookRepository) : BaseInputInteractor<PublishNotebookInteractor.Input, PublishedNotebook.Feed>() {
 
     data class Input(
-        val notebookId: Long,
+        val notebookId: String,
         val title: String,
         val description: String,
         val tags: Set<String> = setOf(),

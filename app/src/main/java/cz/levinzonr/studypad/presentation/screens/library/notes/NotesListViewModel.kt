@@ -5,7 +5,7 @@ import cz.levinzonr.studypad.domain.repository.NotesRepository
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 
 class NotesListViewModel(
-    private val notebookId: Long,
+    private val notebookId: String,
     private val getNotesInteractor: GetNotesInteractor,
     private val notesRepository: NotesRepository
 ) : BaseViewModel() {

@@ -92,14 +92,14 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
                 }
                 R.id.notebookPublishBtn -> showPublishNotebookView(notebook)
                 R.id.notebookOpenShared -> {
-                    val mockFeed = PublishedNotebook.Feed("", "", 0, setOf(), 0, UserProfile("", "", "", null, null, false, ""), notebook.shareableId!!, "")
+                    val mockFeed = PublishedNotebook.Feed("", "", 0, setOf(), 0, UserProfile("", "", "", null, null, false, ""), notebook.publishedNotebookId!!, "")
                     showPublishedNotebookDetail(mockFeed)
                 }
                 R.id.notebookShareBtn -> {
-                    if (notebook.shareableId == null) {
+                    if (notebook.publishedNotebookId == null) {
                         viewModel.publishNotebook(notebook)
                     } else {
-                        val link = "${BuildConfig.API_URL}/shared/${notebook.shareableId}"
+                        val link = "${BuildConfig.API_URL}/shared/${notebook.publishedNotebookId}"
                         shareMessage(link)
                     }
                 }

@@ -6,7 +6,7 @@ import cz.levinzonr.studypad.domain.repository.NotebookRepository
 class DeleteNotebookInteractor(private val repository: NotebookRepository) : BaseInteractor<Unit>(){
 
 
-    data class Input(val id: Long)
+    data class Input(val id: String)
 
     var input: Input? = null
 

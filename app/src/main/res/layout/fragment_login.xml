@@ -100,7 +100,7 @@
         android:backgroundTint="@color/colorPrimary"
         android:background="@color/colorPrimary"
         android:src="@drawable/ic_google"
-        android:layout_marginBottom="@dimen/space_big"
+        android:layout_marginBottom="@dimen/space_large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2" />
 
@@ -110,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="@dimen/space_big"
+        android:layout_marginBottom="@dimen/space_large"
         app:borderWidth="0dp"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_facebook"
@@ -131,7 +131,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_normal"
-        android:layout_marginBottom="@dimen/space_big"
+        android:layout_marginBottom="@dimen/space_large"
         android:gravity="center"
         android:text="Or continue with"
         app:layout_constraintBottom_toTopOf="@+id/loginUsingFacebookBtn"

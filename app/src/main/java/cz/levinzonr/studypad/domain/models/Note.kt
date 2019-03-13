@@ -11,20 +11,20 @@ data class Note(
     val id: Long,
     val title: String? = null,
     val content: String? = null,
-    val notebookId: Long
+    val notebookId: String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readLong()
+        parcel.readString()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeLong(id)
         parcel.writeString(title)
         parcel.writeString(content)
-        parcel.writeLong(notebookId)
+        parcel.writeString(notebookId)
     }
 
     override fun describeContents(): Int {

@@ -25,13 +25,13 @@ class NotebookRepositoryImpl(
         return notebook
     }
 
-    override suspend fun updateNotebook(id: Long, name: String): Notebook {
+    override suspend fun updateNotebook(id: String, name: String): Notebook {
         val notebook = remoteDataSource.updateNotebook(id, UpdateNotebookRequest(name)).await()
         localDataSource.notebookDao().put(notebook)
         return notebook
     }
 
-    override suspend fun deleteNotebook(id: Long) {
+    override suspend fun deleteNotebook(id: String) {
         remoteDataSource.deleteNotebook(id).await()
         deleteLocally(id)
     }
@@ -44,7 +44,7 @@ class NotebookRepositoryImpl(
         return localDataSource.notebookDao().getAll()
     }
 
-    override fun deleteLocally(id: Long) {
+    override fun deleteLocally(id: String) {
         localDataSource.notebookDao().delete(id)
     }
 

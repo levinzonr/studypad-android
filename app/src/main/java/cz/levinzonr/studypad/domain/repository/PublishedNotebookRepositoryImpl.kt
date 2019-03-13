@@ -16,7 +16,7 @@ class PublishedNotebookRepositoryImpl(private val api: Api) : PublishedNotebookR
     }
 
     override suspend fun publishNotebook(
-        notebookId: Long, title: String,
+        notebookId: String, title: String,
         description: String?, tags: Set<String>, topicId: Long?) : PublishedNotebook.Feed {
 
         val request = PublishNotebookRequest(

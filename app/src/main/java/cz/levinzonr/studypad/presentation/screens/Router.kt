@@ -31,11 +31,11 @@ fun Fragment.showNotes(notebook: Notebook) {
     )
 }
 
-fun NotesListFragment.showNoteEdit(notebookId: Long, note: Note?) {
+fun NotesListFragment.showNoteEdit(notebookId: String, note: Note?) {
     view?.findNavController()?.navigate(R.id.action_notesListFragment_to_editNoteFragment,
         Bundle().apply {
             putParcelable(ARG_NOTE, note)
-            putLong(ARG_NOTEBOOK_ID, notebookId)
+            putString(ARG_NOTEBOOK_ID, notebookId)
         })
 }
 
@@ -65,8 +65,8 @@ val NoteDetailFragment.note: Note
 val PublishNotebookFragment.notebook: Notebook
     get() = arguments?.getParcelable(ARG_NOTEBOOK)!!
 
-val EditNoteFragment.notebookId: Long
-    get() = arguments?.getLong(ARG_NOTEBOOK_ID)!!
+val EditNoteFragment.notebookId: String
+    get() = arguments?.getString(ARG_NOTEBOOK_ID)!!
 
 fun Fragment.showMain() {
     startActivity(Intent(activity, MainActivity::class.java))

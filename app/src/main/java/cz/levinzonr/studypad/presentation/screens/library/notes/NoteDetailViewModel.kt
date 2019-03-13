@@ -22,7 +22,7 @@ class NoteDetailViewModel(
     val noteCreatedEvent : MutableLiveData<SimpleEvent> = MutableLiveData()
     val noteDeletedEvent : MutableLiveData<SimpleEvent> = MutableLiveData()
 
-    fun createNote(notebookId: Long) {
+    fun createNote(notebookId: String) {
         postNoteInteractor.input = PostNoteInteractor.Input(notebookId, title, content)
         postNoteInteractor.execute {
             onComplete { noteCreatedEvent.call() }

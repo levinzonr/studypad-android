@@ -43,10 +43,10 @@ interface Api {
     fun postNotebook(@Body createNotebookRequest: CreateNotebookRequest) : Deferred<Notebook>
 
     @PATCH("$API/notebooks/{id}")
-    fun updateNotebook(@Path("id") id: Long, @Body updateNotebookRequest: UpdateNotebookRequest) : Deferred<Notebook>
+    fun updateNotebook(@Path("id") id: String, @Body updateNotebookRequest: UpdateNotebookRequest) : Deferred<Notebook>
 
     @DELETE("$API/notebooks/{id}")
-    fun deleteNotebook(@Path("id") id: Long) : Deferred<Unit>
+    fun deleteNotebook(@Path("id") id: String) : Deferred<Unit>
 
     @POST("$API/notebooks/import")
     fun importPublisheNotebook(@Query("id") id: String) : Deferred<Notebook>
@@ -54,7 +54,7 @@ interface Api {
     //-----------------------------------------------------------------------------
 
     @GET("$API/notebooks/{id}/notes")
-    fun getNotesFromNotebook(@Path("id") notebookId: Long) : Deferred<List<Note>>
+    fun getNotesFromNotebook(@Path("id") notebookId: String) : Deferred<List<Note>>
 
     @POST("$API/notes")
     fun createNote(@Body createNoteRequest: CreateNoteRequest) : Deferred<Note>
@@ -81,7 +81,7 @@ interface Api {
     fun publishNotebook(@Body publishNotebookRequest: PublishNotebookRequest) : Deferred<PublishedNotebook.Feed>
 
     @POST("$API/shared/quick")
-    fun quickPublish(@Query("id") notebookId: Long) : Deferred<PublishedNotebook.Feed>
+    fun quickPublish(@Query("id") notebookId: String) : Deferred<PublishedNotebook.Feed>
 
     @GET("$API/shared/tags")
     fun getTags() : Deferred<List<String>>

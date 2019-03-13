@@ -1,3 +1,4 @@
+/*
 package cz.levinzonr.studypad.domain.repository
 
 import androidx.lifecycle.LiveData
@@ -37,4 +38,4 @@ class NoteRestRepository(private val api: Api) : NotesRepository {
     }
 
     override fun deleteLocally(list: List<Note>) {}
-}
+}*/

@@ -28,6 +28,6 @@ interface NotebookDao {
     fun update(notebook: Notebook)
 
     @Query("DELETE FROM notebook WHERE id = :id")
-    fun delete(id: Long)
+    fun delete(id: String)
 
 }

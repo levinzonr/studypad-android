@@ -9,42 +9,30 @@ import androidx.room.PrimaryKey
 data class Notebook(
 
     @PrimaryKey
-    val id: Long,
+    val id: String,
     val name: String,
     val notesCount: Int,
     val color: Color = Color(
         "#33ccff",
         "#ff99cc"
     ),
-    val sourceId: String? = null,
-    val exportedId: String? = null
+    val publishedNotebookId: String?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readLong(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readInt(),
         Color("#33ccff", "#ff99cc"),
-        parcel.readString(),
         parcel.readString()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeLong(id)
+        parcel.writeString(id)
         parcel.writeString(name)
         parcel.writeInt(notesCount)
-        parcel.writeString(sourceId)
-        parcel.writeString(exportedId)
 
     }
 
-    val shareableId: String?
-        get() {
-            return exportedId ?: if (sourceId != null) {
-                sourceId
-            } else {
-                null
-            }
-        }
 
     override fun describeContents(): Int {
         return 0

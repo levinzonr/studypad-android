@@ -13,7 +13,7 @@ import cz.levinzonr.studypad.domain.models.Note
 interface NoteDao {
 
     @Query("SELECT * FROM note WHERE notebookId = :notebookId")
-    fun getNotesFromNotebook(notebookId: Long) : LiveData<List<Note>>
+    fun getNotesFromNotebook(notebookId: String) : LiveData<List<Note>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun putAll(list: List<Note>)
@@ -22,7 +22,7 @@ interface NoteDao {
     fun put(note: Note)
 
     @Query("SELECT * FROM note WHERE notebookId = :notebookId")
-    fun getList(notebookId: Long) : List<Note>
+    fun getList(notebookId: String) : List<Note>
 
     @Delete
     fun deleteAll(list: List<Note>)

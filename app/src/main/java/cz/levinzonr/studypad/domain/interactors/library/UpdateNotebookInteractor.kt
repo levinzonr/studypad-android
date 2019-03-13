@@ -6,7 +6,7 @@ import cz.levinzonr.studypad.domain.repository.NotebookRepository
 
 class UpdateNotebookInteractor(private val notebookRepository: NotebookRepository) : BaseInteractor<Notebook>() {
 
-    data class Input(val id: Long, val name: String)
+    data class Input(val id: String, val name: String)
 
     var input: Input? = null
 

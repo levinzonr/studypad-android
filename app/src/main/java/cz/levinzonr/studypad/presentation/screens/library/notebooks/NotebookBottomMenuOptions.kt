@@ -20,8 +20,9 @@ class NotebookBottomMenuOptions : BottomSheetOptionsDialog() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        notebookPublishBtn.setVisible(notebook.exportedId == null && notebook.sourceId == null)
-        notebookOpenShared.setVisible(notebook.exportedId != null || notebook.sourceId != null)
+        val avail = notebook.publishedNotebookId == null
+        notebookPublishBtn.setVisible(avail)
+        notebookOpenShared.setVisible(!avail)
 
     }
 

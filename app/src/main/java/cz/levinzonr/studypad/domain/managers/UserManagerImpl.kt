@@ -99,6 +99,7 @@ class UserManagerImpl(private val api: Api,
         return suspendCoroutine { cont ->
             signInWithCredential(credential)
                 .addOnCompleteListener {
+                    Timber.d("${it.isSuccessful} ${it.isComplete} ${it.exception} ")
                     if (it.isComplete && it.isSuccessful) {
                         cont.resume(it.result)
                     } else {

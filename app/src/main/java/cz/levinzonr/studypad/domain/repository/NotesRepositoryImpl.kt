@@ -13,13 +13,13 @@ class NotesRepositoryImpl(
 ) : NotesRepository {
 
 
-    override suspend fun getNotesFromNotebook(notebookId: Long): List<Note> {
+    override suspend fun getNotesFromNotebook(notebookId: String): List<Note> {
         val notes = remoteDataSource.getNotesFromNotebook(notebookId).await()
         localDataSource.notesDao().putAll(notes)
        return notes
     }
 
-    override suspend fun createNote(notebookId: Long, title: String, content: String): Note {
+    override suspend fun createNote(notebookId: String, title: String, content: String): Note {
         val note = remoteDataSource.createNote(CreateNoteRequest(notebookId, title, content)).await()
         localDataSource.notesDao().put(note)
         return note
@@ -35,11 +35,11 @@ class NotesRepositoryImpl(
         remoteDataSource.deleteNote(noteId).await()
     }
 
-    override fun notesLiveData(notebookId: Long): LiveData<List<Note>> {
+    override fun notesLiveData(notebookId: String): LiveData<List<Note>> {
         return localDataSource.notesDao().getNotesFromNotebook(notebookId)
     }
 
-    override fun getStoredNotes(notebookId: Long): List<Note> {
+    override fun getStoredNotes(notebookId: String): List<Note> {
         return localDataSource.notesDao().getList(notebookId)
     }
 
