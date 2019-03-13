@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import cz.levinzonr.studypad.R
@@ -63,7 +64,7 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
     private fun setupRecyclerView() {
         adapter.listener = this
         notesRv.layoutManager = LinearLayoutManager(context)
-        notesRv.addItemDecoration(VerticalSpaceItemDecoration(8))
+        notesRv.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         notesRv.adapter = adapter
     }
 
