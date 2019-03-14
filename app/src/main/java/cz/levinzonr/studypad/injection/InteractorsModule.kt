@@ -69,4 +69,6 @@ val interacorModule = module {
 
     factory { ImportPublishedNotebookInteractor(get()) }
 
+    factory { GetNotebookVersionStateInteractor(get()) }
+
 }

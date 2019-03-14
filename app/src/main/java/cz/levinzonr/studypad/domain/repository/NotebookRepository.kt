@@ -1,11 +1,12 @@
 package cz.levinzonr.studypad.domain.repository
 
 import androidx.lifecycle.LiveData
+import cz.levinzonr.studypad.data.NotebooksResponse
 import cz.levinzonr.studypad.domain.models.Notebook
 
 interface NotebookRepository {
 
-    suspend fun getNotebooks() : List<Notebook>
+    suspend fun getNotebooks() : List<NotebooksResponse>
 
     suspend fun createNotebook(name: String) : Notebook
 

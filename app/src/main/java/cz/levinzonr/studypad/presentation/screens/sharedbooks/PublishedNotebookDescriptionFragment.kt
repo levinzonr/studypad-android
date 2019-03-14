@@ -12,6 +12,7 @@ import com.google.android.material.chip.Chip
 
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.domain.models.State
 import cz.levinzonr.studypad.first
 import cz.levinzonr.studypad.formatTime
 import cz.levinzonr.studypad.loadAuthorImage
@@ -19,6 +20,7 @@ import cz.levinzonr.studypad.presentation.adapters.NotePreviewAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.DividerItemDecorator
 import kotlinx.android.synthetic.main.fragment_published_notebook_description.*
+import kotlinx.android.synthetic.main.fragment_published_notebook_description.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import java.security.InvalidParameterException
@@ -53,6 +55,27 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
         viewModel.updated.observe(viewLifecycleOwner, Observer {
             it.handle { showToast("Done") }
         })
+
+        viewModel.stateLiveData.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is State.SaveAvailable -> {
+                    saveButton.setIconResource(R.drawable.ic_baseline_save_alt_24px)
+                    saveButton.setText("Save")
+                }
+                is State.UpdateAvailable -> {
+                    saveButton.setIconResource(R.drawable.ic_sync_black_24dp)
+                    saveButton.setText("Update")
+                }
+                is State.UpToDate -> {
+                    saveButton.setIconResource(R.drawable.ic_check_black_24dp)
+                    saveButton.setText("Up to date")
+                }
+                is State.MergeAvailable -> {
+                    saveButton.setIconResource(R.drawable.ic_round_publish_24px)
+                    saveButton.setText("Apply changes")
+                }
+            }
+        })
     }
 
 
@@ -71,7 +94,6 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
 
         publishBookDateTv.text = "last updated: ${detail.lastUpdate.formatTime()}"
 
-        saveButton.text = detail.status
 
     }
 

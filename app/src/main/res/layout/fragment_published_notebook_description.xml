@@ -277,19 +277,22 @@
     </androidx.core.widget.NestedScrollView>
 
 
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/saveButton"
-        app:cornerRadius="56dp"
-        android:padding="16dp"
-        android:textSize="16sp"
-        android:textAllCaps="false"
-        app:icon="@drawable/ic_baseline_save_alt_24px"
-        android:text="Save"
-        app:layout_anchor="@id/scrollView"
-        android:layout_marginEnd="@dimen/space_big"
-        android:layout_marginBottom="@dimen/space_big"
-        app:layout_anchorGravity="bottom|right"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:text="Save"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_edit"
+        app:layout_anchor="@id/bottomAppBar" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        app:elevation="16dp"
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:fabAlignmentMode="center"
+        app:hideOnScroll="true" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

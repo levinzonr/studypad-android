@@ -3,9 +3,13 @@ package cz.levinzonr.studypad.domain.models
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.IgnoredOnParcel
+import kotlinx.android.parcel.Parcelize
 
 @Entity
+@Parcelize
 data class Notebook(
 
     @PrimaryKey
@@ -17,43 +21,26 @@ data class Notebook(
         "#ff99cc"
     ),
     val publishedNotebookId: String?
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readInt(),
-        Color("#33ccff", "#ff99cc"),
-        parcel.readString()
-    )
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(id)
-        parcel.writeString(name)
-        parcel.writeInt(notesCount)
-
-    }
+) : Parcelable
 
 
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Notebook> {
-        override fun createFromParcel(parcel: Parcel): Notebook {
-            return Notebook(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Notebook?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
-
+@Parcelize
 data class Color(
     val startColor: String,
     val endColor: String
-) {
+) : Parcelable {
     fun toIntArray(): IntArray {
         return intArrayOf(android.graphics.Color.parseColor(startColor.trim()), android.graphics.Color.parseColor(endColor.trim()))
     }
 }
+
+sealed class State {
+
+    object UpToDate : State()
+    object UpdateAvailable: State()
+    object SaveAvailable: State()
+    object MergeAvailable: State()
+
+}
+

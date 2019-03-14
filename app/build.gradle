@@ -19,11 +19,16 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    androidExtensions {
+        experimental = true
+    }
+
     buildTypes {
 
         debug {
             applicationIdSuffix ".dev"
-              //buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com\""
+             // buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com\""
               buildConfigField "String", "API_URL", "\"http://10.0.2.2:8080\""
 
             manifestPlaceholders = [
@@ -118,7 +123,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1-beta01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1-beta01'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0-alpha04'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha01'
 

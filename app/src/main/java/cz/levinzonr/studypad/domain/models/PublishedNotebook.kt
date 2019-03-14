@@ -1,10 +1,11 @@
 package cz.levinzonr.studypad.domain.models
 
-import android.os.Parcel
 import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 
 object PublishedNotebook {
-
+    @Parcelize
     data class Feed(
         val title: String,
         val description: String?,
@@ -17,45 +18,13 @@ object PublishedNotebook {
         val lastUpdate: Long = System.currentTimeMillis(),
         val languageCode: String? = null
 
-    ) : Parcelable {
-        constructor(parcel: Parcel) : this(
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readInt(),
-            setOf<String>(),
-            parcel.readInt(),
-            parcel.readParcelable(UserProfile::class.java.classLoader),
-            parcel.readString(),
-            parcel.readString()
-        ) {
-        }
+    ) : Parcelable
 
-        override fun writeToParcel(parcel: Parcel, flags: Int) {
-            parcel.writeString(title)
-            parcel.writeString(description)
-            parcel.writeInt(notesCount)
-            parcel.writeStringList(tags.toList())
-            parcel.writeInt(commentCount)
-            parcel.writeParcelable(author, flags)
-            parcel.writeString(id)
-            parcel.writeString(topic)
-        }
+    @Parcelize
+    data class VersionState(val id: Long, val version: Int, val modifications: List<Modification>) : Parcelable
 
-        override fun describeContents(): Int {
-            return 0
-        }
-
-        companion object CREATOR : Parcelable.Creator<Feed> {
-            override fun createFromParcel(parcel: Parcel): Feed {
-                return Feed(parcel)
-            }
-
-            override fun newArray(size: Int): Array<Feed?> {
-                return arrayOfNulls(size)
-            }
-        }
-
-    }
+    @Parcelize
+    data class Modification(val type: String) : Parcelable
 
     data class Detail(
         val id: String,
@@ -68,11 +37,8 @@ object PublishedNotebook {
         val topic: String,
         val lastUpdate: Long,
         val languageCode: String? = null,
-        val status: String
-    ) {
-
-        val isSavedAlready: Boolean = status == "update"
-    }
+        val versionState: VersionState
+    )
 
     data class Note(
         val title: String,

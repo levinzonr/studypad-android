@@ -37,19 +37,19 @@ interface Api {
 
 
     @GET("$API/notebooks")
-    fun getNotebooks() : Deferred<List<Notebook>>
+    fun getNotebooks() : Deferred<List<NotebooksResponse>>
 
     @POST("$API/notebooks")
-    fun postNotebook(@Body createNotebookRequest: CreateNotebookRequest) : Deferred<Notebook>
+    fun postNotebook(@Body createNotebookRequest: CreateNotebookRequest) : Deferred<NotebooksResponse>
 
     @PATCH("$API/notebooks/{id}")
-    fun updateNotebook(@Path("id") id: String, @Body updateNotebookRequest: UpdateNotebookRequest) : Deferred<Notebook>
+    fun updateNotebook(@Path("id") id: String, @Body updateNotebookRequest: UpdateNotebookRequest) : Deferred<NotebooksResponse>
 
     @DELETE("$API/notebooks/{id}")
     fun deleteNotebook(@Path("id") id: String) : Deferred<Unit>
 
     @POST("$API/notebooks/import")
-    fun importPublisheNotebook(@Query("id") id: String) : Deferred<Notebook>
+    fun importPublisheNotebook(@Query("id") id: String) : Deferred<NotebooksResponse>
 
     //-----------------------------------------------------------------------------
 
