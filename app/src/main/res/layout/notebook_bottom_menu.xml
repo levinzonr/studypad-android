@@ -9,7 +9,7 @@
         android:id="@+id/notebookOpenShared"
         app:icon="@drawable/ic_round_open_in_browser_24px"
         android:text="Open Shared Notebook"
-        style="@style/BottomMenuButton"
+        style="@style/Button.TextMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -18,7 +18,7 @@
         android:id="@+id/notebookPublishBtn"
         app:icon="@drawable/ic_round_publish_24px"
         android:text="Publish"
-        style="@style/BottomMenuButton"
+        style="@style/Button.TextMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -27,7 +27,7 @@
         android:id="@+id/notebookShareBtn"
         app:icon="@drawable/ic_round_share_24px"
         android:text="Share"
-        style="@style/BottomMenuButton"
+        style="@style/Button.TextMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -35,7 +35,7 @@
         android:id="@+id/notebookEditBtn"
         app:icon="@drawable/ic_edit"
         android:text="Edit"
-        style="@style/BottomMenuButton"
+        style="@style/Button.TextMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -45,7 +45,7 @@
         android:id="@+id/notebookDeleteBtn"
         app:icon="@drawable/ic_outline_delete_24px"
         android:text="Delete"
-        style="@style/BottomMenuButton"
+        style="@style/Button.TextMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

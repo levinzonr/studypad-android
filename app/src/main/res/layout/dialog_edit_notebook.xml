@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <TextView
@@ -25,6 +26,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_margin="@dimen/space_big"
+        app:boxBackgroundColor="@color/white"
+        android:background="@color/lightGrey"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -52,7 +55,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/cancelBtn"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        style="@style/Button.Text"
         android:text="Cancel"
         android:layout_gravity="center"
         android:layout_width="wrap_content"

@@ -36,8 +36,7 @@ class PublishedNotebookDetailFragment: BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         viewPager.adapter = ViewPagerAdapter(feedItem.id, childFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
-        tabLayout.getTabAt(0)?.setIcon(R.drawable.ic_writing)
-        tabLayout?.getTabAt(1)?.setIcon(R.drawable.ic_speech_bubbles_comment_option)
+
     }
 
 }

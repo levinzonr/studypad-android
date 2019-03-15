@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ffff</color>
-    <color name="colorPrimaryDark">#fff</color>
-    <color name="colorAccent">#1976d2</color>
-    
-    
+
+    <color name="colorAccent">@color/blue</color>
+
+    <color name="colorBackground">@color/white</color>
+    <color name="colorPrimary">@color/blue</color>
+
+    <color name="primaryColor">#ffffff</color>
+    <color name="primaryLightColor">#ffffff</color>
+    <color name="primaryDarkColor">#cccccc</color>
+    <color name="secondaryColor">#1976d2</color>
+    <color name="secondaryLightColor">#63a4ff</color>
+    <color name="secondaryDarkColor">#004ba0</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#ffffff</color>
+
+    <color name="red">#B00020</color>
+    <color name="blue">#1976d2</color>
+    <color name="white">#fff</color>
+
     <color name="greyDivider">#1FFFFFFF</color>
     <color name="facebookBlue">#3B5998</color>
     <color name="lightGrey">#F0F0F0</color>

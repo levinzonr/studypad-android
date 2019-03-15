@@ -8,30 +8,17 @@
         android:layout_height="match_parent"
         tools:context=".presentation.screens.MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/appToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <fragment
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:navGraph="@navigation/navigation_main"
-            app:defaultNavHost="true"
-            android:id="@+id/fragment"
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNav"/>
+        android:id="@+id/fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/navigation_main" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

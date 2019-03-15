@@ -23,5 +23,9 @@ class ViewPagerAdapter(val notebookId: String, fragmentManager: FragmentManager)
         return fragments.size
     }
 
+    override fun getPageTitle(position: Int): CharSequence? {
+        return if (position == 0) "Details" else "Comments"
+    }
+
 
 }

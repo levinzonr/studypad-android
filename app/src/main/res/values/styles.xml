@@ -3,24 +3,29 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/colorPrimary</item>
+
+        <item name="colorPrimaryDark">@color/white</item>
+
+        <item name="android:windowBackground">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:fontFamily">@font/open_sans</item>
         <item name="bottomSheetDialogTheme">@style/BottomSheetTheme</item>
         <item name="android:textAppearance">@style/TextStyle</item>
 
-        <item name="colorPrimaryVariant">@color/colorAccent</item>
-        <item name="colorSecondaryVariant">@color/colorAccent</item>
-        <item name="colorSurface">@color/colorPrimary</item>
-        <item name="colorOnPrimary">@color/colorAccent</item>
-        <item name="colorOnSecondary">@color/colorAccent</item>
-        <item name="colorOnBackground">@color/colorPrimary</item>
-        <item name="colorOnError">@color/colorAccent</item>
-        <item name="colorOnSurface">@color/colorAccent</item>
-        <item name="scrimBackground">@color/mtrl_scrim_color</item>
+
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@color/primaryLightColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryColor</item>
+        <item name="colorOnSecondary">@color/primaryLightColor</item>
+
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorError">#C51162</item>
+        <item name="colorOnBackground">#000000</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <item name="colorOnSurface">#000000</item>
+
         <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
         <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3</item>
@@ -71,16 +76,25 @@
         <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 
-    <style name="BottomMenuButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="iconTint">@color/colorAccent</item>
+    <style name="Button.TextMenu" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="iconTint">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="iconPadding">@dimen/space_big</item>
         <item name="android:textAlignment">textStart</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:padding">@dimen/space_big</item>
     </style>
 
-    <style name="Button.Primary" parent="MessengerButton">
+    <style name="Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:padding">@dimen/space_big</item>
+    </style>
+
+    <style name="Button.Primary" parent="Widget.MaterialComponents.Button">
         <item name="android:padding">12dp</item>
+        <item name="backgroundTint">@color/blue</item>
         <item name="cornerRadius">@dimen/corner_radius</item>
     </style>
 </resources>
