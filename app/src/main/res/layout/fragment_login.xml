@@ -97,9 +97,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         app:borderWidth="0dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:background="@color/colorPrimary"
-        android:src="@drawable/ic_google"
+        app:backgroundTint="@color/white"
+        app:srcCompat="@drawable/ic_google"
+        app:tint="@null"
         android:layout_marginBottom="@dimen/space_large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2" />
@@ -112,10 +112,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="@dimen/space_large"
         app:borderWidth="0dp"
-        android:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/white"
         android:src="@drawable/ic_facebook"
         android:textAllCaps="false"
-        android:tint="@color/facebookBlue"
+        app:tint="@color/facebookBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
