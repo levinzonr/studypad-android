@@ -22,6 +22,8 @@ class ShareHubViewModel(private val getRelevantNotebooks: GetRelevantNotebooks) 
         }
     }
 
-
+    fun showDetail(notebook: PublishedNotebook.Feed) {
+        navigateTo(SharedFragmentDirections.actionSharedFragmentToPublishedNotebookDetailFragment(notebook.id, notebook))
+    }
 
 }

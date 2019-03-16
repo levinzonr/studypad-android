@@ -22,7 +22,7 @@ import timber.log.Timber
 
 class ProfileFragment : BaseFragment() {
 
-    private val viewModel: ProfileViewModel by viewModel()
+    override val viewModel: ProfileViewModel by viewModel()
     private val tokenRepo: TokenRepository by inject()
 
     override fun onCreateView(

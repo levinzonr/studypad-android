@@ -1,7 +1,6 @@
 package cz.levinzonr.studypad.presentation.screens.sharedbooks
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,6 @@ import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
-import cz.levinzonr.studypad.presentation.screens.showDetail
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_shared.*
 import org.koin.android.ext.android.inject
@@ -22,7 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SharedFragment : BaseFragment(), PublishedNotebooksAdapter.PublishedNotebookItemListener {
 
-    private val viewModel : ShareHubViewModel by viewModel()
+    override val viewModel : ShareHubViewModel by viewModel()
     private val adapter: PublishedNotebooksAdapter by inject()
 
     override fun onCreateView(
@@ -66,6 +64,6 @@ class SharedFragment : BaseFragment(), PublishedNotebooksAdapter.PublishedNotebo
     }
 
     override fun onPublishedNotebookClicked(publishedNotebook: PublishedNotebook.Feed) {
-        showDetail(publishedNotebook)
+        viewModel.showDetail(publishedNotebook)
     }
 }

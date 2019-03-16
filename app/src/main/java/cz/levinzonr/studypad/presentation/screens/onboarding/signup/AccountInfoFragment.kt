@@ -10,15 +10,13 @@ import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.screens.showAccounCreationNextStep
-import cz.levinzonr.studypad.presentation.screens.showUniversitySelector
 import kotlinx.android.synthetic.main.fragment_account_info.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class AccountInfoFragment : BaseFragment() {
 
-    private val viewModel: SignupViewModel by sharedViewModel()
+    override val viewModel: SignupViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +43,7 @@ class AccountInfoFragment : BaseFragment() {
 
     private fun setupListeners() {
         accountInfoProceedBtn.setOnClickListener {
-            showAccounCreationNextStep()
+           viewModel.showAccountInfo()
         }
 
         accountInfoFirstNameEt.onTextChanged {

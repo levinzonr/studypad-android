@@ -25,7 +25,7 @@ class NoteDetailViewModel(
     fun createNote(notebookId: String) {
         postNoteInteractor.input = PostNoteInteractor.Input(notebookId, title, content)
         postNoteInteractor.execute {
-            onComplete { noteCreatedEvent.call() }
+           navigateBack()
         }
     }
 
@@ -43,6 +43,11 @@ class NoteDetailViewModel(
         deleteNoteInteractor.executeWithInput(note.id) {
             onComplete { noteDeletedEvent.call() }
         }
+    }
+
+
+    fun showEditNote() {
+      //  navigateTo(NoteDetailFragmentDirections.actionNoteDetailFragmentToEditNoteFragment(note, null))
     }
 
 }

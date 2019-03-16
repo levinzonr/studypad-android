@@ -9,7 +9,6 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
-import cz.levinzonr.studypad.call
 import cz.levinzonr.studypad.callIf
 import cz.levinzonr.studypad.domain.interactors.keychain.FacebookLoginInteractor
 import cz.levinzonr.studypad.domain.interactors.keychain.LoginInteractor
@@ -17,7 +16,6 @@ import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.isValidEmail
 import cz.levinzonr.studypad.isValidPassword
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
-import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
 import timber.log.Timber
 import com.google.android.gms.common.api.ApiException
@@ -32,8 +30,6 @@ class LoginViewModel(
 ) : BaseViewModel() {
 
     val PERMISSIONS = listOf("email, public_profile")
-
-    val loginSuccessEvent = MutableLiveData<Event<Boolean>>()
 
 
     val emailValidationEvent = MutableLiveData<SimpleEvent>()
@@ -57,7 +53,7 @@ class LoginViewModel(
 
     init {
         if (userManager.isLoggedIn()) {
-            loginSuccessEvent.call(false)
+            showLoginSuccess(false)
         }
     }
 
@@ -73,7 +69,7 @@ class LoginViewModel(
             loginInteractor.execute {
                 onComplete {
                     toggleLoading(false)
-                    loginSuccessEvent.call(false)
+                    showLoginSuccess(it)
                     Timber.d("Success $it")
                 }
                 onError {
@@ -119,7 +115,7 @@ class LoginViewModel(
         googleLoginInteractor.executeWithInput(token) {
             onComplete {
                 toggleLoading(false)
-                loginSuccessEvent.call(it.newUser)
+                showLoginSuccess(it.newUser)
             }
             onError {
                 Timber.d("Error: $it")
@@ -132,7 +128,7 @@ class LoginViewModel(
             facebookLoginInteractor.executeWithInput(it.token) {
                 onComplete {
                     toggleLoading(false)
-                    loginSuccessEvent.call(it.newUser)
+                    showLoginSuccess(it.newUser)
                 }
             }
         }
@@ -144,5 +140,15 @@ class LoginViewModel(
         emailValidationEvent.callIf(!validEmail)
         passwordValidationEvent.callIf(!passwordEmail)
         return validEmail && passwordEmail
+    }
+
+    fun startAccountCreation() {
+        navigateTo(LoginFragmentDirections.actionLoginFragment2ToAccountInfoFragment())
+    }
+
+    private fun showLoginSuccess(newUser: Boolean) {
+        val direction = if (newUser) LoginFragmentDirections.actionLoginFragment2ToAccountCreatedFragment()
+            else LoginFragmentDirections.actionLoginFragment2ToAccountCreatedFragment()
+        navigateTo(direction)
     }
 }
