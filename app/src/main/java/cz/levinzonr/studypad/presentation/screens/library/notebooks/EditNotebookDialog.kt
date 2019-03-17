@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
 import kotlinx.android.synthetic.main.dialog_edit_notebook.*
@@ -46,9 +48,15 @@ class EditNotebookDialog : cz.levinzonr.studypad.presentation.base.BottomSheetDi
         return view
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
 
     private fun initView(view: View) {
         inputEditText = view.findViewById(R.id.notebookEditEt)
+
+
         button = view.findViewById(R.id.confirmBtn)
         cancelButton = view.findViewById(R.id.cancelBtn)
 
@@ -63,6 +71,8 @@ class EditNotebookDialog : cz.levinzonr.studypad.presentation.base.BottomSheetDi
         cancelButton.setOnClickListener {
             dismiss()
         }
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
