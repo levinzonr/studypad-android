@@ -27,7 +27,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:cardElevation="24dp"
-        android:layout_height="56dp"
+        android:minHeight="56dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout

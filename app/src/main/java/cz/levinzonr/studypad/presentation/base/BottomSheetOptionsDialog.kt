@@ -21,7 +21,7 @@ abstract class BottomSheetOptionsDialog : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (view as ViewGroup).views.forEach {
-            (it as MaterialButton).setOnClickListener {
+            (it as? MaterialButton)?.setOnClickListener {
                 dismiss()
                 onOptionSelected.invoke(it.id)
             }
