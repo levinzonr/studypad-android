@@ -3,9 +3,9 @@ package cz.levinzonr.studypad.presentation.screens.library.publish
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import cz.levinzonr.studypad.domain.interactors.sharinghub.GetTagsInteractor
+import cz.levinzonr.studypad.domain.interactors.sharinghub.GetTagsByNameInteractor
 
-class TagSearchViewModel(private val gatTagsInteractor: GetTagsInteractor) : ViewModel() {
+class TagSearchViewModel(private val gatTagsByNameInteractor: GetTagsByNameInteractor) : ViewModel() {
 
     private val tagsLiveData = MutableLiveData<Set<String>>()
     private val tagsQuery = MutableLiveData<String>()
@@ -16,7 +16,7 @@ class TagSearchViewModel(private val gatTagsInteractor: GetTagsInteractor) : Vie
     }
 
     private fun loadTags(query: String) {
-        gatTagsInteractor.executeWithInput(query) {
+        gatTagsByNameInteractor.executeWithInput(query) {
             onComplete { tagsLiveData.postValue(it) }
         }
     }

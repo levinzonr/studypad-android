@@ -9,6 +9,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
+
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -28,6 +29,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView2"
                 android:layout_width="match_parent"
+                android:focusableInTouchMode="true"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:contentPadding="@dimen/space_big"
@@ -251,6 +253,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/publishedBookNotesRv"
                         android:layout_width="0dp"
+                        android:nestedScrollingEnabled="false"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"

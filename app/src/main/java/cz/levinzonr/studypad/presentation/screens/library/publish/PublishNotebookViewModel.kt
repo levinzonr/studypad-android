@@ -2,7 +2,7 @@ package cz.levinzonr.studypad.presentation.screens.library.publish
 
 import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.call
-import cz.levinzonr.studypad.domain.interactors.sharinghub.GetTagsInteractor
+import cz.levinzonr.studypad.domain.interactors.sharinghub.GetTagsByNameInteractor
 import cz.levinzonr.studypad.domain.interactors.sharinghub.PublishNotebookInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.Notebook
@@ -14,7 +14,7 @@ import timber.log.Timber
 class PublishNotebookViewModel(
     private val notebook: Notebook,
     private val publishNotebookInteractor: PublishNotebookInteractor,
-    private val getTagsInteractor: GetTagsInteractor,
+    private val getTagsByNameInteractor: GetTagsByNameInteractor,
     private val userManager: UserManager
 ) : BaseViewModel() {
 

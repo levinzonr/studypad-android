@@ -84,7 +84,7 @@ interface Api {
     fun quickPublish(@Query("id") notebookId: String) : Deferred<PublishedNotebook.Feed>
 
     @GET("$API/shared/tags")
-    fun getTags() : Deferred<List<String>>
+    fun findTagsByName(@Query("name") name: String) : Deferred<List<String>>
 
     @GET("$API/config/topics")
     fun getTopics() : Deferred<List<Topic>>
