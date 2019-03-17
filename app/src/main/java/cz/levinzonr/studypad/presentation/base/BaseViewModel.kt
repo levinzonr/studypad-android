@@ -7,6 +7,7 @@ import androidx.navigation.NavDirections
 import cz.levinzonr.studypad.call
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
+import cz.levinzonr.studypad.presentation.screens.Flow
 import cz.levinzonr.studypad.presentation.screens.NavigationEvent
 
 abstract class BaseViewModel : ViewModel() {
@@ -38,8 +39,8 @@ abstract class BaseViewModel : ViewModel() {
         navigationEventLiveData.call(NavigationEvent.NavigateTo(navDirections))
     }
 
-    protected fun navigateTo(id: Int) {
-        navigationEventLiveData.call(NavigationEvent.NavigateById(id))
+    protected fun changeFlow(flow: Flow) {
+        navigationEventLiveData.call(NavigationEvent.ChangeFlow(flow))
     }
 
     private val loadingEventLiveData = MutableLiveData<Boolean>()

@@ -10,6 +10,7 @@ import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
+import cz.levinzonr.studypad.presentation.screens.Flow
 import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginFragmentDirections
 import timber.log.Timber
 
@@ -108,14 +109,10 @@ class SignupViewModel(
 
 
     fun showMain() {
-        navigateTo(R.id.mainActivity2)
+        changeFlow(Flow.MAIN)
     }
 
     fun showAccountInfo() {
-        navigateTo(LoginFragmentDirections.actionLoginFragment2ToAccountInfoFragment())
-    }
-
-    fun showAccountCredentials() {
         navigateTo(AccountInfoFragmentDirections.actionAccountInfoFragmentToCredentialsInfoFragment())
     }
 

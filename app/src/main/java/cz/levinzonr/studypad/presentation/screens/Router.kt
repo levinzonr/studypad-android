@@ -25,10 +25,13 @@ import cz.levinzonr.studypad.presentation.screens.sharedbooks.SharedFragment
 
 sealed class NavigationEvent {
 
-    data class NavigateById(val id: Int) : NavigationEvent()
     data class NavigateTo(val directions: NavDirections) : NavigationEvent()
+    data class ChangeFlow(val flow: Flow) : NavigationEvent()
     object NavigateBack: NavigationEvent()
+}
 
+enum class Flow {
+    ONBOARDING, MAIN
 }
 
 

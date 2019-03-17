@@ -20,6 +20,7 @@ import cz.levinzonr.studypad.presentation.events.SimpleEvent
 import timber.log.Timber
 import com.google.android.gms.common.api.ApiException
 import cz.levinzonr.studypad.domain.interactors.keychain.GoogleLoginInteractor
+import cz.levinzonr.studypad.presentation.screens.Flow
 
 
 class LoginViewModel(
@@ -147,8 +148,10 @@ class LoginViewModel(
     }
 
     private fun showLoginSuccess(newUser: Boolean) {
-        val direction = if (newUser) LoginFragmentDirections.actionLoginFragment2ToAccountCreatedFragment()
-            else LoginFragmentDirections.actionLoginFragment2ToAccountCreatedFragment()
-        navigateTo(direction)
+        if (newUser) {
+            navigateTo(LoginFragmentDirections.actionLoginFragment2ToAccountCreatedFragment())
+        } else {
+            changeFlow(Flow.MAIN)
+        }
     }
 }
