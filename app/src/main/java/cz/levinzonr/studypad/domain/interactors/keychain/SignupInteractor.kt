@@ -3,6 +3,7 @@ package cz.levinzonr.studypad.domain.interactors.keychain
 import cz.levinzonr.studypad.domain.interactors.BaseInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.UserProfile
+import java.lang.Exception
 
 class SignupInteractor(private val userManager: UserManager) : BaseInteractor<UserProfile>(){
 
@@ -15,8 +16,7 @@ class SignupInteractor(private val userManager: UserManager) : BaseInteractor<Us
     var input: Input? = null
 
     override suspend fun executeOnBackground() : UserProfile {
-        input?.let {
-           return userManager.createAccount(it.email, it.password, it.firstName, it.lastName)
-        }
+        val it = input ?: throw Exception()
+        return userManager.createAccount(it.email, it.password, it.firstName, it.lastName)
     }
 }

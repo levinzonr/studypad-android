@@ -9,17 +9,12 @@ import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.screens.showMain
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.firebase.auth.FirebaseAuth
-import cz.levinzonr.studypad.presentation.screens.showAccountCreation
-import cz.levinzonr.studypad.presentation.screens.showUniversitySelector
 import cz.levinzonr.studypad.setVisible
-import org.koin.android.ext.android.inject
 import timber.log.Timber
 
 
@@ -30,7 +25,7 @@ class LoginFragment : BaseFragment() {
 
     }
 
-    private val viewModel: LoginViewModel by viewModel()
+    override val viewModel: LoginViewModel by viewModel()
 
     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestEmail()
@@ -77,13 +72,6 @@ class LoginFragment : BaseFragment() {
             Timber.d("Loading: $it")
         })
 
-        viewModel.loginSuccessEvent.observe(this, Observer {
-            it.handle {isNewUser ->
-                if (isNewUser) showUniversitySelector()
-                else showMain()
-            }
-
-        })
 
         viewModel.passwordValidationEvent.observe(this, Observer {
             it.handle {
@@ -126,7 +114,7 @@ class LoginFragment : BaseFragment() {
         }
 
         materialButton.setOnClickListener {
-            showAccountCreation()
+           viewModel.startAccountCreation()
         }
 
     }

@@ -31,7 +31,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
     private val notebookId: String
         get() = arguments?.getString(ARG_NOTEBOOK_ID) ?: throw InvalidParameterException()
 
-    private val viewModel: PublishedNotebookDetailViewModel by viewModel { parametersOf(notebookId) }
+    override val viewModel: PublishedNotebookDetailViewModel by viewModel { parametersOf(notebookId) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

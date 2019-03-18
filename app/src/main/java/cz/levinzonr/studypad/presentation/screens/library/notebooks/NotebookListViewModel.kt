@@ -6,10 +6,12 @@ import cz.levinzonr.studypad.domain.interactors.library.*
 import cz.levinzonr.studypad.domain.interactors.sharinghub.QuiclPublishInteractor
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.domain.models.UserProfile
 import cz.levinzonr.studypad.domain.repository.NotebookRepository
 import cz.levinzonr.studypad.liveEvent
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
+import cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotebookDetailFragment
 import timber.log.Timber
 
 class NotebookListViewModel(
@@ -76,4 +78,18 @@ class NotebookListViewModel(
             }
         }
     }
+
+    // Navigation Events
+    fun showNotes(notebook: Notebook) {
+       // navigateTo(NotebookListFragmentDirections.actionNotebookListFragmentToNotesListFragment(notebook))
+    }
+
+    fun showPublishedNotebookDetail(id: String) {
+        //navigateTo(NotebookListFragmentDirections.actionNotebookListFragmentToPublishedNotebookDetailFragment(id))
+    }
+
+    fun startPublishNotebookFlow(notebook: Notebook) {
+        //navigateTo(NotebookListFragmentDirections.actionNotebookListFragmentToPublishNotebookFragment(notebook))
+    }
+
 }

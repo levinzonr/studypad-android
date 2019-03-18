@@ -1,28 +1,25 @@
 package cz.levinzonr.studypad.presentation.screens.library.notes
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.baseActivity
+import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.screens.note
-import cz.levinzonr.studypad.presentation.screens.showNoteEdit
 import kotlinx.android.synthetic.main.note_detail_fragment.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class NoteDetailFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = NoteDetailFragment()
-    }
 
-    private val viewModel: NoteDetailViewModel by viewModel { parametersOf(note) }
+    //private val args: NoteDetailFragmentArgs by navArgs()
+
+
+    override val viewModel: NoteDetailViewModel by viewModel { parametersOf(Note(1, notebookId = "")) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,10 +37,10 @@ class NoteDetailFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         noteDetailEditFab.setOnClickListener {
-            showNoteEdit(note.id, note)
+           viewModel.showEditNote()
         }
 
-        noteDetailView.setNoteDetails(note)
+        //noteDetailView.setNoteDetails(args.note)
     }
 
 }

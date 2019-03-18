@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.presentation.base.BaseActivity
@@ -26,8 +25,8 @@ class MainActivity : BaseActivity() {
     private fun onDestinationChanged(destinationId: Int) {
         when (destinationId) {
             R.id.publishNotebookFragment -> hideMenu()
-            R.id.noteDetailFragment -> hideMenu()
-            R.id.editNoteFragment -> hideMenu()
+         //   R.id.noteDetailFragment -> hideMenu()
+         //   R.id.editNoteFragment -> hideMenu()
             R.id.publishedNotebookDetailFragment -> hideMenu()
             else -> showMenu()
         }

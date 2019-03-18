@@ -1,6 +1,7 @@
 package cz.levinzonr.studypad.presentation.screens.onboarding.signup
 
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavDirections
 import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.interactors.GetUniversitiesInteractor
 import cz.levinzonr.studypad.domain.interactors.keychain.SignupInteractor
@@ -9,6 +10,8 @@ import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
+import cz.levinzonr.studypad.presentation.screens.Flow
+import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginFragmentDirections
 import timber.log.Timber
 
 class SignupViewModel(
@@ -85,7 +88,7 @@ class SignupViewModel(
         updateUserUniversityInteractor.input = UpdateUserUniversityInteractor.Input(university)
         updateUserUniversityInteractor.execute {
             onComplete {
-                universitySelectedEvent.call()
+                showMain()
             }
             onError {
                 postError(it.message)
@@ -102,6 +105,19 @@ class SignupViewModel(
 
     private fun validateAccountInfo() {
         validAccountInfoEvent.postValue(firstName.isNotEmpty() && lastName.isNotEmpty())
+    }
+
+
+    fun showMain() {
+        changeFlow(Flow.MAIN)
+    }
+
+    fun showAccountInfo() {
+        navigateTo(AccountInfoFragmentDirections.actionAccountInfoFragmentToCredentialsInfoFragment())
+    }
+
+    fun showUniversitySelector() {
+        navigateTo(AccountCreatedFragmentDirections.actionAccountCreatedFragmentToUniversitySelectorFragment())
     }
 
 }

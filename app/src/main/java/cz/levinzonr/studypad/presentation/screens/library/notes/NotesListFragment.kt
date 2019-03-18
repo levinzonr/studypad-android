@@ -5,18 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.presentation.adapters.NotesAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
-import cz.levinzonr.studypad.presentation.screens.notebook
-import cz.levinzonr.studypad.presentation.screens.showNoteDetail
-import cz.levinzonr.studypad.presentation.screens.showNoteEdit
 import cz.levinzonr.studypad.supportActionBar
 import kotlinx.android.synthetic.main.fragment_notes_list.*
 import org.koin.android.ext.android.inject
@@ -26,12 +21,9 @@ import org.koin.core.parameter.parametersOf
 class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
 
     private val adapter: NotesAdapter by inject()
+    private val args: NotesListFragmentArgs by navArgs()
 
-    companion object {
-        fun newInstance() = NotesListFragment()
-    }
-
-    private val viewModel: NotesListViewModel by viewModel { parametersOf(notebook!!.id) }
+    override val viewModel: NotesListViewModel by viewModel { parametersOf(args.NOTEBOOK.id) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,10 +43,10 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        supportActionBar?.title = notebook?.name
+        supportActionBar?.title = args.NOTEBOOK.name
 
         notesCreateNoteBtn.setOnClickListener {
-            showNoteEdit(notebook!!.id, null)
+            viewModel.showNoteCreation()
         }
 
 
@@ -69,6 +61,6 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
     }
 
     override fun onNoteSelected(note: Note) {
-        showNoteDetail(note)
+        viewModel.showNoteDetail(note)
     }
 }
