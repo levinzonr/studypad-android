@@ -3,6 +3,7 @@ package cz.levinzonr.studypad.presentation.screens
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
@@ -20,6 +21,24 @@ import cz.levinzonr.studypad.presentation.screens.onboarding.signup.CredentialsI
 import cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotebookDetailFragment
 import cz.levinzonr.studypad.presentation.screens.sharedbooks.SharedFragment
 
+
+
+sealed class NavigationEvent {
+
+    data class NavigateTo(val directions: NavDirections) : NavigationEvent()
+    data class ChangeFlow(val flow: Flow) : NavigationEvent()
+    object NavigateBack: NavigationEvent()
+}
+
+enum class Flow {
+    ONBOARDING, MAIN
+}
+
+
+
+
+
+/*
 private const val ARG_NOTEBOOK = "NOTEBOOK"
 private const val ARG_NOTEBOOK_ID = "NOTEBOOK_ID"
 private const val ARG_NOTE = "NOTE"
@@ -118,4 +137,4 @@ val PublishedNotebookDetailFragment.feedItem: PublishedNotebook.Feed
 fun NotebookListFragment.showPublishedNotebookDetail(nb: PublishedNotebook.Feed) {
     view?.findNavController()?.navigate(R.id.action_notebookListFragment_to_publishedNotebookDetailFragment,
         Bundle().apply { putParcelable(ARG_PUBLISHED_NOTEBOOK, nb) })
-}
+} */

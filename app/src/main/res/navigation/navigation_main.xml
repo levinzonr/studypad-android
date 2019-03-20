@@ -16,22 +16,13 @@
             app:destination="@id/publishNotebookFragment" />
         <action
             android:id="@+id/action_notebookListFragment_to_publishedNotebookDetailFragment"
-            app:destination="@id/publishedNotebookDetailFragment">
-        </action>
+            app:destination="@id/publishedNotebookDetailFragment" />
     </fragment>
     <fragment android:id="@+id/notesListFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.library.notes.NotesListFragment"
               android:label="fragment_notes_list"
               tools:layout="@layout/fragment_notes_list">
         <argument android:name="NOTEBOOK" app:argType="cz.levinzonr.studypad.domain.models.Notebook"/>
-        <action android:id="@+id/action_notesListFragment_to_editNoteFragment"
-                app:destination="@id/editNoteFragment"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
-        <action android:id="@+id/action_notesListFragment_to_noteDetailFragment"
-                app:destination="@id/noteDetailFragment"/>
     </fragment>
 
     <fragment android:id="@+id/settingsFragment"
@@ -50,17 +41,6 @@
               android:name="cz.levinzonr.studypad.presentation.screens.challenges.ChallengesFragment"
               android:label="@string/screen_challenges" tools:layout="@layout/fragment_challenges"></fragment>
 
-    <fragment android:id="@+id/editNoteFragment"
-              android:name="cz.levinzonr.studypad.presentation.screens.library.notes.EditNoteFragment"
-              android:label="fragment_edit_note" tools:layout="@layout/fragment_edit_note">
-    </fragment>
-    <fragment android:id="@+id/noteDetailFragment"
-              android:name="cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailFragment"
-              android:label="note_detail_fragment" tools:layout="@layout/note_detail_fragment">
-        <action
-            android:id="@+id/action_noteDetailFragment_to_editNoteFragment"
-            app:destination="@id/editNoteFragment" />
-    </fragment>
     <fragment android:id="@+id/loginFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginFragment"
               android:label="fragment_login" tools:layout="@layout/fragment_login"/>
@@ -73,10 +53,23 @@
         android:id="@+id/publishNotebookFragment"
         android:name="cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookFragment"
         android:label="fragment_publish_notebook"
-        tools:layout="@layout/fragment_publish_notebook" />
+        tools:layout="@layout/fragment_publish_notebook" >
+        <argument
+            android:name="notebook"
+            app:argType="cz.levinzonr.studypad.domain.models.Notebook" />
+    </fragment>
     <fragment
         android:id="@+id/publishedNotebookDetailFragment"
         android:name="cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotebookDetailFragment"
         android:label="fragment_published_notebook_detail"
-        tools:layout="@layout/fragment_published_notebook_detail" />
+        tools:layout="@layout/fragment_published_notebook_detail" >
+        <argument
+            android:name="PublishedNotebookId"
+            app:argType="string" />
+        <argument
+            android:name="PublishedNotebookFeed"
+            app:argType="cz.levinzonr.studypad.domain.models.PublishedNotebook$Feed"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

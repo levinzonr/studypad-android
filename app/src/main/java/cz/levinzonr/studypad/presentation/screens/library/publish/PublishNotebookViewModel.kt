@@ -18,7 +18,6 @@ class PublishNotebookViewModel(
     private val userManager: UserManager
 ) : BaseViewModel() {
 
-    val notebookPublishedEvent = liveEvent()
 
     var title = notebook.name
     var description = ""
@@ -43,7 +42,7 @@ class PublishNotebookViewModel(
         ) {
             onComplete {
                 toggleLoading(false)
-                notebookPublishedEvent.call()
+                navigateBack()
             }
 
             onError {
