@@ -81,7 +81,7 @@ class NotebookListViewModel(
 
     // Navigation Events
     fun showNotes(notebook: Notebook) {
-       // navigateTo(NotebookListFragmentDirections.actionNotebookListFragmentToNotesListFragment(notebook))
+        navigateTo(NotebookListFragmentDirections.actionNotebookListFragmentToNotesListFragment(notebook))
     }
 
     fun showPublishedNotebookDetail(id: String) {
@@ -89,7 +89,7 @@ class NotebookListViewModel(
     }
 
     fun startPublishNotebookFlow(notebook: Notebook) {
-        //navigateTo(NotebookListFragmentDirections.actionNotebookListFragmentToPublishNotebookFragment(notebook))
+        navigateTo(NotebookListFragmentDirections.actionNotebookListFragmentToPublishNotebookFragment(notebook))
     }
 
 }
