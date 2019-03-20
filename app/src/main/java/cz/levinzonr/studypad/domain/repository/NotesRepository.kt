@@ -5,6 +5,8 @@ import cz.levinzonr.studypad.domain.models.Note
 
 interface NotesRepository {
 
+    fun findById(id: Long) : LiveData<Note>
+
     suspend fun getNotesFromNotebook(notebookId: String) : List<Note>
 
     suspend fun createNote(notebookId: String, title: String, content: String) : Note

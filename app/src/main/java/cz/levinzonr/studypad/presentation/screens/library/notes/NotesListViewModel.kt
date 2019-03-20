@@ -1,5 +1,6 @@
 package cz.levinzonr.studypad.presentation.screens.library.notes
 
+import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.domain.interactors.library.GetNotesInteractor
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.repository.NotesRepository
@@ -14,15 +15,14 @@ class NotesListViewModel(
     val dataSource = notesRepository.notesLiveData(notebookId)
 
     init {
-        getNotesInteractor.executeWithInput(notebookId) {
-
-        }
     }
 
 
+
+
     fun showNoteDetail(note: Note) {
-       // val dir = NotesListFragmentDirections.actionNotesListFragmentToNoteDetailFragment(note)
-       // navigateTo(dir)
+        val dir = NotesListFragmentDirections.actionNotesListFragmentToNoteDetailFragment(note.id)
+        navigateTo(dir)
     }
 
     fun showNoteCreation() {

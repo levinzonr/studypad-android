@@ -17,17 +17,19 @@ class NoteDetailView @JvmOverloads constructor(
     attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs) {
 
-    private lateinit var noteContentTv: TextView
-    private lateinit var noteTitleTv: TextView
+    private val noteContentTv: TextView
+    private val noteTitleTv: TextView
+
 
     init {
+        val root = LayoutInflater.from(context).inflate(R.layout.view_note, this, true) as NoteDetailView
+        noteContentTv = root.findViewById(R.id.noteContentTv)
+        noteTitleTv  = root.findViewById(R.id.noteTitleTv)
         initView()
     }
 
     private fun initView() {
-        val root = LayoutInflater.from(context).inflate(R.layout.view_note, this, true) as NoteDetailView
-        noteContentTv = root.findViewById(R.id.noteContentTv)
-        noteTitleTv  = root.findViewById(R.id.noteTitleTv)
+
         noteTitleTv.setOnClickListener {
             noteContentTv.text = "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras justo odio, dapibus ac facilisis in, egestas eget quam.\n" +
                     "\n" +
