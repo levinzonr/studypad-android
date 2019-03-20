@@ -24,6 +24,9 @@ interface NoteDao {
     @Query("SELECT * FROM note WHERE notebookId = :notebookId")
     fun getList(notebookId: String) : List<Note>
 
+    @Query("SELECT * FROM note WHERE id = :id")
+    fun findById(id: Long) : LiveData<Note>
+
     @Delete
     fun deleteAll(list: List<Note>)
 

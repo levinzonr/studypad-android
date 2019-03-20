@@ -25,7 +25,7 @@ class MainActivity : BaseActivity() {
     private fun onDestinationChanged(destinationId: Int) {
         when (destinationId) {
             R.id.publishNotebookFragment -> hideMenu()
-         //   R.id.noteDetailFragment -> hideMenu()
+            R.id.noteDetailFragment -> hideMenu()
          //   R.id.editNoteFragment -> hideMenu()
             R.id.publishedNotebookDetailFragment -> hideMenu()
             else -> showMenu()

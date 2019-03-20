@@ -46,4 +46,8 @@ class NotesRepositoryImpl(
     override fun deleteLocally(list: List<Note>) {
         localDataSource.notesDao().deleteAll(list)
     }
+
+    override fun findById(id: Long): LiveData<Note> {
+        return localDataSource.notesDao().findById(id)
+    }
 }

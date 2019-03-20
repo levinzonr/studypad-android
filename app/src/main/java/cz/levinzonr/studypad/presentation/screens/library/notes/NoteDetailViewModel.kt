@@ -6,48 +6,72 @@ import cz.levinzonr.studypad.domain.interactors.library.DeleteNoteInteractor
 import cz.levinzonr.studypad.domain.interactors.library.PostNoteInteractor
 import cz.levinzonr.studypad.domain.interactors.library.UpdateNoteInteractor
 import cz.levinzonr.studypad.domain.models.Note
+import cz.levinzonr.studypad.domain.repository.NotesRepository
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
 
 class NoteDetailViewModel(
-    private val note: Note?,
+    private val noteId: Long,
+    private val repository: NotesRepository,
     private val updateNoteInteractor: UpdateNoteInteractor,
     private val deleteNoteInteractor: DeleteNoteInteractor,
     private val postNoteInteractor: PostNoteInteractor
-): BaseViewModel() {
+) : BaseViewModel() {
 
-    var title: String = note?.title ?: ""
-    var content: String = note?.content ?: ""
+    val noteLiveData = repository.findById(noteId)
+    private val note: Note?
+        get() = noteLiveData.value
 
-    val noteCreatedEvent : MutableLiveData<SimpleEvent> = MutableLiveData()
-    val noteDeletedEvent : MutableLiveData<SimpleEvent> = MutableLiveData()
+    var title: String = noteLiveData.value?.title ?: ""
+    var content: String = noteLiveData.value?.content ?: ""
+
+    val noteCreatedEvent: MutableLiveData<SimpleEvent> = MutableLiveData()
+    val noteDeletedEvent: MutableLiveData<SimpleEvent> = MutableLiveData()
+    val editModeLiveData = MutableLiveData<Boolean>()
+
+
+    init {
+        editModeLiveData.postValue(false)
+    }
 
     fun createNote(notebookId: String) {
         postNoteInteractor.input = PostNoteInteractor.Input(notebookId, title, content)
         postNoteInteractor.execute {
-           navigateBack()
+            navigateBack()
         }
     }
+
+
 
     fun editNote() {
         note?.let {
             updateNoteInteractor.input = UpdateNoteInteractor.Input(it.id, title, content)
             updateNoteInteractor.execute {
-                onComplete { noteCreatedEvent.call() }
+                editModeLiveData.postValue(false)
             }
         }
     }
 
     fun deleteNote() {
-        note ?: return
-        deleteNoteInteractor.executeWithInput(note.id) {
-            onComplete { noteDeletedEvent.call() }
+        note?.let { note ->
+            deleteNoteInteractor.executeWithInput(note.id) {
+                onComplete { noteDeletedEvent.call() }
+            }
         }
     }
 
 
+    fun handleModeChangeButton() {
+        val editMode = editModeLiveData.value ?: false
+        if (editMode) {
+            editNote()
+        } else {
+            editModeLiveData.postValue(!editMode)
+        }
+    }
+
     fun showEditNote() {
-      //  navigateTo(NoteDetailFragmentDirections.actionNoteDetailFragmentToEditNoteFragment(note, null))
+        //  navigateTo(NoteDetailFragmentDirections.actionNoteDetailFragmentToEditNoteFragment(note, null))
     }
 
 }
