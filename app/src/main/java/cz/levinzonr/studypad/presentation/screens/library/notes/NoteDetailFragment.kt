@@ -8,20 +8,13 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.setVisible
-import kotlinx.android.synthetic.main.note_detail_fragment.*
+import kotlinx.android.synthetic.main.fragment_note_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import android.animation.AnimatorListenerAdapter
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.DecelerateInterpolator
-import android.animation.ObjectAnimator
-import android.animation.Animator
-import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.common.NoteEditView
-import kotlinx.android.synthetic.main.fragment_account_created.*
+import timber.log.Timber
 
 
 class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
@@ -30,20 +23,25 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
     private val args: NoteDetailFragmentArgs by navArgs()
 
 
-    override val viewModel: NoteDetailViewModel by viewModel { parametersOf(args.noteId) }
+    override val viewModel: NoteDetailViewModel by viewModel { parametersOf(args.viewMode) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.note_detail_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_note_detail, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
 
+        viewModel.errorLiveData.observe(viewLifecycleOwner, Observer {
+            it.handle { showToast(it) }
+        })
+
         viewModel.editModeLiveData.observe(viewLifecycleOwner, Observer { editMode ->
+            Timber.d("Note mode: $editMode")
             detail.animate()
                 .rotationY(90f)
                 .setDuration(300L)
@@ -62,6 +60,7 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
 
 
         viewModel.noteLiveData.observe(viewLifecycleOwner, Observer {
+            Timber.d("Note update $it")
             noteDetailView.setNoteDetails(it)
             noteEditView.setNoteDetails(it)
         })
@@ -70,9 +69,6 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        noteDetailView.setVisible(false)
-        noteEditView.setVisible(false)
-
         noteEditView.listener = this
         noteDetailEditFab.setOnClickListener {
             viewModel.handleModeChangeButton()

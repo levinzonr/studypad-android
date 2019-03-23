@@ -33,19 +33,21 @@
             android:orientation="vertical">
 
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/noteTitleEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:imeOptions="actionNext"
+                android:hint="Title"
                 android:maxLines="1"
                 android:textStyle="bold" />
 
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/noteContentEt"
                 android:layout_width="match_parent"
+                android:hint="Enter your note.."
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_big"
                 android:background="@null" />

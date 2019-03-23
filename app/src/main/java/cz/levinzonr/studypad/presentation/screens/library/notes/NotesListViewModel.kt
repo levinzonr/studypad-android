@@ -14,19 +14,15 @@ class NotesListViewModel(
 
     val dataSource = notesRepository.notesLiveData(notebookId)
 
-    init {
-    }
-
-
-
-
     fun showNoteDetail(note: Note) {
-        val dir = NotesListFragmentDirections.actionNotesListFragmentToNoteDetailFragment(note.id)
+        val editMode = NoteDetailModels.NoteViewMode.Edit(note)
+        val dir = NotesListFragmentDirections.actionNotesListFragmentToNoteDetailFragment(editMode)
         navigateTo(dir)
     }
 
     fun showNoteCreation() {
-        //navigateTo(NotesListFragmentDirections.actionNotesListFragmentToEditNoteFragment(null, notebookId))
+        val createMode = NoteDetailModels.NoteViewMode.Create(notebookId)
+        navigateTo(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailFragment(createMode))
     }
 
 }

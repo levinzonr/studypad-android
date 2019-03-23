@@ -3,6 +3,7 @@
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListViewModel
+import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailModels
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListViewModel
 import cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookViewModel
@@ -29,7 +30,7 @@ val viewModelModule = module {
 
     viewModel { SignupViewModel(get(), get(), get()) }
 
-    viewModel { (note: Long) -> NoteDetailViewModel(note, get(), get(), get(), get()) }
+    viewModel { (mode: NoteDetailModels.NoteViewMode) -> NoteDetailViewModel(mode, get(), get(), get(), get()) }
 
     viewModel { (notebook: Notebook) -> PublishNotebookViewModel(notebook, get(), get(), get()) }
 

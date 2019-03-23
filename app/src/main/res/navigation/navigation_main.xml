@@ -79,9 +79,9 @@
         android:id="@+id/noteDetailFragment"
         android:name="cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailFragment"
         android:label="note_detail_fragment"
-        tools:layout="@layout/note_detail_fragment" >
+        tools:layout="@layout/fragment_note_detail" >
         <argument
-            android:name="noteId"
-            app:argType="long" />
+            android:name="viewMode"
+            app:argType="cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailModels$NoteViewMode" />
     </fragment>
 </navigation>
