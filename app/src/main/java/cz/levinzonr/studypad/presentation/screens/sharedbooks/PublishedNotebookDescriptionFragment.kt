@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 
@@ -18,9 +17,7 @@ import cz.levinzonr.studypad.formatTime
 import cz.levinzonr.studypad.loadAuthorImage
 import cz.levinzonr.studypad.presentation.adapters.NotePreviewAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.common.DividerItemDecorator
 import kotlinx.android.synthetic.main.fragment_published_notebook_description.*
-import kotlinx.android.synthetic.main.fragment_published_notebook_description.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import java.security.InvalidParameterException
@@ -30,6 +27,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
 
     private val notebookId: String
         get() = arguments?.getString(ARG_NOTEBOOK_ID) ?: throw InvalidParameterException()
+
 
     override val viewModel: PublishedNotebookDetailViewModel by viewModel { parametersOf(notebookId) }
 
@@ -43,6 +41,8 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        arguments?.getParcelable<PublishedNotebook.Feed>(ARG_FEED)?.let(this::preFillFeed)
 
         saveButton.setOnClickListener {
             viewModel.handleSaveAction()
@@ -93,15 +93,33 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
 
         publishBookDateTv.text = "last updated: ${detail.lastUpdate.formatTime()}"
+    }
 
+    private fun preFillFeed(feed: PublishedNotebook.Feed) {
+        publishedNotebookNameTv.text = feed.title
+        publishedNotebookAuthorTv.text = feed.author.displayName
+        publishedBookAuthorIv.loadAuthorImage(feed.author.photoUrl)
+        publishedBookTopicTv.text = "Subject: ${feed.topic}"
+        publishedBookDescriptionTv.text = feed.description
+        feed.tags.map { Chip(context).apply { text = it } }.forEach {
+            publishedBookTagsCG.addView(it)
+        }
 
+        publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
+
+        publishBookDateTv.text = "last updated: ${feed.lastUpdate.formatTime()}"
     }
 
     companion object {
         private const val ARG_NOTEBOOK_ID = "notebookid"
-        fun newInstance(notebookId: String): PublishedNotebookDescriptionFragment {
+        private const val ARG_FEED = "notebookfeed"
+
+        fun newInstance(notebookId: String, feed: PublishedNotebook.Feed? = null): PublishedNotebookDescriptionFragment {
             return PublishedNotebookDescriptionFragment().apply {
-                arguments = Bundle().apply { putString(ARG_NOTEBOOK_ID, notebookId) }
+                arguments = Bundle().apply {
+                    putString(ARG_NOTEBOOK_ID, notebookId)
+                    putParcelable(ARG_FEED, feed)
+                }
             }
         }
     }

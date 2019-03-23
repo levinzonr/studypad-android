@@ -17,6 +17,8 @@ import cz.levinzonr.studypad.presentation.common.NoteEditView
 import timber.log.Timber
 
 
+
+
 class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
 
 
@@ -41,6 +43,10 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
         })
 
         viewModel.editModeLiveData.observe(viewLifecycleOwner, Observer { editMode ->
+            val distance = 123123123
+            val scale = resources.displayMetrics.density * distance
+            noteDetailView.setCameraDistance(scale)
+            noteDetailView.setCameraDistance(scale)
             Timber.d("Note mode: $editMode")
             detail.animate()
                 .rotationY(90f)

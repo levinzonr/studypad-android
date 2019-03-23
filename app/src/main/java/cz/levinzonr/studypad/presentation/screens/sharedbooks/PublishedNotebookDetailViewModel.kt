@@ -52,4 +52,8 @@ class PublishedNotebookDetailViewModel(
             onComplete { updated.call() }
         }
     }
+
+    fun handleApplyChanges() {
+
+    }
 }
