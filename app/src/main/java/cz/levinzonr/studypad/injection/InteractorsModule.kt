@@ -71,4 +71,6 @@ val interacorModule = module {
 
     factory { GetNotebookVersionStateInteractor(get()) }
 
+    factory { ApplyLocalChangesInteractor(get()) }
+
 }

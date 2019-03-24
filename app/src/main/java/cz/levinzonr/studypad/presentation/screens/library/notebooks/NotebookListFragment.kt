@@ -17,12 +17,10 @@ import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.fragment_notebook_list.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListener {
 
-    companion object {
-        fun newInstance() = NotebookListFragment()
-    }
 
     override val viewModel: NotebookListViewModel by viewModel()
     private val adapter: NotebooksAdapter by inject()
@@ -86,7 +84,13 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
                     viewModel.updateNotebook(notebook, s)
                 }
                 R.id.notebookPublishBtn -> viewModel.startPublishNotebookFlow(notebook)
-                R.id.notebookOpenShared -> { notebook.publishedNotebookId?.let { viewModel::showPublishedNotebookDetail } }
+                R.id.notebookOpenShared -> {
+                    Timber.d("Hello")
+                    notebook.publishedNotebookId?.let {
+                        Timber.d(it)
+                        viewModel.showPublishedNotebookDetail(it)
+                    }
+                }
                 R.id.notebookShareBtn -> {
                     if (notebook.publishedNotebookId == null) {
                         viewModel.publishNotebook(notebook)

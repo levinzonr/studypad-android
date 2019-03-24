@@ -44,9 +44,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
 
         arguments?.getParcelable<PublishedNotebook.Feed>(ARG_FEED)?.let(this::preFillFeed)
 
-        saveButton.setOnClickListener {
-            viewModel.handleSaveAction()
-        }
+
 
         viewModel.getSharedDetailLiveData().observe(viewLifecycleOwner, Observer {
             showDetail(it)
@@ -61,18 +59,28 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
                 is State.SaveAvailable -> {
                     saveButton.setIconResource(R.drawable.ic_baseline_save_alt_24px)
                     saveButton.setText("Save")
+                    saveButton.setOnClickListener {
+                        viewModel.handleSaveAction()
+                    }
                 }
                 is State.UpdateAvailable -> {
                     saveButton.setIconResource(R.drawable.ic_sync_black_24dp)
                     saveButton.setText("Update")
+                    saveButton.setOnClickListener {
+                        viewModel.handleSaveAction()
+                    }
+
                 }
                 is State.UpToDate -> {
                     saveButton.setIconResource(R.drawable.ic_check_black_24dp)
                     saveButton.setText("Up to date")
+                    saveButton.setOnClickListener { showToast("Up to date!") }
+
                 }
                 is State.MergeAvailable -> {
                     saveButton.setIconResource(R.drawable.ic_round_publish_24px)
                     saveButton.setText("Apply changes")
+                    saveButton.setOnClickListener { viewModel.handleApplyChanges() }
                 }
             }
         })

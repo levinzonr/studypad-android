@@ -10,16 +10,9 @@ private const val AUTH = "/auth"
 
 interface Api {
 
-
-    @POST("$AUTH/email")
-    fun loginUsingEmail(@Body emailLoginRequest: EmailLoginRequest) : Deferred<AuthResponse>
-
-
     @POST("$AUTH/login")
     fun login(@Query("token") token: String) : Deferred<UserProfile>
 
-    @POST("$AUTH/facebook")
-    fun loginViaFacebook(@Body facebookLoginRequest: FacebookLoginRequest) : Deferred<AuthResponse>
 
     @POST("$AUTH/register")
     fun createAccount(@Body createAccountRequest: CreateAccountRequest) : Deferred<FirebaseResponse>
@@ -92,6 +85,12 @@ interface Api {
 
     //-----------------------------------------------------------------------------
 
+
+    @PATCH("$API/shared/{id}/suggestions/local")
+    fun applyLocalChangesAsync(@Path("id") notebookId: String) : Deferred<PublishedNotebook.Detail>
+
+    //-----------------------------------------------------------------------------
+
     @GET("$API/shared/{id}/comments")
     fun getSharedNotebookComments(@Path("id") notebookId: String) : Deferred<List<PublishedNotebook.Comment>>
 
@@ -103,4 +102,6 @@ interface Api {
 
     @POST("$API/shared/comments/{id}")
     fun editComment(@Path("id") commentId: Long, @Query("comment") body: String) : Deferred<PublishedNotebook.Comment>
+
+
 }

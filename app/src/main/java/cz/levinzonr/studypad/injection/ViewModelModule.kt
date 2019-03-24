@@ -40,7 +40,7 @@ val viewModelModule = module {
 
     viewModel { TopicSearchViewModel(get()) }
 
-    viewModel { (id: String) -> PublishedNotebookDetailViewModel(id, get(), get(), get()) }
+    viewModel { (id: String) -> PublishedNotebookDetailViewModel(id, get(), get(), get(), get()) }
 
     viewModel { (id: String) -> PublishedNotebookCommentsViewModel(id, get(), get(), get(), get()) }
 

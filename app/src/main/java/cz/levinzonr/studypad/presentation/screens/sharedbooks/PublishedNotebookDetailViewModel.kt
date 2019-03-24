@@ -8,6 +8,7 @@ import cz.levinzonr.studypad.domain.interactors.comments.DeleteCommentInteractor
 import cz.levinzonr.studypad.domain.interactors.comments.EditCommentInteractor
 import cz.levinzonr.studypad.domain.interactors.comments.GetCommentsInteractor
 import cz.levinzonr.studypad.domain.interactors.library.GetNotebookVersionStateInteractor
+import cz.levinzonr.studypad.domain.interactors.sharinghub.ApplyLocalChangesInteractor
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetPublishedNotebookDetail
 import cz.levinzonr.studypad.domain.interactors.sharinghub.ImportPublishedNotebookInteractor
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
@@ -20,6 +21,7 @@ import java.util.*
 
 class PublishedNotebookDetailViewModel(
     val notebookId: String,
+    private val applyLocalChangesInteractor: ApplyLocalChangesInteractor,
     private val getPublishedNotebookDetail: GetPublishedNotebookDetail,
     private val importPublishedNotebookInteractor: ImportPublishedNotebookInteractor,
     private val getNotebookVersionStateInteractor: GetNotebookVersionStateInteractor
@@ -54,6 +56,10 @@ class PublishedNotebookDetailViewModel(
     }
 
     fun handleApplyChanges() {
-
+        applyLocalChangesInteractor.executeWithInput(notebookId) {
+            onComplete {
+                stateLiveData.postValue(State.UpToDate)
+                sharedDetailLiveData.postValue(it) }
+        }
     }
 }
