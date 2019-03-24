@@ -1,9 +1,11 @@
 package cz.levinzonr.studypad
 
+import android.content.Context
 import android.content.res.Resources
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
@@ -216,6 +218,9 @@ fun Long.formatTime(): String {
 
     }
 }
+
+val Context.layoutInflater : LayoutInflater
+    get() = LayoutInflater.from(this)
 
 fun View.flip(toHide: View) {
     val animation = FlipAnimation(0f, -90f, 0.0f, height / 2.0f)

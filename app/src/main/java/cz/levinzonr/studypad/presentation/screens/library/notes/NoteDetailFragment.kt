@@ -43,11 +43,6 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
         })
 
         viewModel.editModeLiveData.observe(viewLifecycleOwner, Observer { editMode ->
-            val distance = 123123123
-            val scale = resources.displayMetrics.density * distance
-            noteDetailView.setCameraDistance(scale)
-            noteDetailView.setCameraDistance(scale)
-            Timber.d("Note mode: $editMode")
             detail.animate()
                 .rotationY(90f)
                 .setDuration(300L)

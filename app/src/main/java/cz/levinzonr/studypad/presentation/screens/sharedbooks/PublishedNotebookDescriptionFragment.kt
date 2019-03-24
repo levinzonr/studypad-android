@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
@@ -23,7 +24,7 @@ import org.koin.core.parameter.parametersOf
 import java.security.InvalidParameterException
 
 
-class PublishedNotebookDescriptionFragment : BaseFragment() {
+class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.NotePreviewListener {
 
     private val notebookId: String
         get() = arguments?.getString(ARG_NOTEBOOK_ID) ?: throw InvalidParameterException()
@@ -44,6 +45,10 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
 
         arguments?.getParcelable<PublishedNotebook.Feed>(ARG_FEED)?.let(this::preFillFeed)
 
+        scrollView.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            if (scrollY > oldScrollY) saveButton.shrink(true)
+            else saveButton.extend(true)
+        }
 
 
         viewModel.getSharedDetailLiveData().observe(viewLifecycleOwner, Observer {
@@ -97,7 +102,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
             publishedBookTagsCG.addView(it)
         }
 
-        publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes.first(5))
+        publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes.first(3), this)
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
 
         publishBookDateTv.text = "last updated: ${detail.lastUpdate.formatTime()}"
@@ -109,13 +114,15 @@ class PublishedNotebookDescriptionFragment : BaseFragment() {
         publishedBookAuthorIv.loadAuthorImage(feed.author.photoUrl)
         publishedBookTopicTv.text = "Subject: ${feed.topic}"
         publishedBookDescriptionTv.text = feed.description
-        feed.tags.map { Chip(context).apply { text = it } }.forEach {
-            publishedBookTagsCG.addView(it)
-        }
+
 
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
 
         publishBookDateTv.text = "last updated: ${feed.lastUpdate.formatTime()}"
+    }
+
+    override fun onShowAllButtonClicked() {
+
     }
 
     companion object {
