@@ -37,7 +37,7 @@ class MainActivity : BaseActivity() {
         bottomNav.animate()
             .setStartDelay(0)
             .alpha(1.0f)
-            .setDuration(5)
+            .setDuration(100)
             .withEndAction { bottomNav.visibility = View.VISIBLE }
             .start()
     }
@@ -48,7 +48,7 @@ class MainActivity : BaseActivity() {
         bottomNav.animate()
             .setStartDelay(0)
             .alpha(0.0f)
-            .setDuration(5).start()
+            .setDuration(100).start()
     }
 
 

@@ -78,7 +78,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <include layout="@layout/view_divider"/>
 
         <com.google.android.material.button.MaterialButton
             app:icon="@drawable/ic_forum_black_24dp"
@@ -88,9 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <include
 
-            layout="@layout/view_divider"/>
 
         <com.google.android.material.button.MaterialButton
             app:icon="@drawable/ic_round_add_24px"
@@ -100,7 +97,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <include layout="@layout/view_divider"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -96,6 +96,7 @@
     </style>
 
     <style name="Button.Text.Pref" parent="Button.Text">
+        <item name="android:padding">12dp</item>
         <item name="android:textColor">#000</item>
         <item name="iconPadding">12dp</item>
         <item name="android:textAlignment">textStart</item>
