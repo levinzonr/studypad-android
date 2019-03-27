@@ -62,4 +62,16 @@ class PublishedNotebookDetailViewModel(
                 sharedDetailLiveData.postValue(it) }
         }
     }
+
+    fun onShowAllSuggestionsClicked() {
+
+    }
+
+    fun onShowAllNotesClicked() {
+
+    }
+
+    fun onCreateNewSuggestionClicked() {
+
+    }
 }

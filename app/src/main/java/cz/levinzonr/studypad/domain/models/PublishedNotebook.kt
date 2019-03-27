@@ -37,7 +37,8 @@ object PublishedNotebook {
         val topic: String,
         val lastUpdate: Long,
         val languageCode: String? = null,
-        val versionState: VersionState
+        val versionState: VersionState,
+        val authoredByMe: Boolean
     )
 
     data class Note(

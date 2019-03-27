@@ -8,19 +8,22 @@ import android.view.ViewGroup
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.chip.Chip
+import cz.levinzonr.studypad.*
 
-import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.State
-import cz.levinzonr.studypad.first
-import cz.levinzonr.studypad.formatTime
-import cz.levinzonr.studypad.loadAuthorImage
 import cz.levinzonr.studypad.presentation.adapters.NotePreviewAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_published_notebook_description.*
+import kotlinx.android.synthetic.main.include_notebook_details.*
+import kotlinx.android.synthetic.main.include_notebook_info.*
+import kotlinx.android.synthetic.main.include_notebook_suggestions.*
+import kotlinx.android.synthetic.main.include_notebook_version.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 import java.security.InvalidParameterException
 
 
@@ -45,14 +48,9 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
 
         arguments?.getParcelable<PublishedNotebook.Feed>(ARG_FEED)?.let(this::preFillFeed)
 
-        scrollView.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
-            if (scrollY > oldScrollY) saveButton.shrink(true)
-            else saveButton.extend(true)
-        }
-
-
         viewModel.getSharedDetailLiveData().observe(viewLifecycleOwner, Observer {
             showDetail(it)
+            showSugesstionsState(it.versionState)
         })
 
         viewModel.updated.observe(viewLifecycleOwner, Observer {
@@ -60,35 +58,25 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         })
 
         viewModel.stateLiveData.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is State.SaveAvailable -> {
-                    saveButton.setIconResource(R.drawable.ic_baseline_save_alt_24px)
-                    saveButton.setText("Save")
-                    saveButton.setOnClickListener {
-                        viewModel.handleSaveAction()
-                    }
-                }
-                is State.UpdateAvailable -> {
-                    saveButton.setIconResource(R.drawable.ic_sync_black_24dp)
-                    saveButton.setText("Update")
-                    saveButton.setOnClickListener {
-                        viewModel.handleSaveAction()
-                    }
-
-                }
-                is State.UpToDate -> {
-                    saveButton.setIconResource(R.drawable.ic_check_black_24dp)
-                    saveButton.setText("Up to date")
-                    saveButton.setOnClickListener { showToast("Up to date!") }
-
-                }
-                is State.MergeAvailable -> {
-                    saveButton.setIconResource(R.drawable.ic_round_publish_24px)
-                    saveButton.setText("Apply changes")
-                    saveButton.setOnClickListener { viewModel.handleApplyChanges() }
-                }
-            }
+            showVersionState(it)
         })
+    }
+
+
+
+    private fun showSugesstionsState(versionState: PublishedNotebook.VersionState) {
+        notebookSuggestionShowAllBtn.setVisible(!versionState.modifications.isEmpty())
+        notebookSuggestionShowAllBtn.setOnCloseIconClickListener {
+            viewModel.onShowAllSuggestionsClicked()
+        }
+        notebookSuggestionsAddBtn.setOnCloseIconClickListener {
+            viewModel.onCreateNewSuggestionClicked()
+        }
+
+        val message = if (versionState.modifications.isEmpty())
+            "There are no pending suggestions yet. Have something to add?"
+        else "There are ${versionState.modifications.count()} pending suggestion from N users"
+        notebookSuggestionsMessage.text = message
     }
 
 
@@ -96,10 +84,10 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         publishedNotebookNameTv.text = detail.title
         publishedNotebookAuthorTv.text = detail.author.displayName
         publishedBookAuthorIv.loadAuthorImage(detail.author.photoUrl)
-        publishedBookTopicTv.text = "Subject: ${detail.topic}"
-        publishedBookDescriptionTv.text = detail.description
+        publishedBookTopicTv.text = detail.topic
+        notebookDescriptionTv.text = detail.description
         detail.tags.map { Chip(context).apply { text = it } }.forEach {
-            publishedBookTagsCG.addView(it)
+            notebookTagsChips.addView(it)
         }
 
         publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes.first(3), this)
@@ -112,24 +100,58 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         publishedNotebookNameTv.text = feed.title
         publishedNotebookAuthorTv.text = feed.author.displayName
         publishedBookAuthorIv.loadAuthorImage(feed.author.photoUrl)
-        publishedBookTopicTv.text = "Subject: ${feed.topic}"
-        publishedBookDescriptionTv.text = feed.description
-
-
+        publishedBookTopicTv.text = feed.topic
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
 
         publishBookDateTv.text = "last updated: ${feed.lastUpdate.formatTime()}"
     }
 
-    override fun onShowAllButtonClicked() {
+    private fun showVersionState(state: State) {
+        Timber.d("State: $state")
+        when (state) {
+            is State.UpdateAvailable -> {
+                notebookVersionBtn.setIconResource(R.drawable.ic_sync_black_24dp)
+                notebookVersionTv.text = "New version notebook is available! Tap to update"
+                notebookVersionBtn.text = "Update"
+                notebookVersionBtn.setOnClickListener { viewModel.handleSaveAction() }
+                notebookVersionLayout.setVisible(true)
 
+            }
+            is State.SaveAvailable -> {
+                notebookVersionBtn.setIconResource(R.drawable.ic_baseline_save_alt_24px)
+                notebookVersionTv.text = "Doesn't look like you have this notebook yet"
+                notebookVersionBtn.text = "Save"
+                notebookVersionBtn.setOnClickListener { viewModel.handleSaveAction() }
+                notebookVersionLayout.setVisible(true)
+
+            }
+            is State.MergeAvailable -> {
+                notebookVersionBtn.setIconResource(R.drawable.ic_round_publish_24px)
+                notebookVersionBtn.text = "Apply local changes"
+                notebookVersionTv.text =
+                    "Looks like you local notebook has divered from this one. Would you like apply your local changes?"
+                notebookVersionBtn.setOnClickListener { viewModel.handleApplyChanges() }
+                notebookVersionLayout.setVisible(true)
+
+            }
+            is State.UpToDate -> {
+                notebookVersionLayout.setVisible(false)
+            }
+        }
+    }
+
+    override fun onShowAllButtonClicked() {
+        viewModel.onShowAllNotesClicked()
     }
 
     companion object {
         private const val ARG_NOTEBOOK_ID = "notebookid"
         private const val ARG_FEED = "notebookfeed"
 
-        fun newInstance(notebookId: String, feed: PublishedNotebook.Feed? = null): PublishedNotebookDescriptionFragment {
+        fun newInstance(
+            notebookId: String,
+            feed: PublishedNotebook.Feed? = null
+        ): PublishedNotebookDescriptionFragment {
             return PublishedNotebookDescriptionFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_NOTEBOOK_ID, notebookId)
