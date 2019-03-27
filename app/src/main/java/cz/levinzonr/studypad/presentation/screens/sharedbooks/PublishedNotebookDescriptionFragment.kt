@@ -90,7 +90,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
             notebookTagsChips.addView(it)
         }
 
-        publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes.first(3), this)
+        publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes, this)
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
 
         publishBookDateTv.text = "last updated: ${detail.lastUpdate.formatTime()}"
