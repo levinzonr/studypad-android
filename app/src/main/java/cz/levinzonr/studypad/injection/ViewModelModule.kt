@@ -14,6 +14,7 @@ import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewMo
 import cz.levinzonr.studypad.presentation.screens.profile.ProfileViewModel
 import cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotebookCommentsViewModel
 import cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotebookDetailViewModel
+import cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotesListViewModel
 import cz.levinzonr.studypad.presentation.screens.sharedbooks.ShareHubViewModel
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
@@ -43,5 +44,7 @@ val viewModelModule = module {
     viewModel { (id: String) -> PublishedNotebookDetailViewModel(id, get(), get(), get(), get()) }
 
     viewModel { (id: String) -> PublishedNotebookCommentsViewModel(id, get(), get(), get(), get()) }
+
+    viewModel { PublishedNotesListViewModel() }
 
 }

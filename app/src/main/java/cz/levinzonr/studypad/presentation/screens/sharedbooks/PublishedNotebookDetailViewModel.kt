@@ -11,6 +11,7 @@ import cz.levinzonr.studypad.domain.interactors.library.GetNotebookVersionStateI
 import cz.levinzonr.studypad.domain.interactors.sharinghub.ApplyLocalChangesInteractor
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetPublishedNotebookDetail
 import cz.levinzonr.studypad.domain.interactors.sharinghub.ImportPublishedNotebookInteractor
+import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.State
 import cz.levinzonr.studypad.liveEvent
@@ -68,7 +69,9 @@ class PublishedNotebookDetailViewModel(
     }
 
     fun onShowAllNotesClicked() {
-
+        val notes = sharedDetailLiveData.value?.notes ?: listOf()
+        navigateTo(PublishedNotebookDetailFragmentDirections.actionPublishedNotebookDetailFragmentToPublishedNotesListFragment(
+            notes.map { Note(-1, it.title, it.content, notebookId) }.toTypedArray()))
     }
 
     fun onCreateNewSuggestionClicked() {

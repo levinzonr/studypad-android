@@ -74,6 +74,9 @@
             app:argType="cz.levinzonr.studypad.domain.models.PublishedNotebook$Feed"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_publishedNotebookDetailFragment_to_publishedNotesListFragment"
+            app:destination="@id/publishedNotesListFragment" />
     </fragment>
     <fragment
         android:id="@+id/noteDetailFragment"
@@ -83,5 +86,14 @@
         <argument
             android:name="viewMode"
             app:argType="cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailModels$NoteViewMode" />
+    </fragment>
+    <fragment
+        android:id="@+id/publishedNotesListFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotesListFragment"
+        android:label="fragment_published_notes_list"
+        tools:layout="@layout/fragment_published_notes_list" >
+        <argument
+            android:name="notes"
+            app:argType="cz.levinzonr.studypad.domain.models.Note[]" />
     </fragment>
 </navigation>

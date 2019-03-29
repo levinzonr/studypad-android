@@ -26,11 +26,11 @@
 
             <TextView
                 android:id="@+id/notebookSuggestionsMessage"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_big"
+                android:layout_marginStart="@dimen/space_large"
                 android:layout_marginTop="@dimen/space_normal"
-                android:layout_marginEnd="@dimen/space_big"
+                android:layout_marginEnd="@dimen/space_large"
                 android:text="TextView"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,16 +48,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/notebookSuggestionsMessage">
 
                 <com.google.android.material.chip.Chip
+                    android:layout_marginStart="@dimen/space_normal"
                     android:id="@+id/notebookSuggestionShowAllBtn"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    app:chipIcon="@drawable/ic_subject"
                     android:text="View all suggestions"
                     app:layout_constraintStart_toStartOf="parent"/>
 
                 <com.google.android.material.chip.Chip
+                    android:layout_marginStart="@dimen/space_normal"
+                    android:layout_marginEnd="@dimen/space_normal"
                     android:id="@+id/notebookSuggestionsAddBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
