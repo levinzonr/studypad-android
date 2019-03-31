@@ -17,5 +17,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
+
     abstract val navHostFragment: Fragment
 }

@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cz.levinzonr.studypad.BuildConfig
 
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.baseActivity
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.onHandle
 import cz.levinzonr.studypad.presentation.adapters.NotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.fragment_notebook_list.*
+import kotlinx.android.synthetic.main.include_toolbar.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -34,6 +36,8 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        baseActivity?.setSupportActionBar(toolbar)
 
         viewModel.dataSource.observe(this, Observer {
             showNotebooks(it)
