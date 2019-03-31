@@ -19,6 +19,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import cz.levinzonr.studypad.presentation.base.BaseActivity
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.FlipAnimation
@@ -244,4 +246,13 @@ fun View.flip(toHide: View) {
     })
 
     startAnimation(animation)
+}
+
+inline fun <reified T> Gson.fromJson(json: String) : T? {
+    val type = object : TypeToken<T>(){}.type
+    return try {
+        fromJson(json, type)
+    } catch (e: Exception) {
+        return null
+    }
 }
