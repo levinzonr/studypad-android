@@ -38,7 +38,6 @@ class SharedFragment : BaseFragment(), PublishedNotebooksAdapter.PublishedNotebo
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         subscribe()
-        baseActivity?.setSupportActionBar(toolbar)
 
     }
 

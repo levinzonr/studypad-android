@@ -7,17 +7,12 @@
     tools:context=".presentation.screens.sharedbooks.SharedFragment">
 
 
-    <include
-        android:id="@+id/include2"
-        layout="@layout/include_toolbar"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sharedNotebooksRv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ProgressBar

@@ -37,8 +37,6 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        baseActivity?.setSupportActionBar(toolbar)
-
         viewModel.dataSource.observe(this, Observer {
             showNotebooks(it)
         })

@@ -22,17 +22,16 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //setupKeyboardListener()
+        setSupportActionBar(toolbar)
         with(findNavController(R.id.fragment)) {
             bottomNav.setupWithNavController(this)
             addOnDestinationChangedListener { _, destination, _ ->
-                configureToolbar(destination)
-                onDestinationChanged(destination.id) }
+                toolbar.setupWithNavController(this)
+                onDestinationChanged(destination.id)
+            }
         }
     }
 
-    private fun configureToolbar(navDestination: NavDestination) {
-
-    }
 
     override fun setSupportActionBar(toolbar: Toolbar?) {
         super.setSupportActionBar(toolbar)
@@ -48,32 +47,49 @@ class MainActivity : BaseActivity() {
     }
 
     private fun onDestinationChanged(destinationId: Int) {
+        Timber.d("Toolbar: ${supportActionBar?.isShowing}")
         when (destinationId) {
-            R.id.publishNotebookFragment -> hideMenu()
-            R.id.noteDetailFragment -> hideMenu()
-         //   R.id.editNoteFragment -> hideMenu()
-            R.id.publishedNotebookDetailFragment -> hideMenu()
-            else -> showMenu()
+            R.id.publishNotebookFragment ->  {
+                hideMenu()
+                supportActionBar?.hide()
+            }
+            R.id.noteDetailFragment -> {
+                supportActionBar?.hide()
+                hideMenu()
+            }
+            //   R.id.editNoteFragment -> hideMenu()
+            R.id.publishedNotebookDetailFragment -> {
+                supportActionBar?.hide()
+                hideMenu()
+            }
+            else ->  {
+                supportActionBar?.show()
+                showMenu()
+            }
         }
+
     }
 
 
     private fun showMenu() {
+        bottomNav.visibility = View.VISIBLE
         bottomNav.animate()
             .setStartDelay(0)
             .alpha(1.0f)
-            .setDuration(100)
-            .withEndAction { bottomNav.visibility = View.VISIBLE }
+            .setDuration(1000)
+            .withEndAction { }
             .start()
     }
 
 
     private fun hideMenu() {
-        bottomNav.visibility = View.GONE
         bottomNav.animate()
             .setStartDelay(0)
             .alpha(0.0f)
-            .setDuration(100).start()
+            .setDuration(1000).withEndAction {
+                bottomNav.visibility = View.GONE
+
+            }.start()
     }
 
 

@@ -8,6 +8,10 @@
         android:layout_height="match_parent"
         tools:context=".presentation.screens.MainActivity">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/include_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <fragment
         android:id="@+id/fragment"
@@ -17,7 +21,7 @@
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
         app:navGraph="@navigation/navigation_main" />
 
 
