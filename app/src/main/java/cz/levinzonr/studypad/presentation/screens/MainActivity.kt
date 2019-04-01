@@ -2,7 +2,10 @@ package cz.levinzonr.studypad.presentation.screens
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -10,6 +13,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.presentation.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_toolbar.*
+import timber.log.Timber
 
 class MainActivity : BaseActivity() {
 
@@ -20,7 +24,26 @@ class MainActivity : BaseActivity() {
         //setupKeyboardListener()
         with(findNavController(R.id.fragment)) {
             bottomNav.setupWithNavController(this)
-            addOnDestinationChangedListener { _, destination, _ -> onDestinationChanged(destination.id) }
+            addOnDestinationChangedListener { _, destination, _ ->
+                configureToolbar(destination)
+                onDestinationChanged(destination.id) }
+        }
+    }
+
+    private fun configureToolbar(navDestination: NavDestination) {
+
+    }
+
+    override fun setSupportActionBar(toolbar: Toolbar?) {
+        super.setSupportActionBar(toolbar)
+        val navDestination = navController.currentDestination ?: return
+        supportActionBar?.title = navDestination.label
+        if (navDestination.id != R.id.notebookListFragment) {
+            Timber.d("Back Avil")
+            toolbar?.let {
+                it.setNavigationIcon(R.drawable.ic_chevron_right_black_24dp)
+                it.setNavigationOnClickListener { navController.navigateUp() }
+            }
         }
     }
 
@@ -55,4 +78,6 @@ class MainActivity : BaseActivity() {
 
 
     override val navHostFragment: Fragment by lazy { fragment }
+
+    override val navController: NavController by lazy { findNavController(R.id.fragment) }
 }
