@@ -18,4 +18,6 @@ val adapterModule = module {
     factory { (listner: TopicsAdapter.TopicListener) -> TopicsAdapter(listner) }
 
     factory { (listener: CommentsAdapter.CommentsItemListener,authorId: String?) -> CommentsAdapter(listener, authorId) }
+
+    factory { SuggestionsAdapter() }
 }

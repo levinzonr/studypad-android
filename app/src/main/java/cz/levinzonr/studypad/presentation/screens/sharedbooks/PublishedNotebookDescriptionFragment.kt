@@ -65,17 +65,20 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
 
 
     private fun showSugesstionsState(versionState: PublishedNotebook.VersionState) {
+
+        val unigueUsers = versionState.modifications.map { it.author }.distinctBy { it.uuid }.count()
+
         notebookSuggestionShowAllBtn.setVisible(!versionState.modifications.isEmpty())
-        notebookSuggestionShowAllBtn.setOnCloseIconClickListener {
+        notebookSuggestionShowAllBtn.setOnClickListener {
             viewModel.onShowAllSuggestionsClicked()
         }
-        notebookSuggestionsAddBtn.setOnCloseIconClickListener {
+        notebookSuggestionsAddBtn.setOnClickListener {
             viewModel.onCreateNewSuggestionClicked()
         }
 
         val message = if (versionState.modifications.isEmpty())
             "There are no pending suggestions yet. Have something to add?"
-        else "There are ${versionState.modifications.count()} pending suggestion from N users"
+        else "There are ${versionState.modifications.count()} pending suggestion from $unigueUsers users"
         notebookSuggestionsMessage.text = message
     }
 

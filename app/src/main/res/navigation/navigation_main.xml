@@ -77,6 +77,9 @@
         <action
             android:id="@+id/action_publishedNotebookDetailFragment_to_publishedNotesListFragment"
             app:destination="@id/publishedNotesListFragment" />
+        <action
+            android:id="@+id/action_publishedNotebookDetailFragment_to_notebookSuggestionsFragment"
+            app:destination="@id/notebookSuggestionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/noteDetailFragment"
@@ -95,5 +98,14 @@
         <argument
             android:name="notes"
             app:argType="cz.levinzonr.studypad.domain.models.Note[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/notebookSuggestionsFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.sharedbooks.NotebookSuggestionsFragment"
+        android:label="fragment_notebook_suggestions"
+        tools:layout="@layout/fragment_notebook_suggestions" >
+        <argument
+            android:name="suggestions"
+            app:argType="cz.levinzonr.studypad.domain.models.PublishedNotebook$Modification[]" />
     </fragment>
 </navigation>

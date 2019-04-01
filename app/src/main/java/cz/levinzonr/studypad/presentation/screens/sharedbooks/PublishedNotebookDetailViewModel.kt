@@ -65,7 +65,10 @@ class PublishedNotebookDetailViewModel(
     }
 
     fun onShowAllSuggestionsClicked() {
-
+        val modifications = sharedDetailLiveData.value?.versionState?.modifications ?: listOf()
+        navigateTo(PublishedNotebookDetailFragmentDirections.actionPublishedNotebookDetailFragmentToNotebookSuggestionsFragment(
+            modifications.toTypedArray()
+        ))
     }
 
     fun onShowAllNotesClicked() {
