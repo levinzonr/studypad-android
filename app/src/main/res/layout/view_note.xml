@@ -38,7 +38,7 @@
                     android:textStyle="bold" />
 
 
-                <TextView
+                <com.nishant.math.MathView
                     android:textSize="18sp"
                     tools:text="Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Donec id elit non mi porta gravida at eget metus."
                     android:id="@+id/noteContentTv"
