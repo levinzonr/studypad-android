@@ -57,6 +57,12 @@ fun ViewGroup.asSequence(): Sequence<View> = object : Sequence<View> {
     }
 }
 
+fun ViewGroup.removeIf(block: (View) -> Boolean) {
+    asSequence().forEach {
+        if (block(it)) removeView(it)
+    }
+}
+
 fun ViewGroup.removeAllBut(id: Int) {
     asSequence().forEach {
         if (it.id != id) {

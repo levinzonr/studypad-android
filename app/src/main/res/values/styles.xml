@@ -56,6 +56,14 @@
         <item name="bottomSheetStyle">@style/ModalTheme</item>
     </style>
 
+
+    <style name="TextInputButton">
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">true</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:drawableEnd">@drawable/ic_chevron_right_black_24dp</item>
+    </style>
+
     <style name="ModalTheme" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:windowIsFloating">false</item>
         <item name="android:background">@drawable/background_dialog</item>

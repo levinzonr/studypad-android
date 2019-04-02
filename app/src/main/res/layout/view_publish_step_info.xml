@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_margin="@dimen/space_big"
+        android:hint="Topic/Subject"
+        app:helperText="Main subject or topic of your notebook"
+        android:layout_marginTop="@dimen/space_normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/notebookTopicEt"
+            style="@style/TextInputButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/space_big"
+        android:layout_marginStart="@dimen/space_big"
+        android:text="Tags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/notebookTagsCG"
+        android:layout_margin="@dimen/space_big"
+        app:chipSpacing="@dimen/space_normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.google.android.material.chip.ChipGroup>
+
+</LinearLayout>
+

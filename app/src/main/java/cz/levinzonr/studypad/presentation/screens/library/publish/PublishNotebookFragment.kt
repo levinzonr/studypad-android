@@ -5,21 +5,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.chip.Chip
 import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.common.EntryChip
+import cz.levinzonr.studypad.presentation.screens.library.publish.steps.AdditionalInfoStep
+import cz.levinzonr.studypad.presentation.screens.library.publish.steps.BaseStep
+import cz.levinzonr.studypad.presentation.screens.library.publish.steps.BasicStep
+import cz.levinzonr.studypad.presentation.screens.library.publish.steps.DescriptionStep
+import ernestoyaquello.com.verticalstepperform.VerticalStepperFormView
+import ernestoyaquello.com.verticalstepperform.listener.StepperFormListener
 import kotlinx.android.synthetic.main.fragment_publish_notebook.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import timber.log.Timber
 
-class PublishNotebookFragment : BaseFragment() {
+class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.StepViewClickListener {
 
     private val args: PublishNotebookFragmentArgs by navArgs()
     override val viewModel: PublishNotebookViewModel by viewModel { parametersOf(args.notebook) }
+
+    private lateinit var stepOne: BasicStep
+    private lateinit var stepTwo: AdditionalInfoStep
+    private lateinit var stepThree: DescriptionStep
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,79 +39,51 @@ class PublishNotebookFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        subscribe()
-        setupListeners()
+        stepOne = BasicStep().apply { listener = this@PublishNotebookFragment }
+        stepTwo = AdditionalInfoStep().apply { listener = this@PublishNotebookFragment }
+        stepThree = DescriptionStep().apply { listener = this@PublishNotebookFragment }
+
+        stepperForm
+            .setup(this, listOf(stepOne, stepTwo, stepThree))
+            .init()
     }
 
-    private fun setupListeners() {
-        notebookDescriptionEt.onTextChanged {
-            viewModel.description = it
-        }
 
-        notebookTitleEt.onTextChanged {
-            viewModel.title = it
-        }
-
-        notebookAddTagChip.setOnClickListener {
-            TagSearchDialog.show(fragmentManager!!, viewModel.selectedTags.value ?: setOf()) { tag, selected ->
-                viewModel.setTagSelected(tag, selected)
-            }
-        }
-
-        notebookTopic.setOnClickListener {
-            TopicSearchDialog.show(fragmentManager!!) {
-                viewModel.topic = it
-                notebookTopic.setText(it.name)
-            }
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        with(viewModel) {
-            notebookDescriptionEt.setText(description)
-            notebookTitleEt.setText(title)
-            notebookTopic.setText(topic?.name ?: "")
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.notebookTopicEt -> { showTopicSelector() }
+            R.id.notebookLanguageEt -> { showLanguageSelector() }
+            R.id.notebookSchoolEt -> {showSchoolSelector() }
+            else -> { showTagSelector() }
 
         }
     }
 
-    private fun addTag(tag: String) {
-        val chip = EntryChip(context).apply { text = tag }
-
-        chip.setOnCloseIconClickListener {
-            notebookTags.removeView(chip)
-            viewModel.setTagSelected(tag, false)
-        }
-
-        notebookTags.addView(chip)
+    override fun onCompletedForm() {
     }
 
-    private fun subscribe() {
-        publishButton.setOnClickListener {
-            viewModel.publish()
+    override fun onCancelledForm() {
+
+    }
+
+    private fun showTagSelector() {
+        TagSearchDialog.show(childFragmentManager, stepTwo.stepData.tags.toSet()) { value, enable ->
+            stepTwo.toggleTag(value,enable)
         }
+    }
 
+    private fun showTopicSelector() {
+        TopicSearchDialog.show(childFragmentManager) {
+            stepTwo.setTopic(it)
+        }
+    }
 
-        viewModel.errorLiveData.observe(viewLifecycleOwner, Observer {
-            it.handle { showToast(it) }
-        })
+    private fun showSchoolSelector() {
 
-        viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
-            progressBar.setVisible(it)
-        })
+    }
 
-        viewModel.selectedTags.observe(viewLifecycleOwner, Observer {
-            Timber.d("Tag: $it")
-            notebookTags.asSequence().toList().forEach {
-                if (it == notebookAddTagChip) {
-                    Timber.d("Slip view")
-                } else {
-                    notebookTags.removeView(it)
-                    Timber.d("remove ${(it as Chip).text}")
-                }
-            }
-            it.forEach { addTag(it) }
-        })
+    private fun showLanguageSelector() {
+
     }
 }
+
