@@ -15,17 +15,12 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
-class UniversitySelectorFragment : BaseFragment() {
+class UniversitySelectorFragment : BaseFragment(), androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
 
     override val viewModel: SignupViewModel by sharedViewModel()
 
     private val adapter: UniversityAdapter by inject()
-
-    private lateinit var searchMenuItem: MenuItem
-
-    private val searchView: SearchView?
-        get() = searchMenuItem.actionView as SearchView?
 
 
     override fun onCreateView(
@@ -46,30 +41,22 @@ class UniversitySelectorFragment : BaseFragment() {
         adapter.onUniversitySelected = {
             viewModel.updateUniversity(it)
         }
-        baseActivity?.setSupportActionBar(appToolbar)
 
         viewModel.universitiesLiveData.observe(this, Observer {
             adapter.items = it
         })
 
+        searchView.setOnQueryTextListener(this)
+
+
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_university, menu)
-        searchMenuItem = menu.findItem(R.id.actionSearch)
-
-        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(p0: String?): Boolean {
-                viewModel.findUnversities(p0 ?: "")
-                return true
-            }
-        })
+    override fun onQueryTextSubmit(p0: String?): Boolean {
+        return true
     }
 
-
+    override fun onQueryTextChange(p0: String?): Boolean {
+        viewModel.findUnversities(p0 ?: "")
+        return true
+    }
 }

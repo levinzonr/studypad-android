@@ -34,10 +34,7 @@ class EditNotebookDialog : cz.levinzonr.studypad.presentation.base.BottomSheetDi
             val fragment = fm.findFragmentByTag(TAG) as? EditNotebookDialog? ?: EditNotebookDialog()
             fragment.arguments = Bundle().apply { putParcelable(ARG_NOTEBOOK, notebook) }
             fragment.onEdit = onComplete
-            fragment.show(
-                fm,
-                TAG
-            )
+            fragment.show(fm, TAG)
         }
     }
 
