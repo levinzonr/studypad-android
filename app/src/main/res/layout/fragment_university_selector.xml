@@ -9,6 +9,8 @@
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
+            app:elevation="0dp"
+            android:elevation="0dp"
             android:background="@android:color/transparent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
@@ -16,16 +18,24 @@
 
 
         <com.google.android.material.card.MaterialCardView
+                app:cardElevation="@dimen/cardview_default_elevation"
                 android:layout_margin="@dimen/space_big"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
             <androidx.appcompat.widget.SearchView
+                    app:iconifiedByDefault="false"
+                    app:defaultQueryHint="Search"
+                    app:searchIcon="@drawable/ic_search"
+                    app:queryHint="Search"
+                    android:tooltipText="Search"
                     android:id="@+id/searchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
+
         </com.google.android.material.card.MaterialCardView>
+
 
 
     </com.google.android.material.appbar.AppBarLayout>

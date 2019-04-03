@@ -30,7 +30,9 @@
 
     <fragment android:id="@+id/settingsFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.settings.SettingsFragment"
-              android:label="Settings" tools:layout="@layout/fragment_settings"/>
+              android:label="Settings" tools:layout="@layout/fragment_settings">
+        <action android:id="@+id/action_settingsFragment_self" app:destination="@id/settingsFragment"/>
+    </fragment>
     <fragment android:id="@+id/sharedFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.sharedbooks.SharedFragment"
               android:label="@string/screen_sharing_hub" tools:layout="@layout/fragment_shared">
@@ -51,7 +53,10 @@
         android:id="@+id/profileFragment"
         android:name="cz.levinzonr.studypad.presentation.screens.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action android:id="@+id/action_profileFragment_to_universitySelectorFragment2"
+                app:destination="@id/universitySelectorFragment2"/>
+    </fragment>
     <fragment
         android:id="@+id/publishNotebookFragment"
         android:name="cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookFragment"
@@ -108,4 +113,7 @@
             android:name="suggestions"
             app:argType="cz.levinzonr.studypad.domain.models.PublishedNotebook$Modification[]" />
     </fragment>
+    <fragment android:id="@+id/universitySelectorFragment2"
+              android:name="cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment"
+              android:label="fragment_university_selector" tools:layout="@layout/fragment_university_selector"/>
 </navigation>

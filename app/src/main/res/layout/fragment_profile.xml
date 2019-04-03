@@ -71,6 +71,7 @@
 
 
         <com.google.android.material.button.MaterialButton
+                android:id="@+id/editProfileBtn"
             app:icon="@drawable/ic_edit"
             android:gravity="start"
             android:text="Edit Profile"

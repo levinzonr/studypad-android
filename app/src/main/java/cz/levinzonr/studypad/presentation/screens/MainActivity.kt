@@ -62,6 +62,9 @@ class MainActivity : BaseActivity() {
                 supportActionBar?.hide()
                 hideMenu()
             }
+            R.id.universitySelectorFragment2 -> {
+                supportActionBar?.hide()
+            }
             else ->  {
                 supportActionBar?.show()
                 showMenu()

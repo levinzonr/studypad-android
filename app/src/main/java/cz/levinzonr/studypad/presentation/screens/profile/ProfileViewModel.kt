@@ -42,5 +42,9 @@ class ProfileViewModel(
         }
     }
 
+    fun onEditProfileButtonClicked() {
+        navigateTo(ProfileFragmentDirections.actionProfileFragmentToUniversitySelectorFragment2())
+    }
+
 
 }
