@@ -2,13 +2,16 @@ package cz.levinzonr.studypad.presentation.screens.library.publish.steps
 
 import android.view.View
 import cz.levinzonr.studypad.layoutInflater
+import cz.levinzonr.studypad.presentation.screens.library.publish.Validatable
 import ernestoyaquello.com.verticalstepperform.Builder
 import ernestoyaquello.com.verticalstepperform.Step
 import ernestoyaquello.com.verticalstepperform.VerticalStepperFormView
+import timber.log.Timber
 
-abstract class BaseStep<T>(title: String, content: String = "") : Step<T>(title, content){
+abstract class BaseStep<T: Validatable>(val listener: StepViewClickListener?, title: String, content: String = "") : Step<T>(title, content){
 
-    var listener: StepViewClickListener? = null
+
+    protected lateinit var stepView: View
 
     override fun restoreStepData(data: T) {
     }
@@ -17,6 +20,12 @@ abstract class BaseStep<T>(title: String, content: String = "") : Step<T>(title,
         return "Not Implemented"
     }
 
+
+    override fun isStepDataValid(stepData: T): IsDataValid {
+        Timber.d("IsValid: $stepData")
+        val valid = stepData.isValid()
+        return IsDataValid(valid)
+    }
 
     override fun onStepOpened(animated: Boolean) {
     }
@@ -30,6 +39,18 @@ abstract class BaseStep<T>(title: String, content: String = "") : Step<T>(title,
     override fun onStepMarkedAsCompleted(animated: Boolean) {
 
     }
+
+    override fun createStepContentLayout(): View {
+        return context.layoutInflater.inflate(getStepResourceId(), null, false)
+            .also {
+                stepView = it
+                onStepViewCreated()
+            }
+    }
+
+    protected abstract fun onStepViewCreated()
+
+    protected abstract fun getStepResourceId() : Int
 
     interface StepViewClickListener {
         fun onClick(view: View)

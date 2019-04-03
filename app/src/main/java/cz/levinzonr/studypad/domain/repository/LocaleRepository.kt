@@ -6,5 +6,10 @@ interface LocaleRepository {
 
     suspend fun getAvailableLanguages() : List<Locale>
 
+    fun getCurrentLocale() : Locale
+
+    fun getDefaultLocale() : Locale
+
+    fun saveCurrentLocale(locale: Locale)
 
 }

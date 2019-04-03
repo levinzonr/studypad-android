@@ -8,6 +8,7 @@ import cz.levinzonr.studypad.BuildConfig
 import cz.levinzonr.studypad.rest.Api
 import cz.levinzonr.studypad.rest.AuthTokenInterceptor
 import cz.levinzonr.studypad.rest.FirebaseAuthenticator
+import cz.levinzonr.studypad.rest.LocaleInterceptor
 import cz.levinzonr.studypad.rest.utils.ItemTypeAdaperFactory
 import okhttp3.OkHttpClient
 import org.koin.dsl.module.module
@@ -30,6 +31,7 @@ val rest = module {
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .addInterceptor(AuthTokenInterceptor(get()))
+            .addInterceptor(LocaleInterceptor(get()))
             .authenticator(FirebaseAuthenticator(get()))
         if (BuildConfig.DEBUG) {
             val logging = okhttp3.logging.HttpLoggingInterceptor()

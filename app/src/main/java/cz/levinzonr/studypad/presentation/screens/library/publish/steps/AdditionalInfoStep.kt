@@ -10,52 +10,48 @@ import cz.levinzonr.studypad.layoutInflater
 import cz.levinzonr.studypad.presentation.screens.library.publish.PublishModels
 import cz.levinzonr.studypad.removeIf
 import cz.levinzonr.studypad.views
-import ernestoyaquello.com.verticalstepperform.Step
+import kotlinx.android.synthetic.main.view_note_edition.view.*
 import kotlinx.android.synthetic.main.view_publish_step_info.view.*
 
-class AdditionalInfoStep() : BaseStep<PublishModels.StepTwoResult>("Step2", "Helo wosadaslmnfdsonmd;dsk kdan lksmdq") {
-
-    private lateinit var topicEt: TextInputEditText
-    private lateinit var chipGroup: ChipGroup
+class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishModels.StepTwoResult>(listener,"Step2", "Helo wosadaslmnfdsonmd;dsk kdan lksmdq") {
 
 
-    override fun isStepDataValid(stepData: PublishModels.StepTwoResult?): IsDataValid {
-        return IsDataValid(true)
-    }
 
-    override fun createStepContentLayout(): View {
-        val view = context.layoutInflater.inflate(R.layout.view_publish_step_info, null, false)
-        topicEt = view.notebookTopicEt
-        topicEt.setOnClickListener { listener?.onClick(it) }
+    override fun getStepResourceId(): Int = R.layout.view_publish_step_info
+
+    override fun onStepViewCreated() {
+        stepView.notebookTopicEt.setOnClickListener { listener?.onClick(it) }
         val addTagButton = Chip(context).apply {
             text = "Add Tag"
             setChipIconResource(R.drawable.ic_round_add_24px)
             setChipIconTintResource(R.color.blue)
         }
         addTagButton.setOnClickListener { listener?.onClick(it) }
-        chipGroup = view.notebookTagsCG
-        chipGroup.addView(addTagButton)
-        return view
-
+        stepView.notebookTagsCG.addView(addTagButton)
     }
 
     override fun getStepData(): PublishModels.StepTwoResult {
-        val tags = chipGroup.views.map { (it as Chip).text.toString() }
-        return PublishModels.StepTwoResult(topicEt.tag as? Topic?, tags.toMutableSet())
+        val tags = stepView.notebookTagsCG.views
+            .filter { (it as Chip).chipIcon == null }
+            .map { (it as Chip).text.toString() }
+
+        return PublishModels.StepTwoResult(stepView.notebookTopicEt.tag as? Topic?, tags.toMutableSet())
     }
 
     fun setTopic(topic: Topic) {
-        topicEt.setText(topic.name)
-        topicEt.tag = topic
+        stepView.notebookTopicEt.setText(topic.name)
+        stepView.notebookTopicEt.tag = topic
+        markAsCompletedOrUncompleted(true)
     }
 
     fun toggleTag(tag: String, enable: Boolean) {
         if (!enable) {
-            chipGroup.removeIf { (it as Chip).text == tag }
+            stepView.notebookTagsCG.removeIf { (it as Chip).text == tag }
         } else {
-            chipGroup.addView(Chip(context).apply { text = tag })
+            stepView.notebookTagsCG.addView(Chip(context).apply { text = tag })
 
         }
+        markAsCompletedOrUncompleted(true)
     }
 
 }

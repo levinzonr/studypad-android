@@ -14,8 +14,6 @@ class TagsRepositoryImpl(private val gson: Gson, private val prefManager: PrefMa
     }
 
     override suspend fun getRecent(): List<String> {
-        return List(10) { "Tag $it"}
-
         return getAll()
             .sortedByDescending { it.usedCount }
             .first(10)

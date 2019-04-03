@@ -35,7 +35,7 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
     private val userManager: UserManager by inject()
 
     override val viewModel: PublishedNotebookCommentsViewModel by viewModel { parametersOf(notebookId) }
-    private val adapter : CommentsAdapter by inject { parametersOf(this, userManager.getUserInfo()?.uuid) }
+    private val adapter : CommentsAdapter by inject { parametersOf(this, userManager.getCurrentUserInfo()?.id) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

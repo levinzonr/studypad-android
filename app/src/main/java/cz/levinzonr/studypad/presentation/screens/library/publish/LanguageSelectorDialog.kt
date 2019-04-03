@@ -51,7 +51,7 @@ class LanguageSelectorDialog : BottomSheetDialog(), LanguagesAdapter.LanguageIte
     }
 
     companion object {
-        private val TAG = "locale"
+        private const val TAG = "locale"
         fun show(fragmentManager: FragmentManager, onSelected: (Locale) -> Unit) {
             val fragment = fragmentManager.findFragmentByTag(TAG) as? LanguageSelectorDialog? ?: LanguageSelectorDialog()
             fragment.listener = onSelected

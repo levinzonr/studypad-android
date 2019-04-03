@@ -1,44 +1,56 @@
 package cz.levinzonr.studypad.presentation.screens.library.publish.steps
 
 import android.view.View
-import android.widget.Toast
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.Locale
-import cz.levinzonr.studypad.domain.models.Location
+import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.layoutInflater
+import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.screens.library.publish.PublishModels
-import ernestoyaquello.com.verticalstepperform.Step
 import kotlinx.android.synthetic.main.view_publish_step_basic.view.*
 
-class BasicStep() : BaseStep<PublishModels.StepOneResult>("Step1", "Step 1 desciptiosn hello wronds") {
-
-    override fun isStepDataValid(stepData: PublishModels.StepOneResult?): IsDataValid {
-        return IsDataValid(true)
-    }
+class BasicStep(private val userManager: UserManager, val notebook: Notebook, stepViewClickListener: StepViewClickListener) : BaseStep<PublishModels.StepOneResult>(stepViewClickListener,"Step1", "Step 1 desciptiosn hello wronds") {
 
 
     override fun getStepDataAsHumanReadableString(): String {
         return "hello"
     }
 
-    override fun createStepContentLayout(): View {
-        val view =  context.layoutInflater.inflate(R.layout.view_publish_step_basic, null, false)
-        view.notebookLanguageEt.setOnClickListener { listener?.onClick(it) }
-        view.notebookSchoolEt.setOnClickListener { listener?.onClick(it) }
-        return view
+    override fun getStepResourceId(): Int = R.layout.view_publish_step_basic
+
+
+    override fun onStepViewCreated() {
+        setupDefaultParameters()
+        stepView.notebookLanguageEt.setOnClickListener { listener?.onClick(it) }
+        stepView.notebookSchoolEt.setOnClickListener { listener?.onClick(it) }
+        stepView.notebookNameEt.onTextChanged { markAsCompletedOrUncompleted(true) }
     }
 
     override fun getStepData(): PublishModels.StepOneResult {
-        return PublishModels.StepOneResult(
-            "",
-            University("full", Location("as", "sa"), 1),
-            ""
-        )
+        val uni = stepView.notebookSchoolEt.tag as? University?
+        val locale = stepView.notebookLanguageEt.tag as Locale
+        return PublishModels.StepOneResult(stepView.notebookNameEt.text.toString(), uni, langCode = locale.code)
     }
 
-    fun setLanguage(locale: Locale) {
-        entireStepLayout.notebookLanguageEt.setText(locale.displayName)
-        entireStepLayout.notebookLanguageEt.tag = locale
+    fun setLanguage(locale: Locale, checkInput: Boolean = false) {
+        stepView.notebookLanguageEt.setText(locale.displayName)
+        stepView.notebookLanguageEt.tag = locale
+        if (checkInput) markAsCompletedOrUncompleted(true)
+    }
+
+    fun setUniversity(university: University, checkInput: Boolean = false) {
+        stepView.notebookSchoolEt.tag = university
+        stepView.notebookSchoolEt.setText(university.fullName)
+        if (checkInput) markAsCompletedOrUncompleted(true)
+    }
+
+    private fun setupDefaultParameters() {
+        userManager.getCurrentUserInfo()?.let {
+            it.university?.let { setUniversity(it ,false)}
+            setLanguage(it.chosenLocale, false)
+            stepView.notebookNameEt.setText(notebook.name)
+        }
     }
 }

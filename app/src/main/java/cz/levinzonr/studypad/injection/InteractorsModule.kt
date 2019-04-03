@@ -42,7 +42,7 @@ val interacorModule = module {
 
     factory { GetUserProfileInteractor(get()) }
 
-    factory { PublishNotebookInteractor(get()) }
+    factory { PublishNotebookInteractor(get(), get()) }
 
     factory { GetRelevantNotebooks(get()) }
 

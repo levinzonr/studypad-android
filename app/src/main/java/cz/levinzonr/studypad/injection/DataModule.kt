@@ -30,6 +30,6 @@ val repositoryModule = module {
 
     single<TagsRepository> { TagsRepositoryImpl(get(), get()) }
 
-    single<LocaleRepository> { LocaleRepositoryImpl()}
+    single<LocaleRepository> { LocaleRepositoryImpl(get(), get())}
 }
 

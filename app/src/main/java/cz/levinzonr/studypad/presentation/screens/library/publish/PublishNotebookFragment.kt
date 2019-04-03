@@ -15,6 +15,7 @@ import cz.levinzonr.studypad.presentation.screens.library.publish.steps.Descript
 import ernestoyaquello.com.verticalstepperform.VerticalStepperFormView
 import ernestoyaquello.com.verticalstepperform.listener.StepperFormListener
 import kotlinx.android.synthetic.main.fragment_publish_notebook.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -23,9 +24,9 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
     private val args: PublishNotebookFragmentArgs by navArgs()
     override val viewModel: PublishNotebookViewModel by viewModel { parametersOf(args.notebook) }
 
-    private lateinit var stepOne: BasicStep
-    private lateinit var stepTwo: AdditionalInfoStep
-    private lateinit var stepThree: DescriptionStep
+    private val stepOne: BasicStep by inject { parametersOf(args.notebook, this) }
+    private val stepTwo: AdditionalInfoStep by inject { parametersOf(this) }
+    private val stepThree: DescriptionStep by inject { parametersOf(this) }
 
 
     override fun onCreateView(
@@ -39,10 +40,6 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        stepOne = BasicStep().apply { listener = this@PublishNotebookFragment }
-        stepTwo = AdditionalInfoStep().apply { listener = this@PublishNotebookFragment }
-        stepThree = DescriptionStep().apply { listener = this@PublishNotebookFragment }
-
         stepperForm
             .setup(this, listOf(stepOne, stepTwo, stepThree))
             .init()
@@ -51,15 +48,24 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.notebookTopicEt -> { showTopicSelector() }
-            R.id.notebookLanguageEt -> { showLanguageSelector() }
-            R.id.notebookSchoolEt -> {showSchoolSelector() }
-            else -> { showTagSelector() }
+            R.id.notebookTopicEt -> {
+                showTopicSelector()
+            }
+            R.id.notebookLanguageEt -> {
+                showLanguageSelector()
+            }
+            R.id.notebookSchoolEt -> {
+                showSchoolSelector()
+            }
+            else -> {
+                showTagSelector()
+            }
 
         }
     }
 
     override fun onCompletedForm() {
+        viewModel.publish(stepOne.stepData, stepTwo.stepData, stepThree.stepData)
     }
 
     override fun onCancelledForm() {
@@ -68,7 +74,7 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
 
     private fun showTagSelector() {
         TagSearchDialog.show(childFragmentManager, stepTwo.stepData.tags.toSet()) { value, enable ->
-            stepTwo.toggleTag(value,enable)
+            stepTwo.toggleTag(value, enable)
         }
     }
 

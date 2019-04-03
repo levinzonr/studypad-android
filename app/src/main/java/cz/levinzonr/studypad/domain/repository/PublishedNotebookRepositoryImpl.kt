@@ -2,6 +2,7 @@ package cz.levinzonr.studypad.domain.repository
 
 import cz.levinzonr.studypad.data.PublishNotebookRequest
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.rest.Api
 import timber.log.Timber
 
@@ -16,19 +17,27 @@ class PublishedNotebookRepositoryImpl(private val api: Api) : PublishedNotebookR
     }
 
     override suspend fun publishNotebook(
-        notebookId: String, title: String,
-        description: String?, tags: Set<String>, topicId: Long?) : PublishedNotebook.Feed {
+        notebookId: String,
+        title: String,
+        description: String?,
+        tags: Set<String>,
+        topicId: Long?,
+        languageCode: String,
+        university: University?
+    ): PublishedNotebook.Feed {
 
         val request = PublishNotebookRequest(
             title = title,
             notebookId = notebookId,
             tags = tags,
             topic = topicId,
-            universityId = null,
-            description = description
+            universityId = university?.id,
+            description = description,
+            languageCode = languageCode
         )
 
         Timber.d("request: $request")
         return api.publishNotebook(request).await()
+
     }
 }
