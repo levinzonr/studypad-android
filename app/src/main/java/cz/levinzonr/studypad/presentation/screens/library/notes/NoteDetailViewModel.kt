@@ -1,6 +1,8 @@
 package cz.levinzonr.studypad.presentation.screens.library.notes
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import cz.levinzonr.studypad.call
 import cz.levinzonr.studypad.domain.interactors.library.DeleteNoteInteractor
 import cz.levinzonr.studypad.domain.interactors.library.PostNoteInteractor
@@ -9,42 +11,60 @@ import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.repository.NotesRepository
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
+import timber.log.Timber
 
 class NoteDetailViewModel(
-    private val noteId: Long,
+    private val viewMode: NoteDetailModels.NoteViewMode,
     private val repository: NotesRepository,
     private val updateNoteInteractor: UpdateNoteInteractor,
     private val deleteNoteInteractor: DeleteNoteInteractor,
     private val postNoteInteractor: PostNoteInteractor
 ) : BaseViewModel() {
 
-    val noteLiveData = repository.findById(noteId)
-    private val note: Note?
-        get() = noteLiveData.value
 
-    var title: String = noteLiveData.value?.title ?: ""
-    var content: String = noteLiveData.value?.content ?: ""
+    /* val currentMode : NoteDetailModels.NoteViewMode
+         get() = viewMode*/
 
-    val noteCreatedEvent: MutableLiveData<SimpleEvent> = MutableLiveData()
-    val noteDeletedEvent: MutableLiveData<SimpleEvent> = MutableLiveData()
+    var title: String
+    var content: String
+
     val editModeLiveData = MutableLiveData<Boolean>()
-
+    var noteLiveData: LiveData<Note>
 
     init {
-        editModeLiveData.postValue(false)
+        viewMode.let { viewMode ->
+            when (viewMode) {
+                is NoteDetailModels.NoteViewMode.Create -> {
+                    editModeLiveData.postValue(true)
+                    title = ""
+                    content = ""
+                    noteLiveData = MutableLiveData<Note>().apply {
+                        postValue(Note(-1, "", "", viewMode.notebookId))
+                    }
+                }
+                is NoteDetailModels.NoteViewMode.Edit -> {
+                    title = viewMode.note.title ?: ""
+                    content = viewMode.note.content ?: ""
+                    editModeLiveData.postValue(false)
+                    noteLiveData = repository.findById(viewMode.note.id)
+                }
+            }
+        }
     }
 
-    fun createNote(notebookId: String) {
+    private fun createNote(notebookId: String) {
         postNoteInteractor.input = PostNoteInteractor.Input(notebookId, title, content)
         postNoteInteractor.execute {
-            navigateBack()
+            onComplete {
+                navigateBack()
+            }
+
         }
     }
 
 
-
-    fun editNote() {
-        note?.let {
+    private fun editNote(note: Note) {
+        note.let {
             updateNoteInteractor.input = UpdateNoteInteractor.Input(it.id, title, content)
             updateNoteInteractor.execute {
                 editModeLiveData.postValue(false)
@@ -53,20 +73,45 @@ class NoteDetailViewModel(
     }
 
     fun deleteNote() {
-        note?.let { note ->
-            deleteNoteInteractor.executeWithInput(note.id) {
-                onComplete { noteDeletedEvent.call() }
+        (viewMode as? NoteDetailModels.NoteViewMode.Edit)?.let { viewMode ->
+            viewMode.note.let { note ->
+                deleteNoteInteractor.executeWithInput(note.id) {
+                    onComplete {
+                        navigateBack()
+                    }
+                }
             }
         }
+
     }
 
 
     fun handleModeChangeButton() {
+        viewMode.let { viewMode ->
+
+            when (viewMode) {
+                is NoteDetailModels.NoteViewMode.Edit -> handleNoteUpdate(viewMode.note)
+                is NoteDetailModels.NoteViewMode.Create -> {
+                    if (title.isNotEmpty() || content.isNotEmpty())
+                        createNote(viewMode.notebookId)
+                    else {
+                        postError("Can't save empty message")
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    private fun handleNoteUpdate(note: Note) {
         val editMode = editModeLiveData.value ?: false
-        if (editMode) {
-            editNote()
-        } else {
-            editModeLiveData.postValue(!editMode)
+        val hasChanged = note.title != title || note.content != content
+        Timber.d("Has changed: $hasChanged")
+        when {
+            editMode && hasChanged -> editNote(note)
+            editMode && !hasChanged -> editModeLiveData.postValue(false)
+            !editMode -> editModeLiveData.postValue(true)
         }
     }
 

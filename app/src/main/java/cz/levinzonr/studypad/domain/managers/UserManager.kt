@@ -1,5 +1,6 @@
 package cz.levinzonr.studypad.domain.managers
 
+import cz.levinzonr.studypad.domain.models.CurrentUserInfo
 import cz.levinzonr.studypad.domain.models.UserProfile
 
 interface UserManager {
@@ -16,6 +17,7 @@ interface UserManager {
 
     fun logout()
 
-    fun getUserInfo() : UserProfile?
+    fun getCurrentUserInfo() : CurrentUserInfo?
+
 
 }

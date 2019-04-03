@@ -6,5 +6,6 @@ data class PublishNotebookRequest(
         val tags: Set<String>?,
         val topic: Long?,
         val description: String?,
-        val notebookId: String
+        val notebookId: String,
+        val languageCode: String
 )

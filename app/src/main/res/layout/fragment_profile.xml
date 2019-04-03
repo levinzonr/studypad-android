@@ -68,31 +68,39 @@
         app:layout_constraintBottom_toTopOf="@+id/profileLogoutBtn"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
-        <include layout="@layout/view_divider"/>
 
-        <TextView
-            style="@style/TextStyle.Preference"
+
+        <com.google.android.material.button.MaterialButton
+            app:icon="@drawable/ic_edit"
+            android:gravity="start"
+            android:text="Edit Profile"
+            style="@style/Button.Text.Pref"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Prefrence"
-            app:layout_constraintBottom_toTopOf="@+id/profileLogoutBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <include layout="@layout/view_divider"/>
+            android:layout_height="wrap_content" />
 
 
-        <TextView
-            style="@style/TextStyle.Preference"
+        <com.google.android.material.button.MaterialButton
+            app:icon="@drawable/ic_forum_black_24dp"
+            android:gravity="start"
+            android:text="Notifications"
+            style="@style/Button.Text.Pref"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Prefrence"
-            app:layout_constraintBottom_toTopOf="@+id/profileLogoutBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="wrap_content" />
+
+
+
+        <com.google.android.material.button.MaterialButton
+            app:icon="@drawable/ic_round_add_24px"
+            android:gravity="start"
+            android:text="Settings"
+            style="@style/Button.Text.Pref"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
 
     <com.google.android.material.button.MaterialButton

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.LinearLayout
 import android.widget.SearchView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
@@ -18,6 +19,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.onQueryTextChanged
 import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
+import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_tag_search_dialog.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,10 +31,12 @@ class TagSearchDialog : BottomSheetDialog(){
 
     private lateinit var searchView: SearchView
     private lateinit var chipBox: ChipGroup
-
+    private lateinit var recentBox: ChipGroup
+    private lateinit var group: LinearLayout
     private var callback: (String, Boolean) -> Unit = {_, _ -> Timber.d("Default callback")}
 
     private val viewModel : TagSearchViewModel  by viewModel()
+
 
     private val selectedTags : Set<String>
         get() = (arguments?.getStringArrayList(ARG_SELECTED) ?: ArrayList()).toSet()
@@ -62,6 +66,8 @@ class TagSearchDialog : BottomSheetDialog(){
         val view =  inflater.inflate(R.layout.fragment_tag_search_dialog, container, false)
         searchView = view.findViewById(R.id.tagSearchView)
         chipBox = view.findViewById(R.id.tagsChipBox)
+        group = view.findViewById(R.id.sectionLayout)
+        recentBox = view.findViewById(R.id.sectionTagsCG)
         return view
     }
 
@@ -69,8 +75,8 @@ class TagSearchDialog : BottomSheetDialog(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getTagsObservable().observe(this, Observer {
-            addChips(it)
+        viewModel.getTagsObservable().observe(viewLifecycleOwner, Observer {
+            addChips(it, chipBox)
         })
         tagsDoneBtn.setOnClickListener {
             dismiss()
@@ -79,13 +85,22 @@ class TagSearchDialog : BottomSheetDialog(){
         searchView.onQueryTextChanged {
             viewModel.setFindTagsQuery(it)
         }
+
+        viewModel.getResentObservable().observe(viewLifecycleOwner, Observer {
+            if (it == null || it.isEmpty()) {
+                  group.setVisible(false)
+            } else {
+                group.setVisible(true)
+                addChips(it, sectionTagsCG)
+            }
+        })
     }
 
 
-    private fun addChips(chips: Set<String>) {
+    private fun addChips(chips: Set<String>, chipGroup: ChipGroup) {
         chipBox.removeAllViews()
         Timber.d("Chips: $chips")
-       chips.forEach {
+        chips.forEach {
            val chip = Chip(context).apply {
                isClickable = true
                isCheckable = true
@@ -95,10 +110,11 @@ class TagSearchDialog : BottomSheetDialog(){
                     callback.invoke(it, selected)
                }
            }
-           chipBox.addView(chip)
+           chipGroup.addView(chip)
 
        }
     }
+
 
 
 }

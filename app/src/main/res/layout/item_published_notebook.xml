@@ -82,6 +82,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="@dimen/space_big"
             android:gravity="end"
+
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/notebookNotesCountTv"
             app:layout_constraintEnd_toEndOf="parent"

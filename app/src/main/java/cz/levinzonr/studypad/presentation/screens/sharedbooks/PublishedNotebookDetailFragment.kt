@@ -22,8 +22,7 @@ class PublishedNotebookDetailFragment: BaseFragment() {
     private val args: PublishedNotebookDetailFragmentArgs by navArgs()
 
 
-    override val viewModel: PublishedNotebookDetailViewModel by viewModel { parametersOf(args.PublishedNotebookFeed) }
-    private val userManager: UserManager by inject()
+    override val viewModel: PublishedNotebookDetailViewModel by viewModel { parametersOf(args.PublishedNotebookId) }
 
 
     override fun onCreateView(
@@ -37,8 +36,7 @@ class PublishedNotebookDetailFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val id = args.PublishedNotebookFeed?.id ?: args.PublishedNotebookId
-        viewPager.adapter = ViewPagerAdapter(id, childFragmentManager)
+        viewPager.adapter = ViewPagerAdapter(args.PublishedNotebookId, args.PublishedNotebookFeed, childFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
 
     }

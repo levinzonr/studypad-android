@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.nishant.math.MathView
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
 import kotlinx.android.synthetic.main.view_note.view.*
@@ -17,7 +18,7 @@ class NoteDetailView @JvmOverloads constructor(
     attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs) {
 
-    private val noteContentTv: TextView
+    private val noteContentTv: MathView
     private val noteTitleTv: TextView
 
 

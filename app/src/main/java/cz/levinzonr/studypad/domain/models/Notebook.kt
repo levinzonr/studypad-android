@@ -40,7 +40,7 @@ sealed class State {
     object UpToDate : State()
     object UpdateAvailable: State()
     object SaveAvailable: State()
-    object MergeAvailable: State()
+    data class MergeAvailable(val authoredByMe: Boolean): State()
 
 }
 

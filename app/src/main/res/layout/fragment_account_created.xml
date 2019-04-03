@@ -6,33 +6,33 @@
     android:layout_height="match_parent"
     tools:context="cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountCreatedFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        style="@style/TextStyle.Header"
         android:id="@+id/textView3"
+        style="@style/TextStyle.Header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:text="Condimentum Justo Elit"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
         android:text="Donec sed odio dui. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <Button
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+    <com.google.android.material.button.MaterialButton
+        style="@style/Button.Text"
         android:id="@+id/newAccountLaterBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newAccountChooseUniBtn" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/newAccountChooseUniBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,18 +57,18 @@
         tools:layout_editor_absoluteX="160dp" />
 
     <ImageView
+        android:tint="@color/blue"
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_studypad"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26999998"
-        tools:src="@tools:sample/avatars" />
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

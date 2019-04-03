@@ -4,7 +4,9 @@ import com.google.firebase.auth.*
 import cz.levinzonr.studypad.data.CreateAccountRequest
 import cz.levinzonr.studypad.data.EmailLoginRequest
 import cz.levinzonr.studypad.data.FacebookLoginRequest
+import cz.levinzonr.studypad.domain.models.CurrentUserInfo
 import cz.levinzonr.studypad.domain.models.UserProfile
+import cz.levinzonr.studypad.domain.repository.LocaleRepository
 import cz.levinzonr.studypad.rest.Api
 import cz.levinzonr.studypad.storage.TokenRepository
 import cz.levinzonr.studypad.storage.UserProfileRepository
@@ -14,6 +16,7 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 class UserManagerImpl(private val api: Api,
+                      private val localeRepository: LocaleRepository,
                       private val tokenRepository: TokenRepository,
                       private val userProfileRepository: UserProfileRepository) : UserManager {
 
@@ -64,8 +67,11 @@ class UserManagerImpl(private val api: Api,
         return tokenRepository.getToken() != null
     }
 
-    override fun getUserInfo(): UserProfile? {
-        return userProfileRepository.getUserProfile()
+
+    override fun getCurrentUserInfo(): CurrentUserInfo? {
+        val userInfo = userProfileRepository.getUserProfile() ?: return null
+        val locale = localeRepository.getCurrentLocale()
+        return CurrentUserInfo(userInfo.uuid, userInfo.displayName, userInfo.university, locale)
     }
 
     override fun logout() {

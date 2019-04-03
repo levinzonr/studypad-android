@@ -1,11 +1,15 @@
 package cz.levinzonr.studypad
 
+import android.content.Context
 import android.content.res.Resources
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.Animation
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.SearchView
@@ -15,8 +19,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import cz.levinzonr.studypad.presentation.base.BaseActivity
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.common.FlipAnimation
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SimpleEvent
 import org.joda.time.*
@@ -50,10 +57,19 @@ fun ViewGroup.asSequence(): Sequence<View> = object : Sequence<View> {
     }
 }
 
+fun ViewGroup.removeIf(block: (View) -> Boolean) {
+    asSequence().forEach {
+        if (block(it)) removeView(it)
+    }
+}
+
 fun ViewGroup.removeAllBut(id: Int) {
-    asSequence().forEach { if (it.id != id)  {
-        Timber.d("Remove view")
-        removeView(it) }}
+    asSequence().forEach {
+        if (it.id != id) {
+            Timber.d("Remove view")
+            removeView(it)
+        }
+    }
 
 }
 
@@ -86,7 +102,7 @@ inline fun <T> T.guard(block: T.() -> Unit): T {
     if (this == null) block(); return this
 }
 
-val BaseFragment.baseActivity : BaseActivity?
+val BaseFragment.baseActivity: BaseActivity?
     get() = activity as? BaseActivity?
 
 val BaseFragment.supportActionBar: ActionBar?
@@ -124,7 +140,7 @@ fun EditText.onTextChanged(onChange: (String) -> Unit) {
 }
 
 fun View.setVisible(visible: Boolean, fallback: Int = View.GONE) {
-    visibility =  if (visible)  View.VISIBLE else fallback
+    visibility = if (visible) View.VISIBLE else fallback
 }
 
 fun MutableLiveData<SimpleEvent>.call() {
@@ -147,15 +163,15 @@ fun <T> MutableLiveData<Event<T>>.onHandle(lifecycleOwner: LifecycleOwner, block
     observe(lifecycleOwner, Observer { it.handle(block) })
 }
 
-fun String.isValidEmail() : Boolean {
+fun String.isValidEmail(): Boolean {
     return this.matches(Patterns.EMAIL_ADDRESS.toRegex())
 }
 
-fun String.isValidPassword() : Boolean {
+fun String.isValidPassword(): Boolean {
     return this.length >= 6
 }
 
-fun String.isValidName() : Boolean {
+fun String.isValidName(): Boolean {
     return this.matches(Regex("([A-Z][a-zA-Z]*)+( [A-Z][a-zA-Z]*)*"))
 }
 
@@ -170,15 +186,15 @@ fun ImageView.loadAuthorImage(imageUrl: String?) {
 
 }
 
-fun <T> List<T>.first(n: Int) : List<T> {
+fun <T> List<T>.first(n: Int): List<T> {
     return if (n > size) this else subList(0, n)
 }
 
-inline fun <T> List<T>.indexOfFirstOrNull(condition: (T) -> Boolean) : Int? {
-    return if (indexOfFirst { condition.invoke(it) } == -1) null else  indexOfFirst { condition.invoke(it) }
+inline fun <T> List<T>.indexOfFirstOrNull(condition: (T) -> Boolean): Int? {
+    return if (indexOfFirst { condition.invoke(it) } == -1) null else indexOfFirst { condition.invoke(it) }
 }
 
-fun Long.formatTime() : String {
+fun Long.formatTime(): String {
     val date = DateTime(this)
     val now = DateTime()
 
@@ -209,5 +225,40 @@ fun Long.formatTime() : String {
         else -> "${date.toLocalTime()}"
 
     }
+}
 
+val Context.layoutInflater : LayoutInflater
+    get() = LayoutInflater.from(this)
+
+fun View.flip(toHide: View) {
+    val animation = FlipAnimation(0f, -90f, 0.0f, height / 2.0f)
+    animation.duration = 1000
+    animation.interpolator = AccelerateInterpolator()
+    animation.fillAfter = true
+    animation.setAnimationListener(object : Animation.AnimationListener {
+        override fun onAnimationRepeat(animation: Animation?) {
+        }
+
+        override fun onAnimationEnd(animation: Animation?) {
+            // flipCardView.rotationY = endAngor
+            clearAnimation()
+            setVisible(false)
+            toHide.setVisible(true)
+        }
+
+        override fun onAnimationStart(animation: Animation?) {
+        }
+
+    })
+
+    startAnimation(animation)
+}
+
+inline fun <reified T> Gson.fromJson(json: String) : T? {
+    val type = object : TypeToken<T>(){}.type
+    return try {
+        fromJson(json, type)
+    } catch (e: Exception) {
+        return null
+    }
 }

@@ -9,10 +9,14 @@
 
     tools:context=".presentation.screens.library.notebooks.NotebookListFragment">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notebooksRv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
     </androidx.recyclerview.widget.RecyclerView>

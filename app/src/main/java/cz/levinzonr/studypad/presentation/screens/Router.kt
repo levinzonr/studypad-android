@@ -1,26 +1,6 @@
 package cz.levinzonr.studypad.presentation.screens
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
-import androidx.navigation.findNavController
-import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.models.Note
-import cz.levinzonr.studypad.domain.models.Notebook
-import cz.levinzonr.studypad.domain.models.PublishedNotebook
-import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListFragment
-import cz.levinzonr.studypad.presentation.screens.library.notes.EditNoteFragment
-import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailFragment
-import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListFragment
-import cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookFragment
-import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginFragment
-import cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountCreatedFragment
-import cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountInfoFragment
-import cz.levinzonr.studypad.presentation.screens.onboarding.signup.CredentialsInfoFragment
-import cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotebookDetailFragment
-import cz.levinzonr.studypad.presentation.screens.sharedbooks.SharedFragment
-
 
 
 sealed class NavigationEvent {

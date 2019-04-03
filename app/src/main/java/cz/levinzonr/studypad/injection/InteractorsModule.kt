@@ -32,7 +32,6 @@ val interacorModule = module {
 
     factory { DeleteNotebookInteractor(get()) }
 
-
     factory { DeleteNoteInteractor(get()) }
 
     factory { UpdateNoteInteractor(get()) }
@@ -43,11 +42,11 @@ val interacorModule = module {
 
     factory { GetUserProfileInteractor(get()) }
 
-    factory { PublishNotebookInteractor(get()) }
+    factory { PublishNotebookInteractor(get(), get()) }
 
     factory { GetRelevantNotebooks(get()) }
 
-    factory { GetTagsByNameInteractor(get()) }
+    factory { GetTagsByNameInteractor(get(), get()) }
 
     factory { GetTopicsInteractor(get()) }
 
@@ -70,5 +69,9 @@ val interacorModule = module {
     factory { ImportPublishedNotebookInteractor(get()) }
 
     factory { GetNotebookVersionStateInteractor(get()) }
+
+    factory { ApplyLocalChangesInteractor(get()) }
+
+    factory { GetAvailableLanguagesInteractor(get()) }
 
 }

@@ -7,5 +7,6 @@ val appModule = listOf(
     interacorModule,
     adapterModule,
     viewModelModule,
-    managerModule
+    managerModule,
+    presentation
 )

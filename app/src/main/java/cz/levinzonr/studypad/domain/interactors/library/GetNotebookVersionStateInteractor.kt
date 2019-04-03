@@ -24,7 +24,7 @@ class GetNotebookVersionStateInteractor(private val notebookRepository: Notebook
             when {
                 input.versionState.version > state.version && state.modifications.isEmpty() ->  State.UpdateAvailable
                 input.versionState.version == state.version && state.modifications.isEmpty() -> State.UpToDate
-                input.versionState.version == state.version && !state.modifications.isEmpty() -> State.MergeAvailable
+                input.versionState.version == state.version && !state.modifications.isEmpty() -> State.MergeAvailable(input.authoredByMe)
                 else -> State.UpdateAvailable
             }
         }

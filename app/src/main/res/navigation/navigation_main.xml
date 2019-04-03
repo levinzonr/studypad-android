@@ -74,14 +74,38 @@
             app:argType="cz.levinzonr.studypad.domain.models.PublishedNotebook$Feed"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_publishedNotebookDetailFragment_to_publishedNotesListFragment"
+            app:destination="@id/publishedNotesListFragment" />
+        <action
+            android:id="@+id/action_publishedNotebookDetailFragment_to_notebookSuggestionsFragment"
+            app:destination="@id/notebookSuggestionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/noteDetailFragment"
         android:name="cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailFragment"
         android:label="note_detail_fragment"
-        tools:layout="@layout/note_detail_fragment" >
+        tools:layout="@layout/fragment_note_detail" >
         <argument
-            android:name="noteId"
-            app:argType="long" />
+            android:name="viewMode"
+            app:argType="cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailModels$NoteViewMode" />
+    </fragment>
+    <fragment
+        android:id="@+id/publishedNotesListFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotesListFragment"
+        android:label="fragment_published_notes_list"
+        tools:layout="@layout/fragment_published_notes_list" >
+        <argument
+            android:name="notes"
+            app:argType="cz.levinzonr.studypad.domain.models.Note[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/notebookSuggestionsFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.sharedbooks.NotebookSuggestionsFragment"
+        android:label="fragment_notebook_suggestions"
+        tools:layout="@layout/fragment_notebook_suggestions" >
+        <argument
+            android:name="suggestions"
+            app:argType="cz.levinzonr.studypad.domain.models.PublishedNotebook$Modification[]" />
     </fragment>
 </navigation>

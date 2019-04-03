@@ -11,7 +11,7 @@ import org.koin.dsl.module.module
 
 val managerModule = module {
 
-    single<UserManager> {  UserManagerImpl(get(), get(), get() ) }
+    single<UserManager> {  UserManagerImpl(get(), get(), get(), get()) }
 
     single<PrefManager> { PrefManagerImpl(androidContext()) }
 

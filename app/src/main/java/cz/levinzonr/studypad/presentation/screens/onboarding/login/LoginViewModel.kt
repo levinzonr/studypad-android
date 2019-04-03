@@ -70,7 +70,7 @@ class LoginViewModel(
             loginInteractor.execute {
                 onComplete {
                     toggleLoading(false)
-                    showLoginSuccess(it)
+                    showLoginSuccess(false)
                     Timber.d("Success $it")
                 }
                 onError {

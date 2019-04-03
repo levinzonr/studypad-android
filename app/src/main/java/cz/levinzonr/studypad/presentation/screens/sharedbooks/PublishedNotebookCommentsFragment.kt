@@ -35,7 +35,7 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
     private val userManager: UserManager by inject()
 
     override val viewModel: PublishedNotebookCommentsViewModel by viewModel { parametersOf(notebookId) }
-    private val adapter : CommentsAdapter by inject { parametersOf(this, userManager.getUserInfo()?.uuid) }
+    private val adapter : CommentsAdapter by inject { parametersOf(this, userManager.getCurrentUserInfo()?.id) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,11 +64,9 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
         viewModel.commentsStateLiveData.onHandle(viewLifecycleOwner) {
             Timber.d("State $it")
             it.commentAdded?.let {
-                commentInputField.text.clear()
                 commentsRecyclerView.smoothScrollToPosition(0)
                 adapter.addComment(it)
-                val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(commentInputField.getWindowToken(), 0)
+
             }
             it.commentDeleted?.let { adapter.deleteComment(it) }
             it.commentUpdated?.let { adapter.updateComment(it) }
@@ -77,12 +75,14 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
 
 
     private fun setupListeners() {
-        commentInputField.onTextChanged {
+        commentEditText.listener = object : CommentEditText.CommentEditTextListener {
+            override fun onSendButtonClicked(text: String) {
+                viewModel.createComment(text)
+            }
 
-        }
-
-        sendButton.setOnClickListener {
-            viewModel.createComment(commentInputField.text.toString())
+            override fun onChangeConfirmButtonClicked(comment: PublishedNotebook.Comment, text: String) {
+                viewModel.editComment(comment, text)
+            }
         }
     }
 
@@ -99,7 +99,7 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
             when(it) {
                 R.id.commentEdit -> {
                     Timber.d("edit")
-                    viewModel.editComment(comment, "Changed body")
+                    commentEditText.editComment(comment)
                 }
                 R.id.commentDelete -> {
                     viewModel.deleteComment(comment)

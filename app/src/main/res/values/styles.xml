@@ -56,6 +56,14 @@
         <item name="bottomSheetStyle">@style/ModalTheme</item>
     </style>
 
+
+    <style name="TextInputButton">
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">true</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:drawableEnd">@drawable/ic_chevron_right_black_24dp</item>
+    </style>
+
     <style name="ModalTheme" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:windowIsFloating">false</item>
         <item name="android:background">@drawable/background_dialog</item>
@@ -93,11 +101,19 @@
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:padding">@dimen/space_big</item>
+    </style>
+
+    <style name="Button.Text.Pref" parent="Button.Text">
+        <item name="android:padding">12dp</item>
+        <item name="android:textColor">#000</item>
+        <item name="iconPadding">12dp</item>
+        <item name="android:textAlignment">textStart</item>
     </style>
 
     <style name="Button.Primary" parent="Widget.MaterialComponents.Button">
         <item name="android:padding">12dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
         <item name="backgroundTint">@color/blue</item>
         <item name="cornerRadius">@dimen/corner_radius</item>
     </style>

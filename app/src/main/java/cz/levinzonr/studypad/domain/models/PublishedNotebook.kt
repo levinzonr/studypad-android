@@ -24,7 +24,7 @@ object PublishedNotebook {
     data class VersionState(val id: Long, val version: Int, val modifications: List<Modification>) : Parcelable
 
     @Parcelize
-    data class Modification(val type: String) : Parcelable
+    data class Modification(val type: String, val content: String, val title: String, val author: UserProfile) : Parcelable
 
     data class Detail(
         val id: String,
@@ -37,7 +37,8 @@ object PublishedNotebook {
         val topic: String,
         val lastUpdate: Long,
         val languageCode: String? = null,
-        val versionState: VersionState
+        val versionState: VersionState,
+        val authoredByMe: Boolean
     )
 
     data class Note(
