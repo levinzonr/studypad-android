@@ -20,4 +20,6 @@ val adapterModule = module {
     factory { (listener: CommentsAdapter.CommentsItemListener,authorId: String?) -> CommentsAdapter(listener, authorId) }
 
     factory { SuggestionsAdapter() }
+
+    factory { (listener: LanguagesAdapter.LanguageItemListener) -> LanguagesAdapter(listener) }
 }

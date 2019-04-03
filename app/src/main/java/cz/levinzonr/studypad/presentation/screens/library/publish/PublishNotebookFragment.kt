@@ -83,7 +83,9 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
     }
 
     private fun showLanguageSelector() {
-
+        LanguageSelectorDialog.show(childFragmentManager) {
+            stepOne.setLanguage(it)
+        }
     }
 }
 

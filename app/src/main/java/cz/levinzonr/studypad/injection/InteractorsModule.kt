@@ -32,7 +32,6 @@ val interacorModule = module {
 
     factory { DeleteNotebookInteractor(get()) }
 
-
     factory { DeleteNoteInteractor(get()) }
 
     factory { UpdateNoteInteractor(get()) }
@@ -72,5 +71,7 @@ val interacorModule = module {
     factory { GetNotebookVersionStateInteractor(get()) }
 
     factory { ApplyLocalChangesInteractor(get()) }
+
+    factory { GetAvailableLanguagesInteractor(get()) }
 
 }

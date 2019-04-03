@@ -3,6 +3,7 @@ package cz.levinzonr.studypad.presentation.screens.library.publish.steps
 import android.view.View
 import android.widget.Toast
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.domain.models.Locale
 import cz.levinzonr.studypad.domain.models.Location
 import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.layoutInflater
@@ -34,5 +35,10 @@ class BasicStep() : BaseStep<PublishModels.StepOneResult>("Step1", "Step 1 desci
             University("full", Location("as", "sa"), 1),
             ""
         )
+    }
+
+    fun setLanguage(locale: Locale) {
+        entireStepLayout.notebookLanguageEt.setText(locale.displayName)
+        entireStepLayout.notebookLanguageEt.tag = locale
     }
 }

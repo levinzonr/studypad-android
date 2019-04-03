@@ -29,5 +29,7 @@ val repositoryModule = module {
     single<CommentsRepository> { CommentsRepositoryImpl(get()) }
 
     single<TagsRepository> { TagsRepositoryImpl(get(), get()) }
+
+    single<LocaleRepository> { LocaleRepositoryImpl()}
 }
 
