@@ -10,6 +10,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.baseActivity
 import cz.levinzonr.studypad.presentation.adapters.UniversityAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.common.ToolbarSpaceDecoration
 import kotlinx.android.synthetic.main.fragment_university_selector.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -38,6 +39,8 @@ class UniversitySelectorFragment : BaseFragment(), androidx.appcompat.widget.Sea
         universitiesRv.layoutManager = LinearLayoutManager(context)
         universitiesRv.adapter = adapter
         universitiesRv.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        universitiesRv.addItemDecoration(ToolbarSpaceDecoration())
+
         adapter.onUniversitySelected = {
             viewModel.updateUniversity(it)
         }
