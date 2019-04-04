@@ -13,6 +13,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.loadAuthorImage
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.onboarding.OnboardingActivity
+import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
 import cz.levinzonr.studypad.storage.TokenRepository
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.koin.android.ext.android.inject
@@ -42,7 +43,9 @@ class ProfileFragment : BaseFragment() {
         }
 
         editProfileBtn.setOnClickListener {
-            viewModel.onEditProfileButtonClicked()
+            UniversitySelectorFragment.show(childFragmentManager) {
+                showToast(it.fullName)
+            }
         }
 
         circleImageView.setOnClickListener {

@@ -1,114 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:orientation="vertical"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusableInTouchMode="true"
-        app:contentPadding="@dimen/space_big"
-        app:layout_constraintTop_toTopOf="parent">
+            android:id="@+id/materialCardView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            app:contentPadding="@dimen/space_big"
+            app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+                android:animateLayoutChanges="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
             <TextView
-                android:id="@+id/publishedNotebookNameTv"
-                style="@style/TextStyle.Header"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="BI-LIN"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    android:id="@+id/publishedNotebookNameTv"
+                    style="@style/TextStyle.Header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="BI-LIN"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
 
             <LinearLayout
-                android:paddingBottom="12dp"
-                app:layout_constraintVertical_bias="0.0"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/space_normal"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/publishedNotebookAuthorTv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/publishedNotebookNameTv">
-
-
-                <TextView
-
-                    android:id="@+id/publishedBookTopicTv"
-                    android:layout_width="match_parent"
+                    android:paddingBottom="12dp"
+                    app:layout_constraintVertical_bias="0.0"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_normal"
-                    android:drawableStart="@drawable/ic_subject"
-                    android:drawablePadding="@dimen/space_normal"
-                    android:text="Algebra"
+                    android:layout_margin="@dimen/space_normal"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/publishedNotebookAuthorTv"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publishedNotebookNameTv" />
+                    app:layout_constraintTop_toBottomOf="@+id/publishedNotebookNameTv">
+
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_normal"
-                    android:drawableStart="@drawable/ic_round_language_24px"
-                    android:drawablePadding="@dimen/space_normal"
-                    android:text="English" />
+
+                        android:id="@+id/publishedBookTopicTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_normal"
+                        android:drawableStart="@drawable/ic_subject"
+                        android:drawablePadding="@dimen/space_normal"
+                        android:text="Algebra"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/publishedNotebookNameTv"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_normal"
-                    android:drawableStart="@drawable/ic_book_black_24dp"
-                    android:drawablePadding="@dimen/space_normal"
-                    android:text="University of England" />
+                        android:id="@+id/publishedBookLanguageTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_normal"
+                        android:drawableStart="@drawable/ic_round_language_24px"
+                        android:drawablePadding="@dimen/space_normal"
+                        android:text="English"/>
 
                 <TextView
-                    android:id="@+id/publishBookDateTv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_normal"
-                    android:drawableStart="@drawable/ic_round_timelapse_24px"
-                    android:drawablePadding="@dimen/space_normal"
-                    android:text="Last updated" />
+                        android:id="@+id/publishedBookSchoolTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_normal"
+                        android:drawableStart="@drawable/ic_book_black_24dp"
+                        android:drawablePadding="@dimen/space_normal"
+                        android:text="University of England"/>
+
+                <TextView
+                        android:id="@+id/publishBookDateTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_normal"
+                        android:drawableStart="@drawable/ic_round_timelapse_24px"
+                        android:drawablePadding="@dimen/space_normal"
+                        android:text="Last updated"/>
 
             </LinearLayout>
 
 
             <TextView
-                android:id="@+id/publishedNotebookAuthorTv"
-                style="@style/TextStyle.Header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:text="Name to display"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/publishedBookAuthorIv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/publishedBookAuthorIv" />
+                    android:id="@+id/publishedNotebookAuthorTv"
+                    style="@style/TextStyle.Header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="Name to display"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/publishedBookAuthorIv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/publishedBookAuthorIv"/>
 
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/publishedBookAuthorIv"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="@dimen/space_normal"
-                android:src="@drawable/ic_google"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/publishedNotebookAuthorTv"
-                app:layout_constraintVertical_bias="0.0" />
-
-
-
+                    android:id="@+id/publishedBookAuthorIv"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="@dimen/space_normal"
+                    android:src="@drawable/ic_google"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/publishedNotebookAuthorTv"
+                    app:layout_constraintVertical_bias="0.0"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

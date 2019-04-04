@@ -34,6 +34,7 @@ object PublishedNotebook {
         val tags: Set<String>,
         val author: UserProfile,
         val comments: List<Comment>,
+        val university: University?,
         val topic: String,
         val lastUpdate: Long,
         val languageCode: String? = null,

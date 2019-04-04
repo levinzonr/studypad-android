@@ -62,9 +62,7 @@ class MainActivity : BaseActivity() {
                 supportActionBar?.hide()
                 hideMenu()
             }
-            R.id.universitySelectorFragment2 -> {
-                supportActionBar?.hide()
-            }
+
             else ->  {
                 supportActionBar?.show()
                 showMenu()
@@ -76,23 +74,24 @@ class MainActivity : BaseActivity() {
 
     private fun showMenu() {
         bottomNav.visibility = View.VISIBLE
-        bottomNav.animate()
+        /*bottomNav.animate()
             .setStartDelay(0)
             .alpha(1.0f)
             .setDuration(1000)
             .withEndAction { }
-            .start()
+            .start()*/
     }
 
 
     private fun hideMenu() {
-        bottomNav.animate()
+        bottomNav.visibility = View.GONE
+
+      /*  bottomNav.animate()
             .setStartDelay(0)
             .alpha(0.0f)
             .setDuration(1000).withEndAction {
-                bottomNav.visibility = View.GONE
 
-            }.start()
+            }.start()*/
     }
 
 

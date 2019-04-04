@@ -88,6 +88,9 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         publishedNotebookAuthorTv.text = detail.author.displayName
         publishedBookAuthorIv.loadAuthorImage(detail.author.photoUrl)
         publishedBookTopicTv.text = detail.topic
+        Timber.d("School ${detail.university}")
+        publishedBookSchoolTv.shownText = detail.university?.fullName
+        publishedBookLanguageTv.text = detail.languageCode
         notebookDescriptionTv.text = detail.description
         detail.tags.map { Chip(context).apply { text = it } }.forEach {
             notebookTagsChips.addView(it)

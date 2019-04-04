@@ -38,7 +38,6 @@ class LanguageSelectorDialog : BottomSheetDialog(), LanguagesAdapter.LanguageIte
         super.onViewCreated(view, savedInstanceState)
         languagesRv.adapter = adapter
         languagesRv.layoutManager = LinearLayoutManager(context)
-        languagesRv.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 
         viewModel.languageLiveData.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)

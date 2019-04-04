@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Locale
 import cz.levinzonr.studypad.layoutInflater
+import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.item_language.view.*
 
 class LanguagesAdapter(val listener: LanguageItemListener) : ListAdapter<Locale, LanguagesAdapter.ViewHolder>(TaskDiffCallback()) {
@@ -18,13 +19,21 @@ class LanguagesAdapter(val listener: LanguageItemListener) : ListAdapter<Locale,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(getItem(position))
+        val item = getItem(position)
+        val showLetter = when {
+            position == 0 -> true
+            else -> getItem(position - 1).displayName.first() != item.displayName.first()
+        }
+
+        holder.bindView(item, showLetter)
     }
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        fun bindView(locale: Locale) {
+        fun bindView(locale: Locale, showLetter: Boolean) {
+            view.languageLetterTv.setVisible(showLetter)
+            view.languageLetterTv.text = locale.displayName.first().toString()
             view.languageTv.text = locale.displayName
-            view.setOnClickListener { listener?.onLanguageSelected(locale) }
+            view.setOnClickListener { listener.onLanguageSelected(locale) }
         }
     }
 

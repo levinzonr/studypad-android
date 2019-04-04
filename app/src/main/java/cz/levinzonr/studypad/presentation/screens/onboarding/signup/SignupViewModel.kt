@@ -48,23 +48,7 @@ class SignupViewModel(
     val invalidEmmailEvent = liveEvent()
 
 
-    init {
-        findUnversities("")
-    }
 
-    fun findUnversities(query: String) {
-        toggleLoading(true)
-        getUniversitiesInteractor.unsubscribe()
-        getUniversitiesInteractor.executeWithInput(query) {
-            onComplete {
-                toggleLoading(false)
-                universitiesLiveData.postValue(it)
-            }
-            onError {
-                postError(it.message)
-            }
-        }
-    }
 
     fun createAccount() {
         if (validateCredentials()) {
@@ -116,8 +100,5 @@ class SignupViewModel(
         navigateTo(AccountInfoFragmentDirections.actionAccountInfoFragmentToCredentialsInfoFragment())
     }
 
-    fun showUniversitySelector() {
-        navigateTo(AccountCreatedFragmentDirections.actionAccountCreatedFragmentToUniversitySelectorFragment())
-    }
 
 }

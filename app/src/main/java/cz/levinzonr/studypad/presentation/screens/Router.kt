@@ -10,6 +10,7 @@ sealed class NavigationEvent {
     object NavigateBack: NavigationEvent()
 }
 
+
 enum class Flow {
     ONBOARDING, MAIN
 }

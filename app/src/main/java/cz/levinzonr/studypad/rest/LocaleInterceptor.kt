@@ -10,7 +10,7 @@ class LocaleInterceptor(private val localeRepository: LocaleRepository) : Interc
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
             .newBuilder()
-        localeRepository.getDefaultLocale().let { request.header("Firebase", it.code) }
+        localeRepository.getDefaultLocale().let { request.header("Locale", it.code) }
         return chain.proceed(request.build())
     }
 }

@@ -43,7 +43,9 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
         })
 
         viewModel.editModeLiveData.observe(viewLifecycleOwner, Observer { editMode ->
-            detail.animate()
+            noteDetailView.setVisible(!editMode)
+            noteEditView.setVisible(editMode)
+            /*detail.animate()
                 .rotationY(90f)
                 .setDuration(300L)
                 .withEndAction {
@@ -52,11 +54,10 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
                     detail.animate()
                         .rotationY(0f)
                         .setDuration(300).withEndAction {
-                            noteDetailView.setVisible(!editMode)
-                            noteEditView.setVisible(editMode)
+
                         }
                         .start()
-                }.start()
+                }.start()*/
         })
 
 

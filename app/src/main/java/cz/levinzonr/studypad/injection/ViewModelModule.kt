@@ -11,6 +11,7 @@ import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchVie
 import cz.levinzonr.studypad.presentation.screens.library.publish.LanguageSelectorViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewModel
+import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorViewModel
 import cz.levinzonr.studypad.presentation.screens.profile.ProfileViewModel
 import cz.levinzonr.studypad.presentation.screens.sharedbooks.*
 import org.koin.androidx.viewmodel.ext.koin.viewModel
@@ -47,5 +48,7 @@ val viewModelModule = module {
     viewModel { NotebookSuggestionsViewModel() }
 
     viewModel { LanguageSelectorViewModel(get()) }
+
+    viewModel { UniversitySelectorViewModel(get()) }
 
 }

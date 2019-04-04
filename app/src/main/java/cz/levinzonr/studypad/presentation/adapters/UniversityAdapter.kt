@@ -3,33 +3,28 @@ package cz.levinzonr.studypad.presentation.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.domain.models.Locale
 import cz.levinzonr.studypad.domain.models.University
 import kotlinx.android.synthetic.main.item_university.view.*
 
-class UniversityAdapter : RecyclerView.Adapter<UniversityAdapter.ViewHolder>() {
+class UniversityAdapter : ListAdapter<University, UniversityAdapter.ViewHolder>(TaskDiffCallback()) {
 
 
     var onUniversitySelected: (University) -> Unit = {}
-
-    var items : List<University> = listOf()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_university, parent, false)
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = items.size
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(items[position])
+        holder.bindView(getItem(position))
     }
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
@@ -43,6 +38,15 @@ class UniversityAdapter : RecyclerView.Adapter<UniversityAdapter.ViewHolder>() {
             }
 
         }
-
     }
-}
+
+    class TaskDiffCallback : DiffUtil.ItemCallback<University>() {
+
+        override fun areItemsTheSame(oldItem: University, newItem: University): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: University, newItem: University): Boolean {
+            return oldItem.id == newItem.id
+        }
+    }}

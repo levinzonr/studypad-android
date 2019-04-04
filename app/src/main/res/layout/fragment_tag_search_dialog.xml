@@ -12,16 +12,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <com.google.android.material.card.MaterialCardView
+                android:id="@+id/searchViewContainer"
+                app:cardElevation="4dp"
+                android:layout_margin="@dimen/space_normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
 
         <SearchView
-            android:id="@+id/tagSearchView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                android:iconifiedByDefault="false"
+                android:queryHint="Search"
+                android:queryBackground="@android:color/transparent"
+                android:id="@+id/tagSearchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
+        </com.google.android.material.card.MaterialCardView>
         <LinearLayout
             android:layout_marginTop="@dimen/space_normal"
             android:layout_marginBottom="@dimen/space_large"
@@ -33,7 +40,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagSearchView">
+            app:layout_constraintTop_toBottomOf="@+id/searchViewContainer">
 
             <TextView
                 android:id="@+id/tagSectionName"

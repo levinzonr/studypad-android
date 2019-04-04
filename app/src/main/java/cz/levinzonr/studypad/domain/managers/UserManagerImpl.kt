@@ -26,6 +26,7 @@ class UserManagerImpl(private val api: Api,
     override suspend fun login(email: String, password: String) {
         val result = firebaseAuth.loginWithPassword(email, password)
         val userToken = result.user.getCurrentToken() ?: return
+        Timber.d("user tokent $userToken")
         val response = api.login(userToken.token!!).await()
         tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
         Timber.d("Save" + response)

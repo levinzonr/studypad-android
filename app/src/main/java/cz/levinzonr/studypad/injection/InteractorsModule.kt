@@ -40,7 +40,7 @@ val interacorModule = module {
 
     factory { UpdateUserUniversityInteractor(get()) }
 
-    factory { GetUserProfileInteractor(get()) }
+    factory { GetUserProfileInteractor(get(), get()) }
 
     factory { PublishNotebookInteractor(get(), get()) }
 

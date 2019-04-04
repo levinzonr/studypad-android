@@ -13,6 +13,7 @@ import android.view.animation.Animation
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.SearchView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
@@ -229,6 +230,14 @@ fun Long.formatTime(): String {
 
 val Context.layoutInflater : LayoutInflater
     get() = LayoutInflater.from(this)
+
+
+var TextView.shownText: String?
+    get() = this.text.toString()
+    set(value) {
+        this.text = value
+        this.setVisible(!value.isNullOrBlank())
+    }
 
 fun View.flip(toHide: View) {
     val animation = FlipAnimation(0f, -90f, 0.0f, height / 2.0f)
