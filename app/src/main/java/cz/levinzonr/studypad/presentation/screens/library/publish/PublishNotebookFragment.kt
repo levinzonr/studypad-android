@@ -5,26 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import cz.levinzonr.studypad.*
+import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.screens.library.publish.steps.AdditionalInfoStep
-import cz.levinzonr.studypad.presentation.screens.library.publish.steps.BaseStep
-import cz.levinzonr.studypad.presentation.screens.library.publish.steps.BasicStep
-import cz.levinzonr.studypad.presentation.screens.library.publish.steps.DescriptionStep
+import cz.levinzonr.studypad.presentation.screens.library.publish.steps.*
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
-import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorViewModel
-import ernestoyaquello.com.verticalstepperform.VerticalStepperFormView
 import ernestoyaquello.com.verticalstepperform.listener.StepperFormListener
 import kotlinx.android.synthetic.main.fragment_publish_notebook.*
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import java.lang.Exception
 
-class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.StepViewClickListener {
+class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.StepViewClickListener, BackButtonHandler{
 
     private val args: PublishNotebookFragmentArgs by navArgs()
     override val viewModel: PublishNotebookViewModel by viewModel { parametersOf(args.notebook) }
@@ -33,6 +26,7 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
     private val stepOne: BasicStep by inject { parametersOf(args.notebook, this) }
     private val stepTwo: AdditionalInfoStep by inject { parametersOf(this) }
     private val stepThree: DescriptionStep by inject { parametersOf(this) }
+    private val stepFour: ConfirmationStep by inject { parametersOf(this) }
 
 
     override fun onCreateView(
@@ -48,7 +42,9 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
         super.onViewCreated(view, savedInstanceState)
 
         stepperForm
-            .setup(this, listOf(stepOne, stepTwo, stepThree))
+            .setup(this, listOf(stepOne, stepTwo, stepThree, stepFour))
+            .displayStepButtons(false)
+            .includeConfirmationStep(false)
             .init()
 
     }
@@ -102,6 +98,13 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
         LanguageSelectorDialog.show(childFragmentManager) {
             stepOne.setLanguage(it)
         }
+    }
+
+    override fun handleBackButton() {
+        if (stepperForm.openStepPosition == 0) {
+            baseActivity?.navigateBack()
+        } else
+            stepperForm.goToPreviousStep(true)
     }
 
     override fun onDestroyView() {

@@ -11,12 +11,8 @@ import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.screens.library.publish.PublishModels
 import kotlinx.android.synthetic.main.view_publish_step_basic.view.*
 
-class BasicStep(private val userManager: UserManager, val notebook: Notebook, stepViewClickListener: StepViewClickListener) : BaseStep<PublishModels.StepOneResult>(stepViewClickListener,"Step1", "Step 1 desciptiosn hello wronds") {
+class BasicStep(private val userManager: UserManager, val notebook: Notebook, stepViewClickListener: StepViewClickListener) : BaseStep<PublishModels.StepOneResult>(stepViewClickListener,"#1 Basic details", "Here is what we already know about this notebooks, check if everything is ok") {
 
-
-    override fun getStepDataAsHumanReadableString(): String {
-        return "hello"
-    }
 
     override fun getStepResourceId(): Int = R.layout.view_publish_step_basic
 
@@ -25,7 +21,13 @@ class BasicStep(private val userManager: UserManager, val notebook: Notebook, st
         setupDefaultParameters()
         stepView.notebookLanguageEt.setOnClickListener { listener?.onClick(it) }
         stepView.notebookSchoolEt.setOnClickListener { listener?.onClick(it) }
-        stepView.notebookNameEt.onTextChanged { markAsCompletedOrUncompleted(true) }
+        stepView.notebookNameEt.onTextChanged {
+            stepView.nextStepBtn.isEnabled = isStepDataValid
+            markAsCompletedOrUncompleted(true)
+        }
+        stepView.nextStepBtn.setOnClickListener {
+            formView.goToNextStep(true)
+        }
     }
 
     override fun getStepData(): PublishModels.StepOneResult {

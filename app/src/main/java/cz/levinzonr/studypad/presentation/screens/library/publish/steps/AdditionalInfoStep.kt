@@ -1,25 +1,21 @@
 package cz.levinzonr.studypad.presentation.screens.library.publish.steps
 
-import android.view.View
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
-import com.google.android.material.textfield.TextInputEditText
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Topic
-import cz.levinzonr.studypad.layoutInflater
 import cz.levinzonr.studypad.presentation.screens.library.publish.PublishModels
 import cz.levinzonr.studypad.removeIf
 import cz.levinzonr.studypad.views
-import kotlinx.android.synthetic.main.view_note_edition.view.*
 import kotlinx.android.synthetic.main.view_publish_step_info.view.*
 
-class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishModels.StepTwoResult>(listener,"Step2", "Helo wosadaslmnfdsonmd;dsk kdan lksmdq") {
+class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishModels.StepTwoResult>(listener,"#2 Notebook's theme", "Help other users to find your notebook by sharing some additional details") {
 
 
 
     override fun getStepResourceId(): Int = R.layout.view_publish_step_info
 
     override fun onStepViewCreated() {
+        updateButton()
         stepView.notebookTopicEt.setOnClickListener { listener?.onClick(it) }
         val addTagButton = Chip(context).apply {
             text = "Add Tag"
@@ -28,7 +24,9 @@ class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishMode
         }
         addTagButton.setOnClickListener { listener?.onClick(it) }
         stepView.notebookTagsCG.addView(addTagButton)
+        stepView.nextStepBtn.setOnClickListener { formView.goToNextStep(true) }
     }
+
 
     override fun getStepData(): PublishModels.StepTwoResult {
         val tags = stepView.notebookTagsCG.views
@@ -42,7 +40,9 @@ class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishMode
         stepView.notebookTopicEt.setText(topic.name)
         stepView.notebookTopicEt.tag = topic
         markAsCompletedOrUncompleted(true)
+        updateButton()
     }
+
 
     fun toggleTag(tag: String, enable: Boolean) {
         if (!enable) {
@@ -52,6 +52,11 @@ class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishMode
 
         }
         markAsCompletedOrUncompleted(true)
+        updateButton()
+    }
+
+    private fun updateButton() {
+        stepView.nextStepBtn.isEnabled = isStepDataValid
     }
 
 }

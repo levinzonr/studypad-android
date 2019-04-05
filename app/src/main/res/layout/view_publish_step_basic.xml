@@ -55,7 +55,13 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
+    <com.google.android.material.button.MaterialButton
+            android:layout_marginTop="@dimen/space_big"
+            android:id="@+id/nextStepBtn"
+            android:text="Continue"
+            style="@style/Button.Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 
 </LinearLayout>

@@ -29,6 +29,10 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
+    fun navigateBack() {
+        super.onBackPressed()
+    }
+
 
     abstract val navHostFragment: Fragment
 

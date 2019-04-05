@@ -2,13 +2,11 @@ package cz.levinzonr.studypad.presentation.screens.library.publish.steps
 
 import android.view.View
 import cz.levinzonr.studypad.layoutInflater
-import cz.levinzonr.studypad.presentation.screens.library.publish.Validatable
-import ernestoyaquello.com.verticalstepperform.Builder
+import cz.levinzonr.studypad.presentation.screens.library.publish.StepDataHolder
 import ernestoyaquello.com.verticalstepperform.Step
-import ernestoyaquello.com.verticalstepperform.VerticalStepperFormView
 import timber.log.Timber
 
-abstract class BaseStep<T: Validatable>(val listener: StepViewClickListener?, title: String, content: String = "") : Step<T>(title, content){
+abstract class BaseStep<T: StepDataHolder>(val listener: StepViewClickListener?, title: String, content: String = "") : Step<T>(title, content){
 
 
     protected lateinit var stepView: View
@@ -17,7 +15,7 @@ abstract class BaseStep<T: Validatable>(val listener: StepViewClickListener?, ti
     }
 
     override fun getStepDataAsHumanReadableString(): String {
-        return "Not Implemented"
+        return stepData.toReadableString()
     }
 
 
