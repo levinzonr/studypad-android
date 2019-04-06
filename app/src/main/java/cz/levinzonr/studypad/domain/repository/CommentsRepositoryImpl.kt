@@ -7,18 +7,18 @@ class CommentsRepositoryImpl(private val api: Api) : CommentsRepository {
 
 
     override suspend fun createComment(notebookId: String, body: String): PublishedNotebook.Comment {
-        return api.createComment(notebookId, body).await()
+        return api.createCommentAsync(notebookId, body).await()
     }
 
     override suspend fun editComment(commentId: Long, body: String): PublishedNotebook.Comment {
-        return api.editComment(commentId, body).await()
+        return api.editCommentAsync(commentId, body).await()
     }
 
     override suspend fun deleteComment(commentId: Long) {
-        return api.deleteComment(commentId).await()
+        return api.deleteCommentAsync(commentId).await()
     }
 
     override suspend fun getComments(notebookId: String): List<PublishedNotebook.Comment> {
-        return api.getSharedNotebookComments(notebookId).await()
+        return api.getSharedNotebookCommentsAsync(notebookId).await()
     }
 }

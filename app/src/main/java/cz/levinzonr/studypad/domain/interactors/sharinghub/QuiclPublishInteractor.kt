@@ -7,6 +7,6 @@ import cz.levinzonr.studypad.rest.Api
 class QuiclPublishInteractor(val api: Api) : BaseInputInteractor<String, PublishedNotebook.Feed>() {
 
     override suspend fun executeOnBackground(input: String): PublishedNotebook.Feed {
-        return api.quickPublish(input).await()
+        return api.quickPublishAsync(input).await()
     }
 }

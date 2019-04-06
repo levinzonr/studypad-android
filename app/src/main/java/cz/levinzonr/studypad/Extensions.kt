@@ -87,6 +87,19 @@ fun SearchView.onQueryTextChanged(onChange: (String) -> Unit) {
     })
 }
 
+fun androidx.appcompat.widget.SearchView.onQueryTextChanged(onChange: (String) -> Unit) {
+    setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(p0: String?): Boolean {
+            return true
+        }
+
+        override fun onQueryTextChange(p0: String?): Boolean {
+            onChange(p0 ?: "")
+            return true
+        }
+    })
+}
+
 // Dp to int or vice versa
 val Int.dp: Int
     get() = (this * Resources.getSystem().displayMetrics.density).toInt()

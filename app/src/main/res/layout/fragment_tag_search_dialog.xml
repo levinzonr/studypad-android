@@ -14,7 +14,7 @@
 
         <com.google.android.material.card.MaterialCardView
                 android:id="@+id/searchViewContainer"
-                app:cardElevation="4dp"
+                app:cardElevation="2dp"
                 android:layout_margin="@dimen/space_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

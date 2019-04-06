@@ -11,7 +11,7 @@ class GetTagsByNameInteractor(val api: Api, val tagsRepository: TagsRepository) 
 
 
     override suspend fun executeOnBackground(input: String): List<TagsModels.TagSection> {
-        val result = api.findTagsByName(input)
+        val result = api.findTagsByNameAsync(input)
             .await()
             .toMutableList()
             .apply { if (input.isNotBlank() && !contains(input)) add(0, input.toLowerCase()) }

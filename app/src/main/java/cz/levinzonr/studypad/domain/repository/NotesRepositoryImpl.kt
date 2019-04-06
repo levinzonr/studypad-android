@@ -14,25 +14,25 @@ class NotesRepositoryImpl(
 
 
     override suspend fun getNotesFromNotebook(notebookId: String): List<Note> {
-        val notes = remoteDataSource.getNotesFromNotebook(notebookId).await()
+        val notes = remoteDataSource.getNotesFromNotebookAsync(notebookId).await()
         localDataSource.notesDao().putAll(notes)
        return notes
     }
 
     override suspend fun createNote(notebookId: String, title: String, content: String): Note {
-        val note = remoteDataSource.createNote(CreateNoteRequest(notebookId, title, content)).await()
+        val note = remoteDataSource.createNoteAsync(CreateNoteRequest(notebookId, title, content)).await()
         localDataSource.notesDao().put(note)
         return note
     }
 
     override suspend fun updateNote(note: Long, title: String, content: String): Note {
-        val note = remoteDataSource.updateNote(note, UpdateNoteRequest(title, content)).await()
+        val note = remoteDataSource.updateNoteAsync(note, UpdateNoteRequest(title, content)).await()
         localDataSource.notesDao().put(note)
         return note
     }
 
     override suspend fun deleteNote(noteId: Long) {
-        remoteDataSource.deleteNote(noteId).await()
+        remoteDataSource.deleteNoteAsync(noteId).await()
     }
 
     override fun notesLiveData(notebookId: String): LiveData<List<Note>> {

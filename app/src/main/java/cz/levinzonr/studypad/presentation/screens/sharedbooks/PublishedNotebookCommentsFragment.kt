@@ -25,9 +25,11 @@ import java.security.InvalidParameterException
 import android.app.Activity
 import androidx.core.content.ContextCompat.getSystemService
 import android.view.inputmethod.InputMethodManager
+import cz.levinzonr.studypad.baseActivity
+import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 
 
-class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.CommentsItemListener {
+class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.CommentsItemListener, BackButtonHandler {
 
     private val notebookId: String
         get() = arguments?.getString(ARG_NOTEBOOK_ID) ?: throw InvalidParameterException()
@@ -106,6 +108,14 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
                 }
             }
 
+        }
+    }
+
+    override fun handleBackButton() {
+        if (commentEditText.editModeActive) {
+            commentEditText.clear()
+        } else {
+            baseActivity?.navigateBack()
         }
     }
 

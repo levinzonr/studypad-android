@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.presentation.adapters.ViewPagerAdapter
+import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_published_notebook_detail.*
 import org.koin.android.ext.android.inject
@@ -40,5 +41,7 @@ class PublishedNotebookDetailFragment: BaseFragment() {
         tabLayout.setupWithViewPager(viewPager)
 
     }
+
+
 
 }

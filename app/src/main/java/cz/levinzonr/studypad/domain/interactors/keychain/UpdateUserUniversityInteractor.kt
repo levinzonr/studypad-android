@@ -13,6 +13,6 @@ class UpdateUserUniversityInteractor(private val api: Api) : BaseInteractor<Any>
 
     override suspend fun executeOnBackground(): Any {
         val id = input?.uni?.id ?: -1
-        return api.updateUniversity(UpdateUniversityRequest(id))
+        return api.updateUniversityAsync(UpdateUniversityRequest(id))
     }
 }

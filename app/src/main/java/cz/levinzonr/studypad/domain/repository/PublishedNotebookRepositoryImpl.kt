@@ -9,11 +9,11 @@ import timber.log.Timber
 class PublishedNotebookRepositoryImpl(private val api: Api) : PublishedNotebookRepository {
 
     override suspend fun getRelevantNotebooks(): List<PublishedNotebook.Feed> {
-        return api.getRelevantNotebooks().await()
+        return api.getRelevantNotebooksAsync().await()
     }
 
     override suspend fun getPublishedNotebookDetail(id: String): PublishedNotebook.Detail {
-        return api.getPublishedNotebookDetail(id).await()
+        return api.getPublishedNotebookDetailAsync(id).await()
     }
 
     override suspend fun publishNotebook(
@@ -37,7 +37,7 @@ class PublishedNotebookRepositoryImpl(private val api: Api) : PublishedNotebookR
         )
 
         Timber.d("request: $request")
-        return api.publishNotebook(request).await()
+        return api.publishNotebookAsync(request).await()
 
     }
 }

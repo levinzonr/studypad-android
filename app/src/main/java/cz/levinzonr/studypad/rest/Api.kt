@@ -11,76 +11,76 @@ private const val AUTH = "/auth"
 interface Api {
 
     @POST("$AUTH/login")
-    fun login(@Query("token") token: String) : Deferred<UserProfile>
+    fun loginAsync(@Query("token") token: String) : Deferred<UserProfile>
 
 
     @POST("$AUTH/register")
-    fun createAccount(@Body createAccountRequest: CreateAccountRequest) : Deferred<FirebaseResponse>
+    fun createAccountAsync(@Body createAccountRequest: CreateAccountRequest) : Deferred<FirebaseResponse>
 
     @GET("$API/university/find")
-    fun getUniversities(@Query("query") query: String) : Deferred<List<University>>
+    fun getUniversitiesAsync(@Query("query") query: String) : Deferred<List<University>>
 
     @POST("$API/users/signup/finish")
-    fun updateUniversity(@Body updateUniversityRequest: UpdateUniversityRequest) : Deferred<Any>
+    fun updateUniversityAsync(@Body updateUniversityRequest: UpdateUniversityRequest) : Deferred<Any>
 
     @GET("$API/users/me")
-    fun getAuthenticatedUserProfile() : Deferred<UserProfile>
+    fun getAuthenticatedUserProfileAsync() : Deferred<UserProfile>
 
     //-----------------------------------------------------------------------------
 
 
     @GET("$API/notebooks")
-    fun getNotebooks() : Deferred<List<NotebooksResponse>>
+    fun getNotebooksAsync() : Deferred<List<NotebooksResponse>>
 
     @POST("$API/notebooks")
-    fun postNotebook(@Body createNotebookRequest: CreateNotebookRequest) : Deferred<NotebooksResponse>
+    fun postNotebookAsync(@Body createNotebookRequest: CreateNotebookRequest) : Deferred<NotebooksResponse>
 
     @PATCH("$API/notebooks/{id}")
-    fun updateNotebook(@Path("id") id: String, @Body updateNotebookRequest: UpdateNotebookRequest) : Deferred<NotebooksResponse>
+    fun updateNotebookAsync(@Path("id") id: String, @Body updateNotebookRequest: UpdateNotebookRequest) : Deferred<NotebooksResponse>
 
     @DELETE("$API/notebooks/{id}")
-    fun deleteNotebook(@Path("id") id: String) : Deferred<Unit>
+    fun deleteNotebookAsync(@Path("id") id: String) : Deferred<Unit>
 
     @POST("$API/notebooks/import")
-    fun importPublisheNotebook(@Query("id") id: String) : Deferred<NotebooksResponse>
+    fun importPublisheNotebookAsync(@Query("id") id: String) : Deferred<NotebooksResponse>
 
     //-----------------------------------------------------------------------------
 
     @GET("$API/notebooks/{id}/notes")
-    fun getNotesFromNotebook(@Path("id") notebookId: String) : Deferred<List<Note>>
+    fun getNotesFromNotebookAsync(@Path("id") notebookId: String) : Deferred<List<Note>>
 
     @POST("$API/notes")
-    fun createNote(@Body createNoteRequest: CreateNoteRequest) : Deferred<Note>
+    fun createNoteAsync(@Body createNoteRequest: CreateNoteRequest) : Deferred<Note>
 
     @PATCH("$API/notes/{id}")
-    fun updateNote(@Path("id") noteId: Long, @Body updateNoteRequest: UpdateNoteRequest) : Deferred<Note>
+    fun updateNoteAsync(@Path("id") noteId: Long, @Body updateNoteRequest: UpdateNoteRequest) : Deferred<Note>
 
     @DELETE("$API/notes/{id}")
-    fun deleteNote(@Path("id") noteId: Long) : Deferred<Unit>
+    fun deleteNoteAsync(@Path("id") noteId: Long) : Deferred<Unit>
 
 
     //-----------------------------------------------------------------------------
 
     @GET("$API/shared")
-    fun getRelevantNotebooks() : Deferred<List<PublishedNotebook.Feed>>
+    fun getRelevantNotebooksAsync() : Deferred<List<PublishedNotebook.Feed>>
 
     @GET("$API/shared/{id}")
-    fun getPublishedNotebookDetail(@Path("id") id: String) : Deferred<PublishedNotebook.Detail>
+    fun getPublishedNotebookDetailAsync(@Path("id") id: String) : Deferred<PublishedNotebook.Detail>
 
     @GET("$API/shared/find")
     fun findNotebooks(@Query("tags") tags: Set<String>, @Query("topic") topic: String) : Deferred<List<PublishedNotebook>>
 
     @POST("$API/shared")
-    fun publishNotebook(@Body publishNotebookRequest: PublishNotebookRequest) : Deferred<PublishedNotebook.Feed>
+    fun publishNotebookAsync(@Body publishNotebookRequest: PublishNotebookRequest) : Deferred<PublishedNotebook.Feed>
 
     @POST("$API/shared/quick")
-    fun quickPublish(@Query("id") notebookId: String) : Deferred<PublishedNotebook.Feed>
+    fun quickPublishAsync(@Query("id") notebookId: String) : Deferred<PublishedNotebook.Feed>
 
     @GET("$API/shared/tags")
-    fun findTagsByName(@Query("name") name: String) : Deferred<List<String>>
+    fun findTagsByNameAsync(@Query("name") name: String) : Deferred<List<String>>
 
     @GET("$API/config/topics")
-    fun getTopics() : Deferred<List<Topic>>
+    fun getTopicsAsync() : Deferred<List<Topic>>
 
 
     //-----------------------------------------------------------------------------
@@ -92,16 +92,16 @@ interface Api {
     //-----------------------------------------------------------------------------
 
     @GET("$API/shared/{id}/comments")
-    fun getSharedNotebookComments(@Path("id") notebookId: String) : Deferred<List<PublishedNotebook.Comment>>
+    fun getSharedNotebookCommentsAsync(@Path("id") notebookId: String) : Deferred<List<PublishedNotebook.Comment>>
 
     @POST("$API/shared/{id}/comment")
-    fun createComment(@Path("id") notebookId: String, @Query("comment") body: String) : Deferred<PublishedNotebook.Comment>
+    fun createCommentAsync(@Path("id") notebookId: String, @Query("comment") body: String) : Deferred<PublishedNotebook.Comment>
 
     @DELETE("$API/shared/comments/{id}")
-    fun deleteComment(@Path("id") commentId: Long)  : Deferred<Unit>
+    fun deleteCommentAsync(@Path("id") commentId: Long)  : Deferred<Unit>
 
     @POST("$API/shared/comments/{id}")
-    fun editComment(@Path("id") commentId: Long, @Query("comment") body: String) : Deferred<PublishedNotebook.Comment>
+    fun editCommentAsync(@Path("id") commentId: Long, @Query("comment") body: String) : Deferred<PublishedNotebook.Comment>
 
 
 }

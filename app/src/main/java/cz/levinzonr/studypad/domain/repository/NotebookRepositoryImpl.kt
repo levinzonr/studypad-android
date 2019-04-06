@@ -16,25 +16,25 @@ class NotebookRepositoryImpl(
 
 
     override suspend fun getNotebooks(): List<NotebooksResponse> {
-        val list = remoteDataSource.getNotebooks().await()
+        val list = remoteDataSource.getNotebooksAsync().await()
         localDataSource.notebookDao().putAll(list.map { it.toDomain() })
         return list
     }
 
     override suspend fun createNotebook(name: String): Notebook {
-        val notebook = remoteDataSource.postNotebook(CreateNotebookRequest(name)).await().toDomain()
+        val notebook = remoteDataSource.postNotebookAsync(CreateNotebookRequest(name)).await().toDomain()
         localDataSource.notebookDao().put(notebook)
         return notebook
     }
 
     override suspend fun updateNotebook(id: String, name: String): Notebook {
-        val notebook = remoteDataSource.updateNotebook(id, UpdateNotebookRequest(name)).await().toDomain()
+        val notebook = remoteDataSource.updateNotebookAsync(id, UpdateNotebookRequest(name)).await().toDomain()
         localDataSource.notebookDao().put(notebook)
         return notebook
     }
 
     override suspend fun deleteNotebook(id: String) {
-        remoteDataSource.deleteNotebook(id).await()
+        remoteDataSource.deleteNotebookAsync(id).await()
         deleteLocally(id)
     }
 
@@ -51,7 +51,7 @@ class NotebookRepositoryImpl(
     }
 
     override suspend fun importNotebook(id: String): Notebook {
-        val created = remoteDataSource.importPublisheNotebook(id).await().toDomain()
+        val created = remoteDataSource.importPublisheNotebookAsync(id).await().toDomain()
         localDataSource.notebookDao().put(created)
         return created
     }

@@ -8,6 +8,6 @@ class GetUniversitiesInteractor(val api: Api) : BaseInputInteractor<String, List
 
 
     override suspend fun executeOnBackground(input: String): List<University> {
-        return api.getUniversities(input).await()
+        return api.getUniversitiesAsync(input).await()
     }
 }

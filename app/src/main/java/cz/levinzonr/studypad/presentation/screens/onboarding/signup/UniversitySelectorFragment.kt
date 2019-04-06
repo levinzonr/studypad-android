@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.baseActivity
 import cz.levinzonr.studypad.domain.models.University
+import cz.levinzonr.studypad.onQueryTextChanged
 import cz.levinzonr.studypad.presentation.adapters.UniversityAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
@@ -22,7 +23,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 
-class UniversitySelectorFragment :  BottomSheetDialog(), androidx.appcompat.widget.SearchView.OnQueryTextListener {
+class UniversitySelectorFragment : BottomSheetDialog() {
 
 
     val viewModel: UniversitySelectorViewModel by viewModel()
@@ -59,33 +60,27 @@ class UniversitySelectorFragment :  BottomSheetDialog(), androidx.appcompat.widg
             it?.let(this::updateViewState)
         })
 
-        searchView.setOnQueryTextListener(this)
-    }
-
-
-    private fun updateViewState(state: UniversitySelectorViewState) {
-        if (state.universities.isNotEmpty()) {
-            universitiesRv.setVisible(true)
-            adapter.submitList(state.universities)
-        } else {
-            Timber.d("show stater: ${state.empty}")
+        searchView.onQueryTextChanged {
+            viewModel.findUnversities(it)
         }
     }
 
 
-    override fun onQueryTextSubmit(p0: String?): Boolean {
-        return true
+    private fun updateViewState(state: UniversitySelectorViewState) {
+        universitiesRv.setVisible(state.universities.isNotEmpty())
+        emptyViewTv.setVisible(!state.universities.isNotEmpty())
+        adapter.submitList(state.universities)
+        val message = if (state.empty) "Start by typing name of your University" else "Didn't find anything like ${searchView.query}"
+        emptyViewTv.text = message
+
     }
 
-    override fun onQueryTextChange(p0: String?): Boolean {
-        viewModel.findUnversities(p0 ?: "")
-        return true
-    }
 
     companion object {
         private const val TAG = "university"
         fun show(fragmentManager: FragmentManager, onSelected: (University) -> Unit) {
-            val frag = fragmentManager.findFragmentByTag(TAG) as? UniversitySelectorFragment? ?: UniversitySelectorFragment()
+            val frag =
+                fragmentManager.findFragmentByTag(TAG) as? UniversitySelectorFragment? ?: UniversitySelectorFragment()
             frag.listener = onSelected
             frag.show(fragmentManager, TAG)
         }

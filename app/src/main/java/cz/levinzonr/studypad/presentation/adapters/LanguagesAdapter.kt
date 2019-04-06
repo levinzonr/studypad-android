@@ -20,8 +20,8 @@ class LanguagesAdapter(val listener: LanguageItemListener) : ListAdapter<Locale,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        val showLetter = when {
-            position == 0 -> true
+        val showLetter = when (position) {
+            0 -> true
             else -> getItem(position - 1).displayName.first() != item.displayName.first()
         }
 

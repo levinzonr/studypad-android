@@ -17,6 +17,10 @@ class  CommentEditText @JvmOverloads constructor(context: Context, attributeSet:
     private var editMode: Boolean = false
     var listener: CommentEditTextListener? = null
 
+
+    val editModeActive: Boolean
+        get() = editMode
+
     init {
         context.layoutInflater.inflate(R.layout.view_comment_edittext, this, true)
         init()
@@ -34,6 +38,7 @@ class  CommentEditText @JvmOverloads constructor(context: Context, attributeSet:
         commentInputField.tag = comment
         setMode(true)
     }
+
 
     private fun setMode(edit: Boolean) {
         Timber.d("Set mode $edit")
@@ -55,7 +60,7 @@ class  CommentEditText @JvmOverloads constructor(context: Context, attributeSet:
         }
     }
 
-    private fun clear() {
+    fun clear() {
         setMode(false)
         commentInputField.text.clear()
         val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager

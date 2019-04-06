@@ -2,8 +2,6 @@ package cz.levinzonr.studypad.domain.managers
 
 import com.google.firebase.auth.*
 import cz.levinzonr.studypad.data.CreateAccountRequest
-import cz.levinzonr.studypad.data.EmailLoginRequest
-import cz.levinzonr.studypad.data.FacebookLoginRequest
 import cz.levinzonr.studypad.domain.models.CurrentUserInfo
 import cz.levinzonr.studypad.domain.models.UserProfile
 import cz.levinzonr.studypad.domain.repository.LocaleRepository
@@ -27,7 +25,7 @@ class UserManagerImpl(private val api: Api,
         val result = firebaseAuth.loginWithPassword(email, password)
         val userToken = result.user.getCurrentToken() ?: return
         Timber.d("user tokent $userToken")
-        val response = api.login(userToken.token!!).await()
+        val response = api.loginAsync(userToken.token!!).await()
         tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
         Timber.d("Save" + response)
         userProfileRepository.saveUserProfile(response)
@@ -37,7 +35,7 @@ class UserManagerImpl(private val api: Api,
         val credentials = FacebookAuthProvider.getCredential(token)
         val authResult =  firebaseAuth.loginWithCredentials(credentials)!!
         val userToken = authResult.user.getCurrentToken()!!
-        val response = api.login(userToken.token!!).await()
+        val response = api.loginAsync(userToken.token!!).await()
         tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
         userProfileRepository.saveUserProfile(response)
         return response
@@ -47,7 +45,7 @@ class UserManagerImpl(private val api: Api,
         val credential = GoogleAuthProvider.getCredential(token, null)
         val authResult =  firebaseAuth.loginWithCredentials(credential)!!
         val userToken = authResult.user.getCurrentToken()!!
-        val response = api.login(userToken.token!!).await()
+        val response = api.loginAsync(userToken.token!!).await()
         tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
         Timber.d("Login via google, ${userToken.expirationTimestamp}, ${userToken.token}")
         userProfileRepository.saveUserProfile(response)
@@ -56,7 +54,7 @@ class UserManagerImpl(private val api: Api,
 
     override suspend fun createAccount(email: String, password: String, firstName: String, lasName: String) : UserProfile {
         val request = CreateAccountRequest(firstName, lasName, email, password)
-        val response =  api.createAccount(request).await()
+        val response =  api.createAccountAsync(request).await()
         val result = firebaseAuth.loginWihtCustomToken(response.token)!!
         val userToken = result.user.getCurrentToken()!!
         tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
