@@ -14,6 +14,7 @@ import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_shared.*
+import kotlinx.android.synthetic.main.item_show_all.view.*
 import kotlinx.android.synthetic.main.view_section.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -58,6 +59,7 @@ class SharingHubFragment : BaseFragment(), PublishedNotebooksAdapter.PublishedNo
         val sectionView = LayoutInflater.from(context).inflate(R.layout.view_section, null, false)
         sectionView.sectionName.text = section.title
         sectionView.sectionRv.adapter = adapter
+        sectionView.sectionSeeAllBtn.setOnClickListener { viewModel.onSearchButtonClicked() }
         adapter.listener = this
         adapter.items = section.items
         sectionView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)

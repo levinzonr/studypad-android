@@ -5,7 +5,6 @@ import cz.levinzonr.studypad.data.SectionResponse
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetRelevantNotebooks
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
-import cz.levinzonr.studypad.presentation.screens.sharinghub.SharedFragmentDirections
 import timber.log.Timber
 
 class SharingHubViewModel(private val getRelevantNotebooks: GetRelevantNotebooks) : BaseViewModel() {
@@ -28,11 +27,15 @@ class SharingHubViewModel(private val getRelevantNotebooks: GetRelevantNotebooks
 
     fun showDetail(notebook: PublishedNotebook.Feed) {
         navigateTo(
-            SharedFragmentDirections.actionSharedFragmentToPublishedNotebookDetailFragment(
+            SharingHubFragmentDirections.actionSharedFragmentToPublishedNotebookDetailFragment(
                 notebook.id,
                 notebook
             )
         )
+    }
+
+    fun onSearchButtonClicked() {
+        navigateTo(SharingHubFragmentDirections.actionSharedFragmentToNotebooksSearchFragment())
     }
 
 }

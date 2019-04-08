@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebooksSearchFragment">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+                app:title=""
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <SearchView
+                    android:id="@+id/searchView"
+                    android:queryHint="Search"
+                    android:queryBackground="@android:color/transparent"
+                    android:background="@android:color/transparent"
+                    android:searchIcon="@null"
+                    android:iconifiedByDefault="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+        <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <com.google.android.material.chip.ChipGroup
+                    android:padding="@dimen/space_normal"
+                    app:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <com.google.android.material.chip.Chip
+                        android:id="@+id/searchOptionUniversity"
+                        app:closeIcon="@drawable/ic_expand_more_black_24dp"
+                        app:closeIconVisible="true"
+                        android:text="Universitiy"
+                        app:chipIcon="@drawable/ic_school_black_24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                <com.google.android.material.chip.Chip
+                        android:id="@+id/searchOptionCategory"
+                        app:closeIcon="@drawable/ic_expand_more_black_24dp"
+                        app:closeIconVisible="true"
+                        android:text="Category"
+                        app:chipIcon="@drawable/ic_subject"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                <com.google.android.material.chip.Chip
+                        android:id="@+id/searchOptionTags"
+                        app:closeIconVisible="true"
+                        app:closeIcon="@drawable/ic_expand_more_black_24dp"
+                        app:chipIcon="@drawable/ic_speech_bubbles_comment_option"
+                        android:text="Tags"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <com.google.android.material.chip.Chip
+                        app:closeIconVisible="true"
+                        app:closeIcon="@drawable/ic_expand_more_black_24dp"
+                        app:chipIcon="@drawable/ic_speech_bubbles_comment_option"
+                        android:text="Tags"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </HorizontalScrollView>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/resultsRv"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:orientation="vertical"
+            tools:listitem="@layout/item_published_notebook"
+            app:layoutManager="LinearLayoutManager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

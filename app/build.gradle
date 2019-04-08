@@ -23,7 +23,10 @@ android {
     androidExtensions {
         experimental = true
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
 
         debug {
@@ -101,6 +104,7 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
     implementation 'joda-time:joda-time:2.10.1'
+    compile "com.tyro.oss:arbitrater:0.0.6"
 
 
     implementation 'com.github.Nishant-Pathak:MathView:v1.1'

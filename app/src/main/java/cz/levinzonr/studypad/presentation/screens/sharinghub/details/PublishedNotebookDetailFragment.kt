@@ -9,7 +9,6 @@ import androidx.navigation.fragment.navArgs
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.presentation.adapters.ViewPagerAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.screens.sharinghub.PublishedNotebookDetailFragmentArgs
 import kotlinx.android.synthetic.main.fragment_published_notebook_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf

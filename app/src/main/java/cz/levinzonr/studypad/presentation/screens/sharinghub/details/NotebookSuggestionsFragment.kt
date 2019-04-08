@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.presentation.adapters.SuggestionsAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.screens.sharinghub.NotebookSuggestionsFragmentArgs
 import kotlinx.android.synthetic.main.fragment_notebook_suggestions.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel

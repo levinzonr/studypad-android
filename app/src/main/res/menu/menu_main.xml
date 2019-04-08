@@ -9,7 +9,7 @@
 
     <item
             android:icon="@drawable/ic_search"
-            android:id="@+id/sharedFragment"
+            android:id="@+id/sharingHubFragment"
             android:title="@string/navigation_sharing_hub"/>
 
     <item

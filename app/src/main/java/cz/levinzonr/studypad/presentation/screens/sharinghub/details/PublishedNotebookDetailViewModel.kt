@@ -12,7 +12,6 @@ import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.State
 import cz.levinzonr.studypad.liveEvent
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
-import cz.levinzonr.studypad.presentation.screens.sharinghub.PublishedNotebookDetailFragmentDirections
 
 
 class PublishedNotebookDetailViewModel(

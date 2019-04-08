@@ -63,6 +63,11 @@ class MainActivity : BaseActivity() {
                 hideMenu()
             }
 
+            R.id.notebooksSearchFragment -> {
+                supportActionBar?.hide()
+                hideMenu()
+            }
+
             else ->  {
                 supportActionBar?.show()
                 showMenu()

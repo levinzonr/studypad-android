@@ -18,6 +18,8 @@ import cz.levinzonr.studypad.presentation.screens.sharinghub.comments.PublishedN
 import cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNotebookDetailViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNotesListViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.feed.SharingHubViewModel
+import cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebookSearchModels
+import cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebooksSearchViewModel
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
@@ -70,5 +72,7 @@ val viewModelModule = module {
     viewModel { LanguageSelectorViewModel(get()) }
 
     viewModel { UniversitySelectorViewModel(get()) }
+
+    viewModel { (searchState: NotebookSearchModels.SearchState?) -> NotebooksSearchViewModel(searchState, get()) }
 
 }

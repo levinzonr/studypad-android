@@ -1,8 +1,10 @@
 package cz.levinzonr.studypad.domain.repository
 
+import androidx.lifecycle.LiveData
 import cz.levinzonr.studypad.data.SectionResponse
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.University
+import cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebookSearchModels
 
 interface PublishedNotebookRepository {
 
@@ -17,5 +19,7 @@ interface PublishedNotebookRepository {
         tags: Set<String>,
         topicId: Long?,
         languageCode: String, university: University?) : PublishedNotebook.Feed
+
+    fun searchNotebooks(searchState: NotebookSearchModels.SearchState) : LiveData<List<PublishedNotebook.Feed>>
 
 }

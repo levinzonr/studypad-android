@@ -7,11 +7,11 @@ import kotlinx.android.parcel.Parcelize
 object PublishedNotebook {
     @Parcelize
     data class Feed(
-        val title: String,
-        val description: String?,
-        val notesCount: Int,
-        val tags: Set<String>,
-        val commentCount: Int,
+        val title: String = "",
+        val description: String? = null,
+        val notesCount: Int = 0,
+        val tags: Set<String> = setOf(),
+        val commentCount: Int = 0,
         val author: UserProfile,
         val id: String,
         val topic: String,
