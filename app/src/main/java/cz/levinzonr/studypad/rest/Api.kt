@@ -62,7 +62,7 @@ interface Api {
     //-----------------------------------------------------------------------------
 
     @GET("$API/shared")
-    fun getRelevantNotebooksAsync() : Deferred<List<PublishedNotebook.Feed>>
+    fun getRelevantNotebooksAsync() : Deferred<List<SectionResponse>>
 
     @GET("$API/shared/{id}")
     fun getPublishedNotebookDetailAsync(@Path("id") id: String) : Deferred<PublishedNotebook.Detail>

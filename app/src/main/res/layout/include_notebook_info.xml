@@ -71,7 +71,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_normal"
-                        android:drawableStart="@drawable/ic_book_black_24dp"
+                        android:drawableStart="@drawable/ic_school_black_24dp"
                         android:drawablePadding="@dimen/space_normal"
                         android:text="University of England"/>
 

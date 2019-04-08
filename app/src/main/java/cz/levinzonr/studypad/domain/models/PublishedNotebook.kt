@@ -16,7 +16,8 @@ object PublishedNotebook {
         val id: String,
         val topic: String,
         val lastUpdate: Long = System.currentTimeMillis(),
-        val languageCode: String? = null
+        val languageCode: String? = null,
+        val university: University? = null
 
     ) : Parcelable
 

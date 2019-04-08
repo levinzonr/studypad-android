@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/notebookNameTv"
+            android:id="@+id/notebookTitleTv"
             style="@style/TextStyle.Header"
             android:layout_width="0dp"
             android:maxLines="1"
@@ -49,8 +49,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="TextView"
-            app:layout_constraintStart_toStartOf="@+id/notebookNameTv"
-            app:layout_constraintTop_toBottomOf="@+id/notebookNameTv" />
+            app:layout_constraintStart_toStartOf="@+id/notebookTitleTv"
+            app:layout_constraintTop_toBottomOf="@+id/notebookTitleTv" />
 
 
         <ImageButton

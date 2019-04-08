@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.chip.Chip
 import cz.levinzonr.studypad.*
 
@@ -88,12 +86,11 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         publishedNotebookAuthorTv.text = detail.author.displayName
         publishedBookAuthorIv.loadAuthorImage(detail.author.photoUrl)
         publishedBookTopicTv.text = detail.topic
-        Timber.d("School ${detail.university}")
         publishedBookSchoolTv.shownText = detail.university?.fullName
         publishedBookLanguageTv.text = detail.languageCode
         notebookDescriptionTv.text = detail.description
         detail.tags.map { Chip(context).apply { text = it } }.forEach {
-            notebookTagsChips.addView(it)
+            notebookTagsCg.addView(it)
         }
 
         publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes.first(4), this)

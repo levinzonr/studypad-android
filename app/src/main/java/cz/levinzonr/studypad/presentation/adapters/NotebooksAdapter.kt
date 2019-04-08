@@ -35,7 +35,7 @@ class NotebooksAdapter : RecyclerView.Adapter<NotebooksAdapter.ViewHolder>() {
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bindView(notebook: Notebook) {
-            view.notebookNameTv.text = notebook.name
+            view.notebookTitleTv.text = notebook.name
             view.notebookNotesCountTv.text = "Notes count: ${notebook.notesCount}"
             val gradient = GradientDrawable(GradientDrawable.Orientation.BL_TR, notebook.color.toIntArray())
             view.notebookColor.background = gradient

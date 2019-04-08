@@ -1,19 +1,22 @@
 package cz.levinzonr.studypad.presentation.screens.sharedbooks
 
 import androidx.lifecycle.MutableLiveData
+import cz.levinzonr.studypad.data.SectionResponse
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetRelevantNotebooks
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import timber.log.Timber
 
 class ShareHubViewModel(private val getRelevantNotebooks: GetRelevantNotebooks) : BaseViewModel() {
 
-    val dataSource = MutableLiveData<List<PublishedNotebook.Feed>>()
+    val dataSource = MutableLiveData<List<SectionResponse>>()
 
     init {
         toggleLoading(true)
         getRelevantNotebooks.execute {
             onComplete {
                 toggleLoading(false)
+                Timber.d("Sections: $it")
                 dataSource.postValue(it)
             }
             onError {

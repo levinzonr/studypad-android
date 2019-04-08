@@ -53,8 +53,8 @@
 
 
         <com.google.android.material.chip.ChipGroup
-            app:chipSpacingVertical="@dimen/space_normal"
-            android:id="@+id/notebookTagsChips"
+            app:chipSpacing="@dimen/space_small"
+            android:id="@+id/notebookTagsCg"
             android:layout_marginTop="@dimen/space_normal"
             android:layout_marginStart="@dimen/space_large"
             android:layout_marginEnd="@dimen/space_large"

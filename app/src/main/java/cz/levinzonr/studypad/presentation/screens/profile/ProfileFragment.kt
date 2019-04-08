@@ -44,7 +44,7 @@ class ProfileFragment : BaseFragment() {
 
         editProfileBtn.setOnClickListener {
             UniversitySelectorFragment.show(childFragmentManager) {
-                showToast(it.fullName)
+               viewModel.updateUniversity(it)
             }
         }
 

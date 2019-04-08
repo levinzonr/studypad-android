@@ -1,18 +1,23 @@
 package cz.levinzonr.studypad.presentation.adapters
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.layoutInflater
 import cz.levinzonr.studypad.loadAuthorImage
+import cz.levinzonr.studypad.presentation.common.MaxLinesChipGroup
+import cz.levinzonr.studypad.shownText
 import kotlinx.android.synthetic.main.item_published_notebook.view.*
 
-class PublishedNotebooksAdapter : RecyclerView.Adapter<PublishedNotebooksAdapter.ViewHolder>(){
+class PublishedNotebooksAdapter(val type: AdapterType = AdapterType.Full) : RecyclerView.Adapter<PublishedNotebooksAdapter.ViewHolder>(){
+
+    enum class AdapterType {
+        Short, Full
+    }
 
     var items : List<PublishedNotebook.Feed> = listOf()
         set(value) {
@@ -23,7 +28,11 @@ class PublishedNotebooksAdapter : RecyclerView.Adapter<PublishedNotebooksAdapter
     var listener: PublishedNotebookItemListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_published_notebook, parent, false)
+        val inflater = parent.context.layoutInflater
+        val view =  when(type) {
+            AdapterType.Full -> inflater.inflate(R.layout.item_published_notebook, parent, false)
+            AdapterType.Short ->inflater.inflate(R.layout.item_published_notebook_small, parent, false)
+        }
         return ViewHolder(view)
     }
 
@@ -39,25 +48,41 @@ class PublishedNotebooksAdapter : RecyclerView.Adapter<PublishedNotebooksAdapter
 
         fun bindView(notebook: PublishedNotebook.Feed) {
 
+
             view.notebookTitleTv.text = notebook.title
-            view.notebookAuthorTv.text = notebook.author.displayName
-            view.notebookDescriptionTv.text = notebook.description
-            view.notebookCommentsTv.text = notebook.commentCount.toString()
+            view.notebookCommentsCountTv.text = notebook.commentCount.toString()
             view.notebookNotesCountTv.text = notebook.notesCount.toString()
+            view.notebookTopicTv.text = notebook.topic
 
-            view.notebookTopicTv.text = "Subject: ${notebook.topic}"
+            if (type ==  AdapterType.Full) {
+                view.notebookAuthorTv.text = notebook.author.displayName
+                view.notebookAuthorIv.loadAuthorImage(notebook.author.photoUrl)
+                view.notebookDescriptionTv.text = notebook.description
 
-            view.notebookTagsChips.apply {
-                removeAllViews()
-                notebook.tags.map { Chip(view.context).apply { text = it } }.forEach {
-                    addView(it)
+
+                view.notebookTagsCg.apply {
+                    removeAllViews()
+                    notebook.tags.map { Chip(view.context).apply { text = it } }.forEach {
+                        addView(it)
+                    }
+                }
+
+
+            } else {
+                val school = view.findViewById<TextView>(R.id.notebookSchoolTv)
+                school.shownText = notebook.university?.fullName
+                (view.notebookTagsCg as MaxLinesChipGroup).let { group ->
+                    group.removeAllViews()
+                    group.addAll(notebook.tags.sortedBy {it.length}.map { if (it.length > 7) "${it.substring(0, 7)}..." else it })
                 }
             }
 
-            view.notebookAuthorIv.loadAuthorImage(notebook.author.photoUrl)
             view.setOnClickListener { listener?.onPublishedNotebookClicked(notebook) }
         }
     }
+
+
+
 
     interface PublishedNotebookItemListener {
 

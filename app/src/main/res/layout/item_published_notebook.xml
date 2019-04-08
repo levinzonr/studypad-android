@@ -74,7 +74,7 @@
             app:layout_constraintEnd_toStartOf="@+id/notebookAuthorTv" />
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/notebookTagsChips"
+            android:id="@+id/notebookTagsCg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_normal"
@@ -94,7 +94,7 @@
 
         <TextView
             android:drawablePadding="@dimen/space_normal"
-            android:id="@+id/notebookCommentsTv"
+            android:id="@+id/notebookCommentsCountTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_big"
@@ -115,9 +115,9 @@
             android:layout_marginStart="@dimen/space_big"
             android:drawableStart="@drawable/ic_note"
             android:text="13 notes"
-            app:layout_constraintBottom_toBottomOf="@+id/notebookCommentsTv"
-            app:layout_constraintStart_toEndOf="@+id/notebookCommentsTv"
-            app:layout_constraintTop_toTopOf="@+id/notebookCommentsTv" />
+            app:layout_constraintBottom_toBottomOf="@+id/notebookCommentsCountTv"
+            app:layout_constraintStart_toEndOf="@+id/notebookCommentsCountTv"
+            app:layout_constraintTop_toTopOf="@+id/notebookCommentsCountTv" />
 
         <ImageButton
             android:id="@+id/notebookOptionsBtn"
