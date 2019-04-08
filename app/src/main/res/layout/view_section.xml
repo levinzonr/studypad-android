@@ -27,6 +27,8 @@
 
 
     <com.google.android.material.button.MaterialButton
+            android:textSize="16sp"
+            android:textStyle="bold"
             style="@style/Button.Text"
             android:text="See All"
             app:icon="@drawable/ic_more_horiz_black_24dp"

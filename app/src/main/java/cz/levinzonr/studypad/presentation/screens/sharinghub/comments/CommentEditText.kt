@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.sharedbooks
+package cz.levinzonr.studypad.presentation.screens.sharinghub.comments
 
 import android.app.Activity
 import android.content.Context

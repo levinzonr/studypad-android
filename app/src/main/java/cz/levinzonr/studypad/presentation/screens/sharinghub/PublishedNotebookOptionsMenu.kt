@@ -1,12 +1,8 @@
-package cz.levinzonr.studypad.presentation.screens.sharedbooks
+package cz.levinzonr.studypad.presentation.screens.sharinghub
 
-import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.models.Notebook
-import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
 import cz.levinzonr.studypad.presentation.base.BottomSheetOptionsDialog
-import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookBottomMenuOptions
 
 class PublishedNotebookOptionsMenu : BottomSheetOptionsDialog() {
 

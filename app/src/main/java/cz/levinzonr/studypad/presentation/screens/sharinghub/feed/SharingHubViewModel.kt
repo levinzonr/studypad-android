@@ -1,13 +1,14 @@
-package cz.levinzonr.studypad.presentation.screens.sharedbooks
+package cz.levinzonr.studypad.presentation.screens.sharinghub.feed
 
 import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.data.SectionResponse
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetRelevantNotebooks
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import cz.levinzonr.studypad.presentation.screens.sharinghub.SharedFragmentDirections
 import timber.log.Timber
 
-class ShareHubViewModel(private val getRelevantNotebooks: GetRelevantNotebooks) : BaseViewModel() {
+class SharingHubViewModel(private val getRelevantNotebooks: GetRelevantNotebooks) : BaseViewModel() {
 
     val dataSource = MutableLiveData<List<SectionResponse>>()
 
@@ -26,7 +27,12 @@ class ShareHubViewModel(private val getRelevantNotebooks: GetRelevantNotebooks) 
     }
 
     fun showDetail(notebook: PublishedNotebook.Feed) {
-        navigateTo(SharedFragmentDirections.actionSharedFragmentToPublishedNotebookDetailFragment(notebook.id, notebook))
+        navigateTo(
+            SharedFragmentDirections.actionSharedFragmentToPublishedNotebookDetailFragment(
+                notebook.id,
+                notebook
+            )
+        )
     }
 
 }

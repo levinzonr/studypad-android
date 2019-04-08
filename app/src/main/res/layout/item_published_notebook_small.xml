@@ -81,8 +81,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/notebookTopicTv"/>
 
         <TextView
+                android:drawableTint="#707070"
                 android:drawablePadding="@dimen/space_small"
-                android:drawableStart="@drawable/ic_comment"
+                android:drawableStart="@drawable/ic_speech_bubbles_comment_option"
                 android:text="12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -92,9 +93,10 @@
                 app:layout_constraintEnd_toStartOf="@+id/notebookNotesCountTv"/>
 
         <TextView
+                android:drawableTint="#707070"
                 android:drawablePadding="@dimen/space_small"
                 android:text="12"
-                android:drawableStart="@drawable/ic_book_black_24dp"
+                android:drawableStart="@drawable/ic_note"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/notebookNotesCountTv"

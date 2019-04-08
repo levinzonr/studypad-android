@@ -6,7 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.screens.sharedbooks.SharedFragment">
+        tools:context=".presentation.screens.sharinghub.feed.SharingHubFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

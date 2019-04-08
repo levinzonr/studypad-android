@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotebookCommentsFragment">
+    tools:context="cz.levinzonr.studypad.presentation.screens.sharinghub.comments.PublishedNotebookCommentsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/commentsRecyclerView"
@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
-        <cz.levinzonr.studypad.presentation.screens.sharedbooks.CommentEditText
+        <cz.levinzonr.studypad.presentation.screens.sharinghub.comments.CommentEditText
             android:id="@+id/commentEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

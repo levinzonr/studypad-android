@@ -13,7 +13,11 @@ import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewMode
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorViewModel
 import cz.levinzonr.studypad.presentation.screens.profile.ProfileViewModel
-import cz.levinzonr.studypad.presentation.screens.sharedbooks.*
+import cz.levinzonr.studypad.presentation.screens.sharinghub.details.NotebookSuggestionsViewModel
+import cz.levinzonr.studypad.presentation.screens.sharinghub.comments.PublishedNotebookCommentsViewModel
+import cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNotebookDetailViewModel
+import cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNotesListViewModel
+import cz.levinzonr.studypad.presentation.screens.sharinghub.feed.SharingHubViewModel
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
@@ -33,15 +37,31 @@ val viewModelModule = module {
 
     viewModel { (notebook: Notebook) -> PublishNotebookViewModel(notebook, get(), get(), get()) }
 
-    viewModel { ShareHubViewModel(get()) }
+    viewModel { SharingHubViewModel(get()) }
 
     viewModel { TagSearchViewModel(get()) }
 
     viewModel { TopicSearchViewModel(get()) }
 
-    viewModel { (id: String) -> PublishedNotebookDetailViewModel(id, get(), get(), get(), get()) }
+    viewModel { (id: String) ->
+        PublishedNotebookDetailViewModel(
+            id,
+            get(),
+            get(),
+            get(),
+            get()
+        )
+    }
 
-    viewModel { (id: String) -> PublishedNotebookCommentsViewModel(id, get(), get(), get(), get()) }
+    viewModel { (id: String) ->
+        PublishedNotebookCommentsViewModel(
+            id,
+            get(),
+            get(),
+            get(),
+            get()
+        )
+    }
 
     viewModel { PublishedNotesListViewModel() }
 

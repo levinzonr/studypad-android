@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.sharedbooks
+package cz.levinzonr.studypad.presentation.screens.sharinghub.comments
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -41,7 +41,11 @@ class PublishedNotebookCommentsViewModel(
     fun createComment(body: String) {
         createCommentInteractor.executeWithInput(CreateCommentInteractor.Input(notebookId, body)) {
             onComplete {
-                commentsStateLiveData.postValue(Event(CommentsState(commentAdded = it)))
+                commentsStateLiveData.postValue(Event(
+                    CommentsState(
+                        commentAdded = it
+                    )
+                ))
             }
         }
     }
@@ -49,7 +53,11 @@ class PublishedNotebookCommentsViewModel(
     fun deleteComment(comment: PublishedNotebook.Comment) {
         deleteCommentInteractor.executeWithInput(comment.id) {
             onComplete {
-                commentsStateLiveData.postValue(Event(CommentsState(commentDeleted = comment)))
+                commentsStateLiveData.postValue(Event(
+                    CommentsState(
+                        commentDeleted = comment
+                    )
+                ))
             }
         }
     }
@@ -57,7 +65,11 @@ class PublishedNotebookCommentsViewModel(
     fun editComment(comment: PublishedNotebook.Comment, newBody: String) {
         editCommentInteractor.executeWithInput(EditCommentInteractor.Input(comment.id, newBody)) {
             onComplete {
-                commentsStateLiveData.postValue(Event(CommentsState(commentUpdated = it)))
+                commentsStateLiveData.postValue(Event(
+                    CommentsState(
+                        commentUpdated = it
+                    )
+                ))
 
             }
         }

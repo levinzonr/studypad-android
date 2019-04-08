@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.sharedbooks
+package cz.levinzonr.studypad.presentation.screens.sharinghub.details
 
 
 import android.os.Bundle
@@ -155,7 +155,8 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
             notebookId: String,
             feed: PublishedNotebook.Feed? = null
         ): PublishedNotebookDescriptionFragment {
-            return PublishedNotebookDescriptionFragment().apply {
+            return PublishedNotebookDescriptionFragment()
+                .apply {
                 arguments = Bundle().apply {
                     putString(ARG_NOTEBOOK_ID, notebookId)
                     putParcelable(ARG_FEED, feed)

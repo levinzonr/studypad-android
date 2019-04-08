@@ -1,6 +1,5 @@
-package cz.levinzonr.studypad.presentation.screens.sharedbooks
+package cz.levinzonr.studypad.presentation.screens.sharinghub.details
 
-import androidx.lifecycle.ViewModel;
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 
 class PublishedNotesListViewModel : BaseViewModel() {

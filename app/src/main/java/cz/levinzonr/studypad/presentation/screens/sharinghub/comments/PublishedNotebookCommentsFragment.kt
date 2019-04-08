@@ -1,19 +1,15 @@
-package cz.levinzonr.studypad.presentation.screens.sharedbooks
+package cz.levinzonr.studypad.presentation.screens.sharinghub.comments
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.onHandle
-import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.adapters.CommentsAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_published_notebook_comments.*
@@ -22,11 +18,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 import java.security.InvalidParameterException
-import android.app.Activity
-import androidx.core.content.ContextCompat.getSystemService
-import android.view.inputmethod.InputMethodManager
 import cz.levinzonr.studypad.baseActivity
 import cz.levinzonr.studypad.presentation.base.BackButtonHandler
+import cz.levinzonr.studypad.presentation.screens.sharinghub.PublishedNotebookOptionsMenu
 
 
 class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.CommentsItemListener, BackButtonHandler {
@@ -77,7 +71,8 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
 
 
     private fun setupListeners() {
-        commentEditText.listener = object : CommentEditText.CommentEditTextListener {
+        commentEditText.listener = object :
+            CommentEditText.CommentEditTextListener {
             override fun onSendButtonClicked(text: String) {
                 viewModel.createComment(text)
             }
@@ -96,9 +91,11 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
 
 
     override fun onCommentMoreButtonPressed(comment: PublishedNotebook.Comment) {
-        PublishedNotebookOptionsMenu.show(childFragmentManager) {
+        PublishedNotebookOptionsMenu.show(
+            childFragmentManager
+        ) {
             Timber.d("onSelected")
-            when(it) {
+            when (it) {
                 R.id.commentEdit -> {
                     Timber.d("edit")
                     commentEditText.editComment(comment)

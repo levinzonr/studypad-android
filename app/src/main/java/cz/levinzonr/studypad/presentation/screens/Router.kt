@@ -106,7 +106,7 @@ fun NotebookListFragment.showPublishNotebookView(notebook: Notebook) {
         })
 }
 
-fun SharedFragment.showDetail(notebook: PublishedNotebook.Feed) {
+fun SharingHubFragment.showDetail(notebook: PublishedNotebook.Feed) {
     view?.findNavController()?.navigate(R.id.action_sharedFragment_to_publishedNotebookDetailFragment,
         Bundle().apply { putParcelable(ARG_PUBLISHED_NOTEBOOK, notebook) }
     )

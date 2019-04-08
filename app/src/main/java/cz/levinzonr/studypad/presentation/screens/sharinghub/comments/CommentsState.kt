@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.sharedbooks
+package cz.levinzonr.studypad.presentation.screens.sharinghub.comments
 
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 

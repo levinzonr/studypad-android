@@ -34,7 +34,7 @@
         <action android:id="@+id/action_settingsFragment_self" app:destination="@id/settingsFragment"/>
     </fragment>
     <fragment android:id="@+id/sharedFragment"
-              android:name="cz.levinzonr.studypad.presentation.screens.sharedbooks.SharedFragment"
+              android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.feed.SharingHubFragment"
               android:label="@string/screen_sharing_hub" tools:layout="@layout/fragment_shared">
         <action
             android:id="@+id/action_sharedFragment_to_publishedNotebookDetailFragment"
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/publishedNotebookDetailFragment"
-        android:name="cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotebookDetailFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNotebookDetailFragment"
         android:label="fragment_published_notebook_detail"
         tools:layout="@layout/fragment_published_notebook_detail" >
         <argument
@@ -94,7 +94,7 @@
     </fragment>
     <fragment
         android:id="@+id/publishedNotesListFragment"
-        android:name="cz.levinzonr.studypad.presentation.screens.sharedbooks.PublishedNotesListFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNotesListFragment"
         android:label="fragment_published_notes_list"
         tools:layout="@layout/fragment_published_notes_list" >
         <argument
@@ -103,7 +103,7 @@
     </fragment>
     <fragment
         android:id="@+id/notebookSuggestionsFragment"
-        android:name="cz.levinzonr.studypad.presentation.screens.sharedbooks.NotebookSuggestionsFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.details.NotebookSuggestionsFragment"
         android:label="fragment_notebook_suggestions"
         tools:layout="@layout/fragment_notebook_suggestions" >
         <argument
