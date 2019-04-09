@@ -15,13 +15,13 @@ class NoteRestRepository(private val api: Api) : NotesRepository {
     }
 
 
-    override suspend fun createNote(notebookId: Long, title: String, content: String): Note {
-        val request = CreateNoteRequest(notebookId, title, content)
+    override suspend fun createNote(notebookId: Long, type: String, content: String): Note {
+        val request = CreateNoteRequest(notebookId, type, content)
         return api.createNote(request).await()
     }
 
-    override suspend fun updateNote(note: Long, title: String, content: String): Note {
-        val request = UpdateNoteRequest(title, content)
+    override suspend fun updateNote(note: Long, type: String, content: String): Note {
+        val request = UpdateNoteRequest(type, content)
         return api.updateNote(note, request).await()
     }
 

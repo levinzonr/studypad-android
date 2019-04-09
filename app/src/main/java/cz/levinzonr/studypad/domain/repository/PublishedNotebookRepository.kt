@@ -20,6 +20,6 @@ interface PublishedNotebookRepository {
         topicId: Long?,
         languageCode: String, university: University?) : PublishedNotebook.Feed
 
-    fun searchNotebooks(searchState: NotebookSearchModels.SearchState) : LiveData<List<PublishedNotebook.Feed>>
+    suspend fun searchNotebooks(searchState: NotebookSearchModels.SearchState) : List<PublishedNotebook.Feed>
 
 }

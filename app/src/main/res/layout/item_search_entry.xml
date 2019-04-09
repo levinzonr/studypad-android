@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/space_normal"
+        android:layout_marginEnd="@dimen/space_normal"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        android:layout_height="wrap_content">
+
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <FrameLayout
+                android:background="@color/blue"
+                android:layout_width="44dp"
+                android:layout_height="match_parent">
+
+        <ImageView
+                android:tint="@color/white"
+                android:scaleType="center"
+                android:src="@drawable/ic_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+                android:layout_margin="@dimen/space_normal"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            <TextView
+                    android:textStyle="bold"
+                    android:text="Donec id elit non mi porta gravida at eget metus. Donec sed odio dui."
+                    android:id="@+id/searchEntry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+            <com.google.android.material.chip.ChipGroup
+
+                    app:singleLine="true"
+                    android:layout_margin="@dimen/space_normal"
+                    app:chipSpacing="@dimen/space_normal"
+                    android:id="@+id/searchEntryTags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+            <TextView
+                    android:layout_marginTop="@dimen/space_normal"
+                    android:gravity="bottom|end"
+                    android:id="@+id/searchEntryOrder"
+                    android:text="Ordered By"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

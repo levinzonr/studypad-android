@@ -3,13 +3,20 @@ package cz.levinzonr.studypad.presentation.screens.sharinghub.feed
 import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.data.SectionResponse
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetRelevantNotebooks
-import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.domain.managers.SearchManager
+import cz.levinzonr.studypad.domain.managers.UserManager
+import cz.levinzonr.studypad.domain.models.*
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebookSearchModels
 import timber.log.Timber
 
-class SharingHubViewModel(private val getRelevantNotebooks: GetRelevantNotebooks) : BaseViewModel() {
+class SharingHubViewModel(
+    private val userManager: UserManager,
+    private val searchManager: SearchManager,
+    private val getRelevantNotebooks: GetRelevantNotebooks) : BaseViewModel() {
 
-    val dataSource = MutableLiveData<List<SectionResponse>>()
+    val dataSource = MutableLiveData<List<Section>>()
+    val recentSearches = searchManager.getRecentSearches()
 
     init {
         toggleLoading(true)
@@ -17,7 +24,7 @@ class SharingHubViewModel(private val getRelevantNotebooks: GetRelevantNotebooks
             onComplete {
                 toggleLoading(false)
                 Timber.d("Sections: $it")
-                dataSource.postValue(it)
+                dataSource.postValue(it.map { sectionResponse ->  sectionResponse.toDomain() })
             }
             onError {
                 postError(it.message)
@@ -36,6 +43,24 @@ class SharingHubViewModel(private val getRelevantNotebooks: GetRelevantNotebooks
 
     fun onSearchButtonClicked() {
         navigateTo(SharingHubFragmentDirections.actionSharedFragmentToNotebooksSearchFragment())
+    }
+
+    fun onSearchEntryClicked(searchEntry: SearchEntry) {
+        val state = NotebookSearchModels.SearchState(searchEntry.university, searchEntry.topics, searchEntry.tags, searchEntry.query)
+        navigateTo(SharingHubFragmentDirections.actionSharedFragmentToNotebooksSearchFragment(state))
+    }
+
+    fun onShowAllClicked(section: Section) {
+        val searchState = when (section.type) {
+            SectionType.SCHOOL -> {
+                val university = userManager.getCurrentUserInfo()?.university
+                NotebookSearchModels.SearchState(university =  university)
+            }
+            SectionType.RECENT -> NotebookSearchModels.SearchState(orderBy = OrderBy.RECENT)
+            SectionType.POPULAR -> NotebookSearchModels.SearchState(orderBy = OrderBy.POPULARITY)
+            SectionType.UNKNOWN -> NotebookSearchModels.SearchState()
+        }
+        navigateTo(SharingHubFragmentDirections.actionSharedFragmentToNotebooksSearchFragment(searchState))
     }
 
 }

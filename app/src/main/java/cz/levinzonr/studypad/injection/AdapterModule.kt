@@ -22,4 +22,6 @@ val adapterModule = module {
     factory { SuggestionsAdapter() }
 
     factory { (listener: LanguagesAdapter.LanguageItemListener) -> LanguagesAdapter(listener) }
+
+    factory { (listener: SearchEntryAdapter.SearchEntriesListener) -> SearchEntryAdapter(listener) }
 }

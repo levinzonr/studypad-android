@@ -39,7 +39,7 @@ val viewModelModule = module {
 
     viewModel { (notebook: Notebook) -> PublishNotebookViewModel(notebook, get(), get(), get()) }
 
-    viewModel { SharingHubViewModel(get()) }
+    viewModel { SharingHubViewModel(get(), get(), get()) }
 
     viewModel { TagSearchViewModel(get()) }
 

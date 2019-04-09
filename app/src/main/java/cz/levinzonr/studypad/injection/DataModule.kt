@@ -31,5 +31,7 @@ val repositoryModule = module {
     single<TagsRepository> { TagsRepositoryImpl(get(), get()) }
 
     single<LocaleRepository> { LocaleRepositoryImpl(get(), get())}
+
+    single <SearchHistoryRepository> { SearchHistoryRepositoryImpl(get()) }
 }
 

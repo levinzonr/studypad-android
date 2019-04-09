@@ -3,6 +3,7 @@ package cz.levinzonr.studypad.presentation.screens.sharinghub.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import cz.levinzonr.studypad.domain.managers.SearchManager
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.Topic
 import cz.levinzonr.studypad.domain.models.University
@@ -10,11 +11,11 @@ import cz.levinzonr.studypad.domain.repository.PublishedNotebookRepository
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 
 class NotebooksSearchViewModel(initialState:  NotebookSearchModels.SearchState?,
-                               private val repository: PublishedNotebookRepository) : BaseViewModel() {
+                               private val searchManager: SearchManager) : BaseViewModel() {
 
     private val _searchStateLiveDate = MutableLiveData<NotebookSearchModels.SearchState>()
     val resultsLiveData : LiveData<List<PublishedNotebook.Feed>> = Transformations.switchMap(_searchStateLiveDate) {
-        repository.searchNotebooks(it)
+        searchManager.performSearch(it)
     }
 
 

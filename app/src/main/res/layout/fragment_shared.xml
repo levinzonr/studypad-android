@@ -20,6 +20,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
+            <TextView
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/blue"
+                    android:drawablePadding="@dimen/space_normal"
+                    android:drawableStart="@drawable/ic_round_timelapse_24px"
+                    android:text="Recently Searched"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/searchEntryRv"
+                    android:orientation="vertical"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_search_entry"
+                    app:layoutManager="LinearLayoutManager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
         </LinearLayout>
 
         <ProgressBar

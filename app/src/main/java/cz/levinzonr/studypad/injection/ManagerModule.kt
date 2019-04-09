@@ -1,6 +1,8 @@
 package cz.levinzonr.studypad.injection
 
 import com.google.firebase.auth.FirebaseAuth
+import cz.levinzonr.studypad.domain.managers.SearchManager
+import cz.levinzonr.studypad.domain.managers.SearchManagerImpl
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.managers.UserManagerImpl
 import cz.levinzonr.studypad.storage.PrefManager
@@ -11,9 +13,11 @@ import org.koin.dsl.module.module
 
 val managerModule = module {
 
-    single<UserManager> {  UserManagerImpl(get(), get(), get(), get()) }
+    single<UserManager> {  UserManagerImpl(get(), get(), get(), get(), get()) }
 
     single<PrefManager> { PrefManagerImpl(androidContext()) }
 
     single { FirebaseAuth.getInstance() }
+
+    single <SearchManager> { SearchManagerImpl(get(), get()) }
 }

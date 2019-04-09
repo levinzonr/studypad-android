@@ -12,7 +12,6 @@ import cz.levinzonr.studypad.first
 import cz.levinzonr.studypad.onQueryTextChanged
 import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialog
 import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchDialog
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
@@ -39,7 +38,6 @@ class NotebooksSearchFragment : BaseFragment() {
         viewModel.searchStateLiveData.observe(viewLifecycleOwner, Observer {
             updateSearchState(it)
         })
-        resultsRv.addItemDecoration(VerticalSpaceItemDecoration(16))
 
         viewModel.resultsLiveData.observe(viewLifecycleOwner, Observer {
             val adapter= PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Full)

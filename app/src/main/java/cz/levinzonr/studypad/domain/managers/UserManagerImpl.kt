@@ -1,10 +1,13 @@
 package cz.levinzonr.studypad.domain.managers
 
+import androidx.lifecycle.LiveData
 import com.google.firebase.auth.*
 import cz.levinzonr.studypad.data.CreateAccountRequest
 import cz.levinzonr.studypad.domain.models.CurrentUserInfo
+import cz.levinzonr.studypad.domain.models.SearchEntry
 import cz.levinzonr.studypad.domain.models.UserProfile
 import cz.levinzonr.studypad.domain.repository.LocaleRepository
+import cz.levinzonr.studypad.domain.repository.SearchHistoryRepository
 import cz.levinzonr.studypad.rest.Api
 import cz.levinzonr.studypad.storage.TokenRepository
 import cz.levinzonr.studypad.storage.UserProfileRepository
@@ -16,6 +19,7 @@ import kotlin.coroutines.suspendCoroutine
 class UserManagerImpl(private val api: Api,
                       private val localeRepository: LocaleRepository,
                       private val tokenRepository: TokenRepository,
+                      private val searchHistoryRepository: SearchHistoryRepository,
                       private val userProfileRepository: UserProfileRepository) : UserManager {
 
 
@@ -73,10 +77,12 @@ class UserManagerImpl(private val api: Api,
         return CurrentUserInfo(userInfo.uuid, userInfo.displayName, userInfo.university, locale)
     }
 
+
     override fun logout() {
         firebaseAuth.signOut()
         tokenRepository.clear()
         userProfileRepository.clear()
+        searchHistoryRepository.clear()
     }
 
     private suspend fun FirebaseAuth.loginWithPassword(email: String, password: String) : AuthResult {
