@@ -71,8 +71,7 @@ class PublishedNotebookDetailViewModel(
         val notes = sharedDetailLiveData.value?.notes ?: listOf()
         navigateTo(
             PublishedNotebookDetailFragmentDirections.actionPublishedNotebookDetailFragmentToPublishedNotesListFragment(
-            notes.map { Note(-1, it.title, it.content, notebookId) }.toTypedArray()
-        )
+            notes.map { Note(-1, it.title, it.content, notebookId) }.toTypedArray())
         )
     }
 

@@ -74,4 +74,6 @@ val interacorModule = module {
 
     factory { GetAvailableLanguagesInteractor(get()) }
 
+    factory { GetNotificationsInteractor() }
+
 }

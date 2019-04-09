@@ -14,14 +14,14 @@
 
     <TextView
             android:textColor="@color/blue"
-            android:layout_marginStart="@dimen/space_normal"
+            android:layout_marginStart="4dp"
             android:id="@+id/sectionName"
             tools:text="Hello World"
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/sectionRv"
             app:layout_constraintEnd_toStartOf="@+id/sectionSeeAllBtn"
             app:layout_constraintBaseline_toBaselineOf="@+id/sectionSeeAllBtn"/>
 

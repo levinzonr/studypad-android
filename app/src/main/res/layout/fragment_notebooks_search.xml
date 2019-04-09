@@ -45,6 +45,7 @@
                     android:layout_height="wrap_content">
 
                 <com.google.android.material.chip.Chip
+                        app:chipIconVisible="true"
                         android:id="@+id/searchOptionUniversity"
                         app:closeIcon="@drawable/ic_expand_more_black_24dp"
                         app:closeIconVisible="true"

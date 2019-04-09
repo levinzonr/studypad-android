@@ -2,6 +2,7 @@ package cz.levinzonr.studypad.presentation.screens.sharinghub.feed
 
 import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.data.SectionResponse
+import cz.levinzonr.studypad.domain.interactors.GetNotificationsInteractor
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetRelevantNotebooks
 import cz.levinzonr.studypad.domain.managers.SearchManager
 import cz.levinzonr.studypad.domain.managers.UserManager
@@ -12,11 +13,11 @@ import timber.log.Timber
 
 class SharingHubViewModel(
     private val userManager: UserManager,
-    private val searchManager: SearchManager,
+    private val getNotificationsInteractor: GetNotificationsInteractor,
     private val getRelevantNotebooks: GetRelevantNotebooks) : BaseViewModel() {
 
     val dataSource = MutableLiveData<List<Section>>()
-    val recentSearches = searchManager.getRecentSearches()
+    val recentSearches = MutableLiveData<List<Notification>>()
 
     init {
         toggleLoading(true)
@@ -29,6 +30,10 @@ class SharingHubViewModel(
             onError {
                 postError(it.message)
             }
+        }
+
+        getNotificationsInteractor.execute {
+            onComplete { recentSearches.postValue(it) }
         }
     }
 

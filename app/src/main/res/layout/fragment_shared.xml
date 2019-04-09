@@ -9,11 +9,15 @@
         tools:context=".presentation.screens.sharinghub.feed.SharingHubFragment">
 
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
         <LinearLayout
+                android:paddingTop="@dimen/space_normal"
                 android:animateLayoutChanges="true"
                 android:orientation="vertical"
                 android:id="@+id/sectionContainer"
@@ -22,23 +26,36 @@
 
 
             <TextView
+                    android:paddingStart="@dimen/space_normal"
+                    android:paddingEnd="@dimen/space_normal"
                     android:textStyle="bold"
                     android:textSize="16sp"
-                    android:textColor="@color/blue"
                     android:drawablePadding="@dimen/space_normal"
-                    android:drawableStart="@drawable/ic_round_timelapse_24px"
-                    android:text="Recently Searched"
+                    android:text="Recent notifications"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/searchEntryRv"
-                    android:orientation="vertical"
-                    tools:itemCount="2"
-                    tools:listitem="@layout/item_search_entry"
-                    app:layoutManager="LinearLayoutManager"
+
+            <com.google.android.material.card.MaterialCardView
+                    app:cardElevation="@dimen/cardview_default_elevation"
+                    app:cardCornerRadius="@dimen/corner_radius"
+                    android:layout_margin="@dimen/space_normal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:paddingStart="@dimen/space_normal"
+                        android:paddingEnd="@dimen/space_normal"
+                        android:id="@+id/searchEntryRv"
+                        android:orientation="vertical"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_notification"
+                        app:layoutManager="LinearLayoutManager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
 
         </LinearLayout>
 

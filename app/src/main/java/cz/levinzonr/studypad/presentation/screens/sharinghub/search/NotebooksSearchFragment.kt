@@ -12,6 +12,7 @@ import cz.levinzonr.studypad.first
 import cz.levinzonr.studypad.onQueryTextChanged
 import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialog
 import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchDialog
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
@@ -35,6 +36,7 @@ class NotebooksSearchFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
         viewModel.searchStateLiveData.observe(viewLifecycleOwner, Observer {
             updateSearchState(it)
         })
@@ -49,6 +51,7 @@ class NotebooksSearchFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
+        resultsRv.addItemDecoration(VerticalSpaceItemDecoration(16))
 
     }
 

@@ -24,4 +24,6 @@ val adapterModule = module {
     factory { (listener: LanguagesAdapter.LanguageItemListener) -> LanguagesAdapter(listener) }
 
     factory { (listener: SearchEntryAdapter.SearchEntriesListener) -> SearchEntryAdapter(listener) }
+
+    factory { (listener: NotificationsAdapter.NotificationItemsListener) -> NotificationsAdapter(listener ) }
 }
