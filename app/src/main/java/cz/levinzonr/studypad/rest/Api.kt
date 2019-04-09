@@ -68,7 +68,10 @@ interface Api {
     fun getPublishedNotebookDetailAsync(@Path("id") id: String) : Deferred<PublishedNotebook.Detail>
 
     @GET("$API/shared/find")
-    fun findNotebooks(@Query("tags") tags: Set<String>, @Query("topic") topic: String) : Deferred<List<PublishedNotebook>>
+    fun findNotebooksAsync(@Query("tags") tags: Set<String>,
+                           @Query("topics") topic: List<Long>,
+                           @Query("query") query: String,
+                           @Query("university") universityId: Long?) : Deferred<List<PublishedNotebook.Feed>>
 
     @POST("$API/shared")
     fun publishNotebookAsync(@Body publishNotebookRequest: PublishNotebookRequest) : Deferred<PublishedNotebook.Feed>

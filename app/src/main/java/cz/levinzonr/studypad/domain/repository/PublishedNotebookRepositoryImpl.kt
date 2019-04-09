@@ -52,8 +52,13 @@ class PublishedNotebookRepositoryImpl(private val api: Api) : PublishedNotebookR
     override fun searchNotebooks(searchState: NotebookSearchModels.SearchState): LiveData<List<PublishedNotebook.Feed>> {
         val mutableLiveData = MutableLiveData<List<PublishedNotebook.Feed>>()
         GlobalScope.launch {
-            val items: List<PublishedNotebook.Feed> = getRelevantNotebooks().map { it.items }.flatten()
-            mutableLiveData.postValue(items.filter { it.title.contains(searchState.query) })
+            val items = api.findNotebooksAsync(
+                query = searchState.query,
+                topic = searchState.topic.map { it.id },
+                tags =  searchState.tags.toSet(),
+                universityId = searchState.university?.id
+            ).await()
+            mutableLiveData.postValue(items)
         }
         return mutableLiveData
     }
