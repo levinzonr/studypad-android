@@ -74,7 +74,7 @@ val interacorModule = module {
 
     factory { GetAvailableLanguagesInteractor(get()) }
 
-    factory { GetNotificationsInteractor() }
+    factory { GetNotificationsInteractor(get()) }
 
     factory { RefreshFirebaseTokenInteractor(get(), get()) }
 

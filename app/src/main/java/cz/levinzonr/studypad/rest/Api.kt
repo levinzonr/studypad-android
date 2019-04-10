@@ -2,6 +2,7 @@ package cz.levinzonr.studypad.rest
 
 import cz.levinzonr.studypad.data.*
 import cz.levinzonr.studypad.domain.models.*
+import cz.levinzonr.studypad.notifications.NotificationPayload
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
 
@@ -25,6 +26,9 @@ interface Api {
 
     @GET("$API/users/me")
     fun getAuthenticatedUserProfileAsync() : Deferred<UserProfile>
+
+    @GET("$API/users/me/notifications")
+    fun getLatestNotifications() : Deferred<List<NotificationPayload>>
 
     @POST("$API/users/notifications/register")
     fun registerFirebaseTokenAsync(@Query("token") token: String) : Deferred<Unit>
