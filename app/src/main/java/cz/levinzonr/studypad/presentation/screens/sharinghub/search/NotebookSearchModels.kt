@@ -16,7 +16,12 @@ object NotebookSearchModels {
         val topic: List<Topic> = listOf(),
         val tags : List<String> = listOf(),
         val query: String = "",
-        val orderBy: OrderBy = OrderBy.RECENT
-    ) : Parcelable
+        val orderBy: OrderBy? = null
+    ) : Parcelable {
+        val isDefaultState: Boolean
+            get() {
+                return university == null && topic.isEmpty() && tags.isEmpty() && query.isEmpty() && orderBy == null
+            }
+    }
 
 }

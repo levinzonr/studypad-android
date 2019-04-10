@@ -33,5 +33,7 @@ val repositoryModule = module {
     single<LocaleRepository> { LocaleRepositoryImpl(get(), get())}
 
     single <SearchHistoryRepository> { SearchHistoryRepositoryImpl(get()) }
+
+    single<FirebaseTokenRepository> { FirebaseTokenRepositoryImpl(get()) }
 }
 

@@ -76,4 +76,6 @@ val interacorModule = module {
 
     factory { GetNotificationsInteractor() }
 
+    factory { RefreshFirebaseTokenInteractor(get(), get()) }
+
 }

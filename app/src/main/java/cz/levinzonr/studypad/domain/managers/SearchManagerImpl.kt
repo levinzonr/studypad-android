@@ -2,6 +2,7 @@ package cz.levinzonr.studypad.domain.managers
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import cz.levinzonr.studypad.domain.models.OrderBy
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.SearchEntry
 import cz.levinzonr.studypad.domain.repository.PublishedNotebookRepository
@@ -23,7 +24,7 @@ class SearchManagerImpl(
         val entry = SearchEntry(
             searchState.query,
             searchState.university,
-            searchState.orderBy,
+            searchState.orderBy ?: OrderBy.RECENT,
             searchState.topic,
             searchState.tags
         )

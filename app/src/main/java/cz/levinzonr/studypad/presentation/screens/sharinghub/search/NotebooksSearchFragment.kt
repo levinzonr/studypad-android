@@ -16,6 +16,7 @@ import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialog
 import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchDialog
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
+import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_notebooks_search.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -82,6 +83,10 @@ class NotebooksSearchFragment : BaseFragment() {
     }
 
     private fun updateSearchState(searchState: NotebookSearchModels.SearchState) {
+
+        resultsRv.setVisible(!searchState.isDefaultState)
+        emptyView.setVisible(searchState.isDefaultState)
+
         if (searchState.tags.isEmpty()) {
             searchOptionTags.text = "Tags"
         } else {

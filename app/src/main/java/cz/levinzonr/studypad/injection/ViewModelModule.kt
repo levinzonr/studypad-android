@@ -25,7 +25,7 @@ import org.koin.dsl.module.module
 
 val viewModelModule = module {
 
-    viewModel  { NotebookListViewModel(get(), get(), get(), get(), get(), get(), get()) }
+    viewModel  { NotebookListViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
 
     viewModel { (id: String) -> NotesListViewModel(id, get(), get()) }
 

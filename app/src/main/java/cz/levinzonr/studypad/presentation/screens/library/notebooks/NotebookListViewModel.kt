@@ -2,6 +2,7 @@ package cz.levinzonr.studypad.presentation.screens.library.notebooks
 
 import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.call
+import cz.levinzonr.studypad.domain.interactors.keychain.RefreshFirebaseTokenInteractor
 import cz.levinzonr.studypad.domain.interactors.library.*
 import cz.levinzonr.studypad.domain.interactors.sharinghub.QuiclPublishInteractor
 import cz.levinzonr.studypad.domain.models.Notebook
@@ -17,6 +18,7 @@ class NotebookListViewModel(
     private val updateNotebookInteractor: UpdateNotebookInteractor,
     private val notebookRepository: NotebookRepository,
     private val getNotebooksInteractor: GetNotebooksInteractor,
+    private val refreshFirebaseTokenInteractor: RefreshFirebaseTokenInteractor,
     private val quiclPublishInteractor: QuiclPublishInteractor,
     private val librarySyncInteractor: LibrarySyncInteractor,
     private val postNoteookInteractor: PostNotebookInteractor
@@ -29,6 +31,10 @@ class NotebookListViewModel(
 
     init {
         synchronize()
+        refreshFirebaseTokenInteractor.execute {
+            onComplete { postError("Notifcations: $it") }
+            onError { postError("Notification $it") }
+        }
     }
 
     fun synchronize() {

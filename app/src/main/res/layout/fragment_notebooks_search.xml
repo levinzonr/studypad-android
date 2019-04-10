@@ -90,8 +90,24 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
+    <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/emptyView"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:gravity="center"
+                android:text="Default state"
+                android:id="@+id/emptyViewTv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
             android:id="@+id/resultsRv"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:orientation="vertical"

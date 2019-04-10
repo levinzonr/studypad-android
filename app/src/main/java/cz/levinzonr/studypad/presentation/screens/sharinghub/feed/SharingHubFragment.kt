@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.data.SectionResponse
 import cz.levinzonr.studypad.domain.models.*
+import cz.levinzonr.studypad.dp
 import cz.levinzonr.studypad.first
 import cz.levinzonr.studypad.presentation.adapters.NotificationsAdapter
 import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
@@ -96,8 +97,10 @@ class SharingHubFragment : BaseFragment(), NotificationsAdapter.NotificationItem
         sectionView.sectionSeeAllBtn.setOnClickListener { viewModel.onShowAllClicked(section) }
         adapter.listener = this
         adapter.items = section.items
-        sectionView.layoutParams =
-            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        params.setMargins(0, 2.dp, 0, 0)
+        sectionView.layoutParams = params
+
         sectionContainer.addView(sectionView)
 
     }
