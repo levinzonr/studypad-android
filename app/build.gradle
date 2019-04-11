@@ -31,8 +31,8 @@ android {
 
         debug {
             applicationIdSuffix ".dev"
-           // buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com\""
-            buildConfigField "String", "API_URL", "\"http://10.0.2.2:8080\""
+            buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com\""
+            // buildConfigField "String", "API_URL", "\"http://10.0.2.2:8080\""
 
             manifestPlaceholders = [
                     FB_APP_ID: "1993571567628934"
@@ -104,7 +104,7 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
     implementation 'joda-time:joda-time:2.10.1'
-    compile "com.tyro.oss:arbitrater:0.0.6"
+    implementation "com.tyro.oss:arbitrater:0.0.6"
 
 
     implementation 'com.github.Nishant-Pathak:MathView:v1.1'

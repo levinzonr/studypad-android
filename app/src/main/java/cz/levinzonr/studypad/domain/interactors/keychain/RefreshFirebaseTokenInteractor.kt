@@ -9,7 +9,6 @@ class RefreshFirebaseTokenInteractor(private val api: Api,
 
 
     override suspend fun executeOnBackground(): Boolean {
-        if (tokenRepository.isTokenRefreshed()) return true
         tokenRepository.getToken()?.let {
             api.registerFirebaseTokenAsync(it).await()
             tokenRepository.markAsRefreshed()

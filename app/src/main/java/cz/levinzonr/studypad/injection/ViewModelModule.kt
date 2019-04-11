@@ -9,6 +9,7 @@ import cz.levinzonr.studypad.presentation.screens.library.publish.PublishNoteboo
 import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchViewModel
 import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchViewModel
 import cz.levinzonr.studypad.presentation.screens.library.publish.LanguageSelectorViewModel
+import cz.levinzonr.studypad.presentation.screens.notifications.NotificationsViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorViewModel
@@ -39,7 +40,9 @@ val viewModelModule = module {
 
     viewModel { (notebook: Notebook) -> PublishNotebookViewModel(notebook, get(), get(), get()) }
 
-    viewModel { SharingHubViewModel(get(), get(), get()) }
+    viewModel { NotificationsViewModel(get())}
+
+    viewModel { SharingHubViewModel(get(), get()) }
 
     viewModel { TagSearchViewModel(get()) }
 

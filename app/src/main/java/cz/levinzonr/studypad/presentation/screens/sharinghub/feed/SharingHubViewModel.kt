@@ -13,11 +13,9 @@ import timber.log.Timber
 
 class SharingHubViewModel(
     private val userManager: UserManager,
-    private val getNotificationsInteractor: GetNotificationsInteractor,
     private val getRelevantNotebooks: GetRelevantNotebooks) : BaseViewModel() {
 
     val dataSource = MutableLiveData<List<Section>>()
-    val recentSearches = MutableLiveData<List<Notification>>()
 
     init {
         toggleLoading(true)
@@ -32,9 +30,6 @@ class SharingHubViewModel(
             }
         }
 
-        getNotificationsInteractor.execute {
-            onComplete { recentSearches.postValue(it) }
-        }
     }
 
     fun showDetail(notebook: PublishedNotebook.Feed) {

@@ -1,0 +1,20 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             tools:context="cz.levinzonr.studypad.presentation.screens.notifications.NotificationsFragment">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:paddingStart="@dimen/space_normal"
+            android:paddingEnd="@dimen/space_normal"
+            android:id="@+id/notificationsRv"
+            android:orientation="vertical"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_notification"
+            app:layoutManager="LinearLayoutManager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</FrameLayout>

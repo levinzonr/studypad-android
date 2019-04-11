@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
@@ -34,6 +35,12 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
 
         createNotificationChannel()
 
+        val intent = Intent(IntentActions.NOTIFICATION)
+        val payload = extractPayload(message)
+        intent.putExtra("data", payload)
+
+        val schedyked = LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
+
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentText(message.notification?.body ?: "")
             .setContentTitle(message.notification?.title ?: "")
@@ -43,17 +50,21 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
             .build()
 
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        manager.notify(1, notification)
+        if (!schedyked) manager.notify(1, notification)
     }
 
     private fun getPendingIntent(message: RemoteMessage): PendingIntent? {
-        val payload = message.data.get("payload") ?: return null
-        Timber.d("Pay;pad: $payload")
-        val notification = gson.fromJson<NotificationPayload>(payload) ?: return null
+        val notification = extractPayload(message) ?: return null
         val intent = Intent(this, MainActivity::class.java).apply {
             putExtra("payload", notification)
         }
         return PendingIntent.getActivity(this, code(notification.type), intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    }
+
+    private fun extractPayload(message: RemoteMessage) : NotificationPayload? {
+        return message.data.get("payload")
+            .also { Timber.d("Payload: $it") }
+            ?.let { gson.fromJson(it) }
     }
 
     private fun code(string: String): Int {
