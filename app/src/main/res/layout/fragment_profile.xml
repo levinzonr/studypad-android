@@ -71,7 +71,7 @@
 
 
         <com.google.android.material.button.MaterialButton
-                android:id="@+id/editProfileBtn"
+            android:id="@+id/editProfileBtn"
             app:icon="@drawable/ic_edit"
             android:gravity="start"
             android:text="Edit Profile"
@@ -81,6 +81,7 @@
 
 
         <com.google.android.material.button.MaterialButton
+                android:id="@+id/notificationBtn"
             app:icon="@drawable/ic_forum_black_24dp"
             android:gravity="start"
             android:text="Notifications"

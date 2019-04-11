@@ -58,6 +58,10 @@ class ProfileFragment : BaseFragment() {
             }
         }
 
+        notificationBtn.setOnClickListener {
+            viewModel.onNotificationsButtonClicked()
+        }
+
         viewModel.openLoginEvent.observe(this, Observer {
             it.handle {
                 startActivity(Intent(activity, OnboardingActivity::class.java))

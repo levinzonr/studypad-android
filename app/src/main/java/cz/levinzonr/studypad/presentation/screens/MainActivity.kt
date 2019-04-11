@@ -52,13 +52,11 @@ class MainActivity : BaseActivity() {
     private fun registerBroadcastReceiver() {
         broadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(p0: Context?, p1: Intent?) {
-                Timber.d("Activiy on Receive")
                 val currentFragment = navHostFragment.childFragmentManager.fragments.first()
                 if (currentFragment is NotificationHandler) {
-                    Timber.d("try ghandle")
                     val paylaod = p1?.getParcelableExtra<NotificationPayload>("data") ?: return
-                    Timber.d("try ghandle")
                     currentFragment.handleNotification(NotificationType.valueOf(paylaod.type.capitalize()), paylaod)
+                    setBadge()
                 }
             }
         }

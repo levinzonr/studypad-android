@@ -12,8 +12,11 @@ import cz.levinzonr.studypad.*
 
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.State
+import cz.levinzonr.studypad.notifications.NotificationPayload
 import cz.levinzonr.studypad.presentation.adapters.NotePreviewAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.base.NotificationHandler
+import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
 import kotlinx.android.synthetic.main.fragment_published_notebook_description.*
 import kotlinx.android.synthetic.main.include_notebook_details.*
 import kotlinx.android.synthetic.main.include_notebook_info.*
@@ -25,7 +28,7 @@ import timber.log.Timber
 import java.security.InvalidParameterException
 
 
-class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.NotePreviewListener {
+class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.NotePreviewListener, NotificationHandler {
 
     private val notebookId: String
         get() = arguments?.getString(ARG_NOTEBOOK_ID) ?: throw InvalidParameterException()
@@ -141,6 +144,10 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
                 notebookVersionLayout.setVisible(false)
             }
         }
+    }
+
+    override fun handleNotification(type: NotificationType, notificationPayload: NotificationPayload) {
+        viewModel.refreshAll()
     }
 
     override fun onShowAllButtonClicked() {

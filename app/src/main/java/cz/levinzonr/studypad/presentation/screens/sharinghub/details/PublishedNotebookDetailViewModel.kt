@@ -20,7 +20,7 @@ class PublishedNotebookDetailViewModel(
     private val getPublishedNotebookDetail: GetPublishedNotebookDetail,
     private val importPublishedNotebookInteractor: ImportPublishedNotebookInteractor,
     private val getNotebookVersionStateInteractor: GetNotebookVersionStateInteractor
-) : BaseViewModel(){
+) : BaseViewModel() {
 
     private val sharedDetailLiveData = MutableLiveData<PublishedNotebook.Detail>()
     val updated = liveEvent()
@@ -28,6 +28,10 @@ class PublishedNotebookDetailViewModel(
 
     init {
         toggleLoading(true)
+        refreshAll()
+    }
+
+    fun refreshAll() {
         getPublishedNotebookDetail.executeWithInput(notebookId) {
             onComplete {
                 sharedDetailLiveData.postValue(it)
@@ -40,13 +44,16 @@ class PublishedNotebookDetailViewModel(
         }
     }
 
-    fun getSharedDetailLiveData() : LiveData<PublishedNotebook.Detail> {
+    fun getSharedDetailLiveData(): LiveData<PublishedNotebook.Detail> {
         return sharedDetailLiveData
     }
 
-    fun handleSaveAction()  {
+    fun handleSaveAction() {
         importPublishedNotebookInteractor.executeWithInput(notebookId) {
-            onComplete { updated.call() }
+            onComplete {
+                updated.call()
+                refreshAll()
+            }
         }
     }
 
@@ -54,7 +61,8 @@ class PublishedNotebookDetailViewModel(
         applyLocalChangesInteractor.executeWithInput(notebookId) {
             onComplete {
                 stateLiveData.postValue(State.UpToDate)
-                sharedDetailLiveData.postValue(it) }
+                sharedDetailLiveData.postValue(it)
+            }
         }
     }
 
@@ -71,7 +79,8 @@ class PublishedNotebookDetailViewModel(
         val notes = sharedDetailLiveData.value?.notes ?: listOf()
         navigateTo(
             PublishedNotebookDetailFragmentDirections.actionPublishedNotebookDetailFragmentToPublishedNotesListFragment(
-            notes.map { Note(-1, it.title, it.content, notebookId) }.toTypedArray())
+                notes.map { Note(-1, it.title, it.content, notebookId) }.toTypedArray()
+            )
         )
     }
 

@@ -13,6 +13,7 @@ import cz.levinzonr.studypad.domain.models.Color
 import cz.levinzonr.studypad.domain.models.Notification
 import cz.levinzonr.studypad.formatTime
 import cz.levinzonr.studypad.layoutInflater
+import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
 import kotlinx.android.synthetic.main.item_notification.view.*
 
 class NotificationsAdapter(private val listener: NotificationsAdapter.NotificationItemsListener) : ListAdapter<Notification, NotificationsAdapter.ViewHolder>(DiffCallback()) {
@@ -35,18 +36,24 @@ class NotificationsAdapter(private val listener: NotificationsAdapter.Notificati
         fun bindView(notification: Notification) {
             view.notificationBodyTv.text = notification.body
 
-            when(notification.type) {
-                "comment" -> {
+            when(notification.type()) {
+               NotificationType.Comment -> {
                     view.notificationTimeTv.text = "New Comment • ${notification.time.formatTime()}"
 
                     view.notificationTypeIv.setImageResource(R.drawable.ic_comment)
                     val color = ContextCompat.getColor(view.context, R.color.blue)
                     view.notificationTypeIv.imageTintList = ColorStateList.valueOf(color)
                 }
-                "update" -> {
+               NotificationType.Update -> {
                     view.notificationTimeTv.text = "Update Available • ${notification.time.formatTime()}"
                     val color = ContextCompat.getColor(view.context, R.color.oragne)
                     view.notificationTypeIv.setImageResource(R.drawable.ic_sync_black_24dp)
+                    view.notificationTypeIv.imageTintList = ColorStateList.valueOf(color)
+                }
+                NotificationType.Suggestion -> {
+                    view.notificationTimeTv.text = "Suggestion Added • ${notification.time.formatTime()}"
+                    val color = ContextCompat.getColor(view.context, R.color.green)
+                    view.notificationTypeIv.setImageResource(R.drawable.ic_support)
                     view.notificationTypeIv.imageTintList = ColorStateList.valueOf(color)
                 }
             }

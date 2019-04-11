@@ -50,7 +50,7 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,  NotificationsA
         subscribe()
         notificationsFragment = NotificationsFragment.newInstance(true)
         childFragmentManager.beginTransaction()
-            .add(R.id.container, NotificationsFragment.newInstance(true), "tag")
+            .replace(R.id.container, NotificationsFragment.newInstance(true), "tag")
             .commit()
     }
 

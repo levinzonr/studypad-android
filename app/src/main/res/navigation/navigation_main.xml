@@ -56,7 +56,11 @@
         android:id="@+id/profileFragment"
         android:name="cz.levinzonr.studypad.presentation.screens.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+                android:id="@+id/action_profileFragment_to_notificationsFragment"
+                app:destination="@id/notificationsFragment"/>
+    </fragment>
     <fragment
         android:id="@+id/publishNotebookFragment"
         android:name="cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookFragment"
@@ -124,4 +128,9 @@
                 app:nullable="true"
                 android:defaultValue="@null"/>
     </fragment>
+    <fragment
+            android:id="@+id/notificationsFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.notifications.NotificationsFragment"
+            android:label="fragment_notifications"
+            tools:layout="@layout/fragment_notifications"/>
 </navigation>

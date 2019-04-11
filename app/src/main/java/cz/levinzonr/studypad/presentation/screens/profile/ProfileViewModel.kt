@@ -46,6 +46,10 @@ class ProfileViewModel(
         }
     }
 
+    fun onNotificationsButtonClicked() {
+        navigateTo(ProfileFragmentDirections.actionProfileFragmentToNotificationsFragment())
+    }
+
     fun loadProfile() {
         getUserProfileInteractor.execute {
             onComplete { profileLiveData.postValue(it) }
