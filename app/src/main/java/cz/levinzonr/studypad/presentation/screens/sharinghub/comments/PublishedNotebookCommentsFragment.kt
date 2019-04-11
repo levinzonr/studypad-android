@@ -19,11 +19,14 @@ import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 import java.security.InvalidParameterException
 import cz.levinzonr.studypad.baseActivity
+import cz.levinzonr.studypad.notifications.NotificationPayload
 import cz.levinzonr.studypad.presentation.base.BackButtonHandler
+import cz.levinzonr.studypad.presentation.base.NotificationHandler
+import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
 import cz.levinzonr.studypad.presentation.screens.sharinghub.PublishedNotebookOptionsMenu
 
 
-class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.CommentsItemListener, BackButtonHandler {
+class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.CommentsItemListener, BackButtonHandler, NotificationHandler {
 
     private val notebookId: String
         get() = arguments?.getString(ARG_NOTEBOOK_ID) ?: throw InvalidParameterException()
@@ -54,19 +57,11 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
         })
 
         viewModel.getCommentsLiveData().observe(viewLifecycleOwner, Observer {
-            adapter.items = MutableList(it.size) { index: Int -> it[index] }
+            Timber.d("submti $it")
+            adapter.submitList(it)
+            commentsRecyclerView.smoothScrollToPosition(0)
         })
 
-        viewModel.commentsStateLiveData.onHandle(viewLifecycleOwner) {
-            Timber.d("State $it")
-            it.commentAdded?.let {
-                commentsRecyclerView.smoothScrollToPosition(0)
-                adapter.addComment(it)
-
-            }
-            it.commentDeleted?.let { adapter.deleteComment(it) }
-            it.commentUpdated?.let { adapter.updateComment(it) }
-        }
     }
 
 
@@ -106,6 +101,11 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
             }
 
         }
+    }
+
+    override fun handleNotification(type: NotificationType, notificationPayload: NotificationPayload) {
+        Timber.d("Hande ")
+        viewModel.loadComments()
     }
 
     override fun handleBackButton() {

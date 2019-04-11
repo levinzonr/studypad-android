@@ -3,31 +3,27 @@ package cz.levinzonr.studypad.presentation.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import kotlinx.android.synthetic.main.item_comment.view.*
 import timber.log.Timber
 
-class CommentsAdapter(val listener: CommentsItemListener, val authorId: String? = null) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>(){
+class CommentsAdapter(val listener: CommentsItemListener, val authorId: String? = null) : ListAdapter<PublishedNotebook.Comment, CommentsAdapter.ViewHolder>(DiffCallback()) {
 
-    var items : MutableList<PublishedNotebook.Comment> = mutableListOf()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_comment, parent, false))
     }
 
-    override fun getItemCount(): Int {
-    return items.size
-    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-      holder.bindView(items[position])
+        holder.bindView(getItem(position))
     }
+
+
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -49,24 +45,15 @@ class CommentsAdapter(val listener: CommentsItemListener, val authorId: String? 
         }
     }
 
-    fun updateComment(comment: PublishedNotebook.Comment) {
-        items.indexOfFirstOrNull { comment.id == it.id }?.let { index ->
-            items[index] = comment
-            notifyItemChanged(index)
+
+    class DiffCallback : DiffUtil.ItemCallback<PublishedNotebook.Comment>() {
+        override fun areItemsTheSame(oldItem: PublishedNotebook.Comment, newItem: PublishedNotebook.Comment): Boolean {
+            return oldItem.id == newItem.id
         }
-    }
 
-    fun deleteComment(comment: PublishedNotebook.Comment) {
-        items.indexOfFirstOrNull { comment.id == it.id }?.let { index ->
-            items.removeAt(index)
-            notifyItemRemoved(index)
+        override fun areContentsTheSame(oldItem: PublishedNotebook.Comment, newItem: PublishedNotebook.Comment): Boolean {
+            return oldItem.content == newItem.content
         }
-    }
-
-    fun addComment(comment: PublishedNotebook.Comment) {
-            items.add(0, comment)
-            notifyItemInserted(0)
-
     }
 
     interface CommentsItemListener {

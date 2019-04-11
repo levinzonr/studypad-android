@@ -10,7 +10,7 @@ import cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNo
 
 class ViewPagerAdapter(val notebookId: String, val feed: PublishedNotebook.Feed? = null, fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager){
 
-    private val fragments: List<BaseFragment> = listOf(
+    val fragments: List<BaseFragment> = listOf(
         PublishedNotebookDescriptionFragment.newInstance(notebookId, feed),
         PublishedNotebookCommentsFragment.newInstance(notebookId)
     )

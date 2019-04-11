@@ -19,14 +19,13 @@ class PublishedNotebookCommentsViewModel(
 ) : BaseViewModel() {
 
     private val commentsLiveData = MutableLiveData<List<PublishedNotebook.Comment>>()
-    val commentsStateLiveData = MutableLiveData<Event<CommentsState>>()
 
     init {
         toggleLoading(true)
         loadComments()
     }
 
-    private fun loadComments() {
+    fun loadComments() {
         getCommentsInteractor.executeWithInput(notebookId) {
             onComplete { commentsLiveData.postValue(it) }
         }
@@ -41,11 +40,7 @@ class PublishedNotebookCommentsViewModel(
     fun createComment(body: String) {
         createCommentInteractor.executeWithInput(CreateCommentInteractor.Input(notebookId, body)) {
             onComplete {
-                commentsStateLiveData.postValue(Event(
-                    CommentsState(
-                        commentAdded = it
-                    )
-                ))
+                loadComments()
             }
         }
     }
@@ -53,11 +48,7 @@ class PublishedNotebookCommentsViewModel(
     fun deleteComment(comment: PublishedNotebook.Comment) {
         deleteCommentInteractor.executeWithInput(comment.id) {
             onComplete {
-                commentsStateLiveData.postValue(Event(
-                    CommentsState(
-                        commentDeleted = comment
-                    )
-                ))
+                loadComments()
             }
         }
     }
@@ -65,12 +56,7 @@ class PublishedNotebookCommentsViewModel(
     fun editComment(comment: PublishedNotebook.Comment, newBody: String) {
         editCommentInteractor.executeWithInput(EditCommentInteractor.Input(comment.id, newBody)) {
             onComplete {
-                commentsStateLiveData.postValue(Event(
-                    CommentsState(
-                        commentUpdated = it
-                    )
-                ))
-
+                loadComments()
             }
         }
     }
