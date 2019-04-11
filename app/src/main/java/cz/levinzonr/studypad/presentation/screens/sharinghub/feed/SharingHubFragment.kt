@@ -103,7 +103,7 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
         adapter.listener = this
         adapter.items = section.items
         val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        params.setMargins(0, 2.dp, 0, 0)
+        params.setMargins(8.dp, 8.dp, 8.dp, 8.dp)
         sectionView.layoutParams = params
 
         sectionContainer.addView(sectionView)

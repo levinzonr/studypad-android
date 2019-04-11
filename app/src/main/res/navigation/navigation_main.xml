@@ -82,6 +82,9 @@
         <action
             android:id="@+id/action_publishedNotebookDetailFragment_to_notebookSuggestionsFragment"
             app:destination="@id/notebookSuggestionsFragment" />
+        <deepLink
+                android:id="@+id/deepLink"
+                app:uri="studypad://notebooksId/{id}"/>
     </fragment>
     <fragment
         android:id="@+id/noteDetailFragment"

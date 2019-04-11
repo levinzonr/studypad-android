@@ -13,7 +13,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
 
-        <activity android:name=".presentation.screens.MainActivity"/>
+        <activity
+        android:name=".presentation.screens.MainActivity"/>
         <activity android:name=".presentation.screens.onboarding.OnboardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

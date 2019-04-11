@@ -16,6 +16,7 @@ import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialog
 import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchDialog
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
+import cz.levinzonr.studypad.presentation.screens.selectors.MultipleTopicsSelector
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_notebooks_search.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,7 +25,7 @@ import org.koin.core.parameter.parametersOf
 class NotebooksSearchFragment : BaseFragment() {
 
     private val args: NotebooksSearchFragmentArgs by navArgs()
-    override val viewModel: NotebooksSearchViewModel by viewModel { parametersOf(args.initState)}
+    override val viewModel: NotebooksSearchViewModel by viewModel { parametersOf(args.initState) }
 
 
     override fun onCreateView(
@@ -43,7 +44,7 @@ class NotebooksSearchFragment : BaseFragment() {
         })
 
         viewModel.resultsLiveData.observe(viewLifecycleOwner, Observer {
-            val adapter= PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Full)
+            val adapter = PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Full)
             resultsRv.adapter = adapter
             adapter.items = it
         })
@@ -59,8 +60,9 @@ class NotebooksSearchFragment : BaseFragment() {
     private fun setupListeners() {
 
         searchOptionCategory.setOnClickListener {
-            TopicSearchDialog.show(childFragmentManager) {
-                viewModel.onCategoriesOptionChanged(listOf(it))
+            val alreadySelected = viewModel.currentSearchState?.topic ?: listOf()
+            MultipleTopicsSelector.show(childFragmentManager, alreadySelected) {
+                viewModel.onCategoriesOptionChanged(it)
             }
         }
 
@@ -106,7 +108,6 @@ class NotebooksSearchFragment : BaseFragment() {
         }
 
     }
-
 
 
 }

@@ -56,6 +56,7 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
     private fun getPendingIntent(message: RemoteMessage): PendingIntent? {
         val notification = extractPayload(message) ?: return null
         val intent = Intent(this, MainActivity::class.java).apply {
+            action = "id"
             putExtra("payload", notification)
         }
         return PendingIntent.getActivity(this, code(notification.type), intent, PendingIntent.FLAG_UPDATE_CURRENT)

@@ -9,6 +9,7 @@
         android:layout_marginEnd="@dimen/space_normal"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
+        app:cardBackgroundColor="@color/lightGrey"
         android:layout_marginBottom="4dp"
         app:cardCornerRadius="@dimen/corner_radius"
         app:contentPadding="@dimen/space_normal"

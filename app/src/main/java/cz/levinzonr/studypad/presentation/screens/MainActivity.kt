@@ -14,6 +14,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import cz.levinzonr.studypad.NavigationMainDirections
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.notifications.IntentActions
 import cz.levinzonr.studypad.notifications.NotificationPayload
@@ -35,6 +36,7 @@ class MainActivity : BaseActivity() {
         registerBroadcastReceiver()
         //setupKeyboardListener()
         setSupportActionBar(toolbar)
+        handleDeepLink()
         with(findNavController(R.id.fragment)) {
             bottomNav.setupWithNavController(this)
             addOnDestinationChangedListener { _, destination, _ ->
@@ -47,6 +49,11 @@ class MainActivity : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         unregisterBroadcastReceiver()
+    }
+
+    private fun handleDeepLink() {
+        val notebookId = intent.getParcelableExtra<NotificationPayload>("payload")?.notebookId ?: return
+        navController.navigate(NavigationMainDirections.actionGlobalPublishedNotebookDetailFragment(notebookId))
     }
 
     private fun registerBroadcastReceiver() {
