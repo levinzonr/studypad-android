@@ -1,12 +1,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
+             android:animateLayoutChanges="true"
              android:layout_height="match_parent"
              xmlns:app="http://schemas.android.com/apk/res-auto"
              tools:context="cz.levinzonr.studypad.presentation.screens.notifications.NotificationsFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
             android:paddingStart="@dimen/space_normal"
             android:paddingEnd="@dimen/space_normal"
             android:id="@+id/notificationsRv"
@@ -16,5 +18,31 @@
             app:layoutManager="LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+
+
+    <LinearLayout
+            android:visibility="gone"
+            android:padding="@dimen/space_large"
+            android:id="@+id/emptyView"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:tint="@color/blue"
+                android:layout_gravity="center"
+                android:src="@drawable/baseline_check_circle_outline_black_48"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_gravity="center"
+                android:text="You're up to date!"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </FrameLayout>

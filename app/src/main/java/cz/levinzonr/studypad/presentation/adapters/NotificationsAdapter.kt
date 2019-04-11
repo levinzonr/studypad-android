@@ -14,6 +14,7 @@ import cz.levinzonr.studypad.domain.models.Notification
 import cz.levinzonr.studypad.formatTime
 import cz.levinzonr.studypad.layoutInflater
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
+import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.item_notification.view.*
 
 class NotificationsAdapter(private val listener: NotificationsAdapter.NotificationItemsListener) : ListAdapter<Notification, NotificationsAdapter.ViewHolder>(DiffCallback()) {
@@ -30,13 +31,14 @@ class NotificationsAdapter(private val listener: NotificationsAdapter.Notificati
 
     interface NotificationItemsListener {
         fun onNotificationClicked(notification: Notification)
+        fun onNotificationReadClicked(notification: Notification)
     }
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(notification: Notification) {
             view.notificationBodyTv.text = notification.body
-
-            when(notification.type()) {
+            view.notificationReadBtn.setVisible(!notification.read)
+            when(notification.type) {
                NotificationType.Comment -> {
                     view.notificationTimeTv.text = "New Comment • ${notification.time.formatTime()}"
 
@@ -59,6 +61,7 @@ class NotificationsAdapter(private val listener: NotificationsAdapter.Notificati
             }
 
             view.setOnClickListener { listener.onNotificationClicked(notification) }
+            view.notificationReadBtn.setOnClickListener { listener?.onNotificationReadClicked(notification) }
         }
     }
 

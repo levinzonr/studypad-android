@@ -34,7 +34,7 @@ class SharingHubViewModel(
 
     fun showDetail(notebook: PublishedNotebook.Feed) {
         navigateTo(
-            SharingHubFragmentDirections.actionSharedFragmentToPublishedNotebookDetailFragment(
+            SharingHubFragmentDirections.actionGlobalPublishedNotebookDetailFragment(
                 notebook.id,
                 notebook
             )

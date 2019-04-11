@@ -90,7 +90,7 @@ class NotebookListViewModel(
 
     fun showPublishedNotebookDetail(id: String) {
         Timber.d(id)
-        navigateTo(NotebookListFragmentDirections.actionNotebookListFragmentToPublishedNotebookDetailFragment(id))
+        navigateTo(NotebookListFragmentDirections.actionGlobalPublishedNotebookDetailFragment(id))
     }
 
     fun startPublishNotebookFlow(notebook: Notebook) {

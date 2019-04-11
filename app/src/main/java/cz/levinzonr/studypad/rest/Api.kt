@@ -27,8 +27,16 @@ interface Api {
     @GET("$API/users/me")
     fun getAuthenticatedUserProfileAsync() : Deferred<UserProfile>
 
+    //-----------------------------------------------------------------------------
+
+
     @GET("$API/users/me/notifications")
-    fun getLatestNotifications() : Deferred<List<NotificationPayload>>
+    fun getLatestNotificationsAsync() : Deferred<List<NotificationPayload>>
+
+
+    @POST("$API/notifications/read")
+    fun markNotificationsAsRead(@Query("ids") list: List<Long>) : Deferred<Unit>
+
 
     @POST("$API/users/notifications/register")
     fun registerFirebaseTokenAsync(@Query("token") token: String) : Deferred<Unit>

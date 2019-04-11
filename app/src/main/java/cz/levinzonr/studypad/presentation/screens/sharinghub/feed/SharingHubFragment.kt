@@ -28,7 +28,7 @@ import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
 
-class SharingHubFragment : BaseFragment(),  NotificationHandler,  NotificationsAdapter.NotificationItemsListener,
+class SharingHubFragment : BaseFragment(),  NotificationHandler,
     PublishedNotebooksAdapter.PublishedNotebookItemListener {
 
     override val viewModel: SharingHubViewModel by viewModel()
@@ -69,10 +69,6 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,  NotificationsA
             R.id.searchBtn -> viewModel.onSearchButtonClicked()
         }
         return true
-    }
-
-    override fun onNotificationClicked(notification: Notification) {
-
     }
 
     private fun subscribe() {

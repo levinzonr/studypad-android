@@ -40,7 +40,7 @@ val viewModelModule = module {
 
     viewModel { (notebook: Notebook) -> PublishNotebookViewModel(notebook, get(), get(), get()) }
 
-    viewModel { NotificationsViewModel(get())}
+    viewModel { (isPreviewMode: Boolean) -> NotificationsViewModel(isPreviewMode, get(), get())}
 
     viewModel { SharingHubViewModel(get(), get()) }
 

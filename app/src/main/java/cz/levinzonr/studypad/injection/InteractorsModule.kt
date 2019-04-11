@@ -78,4 +78,6 @@ val interacorModule = module {
 
     factory { RefreshFirebaseTokenInteractor(get(), get()) }
 
+    factory { MarkNotificationAsRead(get()) }
+
 }

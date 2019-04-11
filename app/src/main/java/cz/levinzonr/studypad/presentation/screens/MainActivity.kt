@@ -56,7 +56,6 @@ class MainActivity : BaseActivity() {
                 if (currentFragment is NotificationHandler) {
                     val paylaod = p1?.getParcelableExtra<NotificationPayload>("data") ?: return
                     currentFragment.handleNotification(NotificationType.valueOf(paylaod.type.capitalize()), paylaod)
-                    setBadge()
                 }
             }
         }

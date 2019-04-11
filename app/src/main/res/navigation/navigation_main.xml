@@ -14,9 +14,6 @@
         <action
             android:id="@+id/action_notebookListFragment_to_publishNotebookFragment"
             app:destination="@id/publishNotebookFragment" />
-        <action
-            android:id="@+id/action_notebookListFragment_to_publishedNotebookDetailFragment"
-            app:destination="@id/publishedNotebookDetailFragment" />
     </fragment>
     <fragment android:id="@+id/notesListFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.library.notes.NotesListFragment"
@@ -36,10 +33,6 @@
     <fragment android:id="@+id/sharingHubFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.feed.SharingHubFragment"
               android:label="@string/screen_sharing_hub" tools:layout="@layout/fragment_shared">
-        <action
-            android:id="@+id/action_sharedFragment_to_publishedNotebookDetailFragment"
-            app:destination="@id/publishedNotebookDetailFragment">
-        </action>
         <action
                 android:id="@+id/action_sharedFragment_to_notebooksSearchFragment"
                 app:destination="@id/notebooksSearchFragment"/>
@@ -133,4 +126,11 @@
             android:name="cz.levinzonr.studypad.presentation.screens.notifications.NotificationsFragment"
             android:label="fragment_notifications"
             tools:layout="@layout/fragment_notifications"/>
+    <action
+            android:id="@+id/action_global_publishedNotebookDetailFragment"
+            app:destination="@id/publishedNotebookDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
 </navigation>

@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class NotificationPayload(
-    val id: Long? = null,
+    val id: Long,
     val body: String,
     val title: String,
     val userId: String,

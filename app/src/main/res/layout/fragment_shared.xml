@@ -10,8 +10,6 @@
         tools:context=".presentation.screens.sharinghub.feed.SharingHubFragment">
 
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -26,7 +24,6 @@
                 android:layout_height="match_parent">
 
 
-
             <com.google.android.material.card.MaterialCardView
                     app:cardElevation="@dimen/cardview_default_elevation"
                     app:cardCornerRadius="@dimen/corner_radius"
@@ -35,30 +32,28 @@
                     android:layout_height="wrap_content">
 
 
-               <LinearLayout
+                <LinearLayout
                         android:orientation="vertical"
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
 
-
-                   <TextView
-                           android:paddingStart="@dimen/space_normal"
-                           android:paddingEnd="@dimen/space_normal"
-                           android:textStyle="bold"
-                           android:textSize="16sp"
-                           android:drawablePadding="@dimen/space_normal"
-                           android:text="Recent notifications"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
+                    <TextView
+                            android:padding="@dimen/space_normal"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:drawablePadding="@dimen/space_normal"
+                            android:text="Recent notifications"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
 
 
-                   <FrameLayout
-                           android:id="@+id/container"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
+                    <FrameLayout
+                            android:id="@+id/container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
 
-               </LinearLayout>
+                </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 

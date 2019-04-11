@@ -6,13 +6,10 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Notification(
-    val id: String,
-    val type: String,
+    val id: Long,
+    val type: NotificationType,
+    val read: Boolean,
+    val notebookId: String,
     val body: String = "Nullam quis risus eget urna mollis ornare vel eu leo.",
     val time: Long = System.currentTimeMillis()
-) : Parcelable {
-
-    fun type() : NotificationType {
-        return NotificationType.valueOf(type.capitalize())
-    }
-}
+) : Parcelable
