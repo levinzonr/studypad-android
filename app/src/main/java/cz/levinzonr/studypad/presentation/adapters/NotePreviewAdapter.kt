@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.layoutInflater
 import kotlinx.android.synthetic.main.item_note_preview.view.*
 import kotlinx.android.synthetic.main.item_show_all.view.*
 
-class NotePreviewAdapter(val notes: List<PublishedNotebook.Note>, val listener: NotePreviewListener) :
+class NotePreviewAdapter(val notes: List<Note>, val listener: NotePreviewListener) :
     RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -39,7 +40,7 @@ class NotePreviewAdapter(val notes: List<PublishedNotebook.Note>, val listener: 
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bindView(note: PublishedNotebook.Note) {
+        fun bindView(note: Note) {
             view.noteTitleTv.text = note.title
         }
     }

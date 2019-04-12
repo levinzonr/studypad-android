@@ -1,6 +1,8 @@
  package cz.levinzonr.studypad.injection
 
+import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
+import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailModels
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailViewModel
@@ -14,13 +16,15 @@ import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewMode
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorViewModel
 import cz.levinzonr.studypad.presentation.screens.profile.ProfileViewModel
-import cz.levinzonr.studypad.presentation.screens.sharinghub.details.NotebookSuggestionsViewModel
+import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.NotebookSuggestionsViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.comments.PublishedNotebookCommentsViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNotebookDetailViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNotesListViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.feed.SharingHubViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebookSearchModels
 import cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebooksSearchViewModel
+import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.ReviewSuggestionsViewModel
+import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.SuggestionsModels
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
@@ -70,12 +74,14 @@ val viewModelModule = module {
 
     viewModel { PublishedNotesListViewModel() }
 
-    viewModel { NotebookSuggestionsViewModel() }
+    viewModel { (notes: Array<Note>, suggestions: Array<PublishedNotebook.Modification>) -> NotebookSuggestionsViewModel(suggestions.toList(), notes.toList()) }
 
     viewModel { LanguageSelectorViewModel(get()) }
 
     viewModel { UniversitySelectorViewModel(get()) }
 
     viewModel { (searchState: NotebookSearchModels.SearchState?) -> NotebooksSearchViewModel(searchState, get()) }
+
+    viewModel { (list: Array<SuggestionsModels.SuggestionItem>) -> ReviewSuggestionsViewModel(list.toList(), get()) }
 
 }

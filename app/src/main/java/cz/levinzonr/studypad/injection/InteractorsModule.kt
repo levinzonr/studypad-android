@@ -80,4 +80,6 @@ val interacorModule = module {
 
     factory { MarkNotificationAsRead(get()) }
 
+    factory { SubmitReviewInteractor() }
+
 }

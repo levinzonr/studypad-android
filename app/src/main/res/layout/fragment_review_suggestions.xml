@@ -1,0 +1,32 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context="cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.ReviewSuggestionsFragment">
+
+
+    <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="3" />
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.viewpager2.widget.ViewPager2
+            android:layout_marginBottom="80dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:id="@+id/viewPager"
+            android:clipChildren="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/hello_blank_fragment"/>
+
+    <include
+        layout="@layout/review_status_bottom_sheet"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

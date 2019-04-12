@@ -106,12 +106,18 @@
     </fragment>
     <fragment
         android:id="@+id/notebookSuggestionsFragment"
-        android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.details.NotebookSuggestionsFragment"
+        android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.NotebookSuggestionsFragment"
         android:label="fragment_notebook_suggestions"
         tools:layout="@layout/fragment_notebook_suggestions" >
         <argument
             android:name="suggestions"
             app:argType="cz.levinzonr.studypad.domain.models.PublishedNotebook$Modification[]" />
+        <argument
+                android:name="notes"
+                app:argType="cz.levinzonr.studypad.domain.models.Note[]"/>
+        <action
+                android:id="@+id/action_notebookSuggestionsFragment_to_reviewSuggestionsFragment"
+                app:destination="@id/reviewSuggestionsFragment"/>
     </fragment>
     <fragment
             android:id="@+id/notebooksSearchFragment"
@@ -136,4 +142,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    <fragment
+            android:id="@+id/reviewSuggestionsFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.ReviewSuggestionsFragment"
+            android:label="fragment_review_suggestions"
+            tools:layout="@layout/fragment_review_suggestions">
+        <argument
+                android:name="suggestions"
+                app:argType="cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.SuggestionsModels$SuggestionItem[]"/>
+    </fragment>
 </navigation>

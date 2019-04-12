@@ -1,12 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cz.levinzonr.studypad.presentation.screens.sharinghub.details.NotebookSuggestionsFragment">
+    tools:context="cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.NotebookSuggestionsFragment">
 
    <androidx.recyclerview.widget.RecyclerView
-       android:id="@+id/suggestionsRv"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"/>
+           android:id="@+id/suggestionsRv"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           tools:layout_editor_absoluteY="-16dp"
+           tools:layout_editor_absoluteX="295dp"/>
 
-</FrameLayout>
+   <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+           android:id="@+id/reviewBtn"
+           android:layout_width="wrap_content"
+           android:layout_margin="@dimen/space_large"
+           android:text="Review"
+           app:icon="@drawable/ic_support"
+           android:layout_height="wrap_content"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
