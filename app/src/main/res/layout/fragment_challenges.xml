@@ -29,25 +29,31 @@
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/textView7"/>
 
-    <cz.levinzonr.studypad.presentation.common.SqureButton
+    <cz.levinzonr.studypad.presentation.common.SquareButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/squreButton"
+            app:buttonText="Train"
+            app:buttonIcon="@drawable/ic_done_all_black_24dp"
             app:layout_constraintEnd_toStartOf="@+id/squreButton3"
             app:layout_constraintStart_toEndOf="@+id/squreButton2"
             android:layout_marginBottom="@dimen/space_large"
             app:layout_constraintBottom_toTopOf="@+id/textView7"/>
 
-    <cz.levinzonr.studypad.presentation.common.SqureButton
+    <cz.levinzonr.studypad.presentation.common.SquareButton
             android:layout_marginEnd="8dp"
+            app:buttonText="Write"
+            app:buttonIcon="@drawable/ic_writing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@+id/materialButton2"
             android:id="@+id/squreButton3"
             app:layout_constraintBottom_toBottomOf="@+id/squreButton"/>
 
-    <cz.levinzonr.studypad.presentation.common.SqureButton
+    <cz.levinzonr.studypad.presentation.common.SquareButton
             android:layout_width="wrap_content"
+            app:buttonText="Learn"
+            app:buttonIcon="@drawable/ic_sort_black_24dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@+id/materialButton2"
             android:id="@+id/squreButton2"

@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.first
 import cz.levinzonr.studypad.onQueryTextChanged
 import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
@@ -22,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_notebooks_search.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class NotebooksSearchFragment : BaseFragment() {
+class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.PublishedNotebookItemListener {
 
     private val args: NotebooksSearchFragmentArgs by navArgs()
     override val viewModel: NotebooksSearchViewModel by viewModel { parametersOf(args.initState) }
@@ -46,6 +47,7 @@ class NotebooksSearchFragment : BaseFragment() {
         viewModel.resultsLiveData.observe(viewLifecycleOwner, Observer {
             val adapter = PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Full)
             resultsRv.adapter = adapter
+            adapter.listener = this
             adapter.items = it
         })
     }
@@ -55,6 +57,10 @@ class NotebooksSearchFragment : BaseFragment() {
         setupListeners()
         resultsRv.addItemDecoration(VerticalSpaceItemDecoration(16))
 
+    }
+
+    override fun onPublishedNotebookClicked(publishedNotebook: PublishedNotebook.Feed) {
+        viewModel.onNotebookSelected(publishedNotebook)
     }
 
     private fun setupListeners() {

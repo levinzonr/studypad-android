@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+        android:clickable="true"
+        android:focusable="true"
         android:id="@+id/root"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <ImageButton
-            android:focusable="false"
-            android:clickable="false"
-            android:id="@+id/imageButton"
-            android:tint="@color/selector_primary_square"
-            android:src="@drawable/ic_writing"
-            android:background="@drawable/background_button_squre"
+    <com.google.android.material.card.MaterialCardView
+            android:layout_margin="@dimen/space_small"
+            app:cardElevation="8dp"
             android:layout_width="80dp"
-            android:layout_height="80dp"/>
+            android:layout_height="80dp">
+
+        <ImageButton
+
+                android:focusable="false"
+                android:clickable="false"
+                android:id="@+id/imageButton"
+                android:tint="@color/selector_primary_square"
+                android:src="@drawable/ic_writing"
+                android:background="@drawable/background_button_squre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
 
     <TextView
             android:id="@+id/imageTextView"

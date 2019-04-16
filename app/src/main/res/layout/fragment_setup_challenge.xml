@@ -3,36 +3,57 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:animateLayoutChanges="true"
         android:layout_height="match_parent"
         tools:context="cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeFragment">
 
 
-    <cz.levinzonr.studypad.presentation.common.SqureButton
+    <TextView
+            android:id="@+id/challengePrefTypeTv"
+            android:text="Select challenge type"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/space_big"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/challengeTypeTrainBtn"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="@+id/challengeTypeLearnBtn"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/challengeTypeWriteBtn"/>
+
+    <cz.levinzonr.studypad.presentation.common.SquareButton
+            android:clickable="true"
+            android:focusable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_big"
             android:layout_marginBottom="@dimen/space_large"
+            app:buttonText="Learrn"
+            app:buttonIcon="@drawable/ic_sort_black_24dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/squreButton4"
+            android:id="@+id/challengeTypeLearnBtn"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"/>
 
 
-    <cz.levinzonr.studypad.presentation.common.SqureButton
+    <cz.levinzonr.studypad.presentation.common.SquareButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/space_big"
-            app:layout_constraintTop_toTopOf="@+id/squreButton4"
+            app:buttonText="Write"
+            app:layout_constraintTop_toTopOf="@+id/challengeTypeLearnBtn"
             app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/squreButton5"/>
+            android:id="@+id/challengeTypeWriteBtn"/>
 
 
-    <cz.levinzonr.studypad.presentation.common.SqureButton
+    <cz.levinzonr.studypad.presentation.common.SquareButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/squreButton4"
-            app:layout_constraintEnd_toStartOf="@+id/squreButton5"
-            app:layout_constraintStart_toEndOf="@+id/squreButton4"
-            android:id="@+id/squreButton6"/>
+            app:buttonIcon="@drawable/ic_done_all_black_24dp"
+            app:buttonText="Train"
+            app:layout_constraintTop_toTopOf="@+id/challengeTypeLearnBtn"
+            app:layout_constraintEnd_toStartOf="@+id/challengeTypeWriteBtn"
+            app:layout_constraintStart_toEndOf="@+id/challengeTypeLearnBtn"
+            android:id="@+id/challengeTypeTrainBtn"/>
 
 
     <LinearLayout
@@ -45,6 +66,9 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+
+                android:background="?selectableItemBackground"
+                android:id="@+id/preferenceNotebookSelector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -85,12 +109,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="?selectableItemBackground"
+                android:id="@+id/preferenceReordering"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
 
             <TextView
-                    android:text="Notebook"
+                    android:text="Shuffle"
                     android:layout_marginTop="@dimen/space_large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -102,7 +128,7 @@
 
             <TextView
                     android:textColor="@color/grey"
-                    android:text="Select notebook to study"
+                    android:text="Randomize notes order"
                     android:layout_width="wrap_content"
                     android:layout_marginBottom="@dimen/space_large"
                     android:layout_height="wrap_content"
@@ -113,6 +139,7 @@
 
 
             <Switch
+                    android:id="@+id/preferenceReorderingSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/space_large"
@@ -124,12 +151,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="?selectableItemBackground"
+                android:id="@+id/preferenceTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
 
             <TextView
-                    android:text="Notebook"
+                    android:text="Title First"
                     android:layout_marginTop="@dimen/space_large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -141,7 +170,7 @@
 
             <TextView
                     android:textColor="@color/grey"
-                    android:text="Select notebook to study"
+                    android:text="Show notes title when opening"
                     android:layout_width="wrap_content"
                     android:layout_marginBottom="@dimen/space_large"
                     android:layout_height="wrap_content"
@@ -152,6 +181,7 @@
 
 
             <Switch
+                    android:id="@+id/preferenceTitleSwitch"
                     android:src="@drawable/ic_expand_more_black_24dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -164,10 +194,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.button.MaterialButton
+                android:id="@+id/challengeStartBtn"
                 style="@style/Button.Primary"
                 app:iconGravity="textStart"
                 android:text="Start Challenge"
-                app:icon="@drawable/ic_expand_more_black_24dp"
+                app:icon="@drawable/ic_play_arrow_black_24dp"
                 android:layout_margin="@dimen/space_large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

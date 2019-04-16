@@ -54,5 +54,9 @@ class NotebooksSearchViewModel(initialState:  NotebookSearchModels.SearchState?,
         }
     }
 
+    fun onNotebookSelected(feed: PublishedNotebook.Feed) {
+        navigateTo(NotebooksSearchFragmentDirections.actionGlobalPublishedNotebookDetailFragment(feed.id, feed))
+    }
+
 
 }

@@ -3,6 +3,7 @@
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailModels
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailViewModel
@@ -86,5 +87,7 @@ val viewModelModule = module {
     viewModel { (list: Array<PublishedNotebook.Modification>, notes: Array<Note>) -> ReviewSuggestionsViewModel(notes.toList(), list.toList(), get()) }
 
     viewModel { EditProfileViewModel(get(), get()) }
+
+    viewModel { SetupChallengeViewModel() }
 
 }

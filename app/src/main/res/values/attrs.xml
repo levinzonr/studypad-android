@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SquareButton">
+        <attr name="buttonIcon" format="reference" />
+        <attr name="buttonText" format="string" localization="suggested" />
+    </declare-styleable>
+</resources>
