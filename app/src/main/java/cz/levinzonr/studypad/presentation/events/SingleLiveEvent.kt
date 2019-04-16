@@ -1,6 +1,6 @@
 package cz.levinzonr.studypad.presentation.events
 
-class SimpleEvent {
+class SingleLiveEvent {
 
     private var isAlradyHandled: Boolean = false
 

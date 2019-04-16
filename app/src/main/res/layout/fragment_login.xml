@@ -24,6 +24,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginEmailEt"
+            android:text="roma@mail.ru"
             style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -49,6 +50,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginPasswordEt"
+            android:text="19961600"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textPassword" />

@@ -6,7 +6,7 @@ import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 
-class NotebookSuggestionsViewModel(suggestions: List<PublishedNotebook.Modification>, notes: List<Note>) : BaseViewModel() {
+class NotebookSuggestionsViewModel(val suggestions: List<PublishedNotebook.Modification>, val notes: List<Note>) : BaseViewModel() {
 
     val suggestionsLiveData: MutableLiveData<List<SuggestionsModels.SuggestionItem>> = MutableLiveData()
 
@@ -18,9 +18,9 @@ class NotebookSuggestionsViewModel(suggestions: List<PublishedNotebook.Modificat
         suggestionsLiveData.postValue(list)
     }
 
-    fun onReviewButtonClicked() {
+    fun onReviewButtonClicked(notebooid:String) {
         val list = suggestionsLiveData.value ?: listOf()
-        navigateTo(NotebookSuggestionsFragmentDirections.actionNotebookSuggestionsFragmentToReviewSuggestionsFragment(list.toTypedArray()))
+        navigateTo(NotebookSuggestionsFragmentDirections.actionNotebookSuggestionsFragmentToReviewSuggestionsFragment(suggestions.toTypedArray(),notebooid, notes.toTypedArray()))
     }
 
 

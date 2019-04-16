@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import cz.levinzonr.studypad.call
 import cz.levinzonr.studypad.presentation.events.Event
-import cz.levinzonr.studypad.presentation.events.SimpleEvent
 import cz.levinzonr.studypad.presentation.screens.Flow
 import cz.levinzonr.studypad.presentation.screens.NavigationEvent
 

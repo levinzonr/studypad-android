@@ -3,6 +3,8 @@ package cz.levinzonr.studypad
 import android.content.Context
 import android.content.res.Resources
 import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -26,7 +28,7 @@ import cz.levinzonr.studypad.presentation.base.BaseActivity
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.FlipAnimation
 import cz.levinzonr.studypad.presentation.events.Event
-import cz.levinzonr.studypad.presentation.events.SimpleEvent
+import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import org.joda.time.*
 import timber.log.Timber
 import java.util.*
@@ -157,19 +159,19 @@ fun View.setVisible(visible: Boolean, fallback: Int = View.GONE) {
     visibility = if (visible) View.VISIBLE else fallback
 }
 
-fun MutableLiveData<SimpleEvent>.call() {
-    postValue(SimpleEvent())
+fun MutableLiveData<SingleLiveEvent>.call() {
+    postValue(SingleLiveEvent())
 }
 
 fun <T> MutableLiveData<Event<T>>.call(value: T) {
     postValue(Event(value))
 }
 
-fun MutableLiveData<SimpleEvent>.callIf(a: Boolean) {
+fun MutableLiveData<SingleLiveEvent>.callIf(a: Boolean) {
     if (a) call()
 }
 
-fun MutableLiveData<SimpleEvent>.onHandle(lifecycleOwner: LifecycleOwner, block: () -> Unit) {
+fun MutableLiveData<SingleLiveEvent>.onHandle(lifecycleOwner: LifecycleOwner, block: () -> Unit) {
     observe(lifecycleOwner, Observer { it.handle(block) })
 }
 
@@ -189,7 +191,7 @@ fun String.isValidName(): Boolean {
     return this.matches(Regex("([A-Z][a-zA-Z]*)+( [A-Z][a-zA-Z]*)*"))
 }
 
-fun liveEvent() = MutableLiveData<SimpleEvent>()
+fun liveEvent() = MutableLiveData<SingleLiveEvent>()
 
 fun ImageView.loadAuthorImage(imageUrl: String?) {
     Glide.with(this)
@@ -283,4 +285,15 @@ inline fun <reified T> Gson.fromJson(json: String) : T? {
     } catch (e: Exception) {
         return null
     }
+}
+
+
+fun TextView.setSpannableText(text: String, vararg spans : String?) {
+    val str = SpannableStringBuilder(text)
+    spans.filterNotNull().forEach {
+        val startIndex = text.indexOf(it)
+        val endIndex = startIndex + it.length
+        str.setSpan( android.text.style.StyleSpan(android.graphics.Typeface.BOLD), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
+    setText(str)
 }

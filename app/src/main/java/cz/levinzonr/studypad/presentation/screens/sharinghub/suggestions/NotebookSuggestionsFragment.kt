@@ -44,7 +44,7 @@ class NotebookSuggestionsFragment : BaseFragment() {
         viewModel.suggestionsLiveData.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
-        reviewBtn.setOnClickListener { viewModel.onReviewButtonClicked() }
+        reviewBtn.setOnClickListener { viewModel.onReviewButtonClicked(args.notebookId) }
     }
 
 }

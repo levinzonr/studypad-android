@@ -43,9 +43,7 @@ class ProfileFragment : BaseFragment() {
         }
 
         editProfileBtn.setOnClickListener {
-            UniversitySelectorFragment.show(childFragmentManager) {
-               viewModel.updateUniversity(it)
-            }
+           viewModel.onEditProfileButtonClicked()
         }
 
         circleImageView.setOnClickListener {

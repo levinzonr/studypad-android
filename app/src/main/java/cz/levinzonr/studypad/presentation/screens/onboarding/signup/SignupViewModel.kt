@@ -1,21 +1,19 @@
 package cz.levinzonr.studypad.presentation.screens.onboarding.signup
 
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.NavDirections
 import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.interactors.GetUniversitiesInteractor
 import cz.levinzonr.studypad.domain.interactors.keychain.SignupInteractor
-import cz.levinzonr.studypad.domain.interactors.keychain.UpdateUserUniversityInteractor
+import cz.levinzonr.studypad.domain.interactors.keychain.UpdateUserInteractor
 import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
-import cz.levinzonr.studypad.presentation.events.SimpleEvent
+import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import cz.levinzonr.studypad.presentation.screens.Flow
-import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginFragmentDirections
 import timber.log.Timber
 
 class SignupViewModel(
-    private val updateUserUniversityInteractor: UpdateUserUniversityInteractor,
+    private val updateUserInteractor: UpdateUserInteractor,
     private val signupInteractor: SignupInteractor,
     private val getUniversitiesInteractor: GetUniversitiesInteractor) : BaseViewModel() {
 
@@ -40,7 +38,7 @@ class SignupViewModel(
 
     val accountCreatedSuccessEvent: MutableLiveData<Event<Boolean>> = MutableLiveData()
     val universitiesLiveData = MutableLiveData<List<University>>()
-    val universitySelectedEvent = MutableLiveData<SimpleEvent>()
+    val universitySelectedEvent = MutableLiveData<SingleLiveEvent>()
 
     val validAccountInfoEvent = MutableLiveData<Boolean>()
 
@@ -69,8 +67,8 @@ class SignupViewModel(
     }
 
     fun updateUniversity(university: University) {
-        updateUserUniversityInteractor.input = UpdateUserUniversityInteractor.Input(university)
-        updateUserUniversityInteractor.execute {
+        updateUserInteractor.input = UpdateUserInteractor.Input(university)
+        updateUserInteractor.execute {
             onComplete {
                 showMain()
             }

@@ -1,8 +1,10 @@
 package cz.levinzonr.studypad.presentation.adapters
 
+import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +13,7 @@ import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.layoutInflater
 import cz.levinzonr.studypad.loadAuthorImage
 import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.SuggestionsModels
+import cz.levinzonr.studypad.setSpannableText
 import kotlinx.android.synthetic.main.item_suggestion.view.*
 
 class SuggestionsAdapter : ListAdapter<SuggestionsModels.SuggestionItem, SuggestionsAdapter.ViewHolder>(DiffCalback()) {
@@ -31,19 +34,21 @@ class SuggestionsAdapter : ListAdapter<SuggestionsModels.SuggestionItem, Suggest
         fun bindView(modification: SuggestionsModels.SuggestionItem) {
             val author = modification.suggestion.author
             view.suggestionAuthorIv.loadAuthorImage(modification.suggestion.author.photoUrl)
-            view.suggestionChageContentTv.text = when(modification.suggestion.type) {
+            val text = when(modification.suggestion.type) {
                 "upd" -> "${author.displayName} has suggestion an update to a note: ${modification.sourceNote?.title}"
                 "add" -> "${author.displayName} has suggested a new note called ${modification.suggestion.title}"
                 "del" -> "${author.displayName} has suggested to delete a note ${modification.sourceNote?.title}"
                 else -> ""
             }
 
+            view.suggestionChageContentTv.setSpannableText(text, author.displayName, modification.sourceNote?.title)
+
             val background = when {
-                modification.rejected -> R.drawable.background_shadow_red
-                modification.approved -> R.drawable.background_shadow_green
-                else -> 0
+                modification.rejected -> ContextCompat.getDrawable(view.context, R.drawable.background_shadow_red)
+                modification.approved -> ContextCompat.getDrawable(view.context, R.drawable.background_shadow_green)
+                else -> null
             }
-            view.suggestionChageContentTv.setBackgroundResource(background)
+            view.suggestionChageContentTv.background = background
         }
 
     }

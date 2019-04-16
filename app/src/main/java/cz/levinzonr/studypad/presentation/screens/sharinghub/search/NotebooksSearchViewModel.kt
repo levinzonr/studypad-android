@@ -42,9 +42,8 @@ class NotebooksSearchViewModel(initialState:  NotebookSearchModels.SearchState?,
         }
     }
 
-    fun onTagsOptionChanged(tag: String, isEnabled: Boolean) {
+    fun onTagsOptionChanged(tags: Set<String>) {
         currentSearchState?.let { searchState ->
-            val tags = searchState.tags.toMutableList().apply { if (isEnabled) add(0, tag) else remove(tag) }
             _searchStateLiveDate.postValue(searchState.copy(tags = tags.toList()))
         }
     }

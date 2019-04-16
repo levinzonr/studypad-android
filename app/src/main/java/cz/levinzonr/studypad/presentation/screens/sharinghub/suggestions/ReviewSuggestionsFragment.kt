@@ -26,7 +26,7 @@ import org.koin.core.parameter.parametersOf
 class ReviewSuggestionsFragment : BaseFragment(), ReviewSuggestionsAdapter.ReviewSuggestionsListener {
 
     private val args: ReviewSuggestionsFragmentArgs by navArgs()
-    override val viewModel: ReviewSuggestionsViewModel by viewModel { parametersOf(args.suggestions) }
+    override val viewModel: ReviewSuggestionsViewModel by viewModel { parametersOf(args.suggestions, args.notes) }
     private lateinit var adapter: ReviewSuggestionsAdapter
     private lateinit var listAdapter: SuggestionsAdapter
 
@@ -56,7 +56,7 @@ class ReviewSuggestionsFragment : BaseFragment(), ReviewSuggestionsAdapter.Revie
         })
 
         confirmBtn.setOnClickListener {
-            viewModel.onSumbitReviewBtnClicked()
+            viewModel.onSumbitReviewBtnClicked(args.notebookId)
         }
 
         sheetBehavior.isHideable = false
@@ -97,9 +97,10 @@ class ReviewSuggestionsFragment : BaseFragment(), ReviewSuggestionsAdapter.Revie
     private fun updateSheet(list: List<SuggestionsModels.SuggestionItem>) {
         val approved = list.filter { it.approved }.count()
         val rejected = list.filter { it.rejected }.count()
+        val conflicts = list.filter { it.state is SuggestionsModels.SuggestionState.Conflicted }.count()
         val remains = list.size - approved - rejected
         reviewStatusTotal.text = "${approved + rejected}/${list.count()} Reviewed"
-        reviewStatusProgress.text = "${approved} approved • ${rejected} rejected • ${remains} left"
+        reviewStatusProgress.text = "${approved} approved • ${rejected} rejected • ${conflicts} conflicts"
         confirmBtn.isEnabled = remains != list.count()
         if (remains == 0) {
             val sheetBehavior = BottomSheetBehavior.from(bottom_sheet)

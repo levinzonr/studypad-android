@@ -72,7 +72,8 @@ class PublishedNotebookDetailViewModel(
         navigateTo(
             PublishedNotebookDetailFragmentDirections.actionPublishedNotebookDetailFragmentToNotebookSuggestionsFragment(
                 modifications.toTypedArray(),
-                notes.toTypedArray()
+                notes.toTypedArray(),
+                notebookId
 
             )
         )

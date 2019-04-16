@@ -62,6 +62,12 @@ class ReviewSuggestionsAdapter : RecyclerView.Adapter<ReviewSuggestionsAdapter.V
             val showComparison = suggestionItem.suggestion.type == "upd"
             view.divider.setVisible(showComparison)
             view.existedNoteView.setVisible(showComparison)
+            view.suggestionTypeTv.text = when (suggestionItem.suggestion.type) {
+                "upd" -> "Updated note"
+                "del" -> "Deleted note"
+                "add" -> "New Nore"
+                else -> ""
+            }
 
             view.noteTitleTv.text = suggestionItem.suggestion.title
             view.noteContentTv.text = suggestionItem.suggestion.content

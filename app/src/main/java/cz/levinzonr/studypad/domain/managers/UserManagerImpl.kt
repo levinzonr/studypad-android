@@ -74,7 +74,7 @@ class UserManagerImpl(private val api: Api,
     override fun getCurrentUserInfo(): CurrentUserInfo? {
         val userInfo = userProfileRepository.getUserProfile() ?: return null
         val locale = localeRepository.getCurrentLocale()
-        return CurrentUserInfo(userInfo.uuid, userInfo.displayName, userInfo.university, locale)
+        return CurrentUserInfo(userInfo.uuid, userInfo.displayName, userInfo.photoUrl, userInfo.university, locale)
     }
 
 

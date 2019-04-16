@@ -16,6 +16,7 @@ import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewMode
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorViewModel
 import cz.levinzonr.studypad.presentation.screens.profile.ProfileViewModel
+import cz.levinzonr.studypad.presentation.screens.profile.edit.EditProfileViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.NotebookSuggestionsViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.comments.PublishedNotebookCommentsViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNotebookDetailViewModel
@@ -82,6 +83,8 @@ val viewModelModule = module {
 
     viewModel { (searchState: NotebookSearchModels.SearchState?) -> NotebooksSearchViewModel(searchState, get()) }
 
-    viewModel { (list: Array<SuggestionsModels.SuggestionItem>) -> ReviewSuggestionsViewModel(list.toList(), get()) }
+    viewModel { (list: Array<PublishedNotebook.Modification>, notes: Array<Note>) -> ReviewSuggestionsViewModel(notes.toList(), list.toList(), get()) }
+
+    viewModel { EditProfileViewModel(get(), get()) }
 
 }

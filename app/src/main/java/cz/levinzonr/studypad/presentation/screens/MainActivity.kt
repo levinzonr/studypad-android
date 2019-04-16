@@ -4,8 +4,10 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -34,7 +36,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         registerBroadcastReceiver()
-        //setupKeyboardListener()
+      //  setupKeyboardListener()
         setSupportActionBar(toolbar)
         handleDeepLink()
         with(findNavController(R.id.fragment)) {
@@ -95,8 +97,7 @@ class MainActivity : BaseActivity() {
                 hideMenu()
                 supportActionBar?.hide()
             }
-            R.id.noteDetailFragment -> {
-                supportActionBar?.hide()
+            R.id.noteDetailFragment, R.id.reviewSuggestionsFragment -> {
                 hideMenu()
             }
             //   R.id.editNoteFragment -> hideMenu()
@@ -109,6 +110,7 @@ class MainActivity : BaseActivity() {
                 supportActionBar?.hide()
                 hideMenu()
             }
+
 
             else ->  {
                 supportActionBar?.show()
@@ -139,6 +141,23 @@ class MainActivity : BaseActivity() {
             .setDuration(1000).withEndAction {
 
             }.start()*/
+    }
+
+    private fun setupKeyboardListener() {
+        val activityRootView = findViewById<ViewGroup>(R.id.activityRoot)
+        activityRootView.viewTreeObserver.addOnGlobalLayoutListener {
+            val r = Rect()
+            activityRootView.getWindowVisibleDisplayFrame(r)
+
+            val heightDiff = activityRootView.rootView.height - (r.bottom - r.top)
+            // This value is pretty random, and I'm not sure it's 100% correct
+            // RE: Was failing on some devices, changed to another random value
+            if (heightDiff > 252) {
+                hideMenu()
+            } else {
+                showMenu()
+            }
+        }
     }
 
 

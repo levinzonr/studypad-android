@@ -7,13 +7,26 @@ import kotlinx.android.parcel.Parcelize
 
 object SuggestionsModels {
 
-    @Parcelize
     data class SuggestionItem(
         val suggestion: PublishedNotebook.Modification,
         val sourceNote: Note? = null,
-        val approved: Boolean = false,
-        val rejected: Boolean = false
-    ) : Parcelable
+        var state: SuggestionState = SuggestionsModels.SuggestionState.Default
+    ) {
+        val approved: Boolean
+            get() = state is SuggestionsModels.SuggestionState.Approved
+        val rejected: Boolean
+            get() = state is SuggestionsModels.SuggestionState.Rejected
+        val conflicted: Boolean
+            get() = state is SuggestionsModels.SuggestionState.Conflicted
+    }
+
+
+    sealed class SuggestionState {
+        object Default: SuggestionState()
+        object Approved : SuggestionState()
+        object Rejected: SuggestionState()
+        data class Conflicted(val indexOfConflicted: Int) : SuggestionState()
+    }
 
     data class SubmitedReview(
         val approved: List<PublishedNotebook.Modification>,

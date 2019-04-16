@@ -1,13 +1,12 @@
 package cz.levinzonr.studypad.presentation.screens.library.notes
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.baseActivity
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_note_detail.*
@@ -31,6 +30,7 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_note_detail, container, false)
     }
 
@@ -76,8 +76,14 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
             viewModel.handleModeChangeButton()
         }
 
-
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_note_detail, menu)
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

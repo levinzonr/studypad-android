@@ -59,23 +59,32 @@ class NotebooksSearchFragment : BaseFragment() {
 
     private fun setupListeners() {
 
-        searchOptionCategory.setOnClickListener {
-            val alreadySelected = viewModel.currentSearchState?.topic ?: listOf()
-            MultipleTopicsSelector.show(childFragmentManager, alreadySelected) {
-                viewModel.onCategoriesOptionChanged(it)
+        searchOptionCategory.setFilterListener {
+            if (it) viewModel.onCategoriesOptionChanged(listOf())
+            else {
+                val alreadySelected = viewModel.currentSearchState?.topic ?: listOf()
+                MultipleTopicsSelector.show(childFragmentManager, alreadySelected) {
+                    viewModel.onCategoriesOptionChanged(it)
+                }
             }
         }
 
-        searchOptionTags.setOnClickListener {
+        searchOptionTags.setFilterListener { clear ->
             val tags = viewModel.currentSearchState?.tags ?: listOf()
-            TagSearchDialog.show(childFragmentManager, tags.toSet()) { tag, enable ->
-                viewModel.onTagsOptionChanged(tag, enable)
+            if (clear) viewModel.onTagsOptionChanged(setOf())
+            else {
+                TagSearchDialog.show2(childFragmentManager, tags.toSet()) {
+                    viewModel.onTagsOptionChanged(it)
+                }
             }
         }
 
-        searchOptionUniversity.setOnClickListener {
-            UniversitySelectorFragment.show(childFragmentManager) {
-                viewModel.onUniversityOptionChanged(it)
+        searchOptionUniversity.setFilterListener {
+            if (it) viewModel.onUniversityOptionChanged(null)
+            else {
+                UniversitySelectorFragment.show(childFragmentManager) {
+                    viewModel.onUniversityOptionChanged(it)
+                }
             }
         }
 
@@ -90,21 +99,21 @@ class NotebooksSearchFragment : BaseFragment() {
         emptyView.setVisible(searchState.isDefaultState)
 
         if (searchState.tags.isEmpty()) {
-            searchOptionTags.text = "Tags"
+           searchOptionTags.setChipInactive()
         } else {
-            searchOptionTags.text = searchState.tags.first(3).joinToString(",")
+            searchOptionTags.setChipActive(searchState.tags.first(3).joinToString(","))
         }
 
         if (searchState.university != null) {
-            searchOptionUniversity.text = searchState.university.fullName
+            searchOptionUniversity.setChipActive(searchState.university.fullName)
         } else {
-            searchOptionUniversity.text = "University"
+            searchOptionUniversity.setChipInactive()
         }
 
         if (searchState.topic.isEmpty()) {
-            searchOptionCategory.text = "Category"
+            searchOptionCategory.setChipInactive()
         } else {
-            searchOptionCategory.text = searchState.topic.first(3).joinToString(",") { it.name }
+            searchOptionCategory.setChipActive(searchState.topic.first(3).joinToString(",") { it.name })
         }
 
     }

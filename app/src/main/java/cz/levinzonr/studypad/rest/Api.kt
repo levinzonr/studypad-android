@@ -21,8 +21,8 @@ interface Api {
     @GET("$API/university/find")
     fun getUniversitiesAsync(@Query("query") query: String) : Deferred<List<University>>
 
-    @POST("$API/users/signup/finish")
-    fun updateUniversityAsync(@Body updateUniversityRequest: UpdateUniversityRequest) : Deferred<Any>
+    @POST("$API/users/me")
+    fun updateUserAsync(@Body updateProfileRequest: UpdateProfileRequest) : Deferred<UserProfile>
 
     @GET("$API/users/me")
     fun getAuthenticatedUserProfileAsync() : Deferred<UserProfile>
@@ -107,7 +107,8 @@ interface Api {
     @PATCH("$API/shared/{id}/suggestions/local")
     fun applyLocalChangesAsync(@Path("id") notebookId: String) : Deferred<PublishedNotebook.Detail>
 
-
+    @POST("$API/shared/{id}/suggestions/review")
+    fun reviewChangesAsync(@Path("id") notebookId: String, @Body submitReviewRequest: SubmitReviewRequest) : Deferred<PublishedNotebook.Detail>
 
     //-----------------------------------------------------------------------------
 

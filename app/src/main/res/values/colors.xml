@@ -23,5 +23,6 @@
     <color name="greyDivider">#1FFFFFFF</color>
     <color name="facebookBlue">#3B5998</color>
     <color name="lightGrey">#F0F0F0</color>
+    <color name="greysih">#D3D3D3</color>
     <color name="grey">#A9A9A9</color>
 </resources>

@@ -27,9 +27,7 @@
 
     <fragment android:id="@+id/settingsFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.settings.SettingsFragment"
-              android:label="Settings" tools:layout="@layout/fragment_settings">
-        <action android:id="@+id/action_settingsFragment_self" app:destination="@id/settingsFragment"/>
-    </fragment>
+              android:label="Settings" tools:layout="@layout/fragment_settings"/>
     <fragment android:id="@+id/sharingHubFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.feed.SharingHubFragment"
               android:label="@string/screen_sharing_hub" tools:layout="@layout/fragment_shared">
@@ -40,11 +38,12 @@
 
     <fragment android:id="@+id/challengesFragment"
               android:name="cz.levinzonr.studypad.presentation.screens.challenges.ChallengesFragment"
-              android:label="@string/screen_challenges" tools:layout="@layout/fragment_challenges"></fragment>
+              android:label="@string/screen_challenges" tools:layout="@layout/fragment_challenges">
+        <action
+                android:id="@+id/action_challengesFragment_to_setupChallengeFragment"
+                app:destination="@id/setupChallengeFragment"/>
+    </fragment>
 
-    <fragment android:id="@+id/loginFragment"
-              android:name="cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginFragment"
-              android:label="fragment_login" tools:layout="@layout/fragment_login"/>
     <fragment
         android:id="@+id/profileFragment"
         android:name="cz.levinzonr.studypad.presentation.screens.profile.ProfileFragment"
@@ -53,6 +52,9 @@
         <action
                 android:id="@+id/action_profileFragment_to_notificationsFragment"
                 app:destination="@id/notificationsFragment"/>
+        <action
+                android:id="@+id/action_profileFragment_to_editProfileFragment"
+                app:destination="@id/editProfileFragment"/>
     </fragment>
     <fragment
         android:id="@+id/publishNotebookFragment"
@@ -118,6 +120,9 @@
         <action
                 android:id="@+id/action_notebookSuggestionsFragment_to_reviewSuggestionsFragment"
                 app:destination="@id/reviewSuggestionsFragment"/>
+        <argument
+                android:name="notebookId"
+                app:argType="string"/>
     </fragment>
     <fragment
             android:id="@+id/notebooksSearchFragment"
@@ -149,6 +154,22 @@
             tools:layout="@layout/fragment_review_suggestions">
         <argument
                 android:name="suggestions"
-                app:argType="cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.SuggestionsModels$SuggestionItem[]"/>
+                app:argType="cz.levinzonr.studypad.domain.models.PublishedNotebook$Modification[]"/>
+        <argument
+                android:name="notebookId"
+                app:argType="string"/>
+        <argument
+                android:name="notes"
+                app:argType="cz.levinzonr.studypad.domain.models.Note[]"/>
     </fragment>
+    <fragment
+            android:id="@+id/editProfileFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.profile.edit.EditProfileFragment"
+            android:label="fragment_edit_profile"
+            tools:layout="@layout/fragment_edit_profile"/>
+    <fragment
+            android:id="@+id/setupChallengeFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeFragment"
+            android:label="fragment_setup_challenge"
+            tools:layout="@layout/fragment_setup_challenge"/>
 </navigation>

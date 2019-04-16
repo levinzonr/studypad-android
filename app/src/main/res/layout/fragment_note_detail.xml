@@ -35,21 +35,14 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/noteDetailEditFab"
         android:layout_width="wrap_content"
-        app:layout_anchor="@id/bottomAppBar"
+        app:layout_anchor="@id/detail"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        app:layout_anchorGravity="bottom|right"
+        android:layout_margin="@dimen/space_big"
         android:src="@drawable/ic_edit"
         app:layout_constraintBottom_toBottomOf="@+id/noteDetailView"
         app:layout_constraintEnd_toEndOf="@+id/noteDetailView" />
 
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        android:layout_gravity="bottom"
-
-        app:elevation="@dimen/cardview_default_elevation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -38,7 +38,7 @@ val interacorModule = module {
 
     factory { PostNoteInteractor(get()) }
 
-    factory { UpdateUserUniversityInteractor(get()) }
+    factory { UpdateUserInteractor(get(), get()) }
 
     factory { GetUserProfileInteractor(get(), get()) }
 
@@ -80,6 +80,6 @@ val interacorModule = module {
 
     factory { MarkNotificationAsRead(get()) }
 
-    factory { SubmitReviewInteractor() }
+    factory { SubmitReviewInteractor(get()) }
 
 }

@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 
 import cz.levinzonr.studypad.R
+import kotlinx.android.synthetic.main.fragment_challenges.*
+import timber.log.Timber
 
 
 class ChallengesFragment : Fragment() {
@@ -21,4 +24,10 @@ class ChallengesFragment : Fragment() {
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        materialButton2.setOnClickListener {
+            findNavController().navigate(ChallengesFragmentDirections.actionChallengesFragmentToSetupChallengeFragment())
+        }
+    }
 }

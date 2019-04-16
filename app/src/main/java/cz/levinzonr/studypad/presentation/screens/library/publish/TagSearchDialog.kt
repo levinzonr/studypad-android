@@ -20,6 +20,7 @@ import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.onQueryTextChanged
 import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
 import cz.levinzonr.studypad.setVisible
+import cz.levinzonr.studypad.views
 import kotlinx.android.synthetic.main.fragment_tag_search_dialog.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,6 +35,7 @@ class TagSearchDialog : BottomSheetDialog(){
     private lateinit var recentBox: ChipGroup
     private lateinit var group: LinearLayout
     private var callback: (String, Boolean) -> Unit = {_, _ -> Timber.d("Default callback")}
+    private var callback2: (Set<String>) -> Unit = { Timber.d("Default callback")}
 
     private val viewModel : TagSearchViewModel  by viewModel()
 
@@ -49,6 +51,16 @@ class TagSearchDialog : BottomSheetDialog(){
         fun show(fm: FragmentManager, selected: Set<String>, onClicked: (String, Boolean) -> Unit) {
             val frag = fm.findFragmentByTag(TAG) as? TagSearchDialog? ?: TagSearchDialog()
             frag.callback = onClicked
+            val bundle = Bundle().apply {
+                putStringArrayList(ARG_SELECTED, ArrayList(selected))
+            }
+            frag.arguments = bundle
+            frag.show(fm, TAG)
+        }
+
+        fun show2(fm: FragmentManager, selected: Set<String>, onClicked: (Set<String>) -> Unit) {
+            val frag = fm.findFragmentByTag(TAG) as? TagSearchDialog? ?: TagSearchDialog()
+            frag.callback2 = onClicked
             val bundle = Bundle().apply {
                 putStringArrayList(ARG_SELECTED, ArrayList(selected))
             }
@@ -108,11 +120,21 @@ class TagSearchDialog : BottomSheetDialog(){
                isChecked = selectedTags.contains(it)
                setOnCheckedChangeListener { chip, selected ->
                     callback.invoke(it, selected)
+                   updateChipState()
                }
            }
            chipGroup.addView(chip)
 
        }
+    }
+
+
+    private fun updateChipState() {
+        val chips : List<Chip> = listOf(chipBox, sectionTagsCG)
+            .map { it.views }
+            .flatten().mapNotNull { it as? Chip? }
+
+        callback2.invoke(chips.filter { it.isChecked }.map { it.text.toString() }.toSet())
     }
 
 

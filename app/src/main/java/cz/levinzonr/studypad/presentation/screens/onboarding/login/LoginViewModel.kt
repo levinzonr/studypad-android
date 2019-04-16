@@ -16,7 +16,7 @@ import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.isValidEmail
 import cz.levinzonr.studypad.isValidPassword
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
-import cz.levinzonr.studypad.presentation.events.SimpleEvent
+import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import timber.log.Timber
 import com.google.android.gms.common.api.ApiException
 import cz.levinzonr.studypad.domain.interactors.keychain.GoogleLoginInteractor
@@ -33,8 +33,8 @@ class LoginViewModel(
     val PERMISSIONS = listOf("email, public_profile")
 
 
-    val emailValidationEvent = MutableLiveData<SimpleEvent>()
-    val passwordValidationEvent = MutableLiveData<SimpleEvent>()
+    val emailValidationEvent = MutableLiveData<SingleLiveEvent>()
+    val passwordValidationEvent = MutableLiveData<SingleLiveEvent>()
 
     private var facebookActivityResultManager: CallbackManager? = null
     private val facebookLoginResultCallback = object : FacebookCallback<LoginResult> {
