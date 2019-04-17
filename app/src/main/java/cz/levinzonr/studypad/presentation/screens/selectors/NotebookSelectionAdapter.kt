@@ -1,5 +1,6 @@
 package cz.levinzonr.studypad.presentation.screens.selectors
 
+import android.graphics.Typeface
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -29,11 +30,20 @@ class NotebookSelectionAdapter(private val listener: NotebookSelectionListener):
 
         fun bindView(notebook: Notebook) {
             view.isEnabled = notebook.notesCount > 0
+
             view.notebookNameTv.text = notebook.name
             view.notesCountTv.text = when(notebook.notesCount) {
                 1 -> notebook.notesCount.toString() + "1 note"
+                0 -> "Unavailable, there are no notes to study"
                 else -> "${notebook.notesCount} notes"
             }
+
+            if (!view.isEnabled) {
+                view.notesCountTv.typeface = Typeface.create(view.notesCountTv.typeface, Typeface.ITALIC)
+            } else {
+                view.notesCountTv.typeface = Typeface.DEFAULT
+            }
+
             view.setOnClickListener {
                 listener.onNotebookSelected(notebook)
             }
