@@ -22,6 +22,23 @@
     </androidx.recyclerview.widget.RecyclerView>
 
 
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/notebooksRv"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+    <cz.levinzonr.studypad.presentation.common.EmptyStateView
+            android:id="@+id/emptyStateView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/notebooksAddFab"
         android:layout_width="wrap_content"

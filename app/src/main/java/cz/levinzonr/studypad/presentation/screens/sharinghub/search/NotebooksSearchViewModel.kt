@@ -15,7 +15,11 @@ class NotebooksSearchViewModel(initialState:  NotebookSearchModels.SearchState?,
 
     private val _searchStateLiveDate = MutableLiveData<NotebookSearchModels.SearchState>()
     val resultsLiveData : LiveData<List<PublishedNotebook.Feed>> = Transformations.switchMap(_searchStateLiveDate) {
-        if (!it.isDefaultState) searchManager.performSearch(it) else MutableLiveData()
+        if (!it.isDefaultState) {
+            searchManager.performSearch(it)
+        } else
+            MutableLiveData()
+
     }
 
 

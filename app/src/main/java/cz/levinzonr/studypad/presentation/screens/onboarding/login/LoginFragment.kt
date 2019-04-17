@@ -60,18 +60,6 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun subscribe() {
-        viewModel.errorLiveData.observe(this, Observer {
-            it.getContentIfNotHandled()?.let {
-                showToast(it)
-                Timber.d("Error data: $it")
-            }
-        })
-
-        viewModel.loadingLiveData.observe(this, Observer {
-            loginProgress.setVisible(it)
-            Timber.d("Loading: $it")
-        })
-
 
         viewModel.passwordValidationEvent.observe(this, Observer {
             it.handle {
@@ -84,6 +72,10 @@ class LoginFragment : BaseFragment() {
                 loginEmailInputLayout.error = "Incorrect email"
             }
         })
+    }
+
+    override fun showLoading(isLoading: Boolean) {
+        loginProgress.setVisible(isLoading)
     }
 
     private fun setupListeners() {

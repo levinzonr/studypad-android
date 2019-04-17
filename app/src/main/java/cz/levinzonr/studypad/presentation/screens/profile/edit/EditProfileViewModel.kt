@@ -51,7 +51,6 @@ class EditProfileViewModel(
             }
             onError {
                 toggleLoading(false)
-                postError(it.message)
             }
         }
     }

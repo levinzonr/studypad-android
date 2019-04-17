@@ -34,7 +34,6 @@ class PublishNotebookViewModel(
             }
 
             onError {
-                postError(it.message)
             }
         }
     }

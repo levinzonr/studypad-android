@@ -6,17 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import cz.levinzonr.studypad.BuildConfig
+import cz.levinzonr.studypad.*
 
-import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.baseActivity
 import cz.levinzonr.studypad.domain.models.Notebook
-import cz.levinzonr.studypad.onHandle
 import cz.levinzonr.studypad.presentation.adapters.NotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.fragment_notebook_list.*
-import kotlinx.android.synthetic.main.include_toolbar.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -55,6 +51,10 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupListeners()
+
+        emptyStateView.configure(
+            "No notebooks",
+            "No notebooks saved in the library")
     }
 
     private fun setupListeners() {
@@ -66,6 +66,10 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
         }
     }
 
+    override fun showLoading(isLoading: Boolean) {
+        progressBar.setVisible(isLoading)
+        emptyStateView.setVisible(false)
+    }
     private fun setupRecyclerView() {
         adapter.listener = this
         notebooksRv.layoutManager = LinearLayoutManager(context)
@@ -75,7 +79,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
     }
 
     override fun onNotebookSelected(notebook: Notebook) {
-        viewModel.showNotes(notebook)
+        viewModel.onNotebookSelected(notebook)
     }
 
     override fun onNotebookMoreClicked(notebook: Notebook) {
@@ -90,7 +94,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
                     Timber.d("Hello")
                     notebook.publishedNotebookId?.let {
                         Timber.d(it)
-                        viewModel.showPublishedNotebookDetail(it)
+                        viewModel.onShowPublishedNotebook(it)
                     }
                 }
                 R.id.notebookShareBtn -> {
@@ -107,6 +111,8 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
 
     private fun showNotebooks(list: List<Notebook>) {
         adapter.items = list
+        emptyStateView.setVisible(list.isEmpty())
+        notebooksRv.setVisible(!list.isEmpty())
     }
 
 }

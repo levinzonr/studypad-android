@@ -52,6 +52,16 @@ class NotificationsFragment : BaseFragment(), NotificationsAdapter.NotificationI
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        emptyView.configure("Up to Date", "No new notifcations received")
+    }
+
+    override fun showLoading(isLoading: Boolean) {
+        progressBar.setVisible(isLoading)
+        emptyView.setVisible(!isLoading)
+    }
+
     override fun handleNotification(type: NotificationType, notificationPayload: NotificationPayload) {
         Timber.d("hndel $type")
         viewModel.refresh()

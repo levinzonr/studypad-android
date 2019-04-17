@@ -8,11 +8,14 @@ import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import cz.levinzonr.studypad.domain.models.ApplicationError
+import cz.levinzonr.studypad.domain.models.ViewError
+import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.presentation.screens.Flow
 import cz.levinzonr.studypad.presentation.screens.MainActivity
 import cz.levinzonr.studypad.presentation.screens.NavigationEvent
 import cz.levinzonr.studypad.presentation.screens.onboarding.OnboardingActivity
-import org.koin.android.ext.android.get
+import timber.log.Timber
 
 abstract class BaseFragment : Fragment() {
 
@@ -38,12 +41,39 @@ abstract class BaseFragment : Fragment() {
         viewModel.navigationLiveData.observe(viewLifecycleOwner, Observer {
             it.handle(this::handleNavigationEvent)
         })
+
+        viewModel.viewStateObservalbe.observeNonNull(viewLifecycleOwner) { state ->
+            Timber.d("Base State: $state")
+            showLoading(state.isLoading)
+            state.error?.handle { showError(it) }
+        }
     }
     protected fun shareMessage(message: String) {
         ShareCompat.IntentBuilder.from(activity)
             .setText(message)
             .setType("*/*")
             .startChooser()
+    }
+
+
+    open fun showError(viewError: ViewError) {
+        when(viewError) {
+            is ViewError.DialogError -> showSimpleDialog(viewError.title, viewError.message)
+            is ViewError.ToastError -> showToast(viewError.message)
+        }
+    }
+
+    protected open fun showLoading(isLoading: Boolean) {
+
+    }
+
+
+    protected fun showSimpleDialog(title: String, message: String) {
+        AlertDialog.Builder(context)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton("Ok") { d, _ -> d.dismiss() }
+            .show()
     }
 
 

@@ -18,6 +18,7 @@ import android.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
@@ -285,6 +286,15 @@ inline fun <reified T> Gson.fromJson(json: String) : T? {
     } catch (e: Exception) {
         return null
     }
+}
+
+inline fun <T> LiveData<T>.observeNonNull(
+    lifecycleOwner: LifecycleOwner,
+    crossinline observer: (T) -> Unit
+) {
+    this.observe(lifecycleOwner, Observer {
+        it?.let(observer)
+    })
 }
 
 

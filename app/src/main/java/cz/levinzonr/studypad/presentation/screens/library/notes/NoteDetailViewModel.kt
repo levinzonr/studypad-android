@@ -92,7 +92,6 @@ class NoteDetailViewModel(
                     if (title.isNotEmpty() || content.isNotEmpty())
                         createNote(viewMode.notebookId)
                     else {
-                        postError("Can't save empty message")
                     }
                 }
             }

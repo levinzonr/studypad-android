@@ -5,30 +5,38 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import cz.levinzonr.studypad.call
+import cz.levinzonr.studypad.domain.models.ApplicationError
+import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.screens.Flow
 import cz.levinzonr.studypad.presentation.screens.NavigationEvent
 
 abstract class BaseViewModel : ViewModel() {
 
-    val errorLiveData: LiveData<Event<String>>
-        get() = errorEventLiveData
+    private val navigationEventLiveData = MutableLiveData<Event<NavigationEvent>>()
+    private val viewStateLiveData = MutableLiveData<BaseViewState>()
 
-    val loadingLiveData: LiveData<Boolean>
-        get() = loadingEventLiveData
+    init {
+        viewStateLiveData.postValue(BaseViewState())
+    }
+
+    val viewStateObservalbe: LiveData<BaseViewState>
+        get() = viewStateLiveData
+
+
 
 
     val navigationLiveData: LiveData<Event<NavigationEvent>>
         get() = navigationEventLiveData
 
-    protected fun postError(message: String) {
-        toggleLoading(false)
-        errorEventLiveData.postValue(Event(message))
+    protected fun showError(viewError: ViewError) {
+        viewStateLiveData.postValue(viewStateLiveData.value?.copy(error = Event(viewError)))
     }
 
     protected fun toggleLoading(loading: Boolean) {
-        loadingEventLiveData.postValue(loading)
+        viewStateLiveData.postValue(viewStateLiveData.value?.copy(isLoading = loading))
     }
+
 
     protected fun navigateBack() {
         navigationEventLiveData.call(NavigationEvent.NavigateBack)
@@ -41,10 +49,6 @@ abstract class BaseViewModel : ViewModel() {
     protected fun changeFlow(flow: Flow) {
         navigationEventLiveData.call(NavigationEvent.ChangeFlow(flow))
     }
-
-    private val loadingEventLiveData = MutableLiveData<Boolean>()
-    private val errorEventLiveData = MutableLiveData<Event<String>>()
-    private val navigationEventLiveData = MutableLiveData<Event<NavigationEvent>>()
 
 
 }

@@ -73,20 +73,14 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
 
     private fun subscribe() {
 
-
         viewModel.dataSource.observe(this, Observer {
             it.forEach(this::addSection)
         })
 
-        viewModel.loadingLiveData.observe(this, Observer {
-            progressBar.setVisible(it)
-        })
+    }
 
-        viewModel.errorLiveData.observe(this, Observer {
-            it.handle {
-                showToast(it)
-            }
-        })
+    override fun showLoading(isLoading: Boolean) {
+        progressBar.setVisible(isLoading)
     }
 
     private fun addSection(section: Section) {

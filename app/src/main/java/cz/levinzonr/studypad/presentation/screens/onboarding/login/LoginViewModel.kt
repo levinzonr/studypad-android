@@ -20,6 +20,7 @@ import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import timber.log.Timber
 import com.google.android.gms.common.api.ApiException
 import cz.levinzonr.studypad.domain.interactors.keychain.GoogleLoginInteractor
+import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.screens.Flow
 
 
@@ -74,7 +75,7 @@ class LoginViewModel(
                     Timber.d("Success $it")
                 }
                 onError {
-                    postError(it.message)
+                    showError(ViewError.DialogError("Login Error", "Error loggin in, try again"))
                     Timber.d("Fail: $it")
                 }
             }
@@ -87,7 +88,6 @@ class LoginViewModel(
 
 
     fun loginViaFacebook(fragment: LoginFragment) {
-        toggleLoading(true)
         LoginManager.getInstance().apply {
             logOut()
             facebookActivityResultManager = CallbackManager.Factory.create()
@@ -98,7 +98,6 @@ class LoginViewModel(
     }
 
     fun handleGoogleSigninResult(task: Task<GoogleSignInAccount>) {
-        toggleLoading(true)
         try {
             val account = task.getResult(ApiException::class.java)
             Timber.d("Token: ${account?.idToken} ${account?.familyName}")
@@ -113,6 +112,7 @@ class LoginViewModel(
     }
 
     private fun onGoogleLoginSuccess(token: String) {
+        toggleLoading(true)
         googleLoginInteractor.executeWithInput(token) {
             onComplete {
                 toggleLoading(false)
@@ -125,6 +125,7 @@ class LoginViewModel(
     }
 
     private fun onFacebookLoginSuccess(loginResult: LoginResult?) {
+        toggleLoading(true)
         loginResult?.accessToken?.let {
             facebookLoginInteractor.executeWithInput(it.token) {
                 onComplete {

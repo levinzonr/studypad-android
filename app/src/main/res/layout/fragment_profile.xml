@@ -82,7 +82,7 @@
 
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/notificationBtn"
-            app:icon="@drawable/ic_forum_black_24dp"
+            app:icon="@drawable/ic_notifications_black_24dp"
             android:gravity="start"
             android:text="Notifications"
             style="@style/Button.Text.Pref"
@@ -92,7 +92,7 @@
 
 
         <com.google.android.material.button.MaterialButton
-            app:icon="@drawable/ic_round_add_24px"
+            app:icon="@drawable/ic_settings_black_24dp"
             android:gravity="start"
             android:text="Settings"
             style="@style/Button.Text.Pref"

@@ -25,7 +25,7 @@ private const val ARG_NOTEBOOK_ID = "NOTEBOOK_ID"
 private const val ARG_NOTE = "NOTE"
 private const val ARG_PUBLISHED_NOTEBOOK = "PUBLISHED_NOTEBOOK"
 
-fun Fragment.showNotes(notebook: Notebook) {
+fun Fragment.onNotebookSelected(notebook: Notebook) {
     view?.findNavController()?.navigate(R.id.action_notebookListFragment_to_notesListFragment,
         Bundle().apply { putParcelable(ARG_NOTEBOOK, notebook) }
     )
@@ -115,7 +115,7 @@ fun SharingHubFragment.showDetail(notebook: PublishedNotebook.Feed) {
 val PublishedNotebookDetailFragment.feedItem: PublishedNotebook.Feed
     get() = arguments!!.getParcelable(ARG_PUBLISHED_NOTEBOOK) !!
 
-fun NotebookListFragment.showPublishedNotebookDetail(nb: PublishedNotebook.Feed) {
+fun NotebookListFragment.onShowPublishedNotebook(nb: PublishedNotebook.Feed) {
     view?.findNavController()?.navigate(R.id.action_notebookListFragment_to_publishedNotebookDetailFragment,
         Bundle().apply { putParcelable(ARG_PUBLISHED_NOTEBOOK, nb) })
 } */

@@ -26,7 +26,7 @@ class SharingHubViewModel(
                 dataSource.postValue(it.map { sectionResponse ->  sectionResponse.toDomain() })
             }
             onError {
-                postError(it.message)
+
             }
         }
 
@@ -40,6 +40,9 @@ class SharingHubViewModel(
             )
         )
     }
+
+
+
 
     fun onSearchButtonClicked() {
         navigateTo(SharingHubFragmentDirections.actionSharedFragmentToNotebooksSearchFragment())

@@ -21,28 +21,17 @@
 
 
 
-    <LinearLayout
-            android:visibility="gone"
-            android:padding="@dimen/space_large"
-            android:id="@+id/emptyView"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-        <ImageView
-                android:tint="@color/blue"
-                android:layout_gravity="center"
-                android:src="@drawable/baseline_check_circle_outline_black_48"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+   <cz.levinzonr.studypad.presentation.common.EmptyStateView
+           android:id="@+id/emptyView"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"/>
 
-        <TextView
-                android:layout_gravity="center"
-                android:text="You're up to date!"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
-    </LinearLayout>
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 </FrameLayout>

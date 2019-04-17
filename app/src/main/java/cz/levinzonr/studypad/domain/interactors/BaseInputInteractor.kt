@@ -1,6 +1,6 @@
 package cz.levinzonr.studypad.domain.interactors
 
-import cz.levinzonr.studypad.domain.models.ViewError
+import cz.levinzonr.studypad.domain.models.ApplicationError
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import timber.log.Timber
@@ -37,15 +37,15 @@ abstract class BaseInputInteractor<in I, O> {
         }
     }
 
-    private fun handleException(e: Exception) : ViewError {
+    private fun handleException(e: Exception) : ApplicationError {
         return when(e) {
             is HttpException -> {
                 Timber.d("HttpException")
                 val errorBody = e.response().body().toString() ?: "empty"
-                return ViewError.ApiError(errorBody)
+                return ApplicationError.ApiError(errorBody)
             }
-            is IOException -> ViewError.NetworkError()
-            else -> ViewError.ApiError("Else: $e")
+            is IOException -> ApplicationError.NetworkError
+            else -> ApplicationError.ApiError("Else: $e")
         }
     }
 

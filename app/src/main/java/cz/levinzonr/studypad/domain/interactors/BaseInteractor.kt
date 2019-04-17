@@ -4,7 +4,7 @@ package cz.levinzonr.studypad.domain.interactors
 
 import com.google.gson.Gson
 import cz.levinzonr.studypad.data.ErrorResponse
-import cz.levinzonr.studypad.domain.models.ViewError
+import cz.levinzonr.studypad.domain.models.ApplicationError
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import timber.log.Timber
@@ -50,15 +50,15 @@ abstract class BaseInteractor<T> {
         }
     }
 
-    private fun handleException(e: Exception) : ViewError {
+    private fun handleException(e: Exception) : ApplicationError {
         return when(e) {
             is HttpException -> {
                 val errorBody = e.response().errorBody()?.string() ?: "{}"
                 val gson = Gson().fromJson<ErrorResponse>(errorBody, ErrorResponse::class.java)
-                return ViewError.ApiError(gson.message)
+                return ApplicationError.ApiError(gson.message)
             }
-            is IOException -> ViewError.NetworkError()
-            else -> ViewError.ApiError("Else: $e")
+            is IOException -> ApplicationError.NetworkError
+            else -> ApplicationError.ApiError("Else: $e")
         }
     }
 
@@ -78,14 +78,14 @@ abstract class BaseInteractor<T> {
 
     class Request<T> {
         private var onComplete: ((T) -> Unit)? = null
-        private var onError: ((ViewError) -> Unit)? = null
+        private var onError: ((ApplicationError) -> Unit)? = null
         private var onCancel: ((CancellationException) -> Unit)? = null
 
         fun onComplete(block: (T) -> Unit) {
             onComplete = block
         }
 
-        fun onError(block: (ViewError) -> Unit) {
+        fun onError(block: (ApplicationError) -> Unit) {
             onError = block
         }
 
@@ -99,7 +99,7 @@ abstract class BaseInteractor<T> {
             }
         }
 
-        operator fun invoke(error: ViewError) {
+        operator fun invoke(error: ApplicationError) {
             onError?.let {
                 it.invoke(error)
             }

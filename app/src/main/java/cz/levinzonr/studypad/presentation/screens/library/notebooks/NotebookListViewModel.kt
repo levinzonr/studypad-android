@@ -32,8 +32,6 @@ class NotebookListViewModel(
     init {
         synchronize()
         refreshFirebaseTokenInteractor.execute {
-            onComplete { postError("Notifcations: $it") }
-            onError { postError("Notification $it") }
         }
     }
 
@@ -84,11 +82,11 @@ class NotebookListViewModel(
     }
 
     // Navigation Events
-    fun showNotes(notebook: Notebook) {
+    fun onNotebookSelected(notebook: Notebook) {
         navigateTo(NotebookListFragmentDirections.actionNotebookListFragmentToNotesListFragment(notebook))
     }
 
-    fun showPublishedNotebookDetail(id: String) {
+    fun onShowPublishedNotebook(id: String) {
         Timber.d(id)
         navigateTo(NotebookListFragmentDirections.actionGlobalPublishedNotebookDetailFragment(id))
     }

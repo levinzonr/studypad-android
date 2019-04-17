@@ -46,16 +46,6 @@ class ProfileFragment : BaseFragment() {
            viewModel.onEditProfileButtonClicked()
         }
 
-        circleImageView.setOnClickListener {
-            FirebaseAuth.getInstance().currentUser?.getIdToken(true)?.addOnCompleteListener {
-                Timber.d("Done ${it.isSuccessful}")
-                it?.result?.let {
-                    Timber.d("tokn: ${it.token}")
-                    tokenRepo.saveToken(it.token!!, it.expirationTimestamp)
-                }
-            }
-        }
-
         notificationBtn.setOnClickListener {
             viewModel.onNotificationsButtonClicked()
         }

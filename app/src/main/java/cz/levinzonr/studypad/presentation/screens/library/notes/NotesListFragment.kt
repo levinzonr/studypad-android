@@ -12,6 +12,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.presentation.adapters.NotesAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.setVisible
 import cz.levinzonr.studypad.supportActionBar
 import kotlinx.android.synthetic.main.fragment_notes_list.*
 import org.koin.android.ext.android.inject
@@ -37,6 +38,8 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
         setupRecyclerView()
         viewModel.dataSource.observe(this, Observer {
             adapter.items  = it
+            notesRv.setVisible(!it.isEmpty())
+            emptyStateView.setVisible(it.isEmpty())
         })
     }
 
@@ -49,7 +52,7 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
             viewModel.showNoteCreation()
         }
 
-
+        emptyStateView.configure("No Notes", "There are no notes in this notebook")
     }
 
 

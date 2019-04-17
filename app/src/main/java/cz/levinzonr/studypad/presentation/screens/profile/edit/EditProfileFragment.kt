@@ -6,6 +6,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.loadAuthorImage
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.common.ProgressDialog
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
 import kotlinx.android.synthetic.main.fragment_edit_profile.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -54,6 +55,9 @@ class EditProfileFragment : BaseFragment() {
 
     }
 
+    override fun showLoading(isLoading: Boolean) {
+        if (isLoading) ProgressDialog.show(childFragmentManager) else ProgressDialog.hide(childFragmentManager)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)

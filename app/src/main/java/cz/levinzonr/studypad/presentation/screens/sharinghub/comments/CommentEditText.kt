@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.layoutInflater
+import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.view_comment_edittext.view.*
 import timber.log.Timber
@@ -30,6 +31,11 @@ class  CommentEditText @JvmOverloads constructor(context: Context, attributeSet:
         editModeLayout.setVisible(editMode)
         changeModeBtn.setOnClickListener { clear() }
         setMode(false)
+        sendButton.isEnabled = false
+
+        commentInputField.onTextChanged {
+            sendButton.isEnabled = it.isNotEmpty()
+        }
     }
 
 
@@ -46,7 +52,7 @@ class  CommentEditText @JvmOverloads constructor(context: Context, attributeSet:
         editModeLayout.setVisible(edit)
 
         if (editMode) {
-            sendButton.setImageResource(R.drawable.tick)
+            sendButton.setImageResource(R.drawable.ic_done)
             sendButton.setOnClickListener {
                 listener?.onChangeConfirmButtonClicked(commentInputField.tag as PublishedNotebook.Comment, commentInputField.text.toString())
                 clear()

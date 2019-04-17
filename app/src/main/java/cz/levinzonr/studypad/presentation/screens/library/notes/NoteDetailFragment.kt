@@ -37,11 +37,6 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
-        viewModel.errorLiveData.observe(viewLifecycleOwner, Observer {
-            it.handle { showToast(it) }
-        })
-
         viewModel.editModeLiveData.observe(viewLifecycleOwner, Observer { editMode ->
             noteDetailView.setVisible(!editMode)
             noteEditView.setVisible(editMode)

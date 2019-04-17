@@ -59,7 +59,8 @@ class SignupViewModel(
                     accountCreatedSuccessEvent.call(it.newUser)
                 }
                 onError {
-                    postError(it.message)
+
+
                 }
 
             }
@@ -73,7 +74,7 @@ class SignupViewModel(
                 showMain()
             }
             onError {
-                postError(it.message)
+
             }
         }
     }

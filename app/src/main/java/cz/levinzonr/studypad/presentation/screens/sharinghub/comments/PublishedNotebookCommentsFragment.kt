@@ -52,10 +52,6 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
 
     private fun subscribe() {
 
-        viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
-
-        })
-
         viewModel.getCommentsLiveData().observe(viewLifecycleOwner, Observer {
             Timber.d("submti $it")
             adapter.submitList(it)

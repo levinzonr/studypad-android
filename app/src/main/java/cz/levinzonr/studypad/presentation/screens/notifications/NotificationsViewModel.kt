@@ -20,9 +20,11 @@ class NotificationsViewModel(
 
 
     fun refresh() {
+        toggleLoading(true)
         getNotificationsInteractor.execute {
             onComplete {
                 val list = if (isPreviewMode) it.filter { !it.read }.first(2 ) else it
+                toggleLoading(false)
                 notifications.postValue(list)
             }
         }
