@@ -8,7 +8,7 @@ import cz.levinzonr.studypad.removeIf
 import cz.levinzonr.studypad.views
 import kotlinx.android.synthetic.main.view_publish_step_info.view.*
 
-class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishModels.StepTwoResult>(listener,"#2 Notebook's theme", "Help other users to find your notebook by sharing some additional details") {
+class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishModels.StepTwoResult>(listener,"Notebook's topic", "Help other users to find your notebook by sharing some additional details") {
 
 
 
@@ -48,8 +48,13 @@ class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishMode
         if (!enable) {
             stepView.notebookTagsCG.removeIf { (it as Chip).text == tag }
         } else {
-            stepView.notebookTagsCG.addView(Chip(context).apply { text = tag })
-
+            val chip =  Chip(context)
+            chip.isCloseIconVisible = true
+            chip.text = tag
+            chip.setOnCloseIconClickListener {
+                toggleTag(tag, false)
+            }
+            stepView.notebookTagsCG.addView(chip)
         }
         markAsCompletedOrUncompleted(true)
         updateButton()

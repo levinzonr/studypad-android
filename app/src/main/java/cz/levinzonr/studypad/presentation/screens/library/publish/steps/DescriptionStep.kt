@@ -7,7 +7,7 @@ import cz.levinzonr.studypad.presentation.screens.library.publish.PublishModels
 import ernestoyaquello.com.verticalstepperform.Step
 import kotlinx.android.synthetic.main.view_publish_step_description.view.*
 
-class DescriptionStep(stepViewClickListener: StepViewClickListener) : BaseStep<PublishModels.StepThreeResult>(stepViewClickListener,"#3 Description", "Feel free to provide any other you think is important, or just leave a message for other users :)") {
+class DescriptionStep(stepViewClickListener: StepViewClickListener) : BaseStep<PublishModels.StepThreeResult>(stepViewClickListener,"Description", "Feel free to provide any other you think is important, or just leave a message for other users :)") {
 
 
     override fun onStepViewCreated() {

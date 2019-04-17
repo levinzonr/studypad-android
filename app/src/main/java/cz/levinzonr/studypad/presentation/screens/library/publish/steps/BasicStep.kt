@@ -11,7 +11,7 @@ import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.screens.library.publish.PublishModels
 import kotlinx.android.synthetic.main.view_publish_step_basic.view.*
 
-class BasicStep(private val userManager: UserManager, val notebook: Notebook, stepViewClickListener: StepViewClickListener) : BaseStep<PublishModels.StepOneResult>(stepViewClickListener,"#1 Basic details", "Here is what we already know about this notebooks, check if everything is ok") {
+class BasicStep(private val userManager: UserManager, val notebook: Notebook, stepViewClickListener: StepViewClickListener) : BaseStep<PublishModels.StepOneResult>(stepViewClickListener,"Basic details", "Here is what we already know about this notebook, check if everything is ok") {
 
 
     override fun getStepResourceId(): Int = R.layout.view_publish_step_basic

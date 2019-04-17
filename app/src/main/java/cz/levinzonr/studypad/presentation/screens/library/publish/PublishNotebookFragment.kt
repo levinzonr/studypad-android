@@ -37,13 +37,13 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
         return inflater.inflate(R.layout.fragment_publish_notebook, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         stepperForm
             .setup(this, listOf(stepOne, stepTwo, stepThree, stepFour))
             .displayStepButtons(false)
+            .displayBottomNavigation(false)
             .includeConfirmationStep(false)
             .init()
 

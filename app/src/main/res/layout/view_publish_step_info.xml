@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:hint="Topic/Subject"
+        android:hint="Subject"
         app:helperText="Main subject or topic of your notebook"
         android:layout_marginTop="@dimen/space_normal"
         android:layout_width="match_parent"
