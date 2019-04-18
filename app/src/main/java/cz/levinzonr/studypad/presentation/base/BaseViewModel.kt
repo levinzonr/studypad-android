@@ -30,11 +30,13 @@ abstract class BaseViewModel : ViewModel() {
         get() = navigationEventLiveData
 
     protected fun showError(viewError: ViewError) {
-        viewStateLiveData.postValue(viewStateLiveData.value?.copy(error = Event(viewError)))
+        val currentState = viewStateLiveData.value ?: BaseViewState()
+        viewStateLiveData.postValue(currentState.copy(error = Event(viewError)))
     }
 
     protected fun toggleLoading(loading: Boolean) {
-        viewStateLiveData.postValue(viewStateLiveData.value?.copy(isLoading = loading))
+        val currentState = viewStateLiveData.value ?: BaseViewState()
+        viewStateLiveData.postValue(currentState.copy(isLoading = loading))
     }
 
 

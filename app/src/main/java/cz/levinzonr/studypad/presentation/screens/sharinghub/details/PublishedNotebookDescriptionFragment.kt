@@ -17,6 +17,7 @@ import cz.levinzonr.studypad.presentation.adapters.NotePreviewAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
+import kotlinx.android.synthetic.main.fragment_note_detail.*
 import kotlinx.android.synthetic.main.fragment_published_notebook_description.*
 import kotlinx.android.synthetic.main.include_notebook_details.*
 import kotlinx.android.synthetic.main.include_notebook_info.*
@@ -89,20 +90,35 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         publishedNotebookAuthorTv.text = detail.author.displayName
         publishedBookAuthorIv.loadAuthorImage(detail.author.photoUrl)
         publishedBookTopicTv.text = detail.topic
-        publishedBookSchoolTv.shownText = detail.university?.fullName
         publishedBookLanguageTv.text = detail.languageCode
-        notebookDescriptionTv.text = detail.description
-        detail.tags.map { Chip(context).apply { text = it } }.forEach {
-            notebookTagsCg.addView(it)
-        }
+        publishedBookSchoolTv.shownText = detail.university?.fullName
+
 
         publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes.first(4), this)
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
 
         publishBookDateTv.text = "last updated: ${detail.lastUpdate.formatTime()}"
+        notebookInfoLayout.setVisible(true)
+        notesPreviewLayout.setVisible(true)
+
+        showDecsription(detail.description, detail.tags.toList())
+
+    }
+
+    private fun showDecsription(description: String, tags: List<String>) {
+        notebookDescriptionTv.shownText = description
+        notebookTagsCg.removeAllViews()
+        tags.map { Chip(context).apply {
+            text = it
+            isClickable = false
+        } }.forEach(notebookTagsCg::addView)
+        notebookDescriptionLayout.setVisible(description.isNotEmpty() || tags.isNotEmpty())
+        descriptionTitleTv.setVisible(description.isNotEmpty())
+        descriptionTagsCG.setVisible(tags.isNotEmpty())
     }
 
     private fun preFillFeed(feed: PublishedNotebook.Feed) {
+
         publishedNotebookNameTv.text = feed.title
         publishedNotebookAuthorTv.text = feed.author.displayName
         publishedBookAuthorIv.loadAuthorImage(feed.author.photoUrl)
@@ -110,6 +126,10 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
 
         publishBookDateTv.text = "last updated: ${feed.lastUpdate.formatTime()}"
+        publishedBookSchoolTv.shownText = feed.university?.fullName
+
+        notebookInfoLayout.setVisible(true)
+
     }
 
     private fun showVersionState(state: State) {
@@ -144,6 +164,11 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
                 notebookVersionLayout.setVisible(false)
             }
         }
+    }
+
+    override fun showLoading(isLoading: Boolean) {
+        Timber.d("Show Loading :$isLoading")
+        progressBar.setVisible(isLoading)
     }
 
     override fun handleNotification(type: NotificationType, notificationPayload: NotificationPayload) {

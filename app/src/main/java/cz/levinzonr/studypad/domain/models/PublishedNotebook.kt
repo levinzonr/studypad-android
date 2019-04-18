@@ -50,7 +50,6 @@ object PublishedNotebook {
         val authoredByMe: Boolean
     )
 
-
     data class Comment(
         val id: Long,
         val author: UserProfile,
