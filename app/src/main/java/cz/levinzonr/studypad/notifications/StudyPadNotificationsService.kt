@@ -12,6 +12,7 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.repository.FirebaseTokenRepository
 import cz.levinzonr.studypad.fromJson
 import cz.levinzonr.studypad.presentation.screens.MainActivity
@@ -28,6 +29,8 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
     private val tokenRepository: FirebaseTokenRepository by inject()
     private val gson: Gson by inject()
 
+    private val userManager: UserManager by inject()
+
     override fun onMessageReceived(message: RemoteMessage?) {
         super.onMessageReceived(message)
         message ?: return
@@ -35,6 +38,8 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
 
         createNotificationChannel()
 
+        val notificationsEnabled = userManager.getPreferences().isNotificationsEnabled
+        Timber.d("Notifications enabled: $notificationsEnabled")
         val intent = Intent(IntentActions.NOTIFICATION)
         val payload = extractPayload(message)
         intent.putExtra("data", payload)
@@ -50,7 +55,7 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
             .build()
 
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        if (!schedyked) manager.notify(1, notification)
+        if (!schedyked && notificationsEnabled) manager.notify(1, notification)
     }
 
     private fun getPendingIntent(message: RemoteMessage): PendingIntent? {

@@ -29,6 +29,10 @@ class LocaleRepositoryImpl(private val gson: Gson, private val prefManager: Pref
         return Locale(javaLocale.displayName, javaLocale.isO3Language)
     }
 
+    override fun clear() {
+        prefManager.remove(PREF_LOCALE)
+    }
+
     companion object {
         private const val PREF_LOCALE = "pref_locale"
     }

@@ -130,6 +130,8 @@
             android:layout_height="wrap_content">
 
         <LinearLayout
+                android:id="@+id/settingsLanguageBtn"
+                android:background="?selectableItemBackground"
                 android:orientation="vertical"
                 android:paddingTop="@dimen/space_big"
                 android:paddingBottom="@dimen/space_big"
@@ -145,6 +147,7 @@
                     android:layout_height="wrap_content"/>
 
             <TextView
+                    android:id="@+id/settingsLanguagePrefTv"
                     android:textColor="@color/grey"
                     android:text="English"
                     android:layout_width="match_parent"
@@ -204,7 +207,7 @@
                 android:text="Logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/settingsLogoutTv"
+                android:id="@+id/settingsLogoutBtn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/notificationsSwitch"/>
@@ -221,7 +224,7 @@
                 android:text="Delete account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/settingsDeleteAccountTV"
+                android:id="@+id/settingsDeleteAccountBtn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/notificationsSwitch"/>

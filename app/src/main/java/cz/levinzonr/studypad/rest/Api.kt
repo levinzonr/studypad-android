@@ -41,6 +41,9 @@ interface Api {
     @POST("$API/users/notifications/register")
     fun registerFirebaseTokenAsync(@Query("token") token: String) : Deferred<Unit>
 
+    @POST("$API/users/notifications/unregister")
+    fun unregisterFirebaseTokenAsync(@Query("token") token: String) : Deferred<Unit>
+
     //-----------------------------------------------------------------------------
 
 

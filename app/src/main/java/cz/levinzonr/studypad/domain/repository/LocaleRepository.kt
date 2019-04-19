@@ -12,4 +12,6 @@ interface LocaleRepository {
 
     fun saveCurrentLocale(locale: Locale)
 
+    fun clear()
+
 }

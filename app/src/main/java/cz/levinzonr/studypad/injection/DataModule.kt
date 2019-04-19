@@ -2,10 +2,7 @@ package cz.levinzonr.studypad.injection
 
 import androidx.room.Room
 import cz.levinzonr.studypad.domain.repository.*
-import cz.levinzonr.studypad.storage.TokenRepository
-import cz.levinzonr.studypad.storage.TokenRepositoryImpl
-import cz.levinzonr.studypad.storage.UserProfileRepository
-import cz.levinzonr.studypad.storage.UserProfileRepositoryImpl
+import cz.levinzonr.studypad.storage.*
 import cz.levinzonr.studypad.storage.database.AppDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module.module
@@ -35,5 +32,7 @@ val repositoryModule = module {
     single <SearchHistoryRepository> { SearchHistoryRepositoryImpl(get()) }
 
     single<FirebaseTokenRepository> { FirebaseTokenRepositoryImpl(get()) }
+
+    single<UserPreferencesRepository> { UserPreferencesRepositoryImpl(get())  }
 }
 

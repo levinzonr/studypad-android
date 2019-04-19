@@ -1,9 +1,7 @@
 package cz.levinzonr.studypad.domain.managers
 
 import androidx.lifecycle.LiveData
-import cz.levinzonr.studypad.domain.models.CurrentUserInfo
-import cz.levinzonr.studypad.domain.models.SearchEntry
-import cz.levinzonr.studypad.domain.models.UserProfile
+import cz.levinzonr.studypad.domain.models.*
 
 interface UserManager {
 
@@ -21,6 +19,9 @@ interface UserManager {
 
     fun getCurrentUserInfo() : CurrentUserInfo?
 
+    fun getPreferences() : Preferences
 
+    fun setNotificationsEnabled(value : Boolean)
 
+    fun setLocale(locale: Locale)
 }

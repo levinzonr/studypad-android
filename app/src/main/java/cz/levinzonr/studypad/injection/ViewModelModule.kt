@@ -18,6 +18,7 @@ import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewMo
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorViewModel
 import cz.levinzonr.studypad.presentation.screens.profile.ProfileViewModel
 import cz.levinzonr.studypad.presentation.screens.profile.edit.EditProfileViewModel
+import cz.levinzonr.studypad.presentation.screens.settings.SettingsViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.NotebookSuggestionsViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.comments.PublishedNotebookCommentsViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNotebookDetailViewModel
@@ -90,5 +91,7 @@ val viewModelModule = module {
     viewModel { EditProfileViewModel(get(), get()) }
 
     viewModel { SetupChallengeViewModel() }
+
+    viewModel { SettingsViewModel(get(), get() )}
 
 }

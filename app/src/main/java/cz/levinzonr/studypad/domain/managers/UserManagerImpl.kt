@@ -3,13 +3,12 @@ package cz.levinzonr.studypad.domain.managers
 import androidx.lifecycle.LiveData
 import com.google.firebase.auth.*
 import cz.levinzonr.studypad.data.CreateAccountRequest
-import cz.levinzonr.studypad.domain.models.CurrentUserInfo
-import cz.levinzonr.studypad.domain.models.SearchEntry
-import cz.levinzonr.studypad.domain.models.UserProfile
+import cz.levinzonr.studypad.domain.models.*
 import cz.levinzonr.studypad.domain.repository.LocaleRepository
 import cz.levinzonr.studypad.domain.repository.SearchHistoryRepository
 import cz.levinzonr.studypad.rest.Api
 import cz.levinzonr.studypad.storage.TokenRepository
+import cz.levinzonr.studypad.storage.UserPreferencesRepository
 import cz.levinzonr.studypad.storage.UserProfileRepository
 import timber.log.Timber
 import kotlin.coroutines.resume
@@ -17,6 +16,7 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 class UserManagerImpl(private val api: Api,
+                      private val preferencesRepository: UserPreferencesRepository,
                       private val localeRepository: LocaleRepository,
                       private val tokenRepository: TokenRepository,
                       private val searchHistoryRepository: SearchHistoryRepository,
@@ -30,9 +30,7 @@ class UserManagerImpl(private val api: Api,
         val userToken = result.user.getCurrentToken() ?: return
         Timber.d("user tokent $userToken")
         val response = api.loginAsync(userToken.token!!).await()
-        tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
-        Timber.d("Save" + response)
-        userProfileRepository.saveUserProfile(response)
+        afterLogin(userToken.token!!, userToken.expirationTimestamp, response)
     }
 
     override suspend fun loginViaFacebook(token: String) : UserProfile {
@@ -40,8 +38,7 @@ class UserManagerImpl(private val api: Api,
         val authResult =  firebaseAuth.loginWithCredentials(credentials)!!
         val userToken = authResult.user.getCurrentToken()!!
         val response = api.loginAsync(userToken.token!!).await()
-        tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
-        userProfileRepository.saveUserProfile(response)
+        afterLogin(userToken.token!!, userToken.expirationTimestamp, response)
         return response
     }
 
@@ -50,26 +47,28 @@ class UserManagerImpl(private val api: Api,
         val authResult =  firebaseAuth.loginWithCredentials(credential)!!
         val userToken = authResult.user.getCurrentToken()!!
         val response = api.loginAsync(userToken.token!!).await()
-        tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
-        Timber.d("Login via google, ${userToken.expirationTimestamp}, ${userToken.token}")
-        userProfileRepository.saveUserProfile(response)
-        return response
+        return afterLogin(userToken.token!!, userToken.expirationTimestamp, response)
     }
 
     override suspend fun createAccount(email: String, password: String, firstName: String, lasName: String) : UserProfile {
         val request = CreateAccountRequest(firstName, lasName, email, password)
         val response =  api.createAccountAsync(request).await()
         val result = firebaseAuth.loginWihtCustomToken(response.token)!!
+
         val userToken = result.user.getCurrentToken()!!
-        tokenRepository.saveToken(userToken.token!!, userToken.expirationTimestamp)
-        userProfileRepository.saveUserProfile(response.user)
-        return response.user
+        return afterLogin(userToken.token!!, userToken.expirationTimestamp, response.user)
     }
 
     override fun isLoggedIn(): Boolean {
         return tokenRepository.getToken() != null
     }
 
+    private fun afterLogin(token: String, tokenExpiration: Long, userProfile: UserProfile) : UserProfile {
+        tokenRepository.saveToken(token, tokenExpiration)
+        userProfileRepository.saveUserProfile(userProfile)
+        setNotificationsEnabled(true)
+        return userProfile
+    }
 
     override fun getCurrentUserInfo(): CurrentUserInfo? {
         val userInfo = userProfileRepository.getUserProfile() ?: return null
@@ -78,11 +77,26 @@ class UserManagerImpl(private val api: Api,
     }
 
 
+    override fun getPreferences(): Preferences {
+        val notificatios = preferencesRepository.getNotificationsEnabled()
+        return Preferences(notificatios)
+    }
+
+    override fun setNotificationsEnabled(value: Boolean) {
+        preferencesRepository.setNotificationsEnabled(value)
+    }
+
+    override fun setLocale(locale: Locale) {
+        localeRepository.saveCurrentLocale(locale)
+    }
+
     override fun logout() {
         firebaseAuth.signOut()
         tokenRepository.clear()
         userProfileRepository.clear()
         searchHistoryRepository.clear()
+        preferencesRepository.clear()
+        localeRepository.clear()
     }
 
     private suspend fun FirebaseAuth.loginWithPassword(email: String, password: String) : AuthResult {
