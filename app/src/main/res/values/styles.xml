@@ -77,9 +77,7 @@
 
     <style name="TextStyle.Preference">
         <item name="android:background">?selectableItemBackground</item>
-        <item name="android:padding">@dimen/space_big</item>
-        <item name="android:textSize">21sp</item>
-        <item name="android:drawableEnd">@drawable/ic_chevron_right_black_24dp</item>
+        <item name="android:padding">@dimen/space_large</item>
     </style>
 
     <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">

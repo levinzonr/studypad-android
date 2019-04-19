@@ -38,9 +38,6 @@ class ProfileFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        profileLogoutBtn.setOnClickListener {
-            viewModel.logout()
-        }
 
         editProfileBtn.setOnClickListener {
            viewModel.onEditProfileButtonClicked()
@@ -50,12 +47,9 @@ class ProfileFragment : BaseFragment() {
             viewModel.onNotificationsButtonClicked()
         }
 
-        viewModel.openLoginEvent.observe(this, Observer {
-            it.handle {
-                startActivity(Intent(activity, OnboardingActivity::class.java))
-                activity?.finish()
-            }
-        })
+        profileAboutBtn.setOnClickListener { viewModel.onAboutButtonClicked() }
+
+        profileSettingsBtn.setOnClickListener { viewModel.onSettingsButtonClicked() }
 
         viewModel.profileLiveData.observe(this, Observer {
             profileUserNae.text = "${it.firstName} ${it.lastName}"

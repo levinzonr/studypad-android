@@ -101,6 +101,20 @@
                 app:popExitAnim="@animator/slide_right_exit"
                 android:id="@+id/action_profileFragment_to_editProfileFragment"
                 app:destination="@id/editProfileFragment"/>
+        <action
+                android:id="@+id/action_profileFragment_to_aboutFragment"
+                app:destination="@id/aboutFragment"
+                app:enterAnim="@animator/slide_left_enter"
+                app:exitAnim="@animator/slide_left_exit"
+                app:popEnterAnim="@animator/slide_right_enter"
+                app:popExitAnim="@animator/slide_right_exit"/>
+        <action
+                android:id="@+id/action_profileFragment_to_settingsFragment"
+                app:destination="@id/settingsFragment"
+                app:enterAnim="@animator/slide_left_enter"
+                app:exitAnim="@animator/slide_left_exit"
+                app:popEnterAnim="@animator/slide_right_enter"
+                app:popExitAnim="@animator/slide_right_exit"/>
     </fragment>
     <fragment
             android:id="@+id/publishNotebookFragment"
@@ -246,4 +260,9 @@
             android:name="cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeFragment"
             android:label="fragment_learning_challenge"
             tools:layout="@layout/fragment_learning_challenge"/>
+    <fragment
+            android:id="@+id/aboutFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.about.AboutFragment"
+            android:label="fragment_about"
+            tools:layout="@layout/fragment_about"/>
 </navigation>

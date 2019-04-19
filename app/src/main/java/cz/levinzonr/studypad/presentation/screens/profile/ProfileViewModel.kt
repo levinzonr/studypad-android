@@ -22,11 +22,7 @@ class ProfileViewModel(
         loadProfile()
     }
 
-    val openLoginEvent: LiveData<SingleLiveEvent>
-        get() = userLoggedOutEvent
 
-
-    private val userLoggedOutEvent = MutableLiveData<SingleLiveEvent>()
     val profileLiveData = MutableLiveData<UserProfile>()
 
     fun logout() {
@@ -57,6 +53,14 @@ class ProfileViewModel(
         getUserProfileInteractor.execute {
             onComplete { profileLiveData.postValue(it) }
         }
+    }
+
+    fun onSettingsButtonClicked() {
+        navigateTo(ProfileFragmentDirections.actionProfileFragmentToSettingsFragment())
+    }
+
+    fun onAboutButtonClicked() {
+        navigateTo(ProfileFragmentDirections.actionProfileFragmentToAboutFragment())
     }
 
 

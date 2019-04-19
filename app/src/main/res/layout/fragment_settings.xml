@@ -1,15 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".presentation.screens.settings.SettingsFragment">
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="#f9f9f9"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.screens.settings.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:gravity="center"
+
+    <LinearLayout
+            android:paddingStart="@dimen/space_small"
+            android:paddingEnd="@dimen/space_small"
+            android:paddingTop="@dimen/space_big"
+            android:paddingBottom="@dimen/space_big"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="SettingsFragment"/>
+            android:layout_height="wrap_content">
 
-</FrameLayout>
+        <ImageView
+                android:layout_marginStart="@dimen/space_small"
+                android:tint="@color/blue"
+                android:src="@drawable/ic_notifications_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_marginStart="@dimen/space_small"
+                android:text="Notifications"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <View
+            android:background="@color/greyDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    <LinearLayout
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <View xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@color/lightGrey"
+              android:layout_height="1dp"
+              android:orientation="vertical"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:padding="@dimen/space_large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:text="Push Notifications"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/settingsNotificationsTv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/notificationsSwitch"/>
+
+
+            <Switch
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/notificationsSwitch"
+                    android:layout_marginEnd="@dimen/space_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/settingsNotificationsTv"
+                    app:layout_constraintBottom_toBottomOf="@+id/settingsNotificationsTv"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@color/lightGrey"
+              android:layout_height="1dp"
+              android:orientation="vertical"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:layout_marginTop="@dimen/space_big"
+            android:paddingStart="@dimen/space_small"
+            android:paddingEnd="@dimen/space_small"
+            android:paddingTop="@dimen/space_big"
+            android:paddingBottom="@dimen/space_big"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:layout_marginStart="@dimen/space_small"
+                android:tint="@color/blue"
+                android:src="@drawable/ic_round_language_24px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_marginStart="@dimen/space_small"
+                android:text="Language"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+          android:background="@color/lightGrey"
+          android:layout_height="1dp"
+          android:orientation="vertical"/>
+
+    <LinearLayout
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:paddingTop="@dimen/space_big"
+                android:paddingBottom="@dimen/space_big"
+                android:paddingStart="@dimen/space_large"
+                android:paddingEnd="@dimen/space_large"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            <TextView
+                    android:text="Language"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:textColor="@color/grey"
+                    android:text="English"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+          android:background="@color/lightGrey"
+          android:layout_height="1dp"
+          android:orientation="vertical"/>
+
+
+    <LinearLayout
+            android:layout_marginTop="@dimen/space_big"
+            android:paddingStart="@dimen/space_small"
+            android:paddingEnd="@dimen/space_small"
+            android:paddingTop="@dimen/space_big"
+            android:paddingBottom="@dimen/space_big"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:layout_marginStart="@dimen/space_small"
+                android:tint="@color/blue"
+                android:src="@drawable/ic_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_marginStart="@dimen/space_small"
+                android:text="Account"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <View xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@color/lightGrey"
+              android:layout_height="1dp"
+              android:orientation="vertical"/>
+
+
+        <TextView
+                style="@style/TextStyle.Preference"
+                android:text="Logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/settingsLogoutTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/notificationsSwitch"/>
+
+        <View xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@color/lightGrey"
+              android:layout_height="1dp"
+              android:layout_marginStart="@dimen/space_big"
+              android:orientation="vertical"/>
+
+        <TextView
+                style="@style/TextStyle.Preference"
+                android:text="Delete account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/settingsDeleteAccountTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/notificationsSwitch"/>
+
+
+        <View xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@color/lightGrey"
+              android:layout_height="1dp"
+              android:orientation="vertical"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

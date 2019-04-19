@@ -2,7 +2,6 @@ package cz.levinzonr.studypad.presentation.screens.challenges.setup
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.lifecycle.Observer
 
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.screens.selectors.NotebookSelectorDialog
 import kotlinx.android.synthetic.main.fragment_setup_challenge.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -65,7 +63,7 @@ class SetupChallengeFragment : BaseFragment() {
             true
         }
 
-        preferenceNotebookSelector.setOnClickListener {
+        settingsLogout.setOnClickListener {
             NotebookSelectorDialog.show(childFragmentManager) {
                 viewModel.onNotebookSelected(it)
             }

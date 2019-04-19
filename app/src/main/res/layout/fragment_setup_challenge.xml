@@ -67,7 +67,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
 
                 android:background="?selectableItemBackground"
-                android:id="@+id/preferenceNotebookSelector"
+                android:id="@+id/settingsLogout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

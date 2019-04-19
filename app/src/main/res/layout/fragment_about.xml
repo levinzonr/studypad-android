@@ -1,0 +1,122 @@
+<androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="cz.levinzonr.studypad.presentation.screens.about.AboutFragment">
+
+
+    <LinearLayout
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <com.google.android.material.card.MaterialCardView
+                android:layout_margin="@dimen/space_large"
+                app:cardCornerRadius="@dimen/corner_radius"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/space_small"
+                android:id="@+id/materialCardView4">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                <ImageView
+                        android:src="@drawable/ic_studypad"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:tint="@color/blue"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:id="@+id/imageView3"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+
+                <TextView
+                        android:textStyle="bold"
+                        android:text="@string/app_name"
+                        android:layout_width="wrap_content"
+                        android:textSize="22sp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="@dimen/space_normal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp"
+                        android:id="@+id/textView10"/>
+
+                <TextView
+                        android:layout_marginBottom="@dimen/space_big"
+                        tools:text="Version v0.0.1 (22)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/textView10"
+                        app:layout_constraintTop_toBottomOf="@+id/textView10"
+                        app:layout_constraintStart_toStartOf="@+id/textView10"
+                        android:id="@+id/appVersionTv"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <LinearLayout
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            <TextView
+                    style="@style/TextStyle.Preference"
+                    android:text="Open Sourced Licenses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/aboutLicenceBtn"/>
+
+            <View
+
+                    android:layout_marginStart="@dimen/space_large"
+                    android:background="@color/lightGrey"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+            <TextView
+                    style="@style/TextStyle.Preference"
+                    android:text="Privacy policy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/aboutPolicyBtn"/>
+
+
+            <View
+
+                    android:layout_marginStart="@dimen/space_large"
+                    android:background="@color/lightGrey"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+
+            <TextView
+                    style="@style/TextStyle.Preference"
+                    android:text="Send Feedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:layout_editor_absoluteX="175dp"
+                    android:id="@+id/aboutFeedbackBtn"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
