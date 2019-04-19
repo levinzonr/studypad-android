@@ -8,7 +8,7 @@ import cz.levinzonr.studypad.removeIf
 import cz.levinzonr.studypad.views
 import kotlinx.android.synthetic.main.view_publish_step_info.view.*
 
-class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishModels.StepTwoResult>(listener,"Notebook's topic", "Help other users to find your notebook by sharing some additional details") {
+class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishModels.StepTwoData>(listener,"Notebook's topic", "Help other users to find your notebook by sharing some additional details") {
 
 
 
@@ -28,12 +28,12 @@ class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishMode
     }
 
 
-    override fun getStepData(): PublishModels.StepTwoResult {
+    override fun getStepData(): PublishModels.StepTwoData {
         val tags = stepView.notebookTagsCG.views
             .filter { (it as Chip).chipIcon == null }
             .map { (it as Chip).text.toString() }
 
-        return PublishModels.StepTwoResult(stepView.notebookTopicEt.tag as? Topic?, tags.toMutableSet())
+        return PublishModels.StepTwoData(stepView.notebookTopicEt.tag as? Topic?, tags.toMutableSet())
     }
 
     fun setTopic(topic: Topic) {
@@ -43,6 +43,9 @@ class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishMode
         updateButton()
     }
 
+    override fun setDefaultData(stepData: PublishModels.StepTwoData) {
+        stepData.tags.forEach { toggleTag(it, true )}
+    }
 
     fun toggleTag(tag: String, enable: Boolean) {
         if (!enable) {

@@ -4,4 +4,8 @@
         <attr name="buttonIcon" format="reference" />
         <attr name="buttonText" format="string" localization="suggested" />
     </declare-styleable>
+
+    <declare-styleable name="MaxLinesChipGroup">
+        <attr name="maxLines" format="integer"/>
+    </declare-styleable>
 </resources>

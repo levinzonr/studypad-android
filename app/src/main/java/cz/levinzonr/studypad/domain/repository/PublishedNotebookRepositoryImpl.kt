@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.tyro.oss.arbitrater.arbitraryInstance
 import cz.levinzonr.studypad.data.PublishNotebookRequest
 import cz.levinzonr.studypad.data.SectionResponse
+import cz.levinzonr.studypad.data.UpdatePublishedNotebookPayload
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebookSearchModels
@@ -48,6 +49,30 @@ class PublishedNotebookRepositoryImpl(private val api: Api) : PublishedNotebookR
         return api.publishNotebookAsync(request).await()
 
     }
+    override suspend fun updatePublishNotebook(
+        notebookId: String,
+        title: String,
+        description: String?,
+        tags: Set<String>,
+        topicId: Long?,
+        languageCode: String,
+        university: University?
+    ): PublishedNotebook.Feed {
+
+        val request = UpdatePublishedNotebookPayload(
+            title = title,
+            tags = tags,
+            topicId = topicId,
+            universityId = university?.id,
+            description = description,
+            languageCode = languageCode
+        )
+
+        Timber.d("request: $request")
+        return api.updatePublishedNotebookAsync(notebookId, request).await()
+
+    }
+
 
     override suspend fun searchNotebooks(searchState: NotebookSearchModels.SearchState): List<PublishedNotebook.Feed> {
         return api.findNotebooksAsync(

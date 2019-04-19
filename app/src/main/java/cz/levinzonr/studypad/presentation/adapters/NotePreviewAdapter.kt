@@ -31,7 +31,8 @@ class NotePreviewAdapter(val notes: List<Note>, val listener: NotePreviewListene
     }
 
     override fun getItemCount(): Int {
-        return notes.count() + 1
+        if (notes.count() <= 4) return notes.count()
+        else return notes.count() + 1
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -42,6 +43,7 @@ class NotePreviewAdapter(val notes: List<Note>, val listener: NotePreviewListene
 
         fun bindView(note: Note) {
             view.noteTitleTv.text = note.title
+            view.setOnClickListener { listener.onNotePreviewClicked(note) }
         }
     }
 
@@ -64,6 +66,7 @@ class NotePreviewAdapter(val notes: List<Note>, val listener: NotePreviewListene
 
     interface NotePreviewListener {
         fun onShowAllButtonClicked()
+        fun onNotePreviewClicked(note: Note)
 
     }
 }

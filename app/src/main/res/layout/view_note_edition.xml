@@ -41,6 +41,7 @@
                 android:background="@null"
                 android:imeOptions="actionNext"
                 android:hint="Title"
+                android:inputType="text"
                 android:maxLines="1"
                 android:textStyle="bold" />
 

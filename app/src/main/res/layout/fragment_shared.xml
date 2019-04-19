@@ -31,33 +31,59 @@
 
             <com.google.android.material.card.MaterialCardView
                     app:cardElevation="@dimen/cardview_default_elevation"
-                    app:cardCornerRadius="@dimen/corner_radius"
                     android:layout_margin="@dimen/space_normal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
 
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-
-                    <TextView
-                            android:padding="@dimen/space_normal"
-                            android:textStyle="bold"
-                            android:drawablePadding="@dimen/space_normal"
-                            android:text="Recent notifications"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content">
 
+
+                        <TextView
+                                android:text="Recent Notifcations"
+                                android:textStyle="bold"
+                                android:textSize="15sp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/notificationsSeeAllBtn"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_marginStart="@dimen/space_normal"
+                                app:layout_constraintEnd_toStartOf="@+id/notificationsSeeAllBtn"
+                                android:layout_marginEnd="@dimen/space_normal"/>
+
+                        <com.google.android.material.button.MaterialButton
+                                style="@style/Button.Text"
+                                android:textSize="12sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="See All"
+                                android:textAllCaps="true"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_marginEnd="@dimen/space_normal"
+                                android:layout_marginTop="@dimen/space_normal"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_marginBottom="@dimen/space_normal"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:id="@+id/notificationsSeeAllBtn"/>
+
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <FrameLayout
                             android:id="@+id/container"
+                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="match_parent"/>
 
                 </LinearLayout>
+
 
             </com.google.android.material.card.MaterialCardView>
 

@@ -53,6 +53,10 @@ class SharingHubViewModel(
         navigateTo(SharingHubFragmentDirections.actionSharedFragmentToNotebooksSearchFragment(state))
     }
 
+    fun onShowAllNotificationsClicked() {
+        navigateTo(SharingHubFragmentDirections.actionSharingHubFragmentToNotificationsFragment())
+    }
+
     fun onShowAllClicked(section: Section) {
         val searchState = when (section.type) {
             SectionType.SCHOOL -> {

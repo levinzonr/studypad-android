@@ -6,7 +6,7 @@ import org.koin.dsl.module.module
 
 val presentation = module {
 
-    factory { (notebook: Notebook, listener: BaseStep.StepViewClickListener) ->BasicStep(get(), notebook, listener)}
+    factory {  (listener: BaseStep.StepViewClickListener) -> BasicStep(listener) }
 
     factory { (listener: BaseStep.StepViewClickListener) ->AdditionalInfoStep(listener)}
 

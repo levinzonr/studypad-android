@@ -5,7 +5,7 @@ import cz.levinzonr.studypad.data.SectionResponse
 
 
 fun NotebooksResponse.toDomain() : Notebook {
-    return Notebook(id, name, notesCount, color, publishedNotebookId)
+    return Notebook(id, name, notesCount, authoredByMe,  color, publishedNotebookId)
 }
 
 fun SectionResponse.toDomain() : Section {

@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.buildTags
 import timber.log.Timber
 
 class MaxLinesChipGroup @JvmOverloads constructor(
@@ -14,11 +16,18 @@ class MaxLinesChipGroup @JvmOverloads constructor(
     defStyle: Int = 0
 ) : ChipGroup(context, attributeSet, defStyle) {
 
-    var maxLines: Int = 2
+    val maxLines: Int
+
+    init {
+        val attrsSet = context.obtainStyledAttributes(attributeSet, R.styleable.MaxLinesChipGroup, 0, 0)
+        maxLines = attrsSet?.getInteger(R.styleable.MaxLinesChipGroup_maxLines, 2) ?: 2
+        attrsSet.recycle()
+    }
+
     var prevLinesWidth = 0
     var lines = -1
 
-    fun addChip(chip: Chip): Boolean {
+    private fun addChip(chip: Chip): Boolean {
         val parent = parent as ViewGroup
         measure(parent.width, parent.height)
         chip.measure(width, height)
@@ -39,14 +48,11 @@ class MaxLinesChipGroup @JvmOverloads constructor(
         }
     }
 
+
     fun addAll(list: List<String>) {
-        val itemsLeft = list.map {
-            Chip(context).apply {
-                isClickable = false
-                text = it
-            }
-        }.map { addChip(it) }.also { Timber.d("LEft : $it") }
-            .filter{ !it }.size
+        val itemsLeft = list.buildTags(context)
+            .map { addChip(it) }.also { Timber.d("LEft : $it") }
+            .filter { !it }.size
 
         Timber.d("Left $itemsLeft")
         if (itemsLeft > 0) {

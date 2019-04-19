@@ -59,6 +59,13 @@
                 app:popExitAnim="@animator/slide_right_exit"
                 android:id="@+id/action_sharedFragment_to_notebooksSearchFragment"
                 app:destination="@id/notebooksSearchFragment"/>
+        <action
+                android:id="@+id/action_sharingHubFragment_to_notificationsFragment"
+                app:destination="@id/notificationsFragment"
+                app:enterAnim="@animator/slide_left_enter"
+                app:exitAnim="@animator/slide_left_exit"
+                app:popEnterAnim="@animator/slide_right_enter"
+                app:popExitAnim="@animator/slide_right_exit"/>
     </fragment>
 
     <fragment
@@ -102,7 +109,14 @@
             tools:layout="@layout/fragment_publish_notebook">
         <argument
                 android:name="notebook"
-                app:argType="cz.levinzonr.studypad.domain.models.Notebook"/>
+                app:argType="cz.levinzonr.studypad.domain.models.Notebook"
+                app:nullable="true"
+                android:defaultValue="@null"/>
+        <argument
+                android:name="publishedId"
+                app:argType="string"
+                app:nullable="true"
+                android:defaultValue="@null"/>
     </fragment>
     <fragment
             android:id="@+id/publishedNotebookDetailFragment"
@@ -134,6 +148,13 @@
         <deepLink
                 android:id="@+id/deepLink"
                 app:uri="studypad://notebooksId/{id}"/>
+        <action
+                android:id="@+id/action_publishedNotebookDetailFragment_to_publishNotebookFragment"
+                app:destination="@id/publishNotebookFragment"
+                app:enterAnim="@animator/slide_left_enter"
+                app:exitAnim="@animator/slide_left_exit"
+                app:popEnterAnim="@animator/slide_right_enter"
+                app:popExitAnim="@animator/slide_right_exit"/>
     </fragment>
     <fragment
             android:id="@+id/noteDetailFragment"

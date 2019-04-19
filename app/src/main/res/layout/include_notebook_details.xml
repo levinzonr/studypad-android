@@ -15,7 +15,6 @@
 
         <TextView
                 android:textStyle="bold"
-                android:textSize="16sp"
                 android:textColor="#000"
                 android:layout_marginStart="@dimen/space_normal"
                 android:text="More Information"
@@ -25,20 +24,20 @@
 
         <TextView
                 android:id="@+id/descriptionTitleTv"
-                android:layout_marginTop="@dimen/space_large"
+                android:layout_marginTop="@dimen/space_big"
                 android:textStyle="bold"
                 style="@style/TextStyle"
                 android:text="Description"
-                android:layout_marginEnd="@dimen/space_large"
-                android:layout_marginStart="@dimen/space_large"
+                android:layout_marginEnd="@dimen/space_big"
+                android:layout_marginStart="@dimen/space_big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
 
         <TextView
                 android:id="@+id/notebookDescriptionTv"
-                android:layout_marginEnd="@dimen/space_large"
-                android:layout_marginStart="@dimen/space_large"
+                android:layout_marginEnd="@dimen/space_big"
+                android:layout_marginStart="@dimen/space_big"
                 tools:text="Sed posuere consectetur est at lobortis. Etiam porta sem malesuada magna mollis euismod. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -47,8 +46,9 @@
         <TextView
                 android:id="@+id/descriptionTagsCG"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/space_large"
-                android:layout_marginStart="@dimen/space_large"
+                android:layout_marginTop="@dimen/space_big"
+                android:layout_marginEnd="@dimen/space_big"
+                android:layout_marginStart="@dimen/space_big"
                 android:text="Attached tags"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -58,8 +58,8 @@
                 app:chipSpacing="@dimen/space_small"
                 android:id="@+id/notebookTagsCg"
                 android:layout_marginTop="@dimen/space_normal"
-                android:layout_marginStart="@dimen/space_large"
-                android:layout_marginEnd="@dimen/space_large"
+                android:layout_marginEnd="@dimen/space_big"
+                android:layout_marginStart="@dimen/space_big"
                 android:layout_marginBottom="@dimen/space_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

@@ -1,12 +1,19 @@
 package cz.levinzonr.studypad.presentation.screens.library.publish
 
+import android.os.Parcelable
 import cz.levinzonr.studypad.domain.models.Topic
 import cz.levinzonr.studypad.domain.models.University
+import kotlinx.android.parcel.Parcelize
 
 class PublishModels {
 
+    data class PublishViewState(
+        val stepOneDefaults: StepOneData,
+        val stepTwoDefaults: StepTwoData? = null,
+        val stepThreeDefaults: StepThreeData? = null
+    )
 
-    data class StepOneResult(val name: String, val school: University? = null, val langCode: String) : StepDataHolder {
+    data class StepOneData(val name: String, val school: University? = null, val langCode: String) : StepDataHolder {
         override fun isValid(): Boolean {
             return name.isNotBlank() && langCode.isNotEmpty()
         }
@@ -16,7 +23,7 @@ class PublishModels {
         }
     }
 
-    data class StepTwoResult(val topic: Topic?, val tags: MutableSet<String>) : StepDataHolder {
+    data class StepTwoData(val topic: Topic?, val tags: MutableSet<String>) : StepDataHolder {
         override fun isValid(): Boolean {
             return topic != null
         }
@@ -26,7 +33,7 @@ class PublishModels {
         }
     }
 
-    data class StepThreeResult(val description: String) : StepDataHolder {
+    data class StepThreeData(val description: String) : StepDataHolder {
         override fun isValid(): Boolean {
             return true
         }

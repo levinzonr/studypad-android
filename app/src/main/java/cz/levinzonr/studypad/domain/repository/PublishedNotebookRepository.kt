@@ -20,6 +20,14 @@ interface PublishedNotebookRepository {
         topicId: Long?,
         languageCode: String, university: University?) : PublishedNotebook.Feed
 
+    suspend fun updatePublishNotebook(
+        notebookId: String,
+        title: String,
+        description: String?,
+        tags: Set<String>,
+        topicId: Long?,
+        languageCode: String, university: University?) : PublishedNotebook.Feed
+
     suspend fun searchNotebooks(searchState: NotebookSearchModels.SearchState) : List<PublishedNotebook.Feed>
 
 }

@@ -44,7 +44,8 @@ val viewModelModule = module {
 
     viewModel { (mode: NoteDetailModels.NoteViewMode) -> NoteDetailViewModel(mode, get(), get(), get(), get()) }
 
-    viewModel { (notebook: Notebook) -> PublishNotebookViewModel(notebook, get(), get(), get()) }
+    viewModel { (notebook: Notebook?, id: String?) -> PublishNotebookViewModel(notebook, id, get(),  get(), get(), get()) }
+
 
     viewModel { (isPreviewMode: Boolean) -> NotificationsViewModel(isPreviewMode, get(), get())}
 

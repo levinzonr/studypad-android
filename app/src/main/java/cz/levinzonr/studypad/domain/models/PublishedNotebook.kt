@@ -34,15 +34,17 @@ object PublishedNotebook {
         val author: UserProfile
     ) : Parcelable
 
+
     data class Detail(
         val id: String,
         val title: String,
-        val description: String,
+        val description: String?,
         val notes: List<Note>,
         val tags: Set<String>,
         val author: UserProfile,
         val comments: List<Comment>,
         val university: University?,
+        val excludedFromSearch: Boolean,
         val topic: String,
         val lastUpdate: Long,
         val languageCode: String? = null,

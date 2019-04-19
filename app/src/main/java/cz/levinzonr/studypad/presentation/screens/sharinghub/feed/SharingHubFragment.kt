@@ -52,6 +52,9 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
         childFragmentManager.beginTransaction()
             .replace(R.id.container, NotificationsFragment.newInstance(true), "tag")
             .commit()
+
+        notificationsSeeAllBtn.setOnClickListener { viewModel.onShowAllNotificationsClicked() }
+
     }
 
     override fun handleNotification(type: NotificationType, notificationPayload: NotificationPayload) {

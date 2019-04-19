@@ -47,6 +47,17 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
                     android:visibility="gone"
+                    tools:visibility="visible"
+                    android:layout_marginTop="@dimen/space_normal"
+                    android:id="@+id/notebookExcludedLayout"
+                    layout="@layout/include_notebook_excluded_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <include
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/space_normal"
                     android:id="@+id/notebookDescriptionLayout"
                     layout="@layout/include_notebook_details"
@@ -78,11 +89,11 @@
                     android:layout_marginTop="@dimen/space_normal"
                     android:id="@+id/notesPreviewLayout"
                     android:layout_marginStart="@dimen/space_small"
+                    android:layout_marginBottom="@dimen/space_normal"
                     android:layout_marginEnd="@dimen/space_small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:elevation="@dimen/space_small"
-                    app:cardCornerRadius="@dimen/corner_radius"
                     app:contentPadding="@dimen/space_big">
 
 
@@ -92,6 +103,7 @@
 
 
                     <TextView
+                            android:textColor="#000"
                             android:id="@+id/textView4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -102,6 +114,7 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
+                            tools:listitem="@layout/item_note_preview"
                             android:id="@+id/publishedBookNotesRv"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"

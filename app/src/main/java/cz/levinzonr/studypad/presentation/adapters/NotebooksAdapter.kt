@@ -36,10 +36,16 @@ class NotebooksAdapter : RecyclerView.Adapter<NotebooksAdapter.ViewHolder>() {
 
         fun bindView(notebook: Notebook) {
             view.notebookTitleTv.text = notebook.name
-            view.notebookNotesCountTv.text = when(notebook.notesCount) {
-                0 -> "no notes"
-                1 -> "1 note"
-                else -> "${notebook.notesCount} notes"
+            val sharedStatus = when {
+                notebook.publishedNotebookId !=  null && notebook.authoredByMe -> "• published"
+                notebook.publishedNotebookId !=  null && !notebook.authoredByMe -> "• imported"
+                else -> ""
+
+            }
+            view.notebookNotesCountLayout.text = when(notebook.notesCount) {
+                0 -> "no notes $sharedStatus"
+                1 -> "1 note $sharedStatus"
+                else -> "${notebook.notesCount} notes $sharedStatus"
             }
             val gradient = GradientDrawable(GradientDrawable.Orientation.BL_TR, notebook.color.toIntArray())
             view.notebookColor.background = gradient

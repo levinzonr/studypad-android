@@ -14,6 +14,7 @@ class PublishNotebookInteractor(
 ) : BaseInputInteractor<PublishNotebookInteractor.Input, PublishedNotebook.Feed>() {
 
     data class Input(
+        val isToUpdate: Boolean,
         val notebookId: String,
         val title: String,
         val description: String,
@@ -25,16 +26,30 @@ class PublishNotebookInteractor(
 
     override suspend fun executeOnBackground(input: Input): PublishedNotebook.Feed {
         Timber.d("Input: $input")
-        val result = publishedNotebookRepository.publishNotebook(
-            input.notebookId,
-            input.title,
-            input.description,
-            input.tags,
-            input.topic?.id,
-            university = input.university,
-            languageCode = input.languageCode
-        )
-        tagsRepository.markAsChosen(input.tags.toList())
-        return result
+        if (!input.isToUpdate) {
+            val result = publishedNotebookRepository.publishNotebook(
+                input.notebookId,
+                input.title,
+                input.description,
+                input.tags,
+                input.topic?.id,
+                university = input.university,
+                languageCode = input.languageCode
+            )
+            tagsRepository.markAsChosen(input.tags.toList())
+            return result
+        } else {
+            val result = publishedNotebookRepository.updatePublishNotebook(
+                input.notebookId,
+                input.title,
+                input.description,
+                input.tags,
+                input.topic?.id,
+                university = input.university,
+                languageCode = input.languageCode
+            )
+            tagsRepository.markAsChosen(input.tags.toList())
+            return result
+        }
     }
 }

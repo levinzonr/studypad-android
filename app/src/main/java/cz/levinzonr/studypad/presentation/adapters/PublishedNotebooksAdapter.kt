@@ -2,24 +2,19 @@ package cz.levinzonr.studypad.presentation.adapters
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.chip.Chip
-import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
-import cz.levinzonr.studypad.layoutInflater
-import cz.levinzonr.studypad.loadAuthorImage
-import cz.levinzonr.studypad.presentation.common.MaxLinesChipGroup
-import cz.levinzonr.studypad.shownText
 import kotlinx.android.synthetic.main.item_published_notebook.view.*
 
-class PublishedNotebooksAdapter(val type: AdapterType = AdapterType.Full) : RecyclerView.Adapter<PublishedNotebooksAdapter.ViewHolder>(){
+class PublishedNotebooksAdapter(val type: AdapterType = AdapterType.Full) :
+    RecyclerView.Adapter<PublishedNotebooksAdapter.ViewHolder>() {
 
     enum class AdapterType {
         Short, Full
     }
 
-    var items : List<PublishedNotebook.Feed> = listOf()
+    var items: List<PublishedNotebook.Feed> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -29,9 +24,9 @@ class PublishedNotebooksAdapter(val type: AdapterType = AdapterType.Full) : Recy
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = parent.context.layoutInflater
-        val view =  when(type) {
+        val view = when (type) {
             AdapterType.Full -> inflater.inflate(R.layout.item_published_notebook, parent, false)
-            AdapterType.Short ->inflater.inflate(R.layout.item_published_notebook_small, parent, false)
+            AdapterType.Short -> inflater.inflate(R.layout.item_published_notebook_small, parent, false)
         }
         return ViewHolder(view)
     }
@@ -53,8 +48,14 @@ class PublishedNotebooksAdapter(val type: AdapterType = AdapterType.Full) : Recy
             view.notebookCommentsCountTv.text = notebook.commentCount.toString()
             view.notebookNotesCountTv.text = notebook.notesCount.toString()
             view.notebookTopicTv.text = notebook.topic
+            view.notebookSchoolTv.shownText = notebook.university?.fullName
 
-            if (type ==  AdapterType.Full) {
+            view.notebookTagsCg.removeAllViews()
+            view.notebookTagsCg.addAll(notebook.tags.sortedBy { it.length }.map {
+                if (it.length > 7) "${it.substring(0, 7)}..." else it
+            })
+
+            if (type == AdapterType.Full) {
                 view.notebookAuthorTv.text = notebook.author.displayName
                 view.notebookAuthorIv.loadAuthorImage(notebook.author.photoUrl)
                 view.notebookDescriptionTv.text = notebook.description
@@ -62,26 +63,17 @@ class PublishedNotebooksAdapter(val type: AdapterType = AdapterType.Full) : Recy
 
                 view.notebookTagsCg.apply {
                     removeAllViews()
-                    notebook.tags.map { Chip(view.context).apply { text = it } }.forEach {
+                    notebook.tags.buildTags(view.context).forEach {
                         addView(it)
                     }
                 }
 
 
-            } else {
-                val school = view.findViewById<TextView>(R.id.notebookSchoolTv)
-                school.shownText = notebook.university?.fullName
-                (view.notebookTagsCg as MaxLinesChipGroup).let { group ->
-                    group.removeAllViews()
-                    group.addAll(notebook.tags.sortedBy {it.length}.map { if (it.length > 7) "${it.substring(0, 7)}..." else it })
-                }
             }
 
             view.setOnClickListener { listener?.onPublishedNotebookClicked(notebook) }
         }
     }
-
-
 
 
     interface PublishedNotebookItemListener {

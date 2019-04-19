@@ -45,6 +45,6 @@ class PublishedNotesListFragment : BaseFragment(), NotesAdapter.NotesItemListene
 
 
     override fun onNoteSelected(note: Note) {
-
+        PublishedNoteDetailDialog.show(childFragmentManager, note)
     }
 }

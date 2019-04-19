@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import cz.levinzonr.studypad.*
+import cz.levinzonr.studypad.domain.models.Note
 
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.State
@@ -20,6 +21,7 @@ import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
 import kotlinx.android.synthetic.main.fragment_note_detail.*
 import kotlinx.android.synthetic.main.fragment_published_notebook_description.*
 import kotlinx.android.synthetic.main.include_notebook_details.*
+import kotlinx.android.synthetic.main.include_notebook_excluded_view.*
 import kotlinx.android.synthetic.main.include_notebook_info.*
 import kotlinx.android.synthetic.main.include_notebook_suggestions.*
 import kotlinx.android.synthetic.main.include_notebook_version.*
@@ -70,6 +72,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
 
         val unigueUsers = versionState.modifications.map { it.author }.distinctBy { it.uuid }.count()
 
+
         notebookSuggestionShowAllBtn.setVisible(!versionState.modifications.isEmpty())
         notebookSuggestionShowAllBtn.setOnClickListener {
             viewModel.onShowAllSuggestionsClicked()
@@ -89,8 +92,8 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         publishedNotebookNameTv.text = detail.title
         publishedNotebookAuthorTv.text = detail.author.displayName
         publishedBookAuthorIv.loadAuthorImage(detail.author.photoUrl)
-        publishedBookTopicTv.text = detail.topic
-        publishedBookLanguageTv.text = detail.languageCode
+        publishedBookTopicTv.shownText = detail.topic
+        publishedBookLanguageTv.shownText = detail.languageCode
         publishedBookSchoolTv.shownText = detail.university?.fullName
 
 
@@ -101,17 +104,20 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         notebookInfoLayout.setVisible(true)
         notesPreviewLayout.setVisible(true)
 
-        showDecsription(detail.description, detail.tags.toList())
+        notebookExcludedLayout.setVisible(detail.excludedFromSearch && detail.authoredByMe)
+
+        notebookPublishBtn.setOnClickListener {
+            viewModel.onUpdateNotebookClicked()
+        }
+
+        showDecsription(detail.description ?: "", detail.tags.toList())
 
     }
 
     private fun showDecsription(description: String, tags: List<String>) {
         notebookDescriptionTv.shownText = description
         notebookTagsCg.removeAllViews()
-        tags.map { Chip(context).apply {
-            text = it
-            isClickable = false
-        } }.forEach(notebookTagsCg::addView)
+        tags.buildTags(context!!).forEach(notebookTagsCg::addView)
         notebookDescriptionLayout.setVisible(description.isNotEmpty() || tags.isNotEmpty())
         descriptionTitleTv.setVisible(description.isNotEmpty())
         descriptionTagsCG.setVisible(tags.isNotEmpty())
@@ -177,6 +183,10 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
 
     override fun onShowAllButtonClicked() {
         viewModel.onShowAllNotesClicked()
+    }
+
+    override fun onNotePreviewClicked(note: Note) {
+        PublishedNoteDetailDialog.show(childFragmentManager, note)
     }
 
     companion object {

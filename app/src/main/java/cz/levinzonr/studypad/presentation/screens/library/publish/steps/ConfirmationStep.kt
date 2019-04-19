@@ -18,4 +18,7 @@ class ConfirmationStep(listener: StepViewClickListener) : BaseStep<PublishModels
         return PublishModels.StepFourResult()
     }
 
+    override fun setDefaultData(stepData: PublishModels.StepFourResult) {
+
+    }
 }

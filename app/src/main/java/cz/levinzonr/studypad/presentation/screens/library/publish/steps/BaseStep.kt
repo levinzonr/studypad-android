@@ -25,6 +25,8 @@ abstract class BaseStep<T: StepDataHolder>(val listener: StepViewClickListener?,
         return IsDataValid(valid)
     }
 
+    abstract fun setDefaultData(stepData: T)
+
     override fun onStepOpened(animated: Boolean) {
     }
 

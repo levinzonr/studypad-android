@@ -1,137 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    app:cardCornerRadius="@dimen/corner_radius"
-    app:cardElevation="5dp"
-    app:contentPadding="@dimen/space_normal"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="@dimen/corner_radius"
+        app:cardElevation="5dp"
+        app:contentPadding="@dimen/space_normal"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
 
-    android:layout_height="wrap_content">
+        android:layout_height="wrap_content">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <TextView
-            style="@style/TextStyle.Header"
-            android:id="@+id/notebookTitleTv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Noteebook title"
-            app:layout_constraintEnd_toStartOf="@id/notebookOptionsBtn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                style="@style/TextStyle.Header"
+                android:id="@+id/notebookTitleTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Noteebook title"
+                app:layout_constraintEnd_toStartOf="@id/notebookOptionsBtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/notebookTopicTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_normal"
-            android:layout_marginTop="@dimen/space_big"
-            android:text="Topic"
-            app:layout_constraintStart_toStartOf="@+id/notebookTitleTv"
-            app:layout_constraintTop_toBottomOf="@+id/notebookTitleTv" />
+                android:drawableStart="@drawable/ic_subject"
+                android:drawablePadding="@dimen/space_normal"
+                android:id="@+id/notebookTopicTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Topic"
+                app:layout_constraintStart_toStartOf="@+id/notebookTitleTv"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/notebookTitleTv"/>
 
         <TextView
-            android:id="@+id/notebookDescriptionTv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
-            app:layout_constraintEnd_toStartOf="@+id/notebookOptionsBtn"
-            app:layout_constraintStart_toStartOf="@+id/notebookTitleTv"
-            app:layout_constraintTop_toBottomOf="@+id/notebookTopicTv" />
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:id="@+id/notebookDescriptionTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/space_normal"
+                android:layout_marginEnd="8dp"
+                android:text="Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
+                app:layout_constraintEnd_toStartOf="@+id/notebookOptionsBtn"
+                app:layout_constraintStart_toStartOf="@+id/notebookTitleTv"
+                app:layout_constraintTop_toBottomOf="@+id/notebookSchoolTv"
+                app:layout_constraintHorizontal_bias="0.0"/>
 
 
         <TextView
-            android:id="@+id/notebookAuthorTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="Author name"
-            app:layout_constraintBottom_toBottomOf="@+id/notebookAuthorIv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/notebookAuthorIv" />
+                android:id="@+id/notebookAuthorTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Author name"
+                app:layout_constraintBottom_toBottomOf="@+id/notebookAuthorIv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/notebookAuthorIv"/>
 
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/notebookAuthorIv"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="@dimen/space_big"
-            android:src="@drawable/ic_google"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/notebookAuthorTv" />
+                android:id="@+id/notebookAuthorIv"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="@dimen/space_big"
+                android:src="@drawable/ic_google"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/notebookAuthorTv"/>
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/notebookTagsCg"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_normal"
-            android:layout_marginTop="@dimen/space_huge"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="@dimen/space_big"
-            android:gravity="end"
+        <cz.levinzonr.studypad.presentation.common.MaxLinesChipGroup
+                android:id="@+id/notebookTagsCg"
+                android:layout_width="0dp"
+                app:maxLines="3"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_normal"
+                android:layout_marginTop="@dimen/space_big"
+                android:layout_marginEnd="8dp"
+                app:chipSpacing="@dimen/space_small"
+                android:layout_marginBottom="@dimen/space_big"
+                android:gravity="end"
 
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/notebookNotesCountTv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/notebookTitleTv"
-            app:layout_constraintTop_toBottomOf="@+id/notebookDescriptionTv">
-
-
-        </com.google.android.material.chip.ChipGroup>
-
-        <TextView
-            android:drawablePadding="@dimen/space_normal"
-            android:id="@+id/notebookCommentsCountTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_big"
-            android:drawableTint="#707070"
-            android:drawableStart="@drawable/ic_speech_bubbles_comment_option"
-            android:text="13"
-            app:layout_constraintBottom_toBottomOf="@+id/notebookAuthorIv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/notebookAuthorIv" />
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/notebookNotesCountLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/notebookTitleTv"
+                app:layout_constraintTop_toBottomOf="@+id/notebookDescriptionTv">
 
 
-        <TextView
-            android:drawablePadding="@dimen/space_small"
-            android:drawableTint="#707070"
-            android:id="@+id/notebookNotesCountTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_big"
-            android:drawableStart="@drawable/ic_note"
-            android:text="13 notes"
-            app:layout_constraintBottom_toBottomOf="@+id/notebookCommentsCountTv"
-            app:layout_constraintStart_toEndOf="@+id/notebookCommentsCountTv"
-            app:layout_constraintTop_toTopOf="@+id/notebookCommentsCountTv" />
+        </cz.levinzonr.studypad.presentation.common.MaxLinesChipGroup>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/notebookCommentsCountLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_big"
+                app:layout_constraintBottom_toBottomOf="@+id/notebookAuthorIv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/notebookAuthorIv">
+
+            <ImageView
+                    android:tint="#707070"
+                    android:src="@drawable/ic_speech_bubbles_comment_option"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:drawablePadding="@dimen/space_normal"
+                    android:id="@+id/notebookCommentsCountTv"
+                    android:layout_width="wrap_content"
+                    android:text="12"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/notebookAuthorIv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/notebookAuthorIv"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:drawablePadding="@dimen/space_small"
+                android:drawableTint="#707070"
+                android:id="@+id/notebookNotesCountLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_big"
+                android:drawableStart="@drawable/ic_note"
+                android:text="13 notes"
+                app:layout_constraintBottom_toBottomOf="@+id/notebookCommentsCountLayout"
+                app:layout_constraintStart_toEndOf="@+id/notebookCommentsCountLayout"
+                app:layout_constraintTop_toTopOf="@+id/notebookCommentsCountLayout">
+
+            <ImageView
+                    android:tint="#707070"
+                    android:src="@drawable/ic_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            <TextView
+                    android:id="@+id/notebookNotesCountTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_normal"
+                    android:text="13 notes"/>
+
+        </LinearLayout>
 
         <ImageButton
-            android:id="@+id/notebookOptionsBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="@dimen/space_big"
-            android:background="?selectableItemBackgroundBorderless"
-            android:padding="@dimen/space_normal"
-            android:src="@drawable/ic_round_more_vert_24px"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                android:id="@+id/notebookOptionsBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="@dimen/space_big"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="@dimen/space_normal"
+                android:src="@drawable/ic_round_more_vert_24px"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
+        <TextView
+                android:drawablePadding="@dimen/space_normal"
+                android:drawableStart="@drawable/ic_school_black_24dp"
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/notebookSchoolTv"
+                app:layout_constraintStart_toStartOf="@+id/notebookTopicTv"
+                app:layout_constraintTop_toBottomOf="@+id/notebookTopicTv"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

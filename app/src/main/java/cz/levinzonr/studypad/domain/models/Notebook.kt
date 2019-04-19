@@ -16,6 +16,7 @@ data class Notebook(
     val id: String,
     val name: String,
     val notesCount: Int,
+    val authoredByMe: Boolean,
     val color: Color = Color(
         "#33ccff",
         "#ff99cc"

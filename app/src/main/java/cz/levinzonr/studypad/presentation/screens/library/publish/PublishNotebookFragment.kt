@@ -20,10 +20,10 @@ import org.koin.core.parameter.parametersOf
 class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.StepViewClickListener, BackButtonHandler{
 
     private val args: PublishNotebookFragmentArgs by navArgs()
-    override val viewModel: PublishNotebookViewModel by viewModel { parametersOf(args.notebook) }
+    override val viewModel: PublishNotebookViewModel by viewModel { parametersOf(args.notebook, args.publishedId) }
 
 
-    private val stepOne: BasicStep by inject { parametersOf(args.notebook, this) }
+    private val stepOne: BasicStep by inject { parametersOf(this) }
     private val stepTwo: AdditionalInfoStep by inject { parametersOf(this) }
     private val stepThree: DescriptionStep by inject { parametersOf(this) }
     private val stepFour: ConfirmationStep by inject { parametersOf(this) }
@@ -46,6 +46,13 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
             .displayBottomNavigation(false)
             .includeConfirmationStep(false)
             .init()
+
+
+        viewModel.defaultStateObservable.observeNonNull(viewLifecycleOwner) { state ->
+            state.stepOneDefaults.let(stepOne::setDefaultData)
+            state.stepTwoDefaults?.let(stepTwo::setDefaultData)
+            state.stepThreeDefaults?.let(stepThree::setDefaultData)
+        }
 
     }
 

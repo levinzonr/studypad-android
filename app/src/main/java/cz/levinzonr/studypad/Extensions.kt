@@ -22,6 +22,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.google.android.material.chip.Chip
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -34,6 +35,8 @@ import org.joda.time.*
 import timber.log.Timber
 import java.util.*
 
+
+fun defaultLanguageCode() : String = Locale.getDefault().isO3Language
 
 fun ViewGroup.asSequence(): Sequence<View> = object : Sequence<View> {
     override fun iterator(): Iterator<View> = object : Iterator<View> {
@@ -306,4 +309,16 @@ fun TextView.setSpannableText(text: String, vararg spans : String?) {
         str.setSpan( android.text.style.StyleSpan(android.graphics.Typeface.BOLD), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
     setText(str)
+}
+
+
+
+fun Collection<String>.buildTags(context: Context) : List<Chip> {
+    return sortedBy { it.length }.map {
+        Chip(context).apply {
+            text = it
+            isCheckable = false
+            isClickable = false
+        }
+    }
 }

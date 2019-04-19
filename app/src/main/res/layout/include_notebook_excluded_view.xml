@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        app:contentPadding="@dimen/space_normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:padding="@dimen/space_normal"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <TextView
+                android:textSize="15sp"
+                android:gravity="center"
+                android:text="This notebook is only accessable using a link.Provide additional details for others to find it"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/notebookPublishBtn"
+                style="@style/Button.Primary"
+                android:text="Make public"
+                android:layout_marginTop="@dimen/space_normal"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

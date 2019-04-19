@@ -79,6 +79,10 @@ class PublishedNotebookDetailViewModel(
         )
     }
 
+    fun onUpdateNotebookClicked() {
+        navigateTo(PublishedNotebookDetailFragmentDirections.actionPublishedNotebookDetailFragmentToPublishNotebookFragment(publishedId = notebookId))
+    }
+
     fun onShowAllNotesClicked() {
         val notes = sharedDetailLiveData.value?.notes ?: listOf()
         navigateTo(

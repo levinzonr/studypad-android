@@ -91,6 +91,9 @@ interface Api {
     @POST("$API/shared")
     fun publishNotebookAsync(@Body publishNotebookRequest: PublishNotebookRequest) : Deferred<PublishedNotebook.Feed>
 
+    @PATCH("$API/shared/{id}")
+    fun updatePublishedNotebookAsync(@Path("id") id: String, @Body payload: UpdatePublishedNotebookPayload) : Deferred<PublishedNotebook.Feed>
+
     @POST("$API/shared/quick")
     fun quickPublishAsync(@Query("id") notebookId: String) : Deferred<PublishedNotebook.Feed>
 
