@@ -24,4 +24,9 @@ object NotebookSearchModels {
             }
     }
 
+
+    enum class EmptyType {
+        Error, Empty, Default
+    }
+
 }

@@ -2,6 +2,7 @@ package cz.levinzonr.studypad.domain.managers
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import cz.levinzonr.studypad.domain.models.InteractorResult
 import cz.levinzonr.studypad.domain.models.OrderBy
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.SearchEntry
@@ -20,7 +21,7 @@ class SearchManagerImpl(
     private val searchHistoryRepository: SearchHistoryRepository
 ) : SearchManager {
 
-    override fun performSearch(searchState: NotebookSearchModels.SearchState): LiveData<List<PublishedNotebook.Feed>> {
+    override fun performSearch(searchState: NotebookSearchModels.SearchState): LiveData<InteractorResult<List<PublishedNotebook.Feed>>> {
         val entry = SearchEntry(
             searchState.query,
             searchState.university,
@@ -28,15 +29,17 @@ class SearchManagerImpl(
             searchState.topic,
             searchState.tags
         )
-        val liveData: MutableLiveData<List<PublishedNotebook.Feed>> = MutableLiveData()
+        val liveData: MutableLiveData<InteractorResult<List<PublishedNotebook.Feed>>> = MutableLiveData()
+        liveData.postValue(InteractorResult.Loading)
+
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
                 try {
                     val items = publishedNotebookRepository.searchNotebooks(searchState)
-                    liveData.postValue(items)
+                    liveData.postValue(InteractorResult.Success(items))
                     searchHistoryRepository.saveSearchEntry(entry)
                 } catch (exeception: Exception) {
-                    liveData.postValue(listOf())
+                    liveData.postValue(InteractorResult.Error(exeception))
                 }
             }
         }

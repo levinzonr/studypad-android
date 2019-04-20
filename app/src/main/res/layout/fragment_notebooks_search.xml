@@ -5,10 +5,12 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         tools:context="cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebooksSearchFragment">
 
 
     <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -82,21 +84,23 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <LinearLayout
+    <cz.levinzonr.studypad.presentation.common.EmptyStateView
             android:visibility="gone"
             android:id="@+id/emptyView"
             android:layout_gravity="center"
+            tools:visibility="visible"
+            app:layout_anchor="@id/progressBar"
+            app:layout_anchorGravity="bottom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"/>
 
-        <TextView
-                android:gravity="center"
-                android:text="Default state"
-                android:id="@+id/emptyViewTv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-    </LinearLayout>
+    <ProgressBar
+            android:id="@+id/progressBar"
+            app:layout_anchor="@id/appbar"
+            android:paddingTop="@dimen/space_big"
+            app:layout_anchorGravity="bottom|center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:visibility="gone"

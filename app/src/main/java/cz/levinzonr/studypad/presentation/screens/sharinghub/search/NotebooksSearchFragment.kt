@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import cz.levinzonr.studypad.*
+import cz.levinzonr.studypad.domain.models.InteractorResult
 
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
@@ -17,6 +18,7 @@ import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchDia
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
 import cz.levinzonr.studypad.presentation.screens.selectors.MultipleTopicsSelector
 import kotlinx.android.synthetic.main.fragment_notebooks_search.*
+import kotlinx.android.synthetic.main.fragment_notebooks_search.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
@@ -25,6 +27,7 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
 
     private val args: NotebooksSearchFragmentArgs by navArgs()
     override val viewModel: NotebooksSearchViewModel by viewModel { parametersOf(args.initState) }
+    private lateinit var adapter: PublishedNotebooksAdapter
 
 
     override fun onCreateView(
@@ -37,23 +40,40 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
+        adapter = PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Full)
+        resultsRv.adapter = adapter
+        adapter.listener = this
         viewModel.searchStateLiveData.observe(viewLifecycleOwner, Observer {
             updateSearchState(it)
         })
 
-        viewModel.resultsLiveData.observe(viewLifecycleOwner, Observer {
-            val adapter = PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Full)
-            resultsRv.adapter = adapter
-            adapter.listener = this
-            adapter.items = it
-        })
+        viewModel.resultsLiveData.observeNonNull(viewLifecycleOwner) {
+            Timber.d("Result: $it")
+            when (it) {
+                is InteractorResult.Loading -> showLoading(true)
+                is InteractorResult.Success -> {
+                    showLoading(false)
+                    adapter.items = it.data
+                    resultsRv.setVisible(true)
+                    if (it.data.isEmpty()) showEmptyView(NotebookSearchModels.EmptyType.Empty) else {
+                        emptyView.setVisible(false)
+                    }
+                }
+                is InteractorResult.Error -> {
+                    showLoading(false)
+                    showEmptyView(NotebookSearchModels.EmptyType.Error)
+                }
+            }
+
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
-        searchView.requestFocus()
+        if (args.initState?.isDefaultState == true) {
+            searchView.requestFocus()
+        }
         resultsRv.addItemDecoration(VerticalSpaceItemDecoration(16))
     }
 
@@ -61,14 +81,18 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
         viewModel.onNotebookSelected(publishedNotebook)
     }
 
+    override fun showLoading(isLoading: Boolean) {
+        progressBar.setVisible(isLoading)
+    }
+
     private fun setupListeners() {
 
-        searchView.setOnQueryTextFocusChangeListener {_, hasFocus ->
+        searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
             Timber.d("Has fouces; $hasFocus")
-            if (hasFocus)  searchView.showKeyboard()
+            if (hasFocus) searchView.showKeyboard()
         }
 
-        searchOptionCategory.setFilterListener {clear ->
+        searchOptionCategory.setFilterListener { clear ->
             if (clear) viewModel.onCategoriesOptionChanged(listOf())
             else {
                 searchView.hideKeyboard()
@@ -105,13 +129,34 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
         }
     }
 
+    private fun showEmptyView(type: NotebookSearchModels.EmptyType) {
+        when (type) {
+            NotebookSearchModels.EmptyType.Error -> {
+                resultsRv.setVisible(false)
+                emptyView.configure("Error", "Error while loading notebooks")
+            }
+            NotebookSearchModels.EmptyType.Default -> {
+                emptyView.configure(
+                    "Explore!",
+                    " Start exploring new notebooks for your collection by choosing a search option"
+                )
+            }
+            NotebookSearchModels.EmptyType.Empty -> {
+                emptyView.configure("Nothing found", "There are notebooks found using these search options")
+            }
+        }
+        emptyView.setVisible(true)
+    }
+
     private fun updateSearchState(searchState: NotebookSearchModels.SearchState) {
 
         resultsRv.setVisible(!searchState.isDefaultState)
-        emptyView.setVisible(searchState.isDefaultState)
+        if (searchState.isDefaultState) {
+            showEmptyView(NotebookSearchModels.EmptyType.Default)
+        }
 
         if (searchState.tags.isEmpty()) {
-           searchOptionTags.setChipInactive()
+            searchOptionTags.setChipInactive()
         } else {
             searchOptionTags.setChipActive(searchState.tags.first(3).joinToString(","))
         }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import cz.levinzonr.studypad.domain.managers.SearchManager
+import cz.levinzonr.studypad.domain.models.InteractorResult
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.Topic
 import cz.levinzonr.studypad.domain.models.University
@@ -14,7 +15,9 @@ class NotebooksSearchViewModel(initialState:  NotebookSearchModels.SearchState?,
                                private val searchManager: SearchManager) : BaseViewModel() {
 
     private val _searchStateLiveDate = MutableLiveData<NotebookSearchModels.SearchState>()
-    val resultsLiveData : LiveData<List<PublishedNotebook.Feed>> = Transformations.switchMap(_searchStateLiveDate) {
+
+
+    val resultsLiveData : LiveData<InteractorResult<List<PublishedNotebook.Feed>>> = Transformations.switchMap(_searchStateLiveDate) {
         if (!it.isDefaultState) {
             searchManager.performSearch(it)
         } else
