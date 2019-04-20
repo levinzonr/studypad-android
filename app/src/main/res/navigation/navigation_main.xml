@@ -53,10 +53,10 @@
             android:label="@string/screen_sharing_hub"
             tools:layout="@layout/fragment_shared">
         <action
-                app:enterAnim="@animator/slide_left_enter"
-                app:exitAnim="@animator/slide_left_exit"
-                app:popEnterAnim="@animator/slide_right_enter"
-                app:popExitAnim="@animator/slide_right_exit"
+                app:enterAnim="@anim/nav_default_pop_enter_anim"
+                app:exitAnim="@anim/nav_default_pop_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 android:id="@+id/action_sharedFragment_to_notebooksSearchFragment"
                 app:destination="@id/notebooksSearchFragment"/>
         <action
@@ -225,10 +225,10 @@
     <action
             android:id="@+id/action_global_publishedNotebookDetailFragment"
             app:destination="@id/publishedNotebookDetailFragment"
-            app:enterAnim="@animator/slide_left_enter"
-            app:exitAnim="@animator/slide_left_exit"
-            app:popEnterAnim="@animator/slide_right_enter"
-            app:popExitAnim="@animator/slide_right_exit"/>
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
 
     <fragment
             android:id="@+id/reviewSuggestionsFragment"

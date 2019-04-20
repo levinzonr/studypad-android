@@ -40,6 +40,7 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
         viewModel.editModeLiveData.observe(viewLifecycleOwner, Observer { editMode ->
             noteDetailView.setVisible(!editMode)
             noteEditView.setVisible(editMode)
+            noteEditView.showFocused(editMode)
             /*detail.animate()
                 .rotationY(90f)
                 .setDuration(300L)
@@ -71,6 +72,11 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
             viewModel.handleModeChangeButton()
         }
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        noteEditView.showFocused(false)
     }
 
 

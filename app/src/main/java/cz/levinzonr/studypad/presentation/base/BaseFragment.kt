@@ -55,6 +55,8 @@ abstract class BaseFragment : Fragment() {
             .startChooser()
     }
 
+    open fun onLoseFocus() {}
+
 
     open fun showError(viewError: ViewError) {
         when(viewError) {

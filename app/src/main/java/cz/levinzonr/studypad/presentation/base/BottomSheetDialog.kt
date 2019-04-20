@@ -14,7 +14,7 @@ abstract class BottomSheetDialog : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NO_INPUT, R.style.BottomSheetTheme)
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetTheme)
     }
 
     override fun setupDialog(dialog: Dialog, style: Int) {

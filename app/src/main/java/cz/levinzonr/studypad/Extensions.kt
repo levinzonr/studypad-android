@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.Animation
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.SearchView
@@ -36,7 +37,7 @@ import timber.log.Timber
 import java.util.*
 
 
-fun defaultLanguageCode() : String = Locale.getDefault().isO3Language
+fun defaultLanguageCode(): String = Locale.getDefault().isO3Language
 
 fun ViewGroup.asSequence(): Sequence<View> = object : Sequence<View> {
     override fun iterator(): Iterator<View> = object : Iterator<View> {
@@ -247,7 +248,7 @@ fun Long.formatTime(): String {
     }
 }
 
-val Context.layoutInflater : LayoutInflater
+val Context.layoutInflater: LayoutInflater
     get() = LayoutInflater.from(this)
 
 
@@ -282,8 +283,8 @@ fun View.flip(toHide: View) {
     startAnimation(animation)
 }
 
-inline fun <reified T> Gson.fromJson(json: String) : T? {
-    val type = object : TypeToken<T>(){}.type
+inline fun <reified T> Gson.fromJson(json: String): T? {
+    val type = object : TypeToken<T>() {}.type
     return try {
         fromJson(json, type)
     } catch (e: Exception) {
@@ -301,19 +302,23 @@ inline fun <T> LiveData<T>.observeNonNull(
 }
 
 
-fun TextView.setSpannableText(text: String, vararg spans : String?) {
+fun TextView.setSpannableText(text: String, vararg spans: String?) {
     val str = SpannableStringBuilder(text)
     spans.filterNotNull().forEach {
         val startIndex = text.indexOf(it)
         val endIndex = startIndex + it.length
-        str.setSpan( android.text.style.StyleSpan(android.graphics.Typeface.BOLD), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        str.setSpan(
+            android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
+            startIndex,
+            endIndex,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
     }
     setText(str)
 }
 
 
-
-fun Collection<String>.buildTags(context: Context) : List<Chip> {
+fun Collection<String>.buildTags(context: Context): List<Chip> {
     return sortedBy { it.length }.map {
         Chip(context).apply {
             text = it
@@ -321,4 +326,16 @@ fun Collection<String>.buildTags(context: Context) : List<Chip> {
             isClickable = false
         }
     }
+}
+
+
+fun View.showKeyboard() {
+    requestFocus()
+    val keyboard: InputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    keyboard.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+}
+
+fun View.hideKeyboard() {
+    val keyboard: InputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    keyboard.hideSoftInputFromWindow(this.windowToken, 0)
 }

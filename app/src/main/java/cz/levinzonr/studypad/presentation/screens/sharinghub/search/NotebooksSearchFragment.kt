@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import cz.levinzonr.studypad.*
 
-import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
-import cz.levinzonr.studypad.first
-import cz.levinzonr.studypad.onQueryTextChanged
 import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
@@ -18,10 +16,10 @@ import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialo
 import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchDialog
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
 import cz.levinzonr.studypad.presentation.screens.selectors.MultipleTopicsSelector
-import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_notebooks_search.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 
 class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.PublishedNotebookItemListener {
 
@@ -55,8 +53,8 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
+        searchView.requestFocus()
         resultsRv.addItemDecoration(VerticalSpaceItemDecoration(16))
-
     }
 
     override fun onPublishedNotebookClicked(publishedNotebook: PublishedNotebook.Feed) {
@@ -65,9 +63,15 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
 
     private fun setupListeners() {
 
-        searchOptionCategory.setFilterListener {
-            if (it) viewModel.onCategoriesOptionChanged(listOf())
+        searchView.setOnQueryTextFocusChangeListener {_, hasFocus ->
+            Timber.d("Has fouces; $hasFocus")
+            if (hasFocus)  searchView.showKeyboard()
+        }
+
+        searchOptionCategory.setFilterListener {clear ->
+            if (clear) viewModel.onCategoriesOptionChanged(listOf())
             else {
+                searchView.hideKeyboard()
                 val alreadySelected = viewModel.currentSearchState?.topic ?: listOf()
                 MultipleTopicsSelector.show(childFragmentManager, alreadySelected) {
                     viewModel.onCategoriesOptionChanged(it)
@@ -79,15 +83,17 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
             val tags = viewModel.currentSearchState?.tags ?: listOf()
             if (clear) viewModel.onTagsOptionChanged(setOf())
             else {
+                searchView.hideKeyboard()
                 TagSearchDialog.show2(childFragmentManager, tags.toSet()) {
                     viewModel.onTagsOptionChanged(it)
                 }
             }
         }
 
-        searchOptionUniversity.setFilterListener {
-            if (it) viewModel.onUniversityOptionChanged(null)
+        searchOptionUniversity.setFilterListener { clear ->
+            if (clear) viewModel.onUniversityOptionChanged(null)
             else {
+                searchView.hideKeyboard()
                 UniversitySelectorFragment.show(childFragmentManager) {
                     viewModel.onUniversityOptionChanged(it)
                 }

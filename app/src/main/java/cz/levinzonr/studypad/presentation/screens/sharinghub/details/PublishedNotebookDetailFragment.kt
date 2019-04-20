@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import androidx.viewpager.widget.ViewPager
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.notifications.NotificationPayload
 import cz.levinzonr.studypad.presentation.adapters.ViewPagerAdapter
@@ -40,6 +41,18 @@ class PublishedNotebookDetailFragment: BaseFragment(), NotificationHandler {
         super.onViewCreated(view, savedInstanceState)
         adapter = ViewPagerAdapter(args.PublishedNotebookId, args.PublishedNotebookFeed, childFragmentManager)
         viewPager.adapter = adapter
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {}
+
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                adapter.fragments.forEachIndexed { i: Int, f: BaseFragment -> if (i != position) f.onLoseFocus() }
+            }
+
+            override fun onPageSelected(position: Int) {
+                adapter.fragments.forEachIndexed { i: Int, f: BaseFragment -> if (i != position) f.onLoseFocus() }
+            }
+        })
         tabLayout.setupWithViewPager(viewPager)
 
     }

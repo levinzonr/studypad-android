@@ -60,6 +60,10 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
 
     }
 
+    override fun onLoseFocus() {
+        Timber.d("onLocse")
+        commentEditText.hideKeyboard()
+    }
 
     private fun setupListeners() {
         commentEditText.listener = object :

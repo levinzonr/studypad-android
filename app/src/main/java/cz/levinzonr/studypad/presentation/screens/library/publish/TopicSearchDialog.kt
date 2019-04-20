@@ -40,7 +40,6 @@ class TopicSearchDialog : BottomSheetDialog(), TopicsAdapter.TopicListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecylcerView()
-
         viewModel.getTopicsObservable().observe(viewLifecycleOwner, Observer {
             adapter.item = it
         })

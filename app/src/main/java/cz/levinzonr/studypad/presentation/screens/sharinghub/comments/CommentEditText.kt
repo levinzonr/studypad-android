@@ -5,11 +5,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
-import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
-import cz.levinzonr.studypad.layoutInflater
-import cz.levinzonr.studypad.onTextChanged
-import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.view_comment_edittext.view.*
 import timber.log.Timber
 
@@ -64,6 +61,10 @@ class  CommentEditText @JvmOverloads constructor(context: Context, attributeSet:
                 clear()
             }
         }
+    }
+
+    fun hideKeyboard() {
+        commentInputField.hideKeyboard()
     }
 
     fun clear() {
