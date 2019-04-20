@@ -2,6 +2,8 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
+        android:paddingTop="@dimen/space_normal"
+        android:paddingBottom="@dimen/space_normal"
         android:background="?selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -9,8 +11,19 @@
     <TextView
             android:id="@+id/noteTitleTv"
             style="@style/TextStyle"
-            android:padding="@dimen/space_big"
             android:text="Orevuew"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    <TextView
+            android:textColor="@color/grey"
+            android:text="@string/firebase_database_url"
+            android:id="@+id/noteContentTv"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

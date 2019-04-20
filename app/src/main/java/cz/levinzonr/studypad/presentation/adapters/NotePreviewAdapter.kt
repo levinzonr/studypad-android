@@ -15,6 +15,14 @@ import kotlinx.android.synthetic.main.item_show_all.view.*
 class NotePreviewAdapter(val notes: List<Note>, val listener: NotePreviewListener) :
     RecyclerView.Adapter<ViewHolder>() {
 
+
+    private var expanded: Boolean = notes.size < MAX_ITEMS
+        set(value) {
+            field = value
+            notifyItemRangeChanged(MAX_ITEMS, notes.count())
+        }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TYPE_GENERIC -> {
@@ -31,8 +39,7 @@ class NotePreviewAdapter(val notes: List<Note>, val listener: NotePreviewListene
     }
 
     override fun getItemCount(): Int {
-        if (notes.count() <= 4) return notes.count()
-        else return notes.count() + 1
+        return if (expanded) notes.count() else MAX_ITEMS
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -43,6 +50,7 @@ class NotePreviewAdapter(val notes: List<Note>, val listener: NotePreviewListene
 
         fun bindView(note: Note) {
             view.noteTitleTv.text = note.title
+            view.noteContentTv.text = note.content
             view.setOnClickListener { listener.onNotePreviewClicked(note) }
         }
     }
@@ -50,18 +58,19 @@ class NotePreviewAdapter(val notes: List<Note>, val listener: NotePreviewListene
     inner class ShowAllViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.showAllButton.setOnClickListener {
-                listener?.onShowAllButtonClicked()
+                expanded = !expanded
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position < notes.size) TYPE_GENERIC else TYPE_LAST
+        return if (!expanded && position == MAX_ITEMS - 1) TYPE_LAST else TYPE_GENERIC
     }
 
     companion object {
         private const val TYPE_GENERIC = 1
         private const val TYPE_LAST = 2
+        private const val MAX_ITEMS = 5
     }
 
     interface NotePreviewListener {

@@ -97,7 +97,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         publishedBookSchoolTv.shownText = detail.university?.fullName
 
 
-        publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes.first(4), this)
+        publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes, this)
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
 
         publishBookDateTv.text = "last updated: ${detail.lastUpdate.formatTime()}"
