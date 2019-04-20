@@ -30,6 +30,7 @@
             android:id="@+id/notificationBodyTv"
             android:text="Cregestas eget quam. Donec ullamcorper nulla non metus auctor fringilla."
             android:layout_width="0dp"
+            android:textSize="13sp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notificationTimeTv"
@@ -39,6 +40,7 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
+            android:textSize="13sp"
             android:textColor="#000"
             android:id="@+id/notificationTimeTv"
             android:text="2 hours aho"

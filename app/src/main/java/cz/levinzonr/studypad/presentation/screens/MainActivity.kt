@@ -4,17 +4,17 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import cz.levinzonr.studypad.NavigationMainDirections
 import cz.levinzonr.studypad.R
@@ -26,11 +26,17 @@ import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import timber.log.Timber
+import q.rorbin.badgeview.QBadgeView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import q.rorbin.badgeview.Badge
+
 
 class MainActivity : BaseActivity() {
 
 
     private lateinit var broadcastReceiver: BroadcastReceiver
+
+    private var badgeView: Badge? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +45,7 @@ class MainActivity : BaseActivity() {
       //  setupKeyboardListener()
         setSupportActionBar(toolbar)
         handleDeepLink()
+        initBadgeView()
         with(findNavController(R.id.fragment)) {
             bottomNav.setupWithNavController(this)
             addOnDestinationChangedListener { _, destination, _ ->
@@ -65,12 +72,22 @@ class MainActivity : BaseActivity() {
                 if (currentFragment is NotificationHandler) {
                     val paylaod = p1?.getParcelableExtra<NotificationPayload>("data") ?: return
                     currentFragment.handleNotification(NotificationType.valueOf(paylaod.type.capitalize()), paylaod)
+                } else {
+                    badgeView?.badgeNumber = (badgeView?.badgeNumber ?: 0).inc()
                 }
             }
         }
         val intentFilter = IntentFilter(IntentActions.NOTIFICATION)
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter)
 
+    }
+
+    private fun initBadgeView() {
+        val bottomNavigationMenuView = bottomNav.getChildAt(0) as BottomNavigationMenuView
+        val v = bottomNavigationMenuView.getChildAt(1) // number of menu from left
+        badgeView = QBadgeView(this).bindTarget(v)
+        val blue = ContextCompat.getColor(this, R.color.blue)
+        badgeView?.badgeNumber = 0
     }
 
     private fun unregisterBroadcastReceiver() {
@@ -92,6 +109,9 @@ class MainActivity : BaseActivity() {
 
     private fun onDestinationChanged(destinationId: Int) {
         Timber.d("Toolbar: ${supportActionBar?.isShowing}")
+
+        if (destinationId == R.id.sharingHubFragment) badgeView?.hide(true)
+
         when (destinationId) {
             R.id.publishNotebookFragment ->  {
                 hideMenu()
