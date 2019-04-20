@@ -18,17 +18,27 @@
             android:layout_height="match_parent">
 
 
+        <ImageView
+                android:tint="@color/blue"
+                android:src="@drawable/ic_studypad"
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/sectionName"
+                android:id="@+id/sectionImage"
+                app:layout_constraintBottom_toBottomOf="@+id/sectionName"
+                app:layout_constraintStart_toStartOf="@+id/sectionRv"/>
+
         <TextView
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="8dp"
                 android:id="@+id/sectionName"
                 tools:text="Hello World"
                 android:textStyle="bold"
                 android:textSize="15sp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/sectionRv"
                 app:layout_constraintEnd_toStartOf="@+id/sectionSeeAllBtn"
-                app:layout_constraintBaseline_toBaselineOf="@+id/sectionSeeAllBtn"/>
+                app:layout_constraintBaseline_toBaselineOf="@+id/sectionSeeAllBtn"
+                app:layout_constraintStart_toEndOf="@+id/sectionImage"/>
 
 
         <com.google.android.material.button.MaterialButton

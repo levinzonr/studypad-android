@@ -89,12 +89,25 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
     private fun addSection(section: Section) {
         val adapter = PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Short)
         val sectionView = LayoutInflater.from(context).inflate(R.layout.view_section, null, false)
-        sectionView.sectionName.text = when (section.type) {
-            SectionType.UNKNOWN -> "Others"
-            SectionType.POPULAR -> "Popular"
-            SectionType.RECENT -> "Recently added"
-            SectionType.SCHOOL -> "From Your School"
+        when (section.type) {
+            SectionType.UNKNOWN -> {
+                sectionView.sectionImage.setVisible(false)
+                sectionView.sectionName.text = "Others"
+            }
+            SectionType.POPULAR -> {
+                sectionView.sectionImage.setImageResource(R.drawable.ic_whatshot_black_24dp)
+                sectionView.sectionName.text = "Popular"
+            }
+            SectionType.RECENT ->  {
+                sectionView.sectionImage.setImageResource(R.drawable.ic_access_time_black_24dp)
+                sectionView.sectionName.text = "Recently added"
+            }
+            SectionType.SCHOOL -> {
+                sectionView.sectionImage.setImageResource(R.drawable.ic_school_black_24dp)
+                sectionView.sectionName.text = "From Your School"
+            }
         }
+
         sectionView.sectionRv.adapter = adapter
         sectionView.sectionSeeAllBtn.setOnClickListener { viewModel.onShowAllClicked(section) }
         adapter.listener = this
