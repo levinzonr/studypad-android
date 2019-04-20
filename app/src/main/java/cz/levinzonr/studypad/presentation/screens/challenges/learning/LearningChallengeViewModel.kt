@@ -25,6 +25,9 @@ class LearningChallengeViewModel(
         }
     }
 
+    fun onLeaveChallengeConfirmed() {
+        navigateBack()
+    }
 
 
 }

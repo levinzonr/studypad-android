@@ -257,7 +257,8 @@
             tools:layout="@layout/fragment_setup_challenge">
         <action
                 android:id="@+id/action_setupChallengeFragment_to_learningChallengeFragment"
-                app:destination="@id/learningChallengeFragment"/>
+                app:destination="@id/learningChallengeFragment"
+                app:popUpTo="@+id/challengesFragment"/>
     </fragment>
     <fragment
             android:id="@+id/learningChallengeFragment"

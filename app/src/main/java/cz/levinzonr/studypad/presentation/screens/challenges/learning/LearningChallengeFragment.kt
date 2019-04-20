@@ -1,6 +1,7 @@
 package cz.levinzonr.studypad.presentation.screens.challenges.learning
 
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.observeNonNull
+import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesModels
@@ -18,7 +20,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class LearningChallengeFragment : BaseFragment(), LearningChallengeAdapter.LearningChallengeAdapterListener {
+class LearningChallengeFragment : BaseFragment(), LearningChallengeAdapter.LearningChallengeAdapterListener, BackButtonHandler {
 
 
     private val args: LearningChallengeFragmentArgs by navArgs()
@@ -45,5 +47,15 @@ class LearningChallengeFragment : BaseFragment(), LearningChallengeAdapter.Learn
     }
 
     override fun onRevealAnswerClicked(noteItem: ChallengesModels.NoteItem) {
+
+    }
+
+    override fun handleBackButton() {
+        AlertDialog.Builder(context)
+            .setTitle("Leaving test")
+            .setMessage("Are you you want to exit this challenge? Progress won't be saved")
+            .setPositiveButton(android.R.string.yes) { _, _ ->  viewModel.onLeaveChallengeConfirmed() }
+            .setNegativeButton(android.R.string.no) { d, _ -> d.dismiss() }
+            .show()
     }
 }
