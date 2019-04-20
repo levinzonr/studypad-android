@@ -117,7 +117,7 @@ class MainActivity : BaseActivity() {
                 hideMenu()
                 supportActionBar?.hide()
             }
-            R.id.noteDetailFragment, R.id.reviewSuggestionsFragment -> {
+            R.id.noteDetailFragment, R.id.reviewSuggestionsFragment, R.id.learningChallengeFragment -> {
                 hideMenu()
             }
             //   R.id.editNoteFragment -> hideMenu()

@@ -1,14 +1,30 @@
 package cz.levinzonr.studypad.presentation.screens.challenges.learning
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import cz.levinzonr.studypad.domain.repository.NotesRepository
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesModels
+import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewState
 
-class LearningChallengeViewModel(list: List<ChallengesModels.NoteItem>) : BaseViewModel() {
+class LearningChallengeViewModel(
+    private val notesRepository: NotesRepository,
+    challengeSetup: SetupChallengeViewState
+) : BaseViewModel() {
 
-    val stateLiveData: MutableLiveData<List<ChallengesModels.NoteItem>> = MutableLiveData()
+    val questionsLiveData: LiveData<List<ChallengesModels.NoteItem>>
 
     init {
-        stateLiveData.postValue(list)
+        questionsLiveData = Transformations.map(notesRepository.notesLiveData(challengeSetup.notebook!!.id)) {
+            val notes = it.map {
+                if (challengeSetup.titleFirst)
+                    ChallengesModels.NoteItem(it.title ?: "", it.content ?: "")
+                else ChallengesModels.NoteItem(it.content ?: "", it.title ?: "")
+            }
+            return@map if (challengeSetup.shuffle) notes.shuffled() else notes
+        }
     }
+
+
+
 }

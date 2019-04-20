@@ -3,7 +3,9 @@
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewModel
+import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewState
 import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailModels
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailViewModel
@@ -93,5 +95,7 @@ val viewModelModule = module {
     viewModel { SetupChallengeViewModel() }
 
     viewModel { SettingsViewModel(get(), get() )}
+
+    viewModel { (setup: SetupChallengeViewState) -> LearningChallengeViewModel(get(), setup) }
 
 }

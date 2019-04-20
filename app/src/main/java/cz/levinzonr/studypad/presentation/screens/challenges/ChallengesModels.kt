@@ -4,7 +4,7 @@ class ChallengesModels {
 
     data class NoteItem(
         val question: String,
-        val answer: String
+        val answer: String,
+        var showAnswer: Boolean = false
     )
-
 }

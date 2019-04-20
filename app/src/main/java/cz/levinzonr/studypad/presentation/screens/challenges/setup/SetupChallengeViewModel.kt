@@ -34,6 +34,7 @@ class SetupChallengeViewModel : BaseViewModel() {
     }
 
     fun onStartChallengeClicked() {
-
+        val currentState = viewStateLiveData.value ?: SetupChallengeViewState()
+        navigateTo(SetupChallengeFragmentDirections.actionSetupChallengeFragmentToLearningChallengeFragment(currentState))
     }
 }

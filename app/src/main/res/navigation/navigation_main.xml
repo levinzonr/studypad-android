@@ -254,12 +254,20 @@
             android:id="@+id/setupChallengeFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeFragment"
             android:label="fragment_setup_challenge"
-            tools:layout="@layout/fragment_setup_challenge"/>
+            tools:layout="@layout/fragment_setup_challenge">
+        <action
+                android:id="@+id/action_setupChallengeFragment_to_learningChallengeFragment"
+                app:destination="@id/learningChallengeFragment"/>
+    </fragment>
     <fragment
             android:id="@+id/learningChallengeFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeFragment"
             android:label="fragment_learning_challenge"
-            tools:layout="@layout/fragment_learning_challenge"/>
+            tools:layout="@layout/fragment_learning_challenge">
+        <argument
+                android:name="setup"
+                app:argType="cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewState"/>
+    </fragment>
     <fragment
             android:id="@+id/aboutFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.about.AboutFragment"
