@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.challenges.learning
+package cz.levinzonr.studypad.presentation.screens.challenges.challenge
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
@@ -7,7 +7,7 @@ import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesModels
 import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewState
 
-class LearningChallengeViewModel(
+class ChallengeViewModel(
     private val notesRepository: NotesRepository,
     challengeSetup: SetupChallengeViewState
 ) : BaseViewModel() {

@@ -10,7 +10,6 @@ apply plugin: 'io.fabric'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 
-
 android {
     compileSdkVersion 28
     defaultConfig {

@@ -3,7 +3,7 @@
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
-import cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeViewModel
+import cz.levinzonr.studypad.presentation.screens.challenges.challenge.ChallengeViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewState
 import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListViewModel
@@ -29,7 +29,6 @@ import cz.levinzonr.studypad.presentation.screens.sharinghub.feed.SharingHubView
 import cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebookSearchModels
 import cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebooksSearchViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.ReviewSuggestionsViewModel
-import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.SuggestionsModels
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
@@ -96,6 +95,11 @@ val viewModelModule = module {
 
     viewModel { SettingsViewModel(get(), get() )}
 
-    viewModel { (setup: SetupChallengeViewState) -> LearningChallengeViewModel(get(), setup) }
+    viewModel { (setup: SetupChallengeViewState) ->
+        ChallengeViewModel(
+            get(),
+            setup
+        )
+    }
 
 }

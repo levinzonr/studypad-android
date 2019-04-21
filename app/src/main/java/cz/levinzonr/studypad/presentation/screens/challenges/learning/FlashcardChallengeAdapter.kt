@@ -10,8 +10,8 @@ import cz.levinzonr.studypad.layoutInflater
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesModels
 import kotlinx.android.synthetic.main.item_learning_note.view.*
 
-class LearningChallengeAdapter(private val listener: LearningChallengeAdapterListener) :
-    ListAdapter<ChallengesModels.NoteItem, LearningChallengeAdapter.ViewHolder>(DiffCallback()) {
+class FlashcardChallengeAdapter(private val listener: LearningChallengeAdapterListener) :
+    ListAdapter<ChallengesModels.NoteItem, FlashcardChallengeAdapter.ViewHolder>(DiffCallback()) {
 
 
     private var revealed: ArrayList<ChallengesModels.NoteItem> = arrayListOf()

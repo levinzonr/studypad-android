@@ -3,6 +3,7 @@ package cz.levinzonr.studypad.presentation.screens.challenges.setup
 import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import cz.levinzonr.studypad.presentation.screens.challenges.ChallengeType
 
 class SetupChallengeViewModel : BaseViewModel() {
 

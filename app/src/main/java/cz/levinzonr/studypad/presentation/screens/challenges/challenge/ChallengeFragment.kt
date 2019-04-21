@@ -1,33 +1,30 @@
-package cz.levinzonr.studypad.presentation.screens.challenges.learning
+package cz.levinzonr.studypad.presentation.screens.challenges.challenge
 
 
 import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import cz.levinzonr.studypad.presentation.screens.challenges.ChallengeType
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesModels
-import kotlinx.android.synthetic.main.fragment_learning_challenge.*
-import org.koin.android.ext.android.inject
+import cz.levinzonr.studypad.presentation.screens.challenges.learning.FlashcardChallengeAdapter
+import cz.levinzonr.studypad.presentation.screens.challenges.learning.FlashcardChallengeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class LearningChallengeFragment : BaseFragment(), LearningChallengeAdapter.LearningChallengeAdapterListener, BackButtonHandler {
+class ChallengeFragment : BaseFragment(), BackButtonHandler {
 
 
-    private val args: LearningChallengeFragmentArgs by navArgs()
+    private val args: ChallengeFragmentArgs by navArgs()
 
-    override val viewModel: LearningChallengeViewModel by viewModel { parametersOf(args.setup) }
+    override val viewModel: ChallengeViewModel by viewModel { parametersOf(args.setup) }
 
-    private val adapter: LearningChallengeAdapter by inject { parametersOf(this)}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,15 +37,17 @@ class LearningChallengeFragment : BaseFragment(), LearningChallengeAdapter.Learn
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewPager.adapter = adapter
         viewModel.questionsLiveData.observeNonNull(viewLifecycleOwner) {
-            adapter.submitList(it)
+            showChallenge(args.setup.currentType, it)
         }
     }
 
-    override fun onRevealAnswerClicked(noteItem: ChallengesModels.NoteItem) {
-
+    private fun showChallenge(type: ChallengeType, questions: List<ChallengesModels.NoteItem>) {
+       childFragmentManager.beginTransaction()
+            .replace(R.id.container, FlashcardChallengeFragment.newInstance(questions))
+            .commit()
     }
+
 
     override fun handleBackButton() {
         AlertDialog.Builder(context)

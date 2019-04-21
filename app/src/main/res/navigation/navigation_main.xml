@@ -262,7 +262,7 @@
     </fragment>
     <fragment
             android:id="@+id/learningChallengeFragment"
-            android:name="cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.challenges.challenge.ChallengeFragment"
             android:label="fragment_learning_challenge"
             tools:layout="@layout/fragment_learning_challenge">
         <argument
