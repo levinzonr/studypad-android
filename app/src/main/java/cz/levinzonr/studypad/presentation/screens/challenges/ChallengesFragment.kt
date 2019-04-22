@@ -2,20 +2,24 @@ package cz.levinzonr.studypad.presentation.screens.challenges
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewState
+import cz.levinzonr.studypad.first
+import cz.levinzonr.studypad.observeNonNull
+import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.selectors.NotebookSelectorDialog
 import kotlinx.android.synthetic.main.fragment_challenges.*
-import timber.log.Timber
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class ChallengesFragment : Fragment() {
+class ChallengesFragment : BaseFragment() {
+
+    override val viewModel: ChallengesOverviewViewModel by viewModel()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,21 +32,34 @@ class ChallengesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val adapter = ChallengesOverviewAdapter()
+        challengesRv.adapter = adapter
+
+        viewModel.recentChallenges.observeNonNull(viewLifecycleOwner) {
+            adapter.submitList(it.reversed().first(2))
+        }
+
+
         materialButton2.setOnClickListener {
-            findNavController().navigate(ChallengesFragmentDirections.actionChallengesFragmentToSetupChallengeFragment())
+            viewModel.onConfigureChallengeClicked()
         }
 
         flashcardButton.setOnClickListener {
             NotebookSelectorDialog.show(childFragmentManager) {
-                val dist = SetupChallengeViewState(ChallengeType.Learn, true, true, it)
-                findNavController().navigate(ChallengesFragmentDirections.actionChallengesFragmentToLearningChallengeFragment(dist))
+               viewModel.onLuanchQuickChallenge(ChallengeType.Flashcards, it)
             }
         }
 
         selfcheckButton.setOnClickListener {
             NotebookSelectorDialog.show(childFragmentManager) {
-                val dist = SetupChallengeViewState(ChallengeType.Selfcheck, true, true, it)
-                findNavController().navigate(ChallengesFragmentDirections.actionChallengesFragmentToLearningChallengeFragment(dist))
+                viewModel.onLuanchQuickChallenge(ChallengeType.Selfcheck, it)
+            }
+        }
+
+        writeButton.setOnClickListener {
+            NotebookSelectorDialog.show(childFragmentManager) {
+                viewModel.onLuanchQuickChallenge(ChallengeType.Write, it)
             }
         }
     }

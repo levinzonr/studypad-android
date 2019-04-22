@@ -77,13 +77,13 @@ class FlashcardChallengeAdapter(private val listener: LearningChallengeAdapterLi
 
 
     override fun getItemCount(): Int {
-        return items.count()
+        return items.count() + 1
     }
 
     inner class CompleteViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bindView() {
-            view.challengeCompleteStatTv.text = "${itemCount - 1} notes studied"
+            view.challengeCompleteStatTv.text = "${items.size} notes studied"
             view.challengeCompleteRepeatBtn.setOnClickListener { listener.onRepeatChallengeClicked() }
         }
     }

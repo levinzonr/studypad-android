@@ -28,8 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_big"
             android:layout_marginBottom="@dimen/space_large"
-            app:buttonText="Learrn"
-            app:buttonIcon="@drawable/ic_sort_black_24dp"
+            app:buttonText="Flashcards"
+            app:buttonIcon="@drawable/ic_flashcards_24dp"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/challengeTypeLearnBtn"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"/>
@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/space_big"
             app:buttonText="Write"
+            app:buttonIcon="@drawable/ic_challenges"
             app:layout_constraintTop_toTopOf="@+id/challengeTypeLearnBtn"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/challengeTypeWriteBtn"/>
@@ -49,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:buttonIcon="@drawable/ic_done_all_black_24dp"
-            app:buttonText="Train"
+            app:buttonText="Self-check"
             app:layout_constraintTop_toTopOf="@+id/challengeTypeLearnBtn"
             app:layout_constraintEnd_toStartOf="@+id/challengeTypeWriteBtn"
             app:layout_constraintStart_toEndOf="@+id/challengeTypeLearnBtn"

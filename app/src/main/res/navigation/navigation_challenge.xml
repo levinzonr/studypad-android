@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/navigation_challenge"
+            app:startDestination="@id/challengeFragment2">
+
+    <fragment
+            android:id="@+id/challengeFragment2"
+            android:name="cz.levinzonr.studypad.presentation.screens.challenges.challenge.ChallengeFragment"
+            android:label="fragment_challenge"
+            tools:layout="@layout/fragment_challenge">
+        <action
+                android:id="@+id/action_challengeFragment2_to_flashcardChallengeFragment2"
+                app:destination="@id/flashcardChallengeFragment2"/>
+        <action
+                android:id="@+id/action_challengeFragment2_to_learningChallengeFragment"
+                app:destination="@id/learningChallengeFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/flashcardChallengeFragment2"
+            android:name="cz.levinzonr.studypad.presentation.screens.challenges.flashcards.FlashcardChallengeFragment"
+            android:label="fragment_flashcard_challenge"
+            tools:layout="@layout/fragment_flashcard_challenge"/>
+    <fragment
+            android:id="@+id/learningChallengeFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeFragment"
+            android:label="fragment_learning_challenge"
+            tools:layout="@layout/fragment_learning_challenge">
+        <action
+                android:id="@+id/action_learningChallengeFragment_to_challengeCompleteFragment"
+                app:destination="@id/challengeCompleteFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/challengeCompleteFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.challenges.challenge.ChallengeCompleteFragment"
+            android:label="fragment_challenge_complete"
+            tools:layout="@layout/fragment_challenge_complete">
+        <argument
+                android:name="stats"
+                app:argType="cz.levinzonr.studypad.presentation.screens.challenges.ChallengeStats"/>
+    </fragment>
+</navigation>

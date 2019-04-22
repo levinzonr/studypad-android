@@ -34,5 +34,7 @@ val repositoryModule = module {
     single<FirebaseTokenRepository> { FirebaseTokenRepositoryImpl(get()) }
 
     single<UserPreferencesRepository> { UserPreferencesRepositoryImpl(get())  }
+
+    single<ChallengesRepository> { ChallengesRepositoryImpl(get<AppDatabase>().challengesDao()) }
 }
 

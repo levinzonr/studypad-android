@@ -44,7 +44,7 @@ class SetupChallengeFragment : BaseFragment() {
     private fun setupListeners() {
         challengeTypeWriteBtn.setOnClickListener { viewModel.onChallengeTypeSelected(ChallengeType.Write) }
         challengeTypeTrainBtn.setOnClickListener { viewModel.onChallengeTypeSelected(ChallengeType.Selfcheck) }
-        challengeTypeLearnBtn.setOnClickListener { viewModel.onChallengeTypeSelected(ChallengeType.Learn) }
+        challengeTypeLearnBtn.setOnClickListener { viewModel.onChallengeTypeSelected(ChallengeType.Flashcards) }
 
         preferenceReordering.setOnClickListener { viewModel.onShuffleModeChange(!preferenceReorderingSwitch.isChecked) }
         preferenceTitle.setOnClickListener { viewModel.onTitleFirstModeChange(!preferenceTitleSwitch.isChecked) }
@@ -73,8 +73,8 @@ class SetupChallengeFragment : BaseFragment() {
 
     private fun updateView(viewState: SetupChallengeViewState) {
         Timber.d("View State: $viewState")
-        Timber.d("State ${viewState.currentType} ${viewState.currentType == ChallengeType.Learn}")
-        challengeTypeLearnBtn.isChecked = viewState.currentType == ChallengeType.Learn
+        Timber.d("State ${viewState.currentType} ${viewState.currentType == ChallengeType.Flashcards}")
+        challengeTypeLearnBtn.isChecked = viewState.currentType == ChallengeType.Flashcards
         challengeTypeTrainBtn.isChecked = viewState.currentType == ChallengeType.Selfcheck
         challengeTypeWriteBtn.isChecked = viewState.currentType == ChallengeType.Write
 
@@ -87,7 +87,7 @@ class SetupChallengeFragment : BaseFragment() {
         preferenceTitleSwitch.isChecked = viewState.titleFirst
 
         challengePrefTypeTv.text = when (viewState.currentType) {
-            ChallengeType.Learn -> "Walk through your notes one by one and try to learn as much as you can!"
+            ChallengeType.Flashcards -> "Walk through your notes one by one and try to learn as much as you can!"
             ChallengeType.Write -> "Best way to words in different language"
             ChallengeType.Selfcheck -> "Check yourself if you every single note in the notebook"
             ChallengeType.None -> "Select challenge to continue"

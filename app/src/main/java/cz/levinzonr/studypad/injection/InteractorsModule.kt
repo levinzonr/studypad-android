@@ -82,4 +82,5 @@ val interacorModule = module {
 
     factory { SubmitReviewInteractor(get()) }
 
+    factory { SaveChallengeInteractor(get()) }
 }

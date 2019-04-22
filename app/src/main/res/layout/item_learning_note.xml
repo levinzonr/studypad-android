@@ -1,70 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            style="@style/Flashcard"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/repeatButton">
 
 
-        <com.google.android.material.card.MaterialCardView
+        <TextView
+                android:id="@+id/questionText"
+                android:text="@string/firebase_database_url"
+                android:gravity="center"
+                android:layout_margin="@dimen/space_large"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="@dimen/space_large"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/repeatButton">
+                android:layout_height="match_parent"/>
 
 
-            <TextView
-                    android:id="@+id/questionText"
-                    android:text="@string/firebase_database_url"
-                    android:gravity="center"
-                    android:layout_margin="@dimen/space_large"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline"
+            app:layout_constraintGuide_percent="0.5"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+            style="@style/Button.Primary"
+            android:text="Study Again"
+            android:layout_width="0dp"
+            android:layout_margin="@dimen/space_large"
+            android:layout_height="wrap_content"
+            android:id="@+id/repeatButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="#B71C1C"/>
 
 
-        </com.google.android.material.card.MaterialCardView>
-
-        <androidx.constraintlayout.widget.Guideline
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/guideline"
-                app:layout_constraintGuide_percent="0.5"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <com.google.android.material.button.MaterialButton
-
-                android:text="Repeat this"
-                android:layout_width="0dp"
-                android:layout_margin="@dimen/space_large"
-                android:layout_height="wrap_content"
-                android:id="@+id/repeatButton"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"/>
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/knowButton"
+            style="@style/Button.Primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="@dimen/space_large"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            android:text="I know that!"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#2E7D32"/>
 
 
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/knowButton"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_margin="@dimen/space_large"
-                app:layout_constraintStart_toEndOf="@id/guideline"
-                android:text="I know that!"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
-</LinearLayout>

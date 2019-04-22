@@ -81,8 +81,8 @@
                 android:id="@+id/action_challengesFragment_to_setupChallengeFragment"
                 app:destination="@id/setupChallengeFragment"/>
         <action
-                android:id="@+id/action_challengesFragment_to_learningChallengeFragment"
-                app:destination="@id/learningChallengeFragment"/>
+                android:id="@+id/action_challengesFragment_to_challengeActivity"
+                app:destination="@id/challengeActivity"/>
     </fragment>
 
     <fragment
@@ -105,19 +105,15 @@
                 android:id="@+id/action_profileFragment_to_editProfileFragment"
                 app:destination="@id/editProfileFragment"/>
         <action
-                android:id="@+id/action_profileFragment_to_aboutFragment"
-                app:destination="@id/aboutFragment"
-                app:enterAnim="@animator/slide_left_enter"
-                app:exitAnim="@animator/slide_left_exit"
-                app:popEnterAnim="@animator/slide_right_enter"
-                app:popExitAnim="@animator/slide_right_exit"/>
-        <action
                 android:id="@+id/action_profileFragment_to_settingsFragment"
                 app:destination="@id/settingsFragment"
                 app:enterAnim="@animator/slide_left_enter"
                 app:exitAnim="@animator/slide_left_exit"
                 app:popEnterAnim="@animator/slide_right_enter"
                 app:popExitAnim="@animator/slide_right_exit"/>
+        <action
+                android:id="@+id/action_profileFragment_to_aboutFragment"
+                app:destination="@id/aboutFragment"/>
     </fragment>
     <fragment
             android:id="@+id/publishNotebookFragment"
@@ -259,19 +255,19 @@
             android:label="fragment_setup_challenge"
             tools:layout="@layout/fragment_setup_challenge">
         <action
-                android:id="@+id/action_setupChallengeFragment_to_learningChallengeFragment"
-                app:destination="@id/learningChallengeFragment"
+                android:id="@+id/action_setupChallengeFragment_to_challengeActivity"
+                app:destination="@id/challengeActivity"
                 app:popUpTo="@+id/challengesFragment"/>
     </fragment>
-    <fragment
-            android:id="@+id/learningChallengeFragment"
-            android:name="cz.levinzonr.studypad.presentation.screens.challenges.challenge.ChallengeFragment"
-            android:label="fragment_learning_challenge"
-            tools:layout="@layout/fragment_challenge">
+    <activity
+            android:id="@+id/challengeActivity"
+            android:name="cz.levinzonr.studypad.presentation.screens.challenges.challenge.ChallengeActivity"
+            android:label="activity_challenge"
+            tools:layout="@layout/activity_challenge">
         <argument
                 android:name="setup"
                 app:argType="cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewState"/>
-    </fragment>
+    </activity>
     <fragment
             android:id="@+id/aboutFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.about.AboutFragment"

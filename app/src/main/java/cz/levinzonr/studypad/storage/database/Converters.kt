@@ -2,11 +2,9 @@ package cz.levinzonr.studypad.storage.database
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import cz.levinzonr.studypad.domain.models.Color
-import cz.levinzonr.studypad.domain.models.OrderBy
-import cz.levinzonr.studypad.domain.models.Topic
-import cz.levinzonr.studypad.domain.models.University
+import cz.levinzonr.studypad.domain.models.*
 import cz.levinzonr.studypad.fromJson
+import cz.levinzonr.studypad.presentation.screens.challenges.ChallengeType
 
 
 class Converters {
@@ -43,15 +41,6 @@ class Converters {
         return Gson().fromJson(string) ?: listOf()
     }
 
-    @TypeConverter
-    fun fromIntToOrderyBy(numeral: Int?): OrderBy? {
-        for (ds in OrderBy.values()) {
-            if (ds.ordinal == numeral) {
-                return ds
-            }
-        }
-        return null
-    }
 
     @TypeConverter
     fun fromListToString(list: List<String>) : String {
@@ -68,4 +57,39 @@ class Converters {
         return status.ordinal
     }
 
+    @TypeConverter
+    fun fromIntToOrderyBy(numeral: Int?): OrderBy? {
+        for (ds in OrderBy.values()) {
+            if (ds.ordinal == numeral) {
+                return ds
+            }
+        }
+        return null
+    }
+
+    @TypeConverter
+    fun fromTypeByToInt(status: ChallengeType): Int? {
+        return status.ordinal
+    }
+
+    @TypeConverter
+    fun fromIntToType(numeral: Int?): ChallengeType? {
+        for (ds in ChallengeType.values()) {
+            if (ds.ordinal == numeral) {
+                return ds
+            }
+        }
+        return null
+    }
+
+
+    @TypeConverter
+    fun fromStringToNotebook(string: String) : Notebook? {
+        return Gson().fromJson(string)
+    }
+
+    @TypeConverter
+    fun fromNotebookToString(notebook: Notebook): String {
+        return Gson().toJson(notebook)
+    }
 }

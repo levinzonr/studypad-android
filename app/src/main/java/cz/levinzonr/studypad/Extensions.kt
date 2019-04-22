@@ -176,6 +176,7 @@ fun MutableLiveData<SingleLiveEvent>.callIf(a: Boolean) {
     if (a) call()
 }
 
+
 fun MutableLiveData<SingleLiveEvent>.onHandle(lifecycleOwner: LifecycleOwner, block: () -> Unit) {
     observe(lifecycleOwner, Observer { it.handle(block) })
 }
