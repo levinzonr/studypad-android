@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewState
+import cz.levinzonr.studypad.presentation.screens.selectors.NotebookSelectorDialog
 import kotlinx.android.synthetic.main.fragment_challenges.*
 import timber.log.Timber
 
@@ -28,6 +30,20 @@ class ChallengesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         materialButton2.setOnClickListener {
             findNavController().navigate(ChallengesFragmentDirections.actionChallengesFragmentToSetupChallengeFragment())
+        }
+
+        flashcardButton.setOnClickListener {
+            NotebookSelectorDialog.show(childFragmentManager) {
+                val dist = SetupChallengeViewState(ChallengeType.Learn, true, true, it)
+                findNavController().navigate(ChallengesFragmentDirections.actionChallengesFragmentToLearningChallengeFragment(dist))
+            }
+        }
+
+        selfcheckButton.setOnClickListener {
+            NotebookSelectorDialog.show(childFragmentManager) {
+                val dist = SetupChallengeViewState(ChallengeType.Selfcheck, true, true, it)
+                findNavController().navigate(ChallengesFragmentDirections.actionChallengesFragmentToLearningChallengeFragment(dist))
+            }
         }
     }
 }

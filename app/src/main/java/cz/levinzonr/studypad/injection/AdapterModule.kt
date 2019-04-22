@@ -1,7 +1,9 @@
 package cz.levinzonr.studypad.injection
 
 import cz.levinzonr.studypad.presentation.adapters.*
-import cz.levinzonr.studypad.presentation.screens.challenges.learning.FlashcardChallengeAdapter
+import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesModels
+import cz.levinzonr.studypad.presentation.screens.challenges.flashcards.FlashcardChallengeAdapter
+import cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeAdapter
 import org.koin.dsl.module.module
 
 
@@ -30,5 +32,7 @@ val adapterModule = module {
 
     factory { (listener: TopicsSelectionAdapter.TopicSelectionListener) -> TopicsSelectionAdapter(listener) }
 
-    factory { (listenr: FlashcardChallengeAdapter.LearningChallengeAdapterListener  ) -> FlashcardChallengeAdapter(listener = listenr) }
+    factory { (listenr: FlashcardChallengeAdapter.LearningChallengeAdapterListener) -> FlashcardChallengeAdapter(listener = listenr) }
+
+    factory { (listener:  LearningChallengeAdapter.LearningChallengeItemListener) -> LearningChallengeAdapter(listener) }
 }

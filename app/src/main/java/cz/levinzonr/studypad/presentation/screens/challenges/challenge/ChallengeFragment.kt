@@ -13,8 +13,9 @@ import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengeType
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesModels
-import cz.levinzonr.studypad.presentation.screens.challenges.learning.FlashcardChallengeAdapter
-import cz.levinzonr.studypad.presentation.screens.challenges.learning.FlashcardChallengeFragment
+import cz.levinzonr.studypad.presentation.screens.challenges.flashcards.FlashcardChallengeFragment
+import cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeFragment
+import kotlinx.android.synthetic.main.fragment_challenge.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -31,7 +32,7 @@ class ChallengeFragment : BaseFragment(), BackButtonHandler {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_learning_challenge, container, false)
+        return inflater.inflate(R.layout.fragment_challenge, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,10 +41,21 @@ class ChallengeFragment : BaseFragment(), BackButtonHandler {
         viewModel.questionsLiveData.observeNonNull(viewLifecycleOwner) {
             showChallenge(args.setup.currentType, it)
         }
+
+        closeChallengeBtn.setOnClickListener {
+            handleBackButton()
+        }
     }
 
     private fun showChallenge(type: ChallengeType, questions: List<ChallengesModels.NoteItem>) {
-       childFragmentManager.beginTransaction()
+
+      /*  val fragment = when (type) {
+            ChallengeType.Learn ->
+            ChallengeType.Selfcheck -> LearningChallengeFragment.newInstance(questions)
+            else -> FlashcardChallengeFragment.newInstance(questions)
+        }*/
+
+        childFragmentManager.beginTransaction()
             .replace(R.id.container, FlashcardChallengeFragment.newInstance(questions))
             .commit()
     }
@@ -53,7 +65,7 @@ class ChallengeFragment : BaseFragment(), BackButtonHandler {
         AlertDialog.Builder(context)
             .setTitle("Leaving test")
             .setMessage("Are you you want to exit this challenge? Progress won't be saved")
-            .setPositiveButton(android.R.string.yes) { _, _ ->  viewModel.onLeaveChallengeConfirmed() }
+            .setPositiveButton(android.R.string.yes) { _, _ -> viewModel.onLeaveChallengeConfirmed() }
             .setNegativeButton(android.R.string.no) { d, _ -> d.dismiss() }
             .show()
     }

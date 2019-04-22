@@ -117,11 +117,11 @@ class MainActivity : BaseActivity() {
                 hideMenu()
                 supportActionBar?.hide()
             }
-            R.id.noteDetailFragment, R.id.reviewSuggestionsFragment, R.id.learningChallengeFragment -> {
+            R.id.noteDetailFragment, R.id.reviewSuggestionsFragment -> {
                 hideMenu()
             }
             //   R.id.editNoteFragment -> hideMenu()
-            R.id.publishedNotebookDetailFragment -> {
+            R.id.publishedNotebookDetailFragment, R.id.learningChallengeFragment -> {
                 supportActionBar?.hide()
                 hideMenu()
             }

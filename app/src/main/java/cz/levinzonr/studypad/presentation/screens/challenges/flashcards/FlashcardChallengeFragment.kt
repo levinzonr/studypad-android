@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.challenges.learning
+package cz.levinzonr.studypad.presentation.screens.challenges.flashcards
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -31,10 +31,18 @@ class FlashcardChallengeFragment : Fragment(), FlashcardChallengeAdapter.Learnin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewPager.adapter = adapter
-        adapter.submitList(questions)
+        adapter.items = questions
     }
 
     override fun onRevealAnswerClicked(noteItem: ChallengesModels.NoteItem) {
+
+    }
+
+    override fun onRepeatChallengeClicked() {
+
+    }
+
+    override fun onExitChallengeClicked() {
 
     }
 

@@ -2,7 +2,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="cz.levinzonr.studypad.presentation.screens.challenges.learning.FlashcardChallengeFragment">
+             tools:context="cz.levinzonr.studypad.presentation.screens.challenges.flashcards.FlashcardChallengeFragment">
 
 
     <androidx.viewpager2.widget.ViewPager2

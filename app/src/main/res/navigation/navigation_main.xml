@@ -80,6 +80,9 @@
                 app:popExitAnim="@animator/slide_right_exit"
                 android:id="@+id/action_challengesFragment_to_setupChallengeFragment"
                 app:destination="@id/setupChallengeFragment"/>
+        <action
+                android:id="@+id/action_challengesFragment_to_learningChallengeFragment"
+                app:destination="@id/learningChallengeFragment"/>
     </fragment>
 
     <fragment
@@ -264,7 +267,7 @@
             android:id="@+id/learningChallengeFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.challenges.challenge.ChallengeFragment"
             android:label="fragment_learning_challenge"
-            tools:layout="@layout/fragment_learning_challenge">
+            tools:layout="@layout/fragment_challenge">
         <argument
                 android:name="setup"
                 app:argType="cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewState"/>
