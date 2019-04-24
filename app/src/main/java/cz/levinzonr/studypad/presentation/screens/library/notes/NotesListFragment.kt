@@ -33,9 +33,8 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
         return inflater.inflate(R.layout.fragment_notes_list, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setupRecyclerView()
+
+    override fun subscribe() {
         viewModel.dataSource.observe(this, Observer {
             adapter.items  = it
             notesRv.setVisible(!it.isEmpty())

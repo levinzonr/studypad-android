@@ -41,6 +41,12 @@ class AccountInfoFragment : BaseFragment() {
         }
     }
 
+    override fun subscribe() {
+        viewModel.validAccountInfoEvent.observe(this, Observer {
+            accountInfoProceedBtn.isEnabled = it
+        })
+    }
+
     private fun setupListeners() {
         accountInfoProceedBtn.setOnClickListener {
            viewModel.showAccountInfo()
@@ -55,9 +61,7 @@ class AccountInfoFragment : BaseFragment() {
             viewModel.lastName = it
         }
 
-        viewModel.validAccountInfoEvent.observe(this, Observer {
-            accountInfoProceedBtn.isEnabled = it
-        })
+
 
     }
 

@@ -71,6 +71,10 @@ class SetupChallengeFragment : BaseFragment() {
         }
     }
 
+    override fun subscribe() {
+
+    }
+
     private fun updateView(viewState: SetupChallengeViewState) {
         Timber.d("View State: $viewState")
         Timber.d("State ${viewState.currentType} ${viewState.currentType == ChallengeType.Flashcards}")

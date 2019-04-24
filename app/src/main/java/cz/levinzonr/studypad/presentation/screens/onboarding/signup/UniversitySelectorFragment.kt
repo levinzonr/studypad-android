@@ -40,6 +40,14 @@ class UniversitySelectorFragment : BottomSheetDialog() {
         return inflater.inflate(R.layout.fragment_university_selector, container, false)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        viewModel.stateLiveData.observe(viewLifecycleOwner, Observer {
+            Timber.d("State: $it")
+            it?.let(this::updateViewState)
+        })
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,10 +63,7 @@ class UniversitySelectorFragment : BottomSheetDialog() {
 
         }
 
-        viewModel.stateLiveData.observe(viewLifecycleOwner, Observer {
-            Timber.d("State: $it")
-            it?.let(this::updateViewState)
-        })
+
 
         searchView.onQueryTextChanged {
             viewModel.findUnversities(it)

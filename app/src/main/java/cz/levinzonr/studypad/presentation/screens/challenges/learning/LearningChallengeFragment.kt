@@ -40,6 +40,11 @@ class LearningChallengeFragment : BaseFragment(), LearningChallengeAdapter.Learn
         return inflater.inflate(R.layout.fragment_learning_challenge, container, false)
     }
 
+    override fun subscribe() {
+
+
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

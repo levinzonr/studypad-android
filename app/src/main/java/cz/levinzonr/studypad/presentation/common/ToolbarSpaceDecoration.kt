@@ -9,7 +9,7 @@ class ToolbarSpaceDecoration : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         if (parent.getChildAdapterPosition(view) == 0) {
-            outRect.top = 65.dp
+            outRect.top = 16.dp
         }
     }
 }

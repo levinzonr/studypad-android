@@ -11,6 +11,7 @@ import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.presentation.adapters.NotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.common.ToolbarSpaceDecoration
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.fragment_notebook_list.*
 import org.koin.android.ext.android.inject
@@ -28,23 +29,6 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_notebook_list, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        viewModel.dataSource.observe(this, Observer {
-            showNotebooks(it)
-        })
-
-        viewModel.syncCompletedEvent.onHandle(viewLifecycleOwner) {
-            showToast("Library is Synchronized")
-        }
-
-        viewModel.notebookPublishedEven.onHandle(viewLifecycleOwner) {
-             val link = "${BuildConfig.API_URL}/shared/${it.id}"
-            shareMessage(link)
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,10 +58,27 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
         adapter.listener = this
         notebooksRv.layoutManager = LinearLayoutManager(context)
         notebooksRv.addItemDecoration(VerticalSpaceItemDecoration(16))
+        notebooksRv.addItemDecoration(ToolbarSpaceDecoration())
         notebooksRv.adapter = adapter
 
     }
 
+
+    override fun subscribe() {
+        viewModel.dataSource.observeNonNull(viewLifecycleOwner) {
+            showNotebooks(it)
+        }
+
+        viewModel.syncCompletedEvent.onHandle(viewLifecycleOwner) {
+            showToast("Library is Synchronized")
+        }
+
+        viewModel.notebookPublishedEven.onHandle(viewLifecycleOwner) {
+            val link = "${BuildConfig.API_URL}/shared/${it.id}"
+            shareMessage(link)
+        }
+
+    }
     override fun onNotebookSelected(notebook: Notebook) {
         viewModel.onNotebookSelected(notebook)
     }

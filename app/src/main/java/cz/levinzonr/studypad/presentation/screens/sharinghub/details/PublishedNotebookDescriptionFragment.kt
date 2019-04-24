@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.chip.Chip
 import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.models.Note
 
@@ -18,7 +17,6 @@ import cz.levinzonr.studypad.presentation.adapters.NotePreviewAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
-import kotlinx.android.synthetic.main.fragment_note_detail.*
 import kotlinx.android.synthetic.main.fragment_published_notebook_description.*
 import kotlinx.android.synthetic.main.include_notebook_details.*
 import kotlinx.android.synthetic.main.include_notebook_excluded_view.*
@@ -39,6 +37,8 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
 
     override val viewModel: PublishedNotebookDetailViewModel by viewModel { parametersOf(notebookId) }
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,8 +47,28 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         return inflater.inflate(R.layout.fragment_published_notebook_description, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+    private fun showSugesstionsState(versionState: PublishedNotebook.VersionState) {
+
+        val unigueUsers = versionState.modifications.map { it.author }.distinctBy { it.uuid }.count()
+
+        notebookSuggestionShowAllBtn.setVisible(!versionState.modifications.isEmpty())
+        notebookSuggestionShowAllBtn.setOnClickListener {
+            viewModel.onShowAllSuggestionsClicked()
+        }
+        notebookSuggestionsAddBtn.setOnClickListener {
+            viewModel.onCreateNewSuggestionClicked()
+        }
+
+        val message = if (versionState.modifications.isEmpty())
+            "There are no pending suggestions yet. Have something to add?"
+        else "There are ${versionState.modifications.count()} pending suggestion from $unigueUsers users"
+        notebookSuggestionsMessage.text = message
+        notebookSuggestionsLayout.setVisible(true)
+
+    }
+
+    override fun subscribe() {
 
         arguments?.getParcelable<PublishedNotebook.Feed>(ARG_FEED)?.let(this::preFillFeed)
 
@@ -64,29 +84,8 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         viewModel.stateLiveData.observe(viewLifecycleOwner, Observer {
             showVersionState(it)
         })
+
     }
-
-
-
-    private fun showSugesstionsState(versionState: PublishedNotebook.VersionState) {
-
-        val unigueUsers = versionState.modifications.map { it.author }.distinctBy { it.uuid }.count()
-
-
-        notebookSuggestionShowAllBtn.setVisible(!versionState.modifications.isEmpty())
-        notebookSuggestionShowAllBtn.setOnClickListener {
-            viewModel.onShowAllSuggestionsClicked()
-        }
-        notebookSuggestionsAddBtn.setOnClickListener {
-            viewModel.onCreateNewSuggestionClicked()
-        }
-
-        val message = if (versionState.modifications.isEmpty())
-            "There are no pending suggestions yet. Have something to add?"
-        else "There are ${versionState.modifications.count()} pending suggestion from $unigueUsers users"
-        notebookSuggestionsMessage.text = message
-    }
-
 
     private fun showDetail(detail: PublishedNotebook.Detail) {
         publishedNotebookNameTv.text = detail.title

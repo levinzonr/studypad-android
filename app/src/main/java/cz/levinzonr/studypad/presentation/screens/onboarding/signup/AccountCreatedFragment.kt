@@ -40,4 +40,9 @@ class AccountCreatedFragment : BaseFragment() {
         }
 
     }
+
+
+    override fun subscribe() {
+
+    }
 }

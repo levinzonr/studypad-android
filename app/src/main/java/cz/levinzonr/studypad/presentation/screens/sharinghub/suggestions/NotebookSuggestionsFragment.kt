@@ -35,6 +35,10 @@ class NotebookSuggestionsFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_notebook_suggestions, container, false)
     }
 
+    override fun subscribe() {
+
+
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

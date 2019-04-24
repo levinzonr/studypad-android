@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import cz.levinzonr.studypad.*
+import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.common.ProgressDialog
 import cz.levinzonr.studypad.presentation.screens.library.publish.steps.*
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
 import ernestoyaquello.com.verticalstepperform.listener.StepperFormListener
@@ -17,7 +19,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.StepViewClickListener, BackButtonHandler{
+class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.StepViewClickListener, BackButtonHandler {
 
     private val args: PublishNotebookFragmentArgs by navArgs()
     override val viewModel: PublishNotebookViewModel by viewModel { parametersOf(args.notebook, args.publishedId) }
@@ -47,15 +49,22 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
             .includeConfirmationStep(false)
             .init()
 
+    }
+
+
+    override fun subscribe() {
 
         viewModel.defaultStateObservable.observeNonNull(viewLifecycleOwner) { state ->
             state.stepOneDefaults.let(stepOne::setDefaultData)
             state.stepTwoDefaults?.let(stepTwo::setDefaultData)
             state.stepThreeDefaults?.let(stepThree::setDefaultData)
         }
-
     }
 
+
+    override fun showLoading(isLoading: Boolean) {
+        if (isLoading) progressDialog?.show() else progressDialog?.dismiss()
+    }
 
     override fun onClick(view: View) {
         when (view.id) {
@@ -73,6 +82,11 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
             }
 
         }
+    }
+
+    override fun showError(viewError: ViewError) {
+        super.showError(viewError)
+        stepperForm.cancelFormCompletionOrCancellationAttempt()
     }
 
     override fun onCompletedForm() {

@@ -12,6 +12,7 @@ import cz.levinzonr.studypad.domain.models.InteractorResult
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.common.ToolbarSpaceDecoration
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialog
 import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchDialog
@@ -43,29 +44,7 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
         adapter = PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Full)
         resultsRv.adapter = adapter
         adapter.listener = this
-        viewModel.searchStateLiveData.observe(viewLifecycleOwner, Observer {
-            updateSearchState(it)
-        })
 
-        viewModel.resultsLiveData.observeNonNull(viewLifecycleOwner) {
-            Timber.d("Result: $it")
-            when (it) {
-                is InteractorResult.Loading -> showLoading(true)
-                is InteractorResult.Success -> {
-                    showLoading(false)
-                    adapter.items = it.data
-                    resultsRv.setVisible(true)
-                    if (it.data.isEmpty()) showEmptyView(NotebookSearchModels.EmptyType.Empty) else {
-                        emptyView.setVisible(false)
-                    }
-                }
-                is InteractorResult.Error -> {
-                    showLoading(false)
-                    showEmptyView(NotebookSearchModels.EmptyType.Error)
-                }
-            }
-
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -75,6 +54,7 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
             searchView.requestFocus()
         }
         resultsRv.addItemDecoration(VerticalSpaceItemDecoration(16))
+        resultsRv.addItemDecoration(ToolbarSpaceDecoration())
     }
 
     override fun onPublishedNotebookClicked(publishedNotebook: PublishedNotebook.Feed) {
@@ -126,6 +106,32 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
 
         searchView.onQueryTextChanged {
             viewModel.onQueryChanged(it)
+        }
+    }
+
+    override fun subscribe() {
+        viewModel.searchStateLiveData.observe(viewLifecycleOwner, Observer {
+            updateSearchState(it)
+        })
+
+        viewModel.resultsLiveData.observeNonNull(viewLifecycleOwner) {
+            Timber.d("Result: $it")
+            when (it) {
+                is InteractorResult.Loading -> showLoading(true)
+                is InteractorResult.Success -> {
+                    showLoading(false)
+                    adapter.items = it.data
+                    resultsRv.setVisible(true)
+                    if (it.data.isEmpty()) showEmptyView(NotebookSearchModels.EmptyType.Empty) else {
+                        emptyView.setVisible(false)
+                    }
+                }
+                is InteractorResult.Error -> {
+                    showLoading(false)
+                    showEmptyView(NotebookSearchModels.EmptyType.Error)
+                }
+            }
+
         }
     }
 

@@ -61,7 +61,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun handleDeepLink() {
-        val notebookId = intent.getParcelableExtra<NotificationPayload>("payload")?.notebookId ?: return
+        val notebookId = intent.getParcelableExtra<NotificationPayload>("payload")?.notebookInfo?.notebookId ?: return
         navController.navigate(NavigationMainDirections.actionGlobalPublishedNotebookDetailFragment(notebookId))
     }
 

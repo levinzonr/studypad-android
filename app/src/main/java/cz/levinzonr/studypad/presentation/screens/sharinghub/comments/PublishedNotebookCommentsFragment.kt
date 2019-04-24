@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.messaging.FirebaseMessaging
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
@@ -24,6 +26,7 @@ import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
 import cz.levinzonr.studypad.presentation.screens.sharinghub.PublishedNotebookOptionsMenu
+import java.lang.Exception
 
 
 class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.CommentsItemListener, BackButtonHandler, NotificationHandler {
@@ -45,12 +48,11 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        subscribe()
         setupListeners()
         setupRecyclerView()
     }
 
-    private fun subscribe() {
+    override fun subscribe() {
 
         viewModel.getCommentsLiveData().observe(viewLifecycleOwner, Observer {
             Timber.d("submti $it")
@@ -60,9 +62,19 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        FirebaseMessaging.getInstance().subscribeToTopic("comments_$notebookId")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("comments_$notebookId")
+    }
+
     override fun onLoseFocus() {
         Timber.d("onLocse")
-        commentEditText.hideKeyboard()
+        commentEditText?.hideKeyboard()
     }
 
     private fun setupListeners() {

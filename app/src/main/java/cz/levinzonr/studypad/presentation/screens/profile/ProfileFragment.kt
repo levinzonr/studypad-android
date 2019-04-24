@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseAuth
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.loadAuthorImage
+import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.onboarding.OnboardingActivity
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
@@ -24,7 +25,6 @@ import timber.log.Timber
 class ProfileFragment : BaseFragment() {
 
     override val viewModel: ProfileViewModel by viewModel()
-    private val tokenRepo: TokenRepository by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +34,15 @@ class ProfileFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
+    override fun subscribe() {
+
+        viewModel.profileLiveData.observeNonNull(viewLifecycleOwner) {
+            profileUserNae.text = "${it.firstName} ${it.lastName}"
+            profileUserUni.text = it.university?.fullName ?: ""
+            circleImageView.loadAuthorImage(it.photoUrl)
+
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,12 +60,7 @@ class ProfileFragment : BaseFragment() {
 
         profileSettingsBtn.setOnClickListener { viewModel.onSettingsButtonClicked() }
 
-        viewModel.profileLiveData.observe(this, Observer {
-            profileUserNae.text = "${it.firstName} ${it.lastName}"
-            profileUserUni.text = it.university?.fullName ?: ""
-            circleImageView.loadAuthorImage(it.photoUrl)
 
-        })
     }
 
 }

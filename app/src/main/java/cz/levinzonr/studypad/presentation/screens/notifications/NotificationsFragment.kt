@@ -11,6 +11,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notification
 import cz.levinzonr.studypad.first
 import cz.levinzonr.studypad.notifications.NotificationPayload
+import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.presentation.adapters.NotificationsAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
@@ -44,12 +45,16 @@ class NotificationsFragment : BaseFragment(), NotificationsAdapter.NotificationI
         super.onActivityCreated(savedInstanceState)
 
         notificationsRv.adapter = notificationsAdapter
-        viewModel.notifications.observe(this, Observer {
+
+
+    }
+
+    override fun subscribe() {
+        viewModel.notifications.observeNonNull(viewLifecycleOwner) {
             notificationsRv.setVisible(it.isNotEmpty())
             emptyView.setVisible(it.isEmpty())
             notificationsAdapter.submitList(it)
-        })
-
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

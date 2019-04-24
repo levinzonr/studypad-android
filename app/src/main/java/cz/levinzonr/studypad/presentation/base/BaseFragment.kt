@@ -3,11 +3,13 @@ package cz.levinzonr.studypad.presentation.base
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import com.lmntrx.android.library.livin.missme.ProgressDialog
 import cz.levinzonr.studypad.domain.models.ApplicationError
 import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.observeNonNull
@@ -23,6 +25,7 @@ abstract class BaseFragment : Fragment() {
         context?.let { Toast.makeText(it, message, Toast.LENGTH_LONG).show() }
     }
 
+    protected var progressDialog: ProgressDialog? = null
 
     abstract val viewModel: BaseViewModel
 
@@ -34,6 +37,9 @@ abstract class BaseFragment : Fragment() {
             .show()
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -47,6 +53,14 @@ abstract class BaseFragment : Fragment() {
             showLoading(state.isLoading)
             state.error?.handle { showError(it) }
         }
+
+
+        activity?.let {
+            progressDialog = ProgressDialog(it).apply { setCancelable(false) }
+        }
+
+        subscribe()
+
     }
     protected fun shareMessage(message: String) {
         ShareCompat.IntentBuilder.from(activity)
@@ -56,6 +70,8 @@ abstract class BaseFragment : Fragment() {
     }
 
     open fun onLoseFocus() {}
+
+    abstract fun subscribe()
 
 
     open fun showError(viewError: ViewError) {

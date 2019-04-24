@@ -8,6 +8,7 @@ import cz.levinzonr.studypad.domain.interactors.sharinghub.PublishNotebookIntera
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import java.util.*
 
@@ -57,6 +58,8 @@ class PublishNotebookViewModel(
             }
 
             onError {
+                toggleLoading(false)
+                showError(ViewError.DialogError("Error", "Error publishing notebook"))
             }
         }
 
@@ -81,6 +84,9 @@ class PublishNotebookViewModel(
             }
 
             onError {
+                toggleLoading(false)
+                showError(ViewError.DialogError("Error", "Error publishing notebook"))
+
             }
         }
     }

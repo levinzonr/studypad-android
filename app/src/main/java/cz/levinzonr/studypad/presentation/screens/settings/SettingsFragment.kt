@@ -25,9 +25,8 @@ class SettingsFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
 
+    override fun subscribe() {
         viewModel.settingsViewState.observeNonNull(viewLifecycleOwner) {
             settingsLanguagePrefTv.text = it.language?.displayName
             notificationsSwitch.isChecked = it.isNotificationsEnabled

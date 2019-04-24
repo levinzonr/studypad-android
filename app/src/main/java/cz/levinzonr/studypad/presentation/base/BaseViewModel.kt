@@ -31,7 +31,7 @@ abstract class BaseViewModel : ViewModel() {
 
     protected fun showError(viewError: ViewError) {
         val currentState = viewStateLiveData.value ?: BaseViewState()
-        viewStateLiveData.postValue(currentState.copy(error = Event(viewError)))
+        viewStateLiveData.postValue(currentState.copy( isLoading =  false, error = Event(viewError)))
     }
 
     protected fun toggleLoading(loading: Boolean) {

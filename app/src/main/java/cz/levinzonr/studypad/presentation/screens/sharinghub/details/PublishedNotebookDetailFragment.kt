@@ -57,6 +57,11 @@ class PublishedNotebookDetailFragment: BaseFragment(), NotificationHandler {
 
     }
 
+    override fun subscribe() {
+
+
+    }
+
 
     override fun handleNotification(type: NotificationType, notificationPayload: NotificationPayload) {
         val current = adapter.fragments.get(viewPager.currentItem)

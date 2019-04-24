@@ -4,6 +4,7 @@ import android.view.*
 import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.loadAuthorImage
+import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.ProgressDialog
@@ -40,19 +41,20 @@ class EditProfileFragment : BaseFragment() {
             }
         }
 
-        viewModel.profileLiveData.observe(viewLifecycleOwner, Observer {
+    }
+
+    override fun subscribe() {
+        viewModel.profileLiveData.observeNonNull(viewLifecycleOwner) {
             editProfileNameEt.setText(it.displayName)
             editProfileSchoolEt.setText(it.university?.fullName)
             editProfileIv.loadAuthorImage(it.imageUrl)
-        })
+        }
 
 
-        viewModel.stateLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.stateLiveData.observeNonNull(viewLifecycleOwner) {
             Timber.d("state ${it.isSaveEnabled}")
             saveMenuItem.setVisible(it.isSaveEnabled)
-        })
-
-
+        }
     }
 
     override fun showLoading(isLoading: Boolean) {

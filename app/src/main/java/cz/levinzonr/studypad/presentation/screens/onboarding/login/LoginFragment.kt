@@ -14,6 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import cz.levinzonr.studypad.presentation.common.ProgressDialog
 import cz.levinzonr.studypad.setVisible
 import timber.log.Timber
 
@@ -50,7 +51,6 @@ class LoginFragment : BaseFragment() {
         loginPasswordEt.setText(viewModel.password)
         loginEmailEt.setText(viewModel.email)
         setupListeners()
-        subscribe()
         googleClient = GoogleSignIn.getClient(context!!, gso)
     }
 
@@ -59,7 +59,7 @@ class LoginFragment : BaseFragment() {
         Timber.d("onStart")
     }
 
-    private fun subscribe() {
+    override fun subscribe() {
 
         viewModel.passwordValidationEvent.observe(this, Observer {
             it.handle {
@@ -75,7 +75,7 @@ class LoginFragment : BaseFragment() {
     }
 
     override fun showLoading(isLoading: Boolean) {
-        loginProgress.setVisible(isLoading)
+        if (isLoading) ProgressDialog.show(childFragmentManager, "Logging in...") else ProgressDialog.hide(childFragmentManager)
     }
 
     private fun setupListeners() {

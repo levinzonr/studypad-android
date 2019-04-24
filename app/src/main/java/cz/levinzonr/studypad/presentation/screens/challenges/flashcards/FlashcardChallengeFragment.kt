@@ -31,6 +31,7 @@ class FlashcardChallengeFragment : BaseFragment(), FlashcardChallengeAdapter.Lea
     }
 
 
+
     private val pageCallback: ViewPager2.OnPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             Timber.d("$position/${adapter.itemCount}")
@@ -39,6 +40,12 @@ class FlashcardChallengeFragment : BaseFragment(), FlashcardChallengeAdapter.Lea
                 viewModel.onChallengeComplete(false)
             }
         }
+
+    }
+
+
+    override fun subscribe() {
+
 
     }
 

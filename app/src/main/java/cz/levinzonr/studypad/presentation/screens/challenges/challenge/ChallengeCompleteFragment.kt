@@ -51,6 +51,11 @@ class ChallengeCompleteFragment : BaseFragment() {
         }
     }
 
+    override fun subscribe() {
+
+
+    }
+
 
     private fun showProgress(percent: Int) {
         // turn

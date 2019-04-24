@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.domain.models.ChallengeEntry
 import cz.levinzonr.studypad.first
 import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.presentation.base.BaseFragment
@@ -19,6 +22,7 @@ class ChallengesFragment : BaseFragment() {
 
     override val viewModel: ChallengesOverviewViewModel by viewModel()
 
+    private lateinit var adapter: ChallengesOverviewAdapter
 
 
     override fun onCreateView(
@@ -30,15 +34,20 @@ class ChallengesFragment : BaseFragment() {
     }
 
 
+    override fun subscribe() {
+        viewModel.recentChallenges.observeNonNull(viewLifecycleOwner) { list ->
+            adapter.submitList(list)
+        }
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ChallengesOverviewAdapter()
+        adapter = ChallengesOverviewAdapter()
         challengesRv.adapter = adapter
 
-        viewModel.recentChallenges.observeNonNull(viewLifecycleOwner) {
-            adapter.submitList(it.reversed().first(2))
-        }
+
 
 
         materialButton2.setOnClickListener {

@@ -34,34 +34,21 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
         return inflater.inflate(R.layout.fragment_note_detail, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
 
-        viewModel.editModeLiveData.observe(viewLifecycleOwner, Observer { editMode ->
-            noteDetailView.setVisible(!editMode)
-            noteEditView.setVisible(editMode)
-            noteEditView.showFocused(editMode)
-            /*detail.animate()
-                .rotationY(90f)
-                .setDuration(300L)
-                .withEndAction {
-                    // second quarter turn
-                    detail.setRotationY(-90f);
-                    detail.animate()
-                        .rotationY(0f)
-                        .setDuration(300).withEndAction {
-
-                        }
-                        .start()
-                }.start()*/
-        })
-
-
+    override fun subscribe() {
         viewModel.noteLiveData.observe(viewLifecycleOwner, Observer {
             Timber.d("Note update $it")
             noteDetailView.setNoteDetails(it)
             noteEditView.setNoteDetails(it)
         })
+
+        viewModel.editModeLiveData.observe(viewLifecycleOwner, Observer { editMode ->
+            noteDetailView.setVisible(!editMode)
+            noteEditView.setVisible(editMode)
+            noteEditView.showFocused(editMode)
+
+        })
+
 
     }
 

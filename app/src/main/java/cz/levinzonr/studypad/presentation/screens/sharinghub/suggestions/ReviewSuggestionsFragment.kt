@@ -62,19 +62,7 @@ class ReviewSuggestionsFragment : BaseFragment(), ReviewSuggestionsAdapter.Revie
         sheetBehavior.isHideable = false
         sheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(@NonNull bottomSheet: View, newState: Int) {
-                when (newState) {
-                    BottomSheetBehavior.STATE_HIDDEN -> {
 
-                    }
-                    BottomSheetBehavior.STATE_EXPANDED -> {
-                    }
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
-                    }
-                    BottomSheetBehavior.STATE_DRAGGING -> {
-                    }
-                    BottomSheetBehavior.STATE_SETTLING -> {
-                    }
-                }
             }
 
             override fun onSlide(@NonNull bottomSheet: View, slideOffset: Float) {
@@ -82,11 +70,17 @@ class ReviewSuggestionsFragment : BaseFragment(), ReviewSuggestionsAdapter.Revie
             }
         })
 
+
+
+    }
+
+
+    override fun subscribe() {
+
         viewModel.suggestionsLiveData.observe(viewLifecycleOwner, Observer {
             updateLists(it)
             updateSheet(it)
         })
-
     }
 
     private fun updateLists(list: List<SuggestionsModels.SuggestionItem>) {

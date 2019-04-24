@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.*
 import android.widget.LinearLayout
 import androidx.lifecycle.Observer
+import cz.levinzonr.studypad.*
 
-import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.data.SectionResponse
 import cz.levinzonr.studypad.domain.models.*
-import cz.levinzonr.studypad.dp
-import cz.levinzonr.studypad.first
 import cz.levinzonr.studypad.notifications.NotificationPayload
 import cz.levinzonr.studypad.presentation.adapters.NotificationsAdapter
 import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
@@ -19,7 +17,6 @@ import cz.levinzonr.studypad.presentation.base.NotificationHandler
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationsFragment
-import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_shared.*
 import kotlinx.android.synthetic.main.view_section.view.*
 import org.koin.android.ext.android.inject
@@ -57,6 +54,7 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
 
     }
 
+
     override fun handleNotification(type: NotificationType, notificationPayload: NotificationPayload) {
         Timber.d("Handle $type")
         (childFragmentManager.findFragmentByTag("tag") as? NotificationsFragment?)?.handleNotification(type, notificationPayload)
@@ -74,11 +72,10 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
         return true
     }
 
-    private fun subscribe() {
-
-        viewModel.dataSource.observe(this, Observer {
+    override fun subscribe() {
+        viewModel.dataSource.observeNonNull(viewLifecycleOwner) {
             it.forEach(this::addSection)
-        })
+        }
 
     }
 

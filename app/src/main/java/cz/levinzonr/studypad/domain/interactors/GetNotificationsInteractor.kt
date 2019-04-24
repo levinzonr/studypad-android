@@ -8,7 +8,7 @@ class GetNotificationsInteractor(private val api: Api) : BaseInteractor<List<Not
 
     override suspend fun executeOnBackground(): List<Notification> {
         return api.getLatestNotificationsAsync().await().map {
-            Notification(it.id, NotificationType.valueOf(it.type.capitalize()), it.read, it.notebookId, it.body, it.createdAt)
+            Notification(it.id, NotificationType.valueOf(it.type.capitalize()), it.read, it.notebookInfo.notebookId, it.body, it.createdAt)
         }
     }
 }
