@@ -4,7 +4,7 @@ Goal: Most Modern Android App Possible ( Tech wise )
 
 # Project Description
 
-Currenty project consists of 4 apps, on of them being Android application and other being Spring REST API. Both written in Kotlin
+Currenty project consists of 4 apps, on of them being Android application and the other - spring REST API. Both written in Kotlin
 
 ## Technical Description
 
@@ -25,7 +25,6 @@ App will communicate with different services, including third parties services
  - Google Auth will be used to easily authenticate users
  - Facebook Auth will be used to easily authenticate users
  - Firebase Cloud Messaging for PUSH notifications implementation
- - Firebase Realtime database/ Firebase Firestore as a secondary backend service
 
 
 ### Android Related Description (Go Go Jetpack)
@@ -34,7 +33,7 @@ App will communicate with different services, including third parties services
 - `Android Navigation Component` is used for Navigation
 - `ViewModel` as ViewModel ..
 - `Koin` for dependency injection
-- Heavy usage of `Kotlin Coroutines`
+- `Kotlin Coroutines` for async calls
 - `LiveData` as main app state holder
 - `Material Design v2`
 
@@ -58,7 +57,7 @@ An example of learning features: *As an app user I want to take advantages of Ch
 - Login/Register using Email
 - Authentication using Facebook
 - Authentication using Google
-- Account Edition
+- Profile edits
 - Access to content using deep links
 -Challenges
 
