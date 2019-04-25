@@ -65,6 +65,12 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
         progressBar.setVisible(isLoading)
     }
 
+    override fun showNetworkUnavailableError() {
+        progressBar.setVisible(false)
+        emptyView.configureAsNetworkError()
+        emptyView.setVisible(true)
+    }
+
     private fun setupListeners() {
 
         searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->

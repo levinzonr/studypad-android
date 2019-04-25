@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import cz.levinzonr.studypad.BuildConfig
 
@@ -30,6 +31,10 @@ class AboutFragment : Fragment() {
         appVersionTv.text = "Version ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
         aboutLicenceBtn.setOnClickListener {
             startActivity( Intent(context, OssLicensesMenuActivity::class.java))
+        }
+
+        aboutFeedbackBtn.setOnClickListener {
+            findNavController().navigate(AboutFragmentDirections.actionAboutFragmentToSendFeedbackFragment())
         }
 
     }

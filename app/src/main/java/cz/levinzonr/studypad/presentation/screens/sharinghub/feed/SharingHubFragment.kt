@@ -54,6 +54,11 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
 
     }
 
+    override fun showNetworkUnavailableError() {
+        emptyView.configureAsNetworkError()
+        sectionContainer.setVisible(false)
+        emptyView.setVisible(true)
+    }
 
     override fun handleNotification(type: NotificationType, notificationPayload: NotificationPayload) {
         Timber.d("Handle $type")
@@ -74,6 +79,8 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
 
     override fun subscribe() {
         viewModel.dataSource.observeNonNull(viewLifecycleOwner) {
+            emptyView.setVisible(false)
+            sectionContainer.setVisible(true)
             it.forEach(this::addSection)
         }
 

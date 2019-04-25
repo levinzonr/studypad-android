@@ -3,6 +3,7 @@
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.presentation.screens.about.feedback.SendFeedbackViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesOverviewViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.challenge.ChallengeViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewModel
@@ -99,5 +100,7 @@ val viewModelModule = module {
     viewModel { (setup: SetupChallengeViewState) -> ChallengeViewModel(get(), get(), setup) }
 
     viewModel { ChallengesOverviewViewModel(get()) }
+
+    viewModel { SendFeedbackViewModel(get()) }
 
 }

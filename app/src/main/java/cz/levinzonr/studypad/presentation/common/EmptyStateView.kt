@@ -27,6 +27,9 @@ class EmptyStateView @JvmOverloads constructor(context: Context, attributeSet: A
         val title = titleRes?.let(context::getString)
         val message = messageRes?.let(context::getString)
         configure(title, message, imageRes)
+    }
 
+    fun configureAsNetworkError() {
+        configure("You're offline", "Please check your internet connection", R.drawable.ic_cloud_off_black_24dp)
     }
 }

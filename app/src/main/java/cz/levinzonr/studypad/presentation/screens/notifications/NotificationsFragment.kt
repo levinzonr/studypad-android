@@ -67,6 +67,12 @@ class NotificationsFragment : BaseFragment(), NotificationsAdapter.NotificationI
         emptyView.setVisible(!isLoading)
     }
 
+    override fun showNetworkUnavailableError() {
+        progressBar.setVisible(false)
+        emptyView.configureAsNetworkError()
+        emptyView.setVisible(true)
+    }
+
     override fun handleNotification(type: NotificationType, notificationPayload: NotificationPayload) {
         Timber.d("hndel $type")
         viewModel.refresh()
