@@ -23,7 +23,7 @@
             <TextView
                     android:text="@string/firebase_database_url"
                     android:gravity="center"
-                    android:id="@+id/questionText"
+                    android:id="@+id/answerText"
                     android:layout_margin="@dimen/space_big"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

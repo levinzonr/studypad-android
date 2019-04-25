@@ -63,14 +63,19 @@ class LearningChallengeFragment : BaseFragment(), LearningChallengeAdapter.Learn
         }
     }
 
-    override fun onRepeatButtonPressed(noteItem: ChallengesModels.NoteItem) {
-        viewModel.addWrongAnswer(noteItem)
+    override fun onProceedButton(noteItem: ChallengesModels.NoteItem) {
         val currentItem = viewPager.currentItem
+
         if (currentItem + 1 < adapter.itemCount) {
             viewPager.setCurrentItem(currentItem + 1, true)
         } else {
-
+            viewModel.onChallengeComplete()
         }
+    }
+
+    override fun onRepeatButtonPressed(noteItem: ChallengesModels.NoteItem) {
+        viewModel.addWrongAnswer(noteItem)
+        val currentItem = viewPager.currentItem
     }
 
     companion object {

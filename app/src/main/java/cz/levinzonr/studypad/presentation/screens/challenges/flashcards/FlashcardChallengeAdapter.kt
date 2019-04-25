@@ -3,7 +3,6 @@ package cz.levinzonr.studypad.presentation.screens.challenges.flashcards
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.layoutInflater
@@ -49,7 +48,7 @@ class FlashcardChallengeAdapter(private val listener: LearningChallengeAdapterLi
 
         fun bindView(noteItem: ChallengesModels.NoteItem) {
             Timber.d("Bind View: $noteItem")
-            view.questionText.text = noteItem.question
+            view.answerText.text = noteItem.question
             view.answerText.text = noteItem.answer
 
             if (revealed.contains(noteItem)) {
