@@ -15,8 +15,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class UserManagerImpl(private val api: Api,
-                      private val preferencesRepository: UserPreferencesRepository,
+class UserManagerImpl(private val preferencesRepository: UserPreferencesRepository,
                       private val localeRepository: LocaleRepository,
                       private val tokenRepository: TokenRepository,
                       private val searchHistoryRepository: SearchHistoryRepository,
@@ -25,49 +24,15 @@ class UserManagerImpl(private val api: Api,
 
     private val firebaseAuth = FirebaseAuth.getInstance()
 
-    override suspend fun login(email: String, password: String) {
-        val result = firebaseAuth.loginWithPassword(email, password)
-        val userToken = result.user.getCurrentToken() ?: return
-        Timber.d("user tokent $userToken")
-        val response = api.loginAsync(userToken.token!!).await()
-        afterLogin(userToken.token!!, userToken.expirationTimestamp, response)
-    }
-
-    override suspend fun loginViaFacebook(token: String) : UserProfile {
-        val credentials = FacebookAuthProvider.getCredential(token)
-        val authResult =  firebaseAuth.loginWithCredentials(credentials)!!
-        val userToken = authResult.user.getCurrentToken()!!
-        val response = api.loginAsync(userToken.token!!).await()
-        afterLogin(userToken.token!!, userToken.expirationTimestamp, response)
-        return response
-    }
-
-    override suspend fun loginViaGoogle(token: String): UserProfile {
-        val credential = GoogleAuthProvider.getCredential(token, null)
-        val authResult =  firebaseAuth.loginWithCredentials(credential)!!
-        val userToken = authResult.user.getCurrentToken()!!
-        val response = api.loginAsync(userToken.token!!).await()
-        return afterLogin(userToken.token!!, userToken.expirationTimestamp, response)
-    }
-
-    override suspend fun createAccount(email: String, password: String, firstName: String, lasName: String) : UserProfile {
-        val request = CreateAccountRequest(firstName, lasName, email, password)
-        val response =  api.createAccountAsync(request).await()
-        val result = firebaseAuth.loginWihtCustomToken(response.token)!!
-
-        val userToken = result.user.getCurrentToken()!!
-        return afterLogin(userToken.token!!, userToken.expirationTimestamp, response.user)
-    }
-
     override fun isLoggedIn(): Boolean {
         return tokenRepository.getToken() != null
     }
 
-    private fun afterLogin(token: String, tokenExpiration: Long, userProfile: UserProfile) : UserProfile {
-        tokenRepository.saveToken(token, tokenExpiration)
+
+    override fun afterSuccessfulLogin(userProfile: UserProfile, token: String) {
+        tokenRepository.saveToken(token, -1)
         userProfileRepository.saveUserProfile(userProfile)
         setNotificationsEnabled(true)
-        return userProfile
     }
 
     override fun getCurrentUserInfo(): CurrentUserInfo? {
@@ -99,49 +64,4 @@ class UserManagerImpl(private val api: Api,
         localeRepository.clear()
     }
 
-    private suspend fun FirebaseAuth.loginWithPassword(email: String, password: String) : AuthResult {
-        return suspendCoroutine { cont ->
-            signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener { cont.resume(it) }
-                .addOnFailureListener { cont.resumeWithException(it) }
-        }
-    }
-
-    private suspend fun FirebaseAuth.loginWihtCustomToken(token: String) : AuthResult? {
-        return suspendCoroutine { cont ->
-            signInWithCustomToken(token)
-                .addOnCompleteListener {
-                    if (it.isComplete && it.isSuccessful) {
-                        cont.resume(it.result)
-                    } else {
-                        cont.resume(null)
-                    }
-                }
-        }
-    }
-
-    private suspend fun FirebaseAuth.loginWithCredentials(credential: AuthCredential) : AuthResult? {
-        return suspendCoroutine { cont ->
-            signInWithCredential(credential)
-                .addOnCompleteListener {
-                    Timber.d("${it.isSuccessful} ${it.isComplete} ${it.exception} ")
-                    if (it.isComplete && it.isSuccessful) {
-                        cont.resume(it.result)
-                    } else {
-                        cont.resume(null)
-                    }
-                }
-        }
-    }
-
-    private suspend fun FirebaseUser.getCurrentToken() : GetTokenResult? {
-        return suspendCoroutine {cont ->
-            getIdToken(true)
-                .addOnSuccessListener { cont.resume(it) }
-                .addOnFailureListener {
-                    Timber.d("Fail: $it")
-                    cont.resume(null) }
-
-        }
-    }
 }

@@ -1,11 +1,13 @@
 package cz.levinzonr.studypad.domain.interactors.keychain
 
+import cz.levinzonr.studypad.domain.interactors.BaseInputInteractor
 import cz.levinzonr.studypad.domain.interactors.BaseInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.UserProfile
+import cz.levinzonr.studypad.domain.repository.KeychainRepository
 import java.lang.Exception
 
-class SignupInteractor(private val userManager: UserManager) : BaseInteractor<UserProfile>(){
+class SignupInteractor(private val repository: KeychainRepository) : BaseInputInteractor<SignupInteractor.Input, UserProfile>(){
 
     data class Input(val firstName: String,
                      val lastName: String,
@@ -13,10 +15,7 @@ class SignupInteractor(private val userManager: UserManager) : BaseInteractor<Us
                      val password: String)
 
 
-    var input: Input? = null
-
-    override suspend fun executeOnBackground() : UserProfile {
-        val it = input ?: throw Exception()
-        return userManager.createAccount(it.email, it.password, it.firstName, it.lastName)
+    override suspend fun executeOnBackground(input: Input): UserProfile {
+        return repository.createAccount(input.email, input.password, input.firstName, input.lastName)
     }
 }

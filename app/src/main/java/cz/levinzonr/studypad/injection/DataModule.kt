@@ -36,5 +36,7 @@ val repositoryModule = module {
     single<UserPreferencesRepository> { UserPreferencesRepositoryImpl(get())  }
 
     single<ChallengesRepository> { ChallengesRepositoryImpl(get<AppDatabase>().challengesDao()) }
+
+    single<KeychainRepository>{ KeychainRepositoryImpl(get(), get()) }
 }
 

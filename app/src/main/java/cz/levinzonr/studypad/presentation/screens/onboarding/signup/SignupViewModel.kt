@@ -36,9 +36,6 @@ class SignupViewModel(
     var university: University? = null
 
 
-    val accountCreatedSuccessEvent: MutableLiveData<Event<Boolean>> = MutableLiveData()
-    val universitiesLiveData = MutableLiveData<List<University>>()
-    val universitySelectedEvent = MutableLiveData<SingleLiveEvent>()
 
     val validAccountInfoEvent = MutableLiveData<Boolean>()
 
@@ -51,12 +48,11 @@ class SignupViewModel(
     fun createAccount() {
         if (validateCredentials()) {
             toggleLoading(true)
-            signupInteractor.input = SignupInteractor.Input(firstName, lastName, email, password)
-            signupInteractor.execute {
+            signupInteractor.executeWithInput( SignupInteractor.Input(firstName, lastName, email, password)) {
                 onComplete {
                     toggleLoading(false)
                     Timber.d("Firebase token: $it")
-                    accountCreatedSuccessEvent.call(it.newUser)
+                    navigateTo(CredentialsInfoFragmentDirections.actionCredentialsInfoFragmentToAccountCreatedFragment())
                 }
                 onError {
 

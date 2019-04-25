@@ -65,10 +65,8 @@ class LoginViewModel(
     fun login() {
 
         if (allFieldsValid()) {
-
-            loginInteractor.input = LoginInteractor.Input(email, password)
             toggleLoading(true)
-            loginInteractor.execute {
+            loginInteractor.executeWithInput(LoginInteractor.Input(email, password)) {
                 onComplete {
                     toggleLoading(false)
                     showLoginSuccess(false)
