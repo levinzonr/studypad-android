@@ -15,7 +15,6 @@ import androidx.annotation.NonNull
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import cz.levinzonr.studypad.dp
-import cz.levinzonr.studypad.presentation.adapters.SuggestionsAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.review_status_bottom_sheet.*

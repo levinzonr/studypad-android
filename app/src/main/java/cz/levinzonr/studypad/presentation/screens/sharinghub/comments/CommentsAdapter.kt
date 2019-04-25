@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.adapters
+package cz.levinzonr.studypad.presentation.screens.sharinghub.comments
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,9 @@ import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import kotlinx.android.synthetic.main.item_comment.view.*
 import timber.log.Timber
 
-class CommentsAdapter(val listener: CommentsItemListener, val authorId: String? = null) : ListAdapter<PublishedNotebook.Comment, CommentsAdapter.ViewHolder>(DiffCallback()) {
+class CommentsAdapter(val listener: CommentsItemListener, val authorId: String? = null) : ListAdapter<PublishedNotebook.Comment, CommentsAdapter.ViewHolder>(
+    DiffCallback()
+) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

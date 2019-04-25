@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.adapters
+package cz.levinzonr.studypad.presentation.screens.library.publish
 
 import android.view.LayoutInflater
 import android.view.View

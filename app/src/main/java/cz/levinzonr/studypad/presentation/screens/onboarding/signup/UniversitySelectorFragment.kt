@@ -2,23 +2,18 @@ package cz.levinzonr.studypad.presentation.screens.onboarding.signup
 
 import android.os.Bundle
 import android.view.*
-import android.widget.SearchView
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.baseActivity
 import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.onQueryTextChanged
-import cz.levinzonr.studypad.presentation.adapters.UniversityAdapter
-import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
 import cz.levinzonr.studypad.presentation.common.ToolbarSpaceDecoration
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_university_selector.*
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 

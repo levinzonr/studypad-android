@@ -5,14 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notification
-import cz.levinzonr.studypad.first
 import cz.levinzonr.studypad.notifications.NotificationPayload
 import cz.levinzonr.studypad.observeNonNull
-import cz.levinzonr.studypad.presentation.adapters.NotificationsAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
 import cz.levinzonr.studypad.setVisible

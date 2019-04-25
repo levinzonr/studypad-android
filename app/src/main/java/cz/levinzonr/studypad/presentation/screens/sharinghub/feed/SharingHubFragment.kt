@@ -3,25 +3,17 @@ package cz.levinzonr.studypad.presentation.screens.sharinghub.feed
 import android.os.Bundle
 import android.view.*
 import android.widget.LinearLayout
-import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.*
 
-import cz.levinzonr.studypad.data.SectionResponse
 import cz.levinzonr.studypad.domain.models.*
 import cz.levinzonr.studypad.notifications.NotificationPayload
-import cz.levinzonr.studypad.presentation.adapters.NotificationsAdapter
-import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
-import cz.levinzonr.studypad.presentation.adapters.SearchEntryAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
-import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationsFragment
 import kotlinx.android.synthetic.main.fragment_shared.*
 import kotlinx.android.synthetic.main.view_section.view.*
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
 
@@ -91,7 +83,8 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
     }
 
     private fun addSection(section: Section) {
-        val adapter = PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Short)
+        val adapter =
+            PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Short)
         val sectionView = LayoutInflater.from(context).inflate(R.layout.view_section, null, false)
         when (section.type) {
             SectionType.UNKNOWN -> {

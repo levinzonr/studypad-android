@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.adapters
+package cz.levinzonr.studypad.presentation.screens.onboarding.signup
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.models.Locale
 import cz.levinzonr.studypad.domain.models.University
 import kotlinx.android.synthetic.main.item_university.view.*
 
-class UniversityAdapter : ListAdapter<University, UniversityAdapter.ViewHolder>(TaskDiffCallback()) {
+class UniversityAdapter : ListAdapter<University, UniversityAdapter.ViewHolder>(
+    TaskDiffCallback()
+) {
 
 
     var onUniversitySelected: (University) -> Unit = {}

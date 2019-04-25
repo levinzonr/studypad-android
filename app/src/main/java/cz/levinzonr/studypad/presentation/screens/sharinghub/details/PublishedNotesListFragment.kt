@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
-import cz.levinzonr.studypad.presentation.adapters.NotesAdapter
+import cz.levinzonr.studypad.presentation.screens.library.notes.NotesAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_published_notes_list.*
 import org.koin.android.ext.android.inject

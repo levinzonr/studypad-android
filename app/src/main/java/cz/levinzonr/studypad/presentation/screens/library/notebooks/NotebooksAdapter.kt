@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.adapters
+package cz.levinzonr.studypad.presentation.screens.library.notebooks
 
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater

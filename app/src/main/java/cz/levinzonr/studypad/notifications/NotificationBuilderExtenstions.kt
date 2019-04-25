@@ -10,8 +10,7 @@ fun String.notificationType() : NotificationType {
 }
 
 fun NotificationCompat.Builder.setTitle(context: Context, payload: NotificationPayload?) : NotificationCompat.Builder {
-    val type = payload?.type?.notificationType() ?: return setContentTitle("")
-    return when(type) {
+    return when(payload?.type?.notificationType() ?: return setContentTitle("")) {
         NotificationType.Comment -> setContentTitle("New comment")
         NotificationType.Update -> setContentTitle("Notebook update")
         NotificationType.Suggestion -> setContentTitle("Notebook suggestion")
@@ -19,8 +18,7 @@ fun NotificationCompat.Builder.setTitle(context: Context, payload: NotificationP
 }
 
 fun NotificationCompat.Builder.setMessage(context: Context, payload: NotificationPayload?) : NotificationCompat.Builder {
-    val type = payload?.type?.notificationType() ?: return setContentText("")
-    return when(type) {
+    return when(payload?.type?.notificationType() ?: return setContentText("")) {
         NotificationType.Comment -> setContentText("New comment left on your ${payload.notebookInfo.notebookName} notebook")
         NotificationType.Update -> setContentText("New version of the ${payload.notebookInfo.notebookName} notebooks available")
         NotificationType.Suggestion -> setContentText("Your ${payload.notebookInfo.notebookName} notebook got a new suggestion")

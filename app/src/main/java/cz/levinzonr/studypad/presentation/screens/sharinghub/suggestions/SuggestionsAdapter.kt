@@ -1,6 +1,5 @@
-package cz.levinzonr.studypad.presentation.adapters
+package cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions
 
-import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,14 +8,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.models.PublishedNotebook
-import cz.levinzonr.studypad.layoutInflater
 import cz.levinzonr.studypad.loadAuthorImage
-import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.SuggestionsModels
 import cz.levinzonr.studypad.setSpannableText
 import kotlinx.android.synthetic.main.item_suggestion.view.*
 
-class SuggestionsAdapter : ListAdapter<SuggestionsModels.SuggestionItem, SuggestionsAdapter.ViewHolder>(DiffCalback()) {
+class SuggestionsAdapter : ListAdapter<SuggestionsModels.SuggestionItem, SuggestionsAdapter.ViewHolder>(
+    DiffCalback()
+) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

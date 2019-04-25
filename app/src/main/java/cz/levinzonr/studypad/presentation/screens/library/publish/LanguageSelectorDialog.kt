@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Locale
-import cz.levinzonr.studypad.presentation.adapters.LanguagesAdapter
 import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
 import kotlinx.android.synthetic.main.fragment_language_selector_dialog.*
 import org.koin.android.ext.android.inject

@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.adapters
+package cz.levinzonr.studypad.presentation.screens.library.publish
 
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,9 @@ import cz.levinzonr.studypad.layoutInflater
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.item_language.view.*
 
-class LanguagesAdapter(val listener: LanguageItemListener) : ListAdapter<Locale, LanguagesAdapter.ViewHolder>(TaskDiffCallback()) {
+class LanguagesAdapter(val listener: LanguageItemListener) : ListAdapter<Locale, LanguagesAdapter.ViewHolder>(
+    TaskDiffCallback()
+) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

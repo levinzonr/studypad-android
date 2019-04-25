@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
-import cz.levinzonr.studypad.presentation.adapters.NotesAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.setVisible
 import cz.levinzonr.studypad.supportActionBar

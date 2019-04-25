@@ -10,16 +10,14 @@ import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.models.InteractorResult
 
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
-import cz.levinzonr.studypad.presentation.adapters.PublishedNotebooksAdapter
+import cz.levinzonr.studypad.presentation.screens.sharinghub.feed.PublishedNotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.ToolbarSpaceDecoration
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialog
-import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchDialog
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
 import cz.levinzonr.studypad.presentation.screens.selectors.MultipleTopicsSelector
 import kotlinx.android.synthetic.main.fragment_notebooks_search.*
-import kotlinx.android.synthetic.main.fragment_notebooks_search.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
@@ -41,7 +39,8 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter = PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Full)
+        adapter =
+            PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Full)
         resultsRv.adapter = adapter
         adapter.listener = this
 

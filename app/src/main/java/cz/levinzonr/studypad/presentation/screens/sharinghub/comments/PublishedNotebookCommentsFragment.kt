@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.messaging.FirebaseMessaging
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
-import cz.levinzonr.studypad.onHandle
-import cz.levinzonr.studypad.presentation.adapters.CommentsAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_published_notebook_comments.*
 import org.koin.android.ext.android.inject
@@ -26,7 +23,6 @@ import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
 import cz.levinzonr.studypad.presentation.screens.sharinghub.PublishedNotebookOptionsMenu
-import java.lang.Exception
 
 
 class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.CommentsItemListener, BackButtonHandler, NotificationHandler {

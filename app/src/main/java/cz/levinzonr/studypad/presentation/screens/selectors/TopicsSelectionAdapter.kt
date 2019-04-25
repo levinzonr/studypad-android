@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.adapters
+package cz.levinzonr.studypad.presentation.screens.selectors
 
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,9 @@ import cz.levinzonr.studypad.layoutInflater
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.item_topic_selection.view.*
 
-class TopicsSelectionAdapter(private val listener: TopicSelectionListener) : ListAdapter<Topic, TopicsSelectionAdapter.ViewHolder>(DiffCallback()) {
+class TopicsSelectionAdapter(private val listener: TopicSelectionListener) : ListAdapter<Topic, TopicsSelectionAdapter.ViewHolder>(
+    DiffCallback()
+) {
 
     var selected: ArrayList<Topic> = arrayListOf()
 

@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.levinzonr.studypad.*
 
 import cz.levinzonr.studypad.domain.models.Notebook
-import cz.levinzonr.studypad.presentation.adapters.NotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.ToolbarSpaceDecoration
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration

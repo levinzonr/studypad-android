@@ -2,7 +2,6 @@ package cz.levinzonr.studypad.presentation.screens.selectors
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import androidx.lifecycle.Observer
 
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Topic
-import cz.levinzonr.studypad.presentation.adapters.TopicsSelectionAdapter
 import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
 import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchViewModel
 import kotlinx.android.synthetic.main.fragment_multiple_topics_selector.*

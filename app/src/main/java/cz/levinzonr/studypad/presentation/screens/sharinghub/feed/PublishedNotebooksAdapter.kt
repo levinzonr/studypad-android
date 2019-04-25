@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.adapters
+package cz.levinzonr.studypad.presentation.screens.sharinghub.feed
 
 import android.view.View
 import android.view.ViewGroup

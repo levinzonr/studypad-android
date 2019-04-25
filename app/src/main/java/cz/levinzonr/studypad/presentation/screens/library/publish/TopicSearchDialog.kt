@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Topic
 import cz.levinzonr.studypad.onQueryTextChanged
-import cz.levinzonr.studypad.presentation.adapters.TopicsAdapter
 import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
 import kotlinx.android.synthetic.main.dialog_topic_search.view.*
 import org.koin.android.ext.android.inject

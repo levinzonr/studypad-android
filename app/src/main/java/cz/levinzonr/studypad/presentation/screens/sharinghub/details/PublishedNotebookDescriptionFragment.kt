@@ -13,7 +13,6 @@ import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.State
 import cz.levinzonr.studypad.notifications.NotificationPayload
-import cz.levinzonr.studypad.presentation.adapters.NotePreviewAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
@@ -96,7 +95,8 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         publishedBookSchoolTv.shownText = detail.university?.fullName
 
 
-        publishedBookNotesRv.adapter = NotePreviewAdapter(detail.notes, this)
+        publishedBookNotesRv.adapter =
+            NotePreviewAdapter(detail.notes, this)
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
 
         publishBookDateTv.text = "last updated: ${detail.lastUpdate.formatTime()}"

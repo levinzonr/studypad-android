@@ -1,7 +1,6 @@
-package cz.levinzonr.studypad.presentation.adapters
+package cz.levinzonr.studypad.presentation.screens.notifications
 
 import android.content.res.ColorStateList
-import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -9,15 +8,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.models.Color
 import cz.levinzonr.studypad.domain.models.Notification
 import cz.levinzonr.studypad.formatTime
 import cz.levinzonr.studypad.layoutInflater
-import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.item_notification.view.*
 
-class NotificationsAdapter(private val listener: NotificationsAdapter.NotificationItemsListener) : ListAdapter<Notification, NotificationsAdapter.ViewHolder>(DiffCallback()) {
+class NotificationsAdapter(private val listener: NotificationItemsListener) : ListAdapter<Notification, NotificationsAdapter.ViewHolder>(
+    DiffCallback()
+) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

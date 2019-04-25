@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.adapters
+package cz.levinzonr.studypad.presentation.screens.sharinghub.details
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
-import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.layoutInflater
 import kotlinx.android.synthetic.main.item_note_preview.view.*
 import kotlinx.android.synthetic.main.item_show_all.view.*
