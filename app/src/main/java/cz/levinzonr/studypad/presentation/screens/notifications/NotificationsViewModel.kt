@@ -27,6 +27,7 @@ class NotificationsViewModel(
                 toggleLoading(false)
                 notifications.postValue(list)
             }
+            onError { handleApplicationError(it) }
         }
     }
 
@@ -41,6 +42,7 @@ class NotificationsViewModel(
             onComplete {
                 refresh()
             }
+            onError { handleApplicationError(it) }
         }
     }
 

@@ -47,8 +47,8 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
         val schedyked = LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentText(message.notification?.body ?: "")
-            .setContentTitle(message.notification?.title ?: "")
+            .setTitle(this, payload)
+            .setMessage(this, payload)
             .setContentIntent(getPendingIntent(message))
             .setSmallIcon(R.drawable.ic_sync_black_24dp)
             .setChannelId(CHANNEL_ID)
@@ -57,6 +57,7 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (!schedyked && notificationsEnabled) manager.notify(1, notification)
     }
+
 
     private fun getPendingIntent(message: RemoteMessage): PendingIntent? {
         val notification = extractPayload(message) ?: return null

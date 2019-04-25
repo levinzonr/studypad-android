@@ -30,6 +30,7 @@ class UniversitySelectorViewModel(private val getUniversitiesInteractor: GetUniv
                     stateLiveData.postValue(stateLiveData.value?.copy(universities = it, empty = false))
                 }
                 onError {
+
                 }
             }
         }

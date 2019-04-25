@@ -42,6 +42,7 @@ class PublishedNotebookCommentsViewModel(
             onComplete {
                 loadComments()
             }
+            onError { handleApplicationError(it) }
         }
     }
 
@@ -50,6 +51,7 @@ class PublishedNotebookCommentsViewModel(
             onComplete {
                 loadComments()
             }
+            onError { handleApplicationError(it) }
         }
     }
 
@@ -58,6 +60,7 @@ class PublishedNotebookCommentsViewModel(
             onComplete {
                 loadComments()
             }
+            onError { handleApplicationError(it) }
         }
     }
 }

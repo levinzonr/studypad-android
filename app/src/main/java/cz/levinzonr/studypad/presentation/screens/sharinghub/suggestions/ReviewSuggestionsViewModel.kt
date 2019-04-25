@@ -62,6 +62,7 @@ class ReviewSuggestionsViewModel(
             val input = SubmitReviewInteractor.Input(notebbokId, rejected, approved)
             submitReviewInteractor.executeWithInput(input) {
                 onComplete { navigateBack() }
+                onError { handleApplicationError(it) }
             }
         }
     }

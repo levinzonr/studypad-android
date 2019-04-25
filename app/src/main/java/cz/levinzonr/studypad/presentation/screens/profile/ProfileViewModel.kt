@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.domain.interactors.GetUserProfileInteractor
 import cz.levinzonr.studypad.domain.interactors.keychain.LogoutInteractor
 import cz.levinzonr.studypad.domain.interactors.keychain.UpdateUserInteractor
+import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.domain.models.UserProfile
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
@@ -12,7 +13,7 @@ import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import cz.levinzonr.studypad.presentation.screens.Flow
 
 class ProfileViewModel(
-    private val updateUserInteractor: UpdateUserInteractor,
+    private val userManager: UserManager,
     private val getUserProfileInteractor: GetUserProfileInteractor,
     private val logoutInteractor: LogoutInteractor
 ) : BaseViewModel() {
@@ -25,21 +26,6 @@ class ProfileViewModel(
 
     val profileLiveData = MutableLiveData<UserProfile>()
 
-    fun logout() {
-
-        logoutInteractor.execute {
-            onComplete {
-                changeFlow(Flow.ONBOARDING)
-            }
-        }
-    }
-
-    fun updateUniversity(university: University) {
-        updateUserInteractor.input = UpdateUserInteractor.Input(university)
-        updateUserInteractor.execute {
-            onComplete { loadProfile() }
-        }
-    }
 
     fun onNotificationsButtonClicked() {
         navigateTo(ProfileFragmentDirections.actionProfileFragmentToNotificationsFragment())
@@ -52,6 +38,7 @@ class ProfileViewModel(
     fun loadProfile() {
         getUserProfileInteractor.execute {
             onComplete { profileLiveData.postValue(it) }
+            onError { handleApplicationError(it) }
         }
     }
 

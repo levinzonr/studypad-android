@@ -54,6 +54,7 @@ class PublishedNotebookDetailViewModel(
                 updated.call()
                 refreshAll()
             }
+            onError { handleApplicationError(it) }
         }
     }
 
@@ -63,6 +64,7 @@ class PublishedNotebookDetailViewModel(
                 stateLiveData.postValue(State.UpToDate)
                 sharedDetailLiveData.postValue(it)
             }
+            onError { handleApplicationError(it) }
         }
     }
 
@@ -74,7 +76,6 @@ class PublishedNotebookDetailViewModel(
                 modifications.toTypedArray(),
                 notes.toTypedArray(),
                 notebookId
-
             )
         )
     }

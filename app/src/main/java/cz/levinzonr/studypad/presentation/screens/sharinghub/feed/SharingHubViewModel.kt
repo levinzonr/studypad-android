@@ -26,7 +26,7 @@ class SharingHubViewModel(
                 dataSource.postValue(it.map { sectionResponse ->  sectionResponse.toDomain() })
             }
             onError {
-
+                handleApplicationError(it)
             }
         }
 

@@ -8,6 +8,7 @@ import cz.levinzonr.studypad.call
 import cz.levinzonr.studypad.domain.models.ApplicationError
 import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.events.Event
+import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import cz.levinzonr.studypad.presentation.screens.Flow
 import cz.levinzonr.studypad.presentation.screens.NavigationEvent
 
@@ -39,6 +40,18 @@ abstract class BaseViewModel : ViewModel() {
         viewStateLiveData.postValue(currentState.copy(isLoading = loading))
     }
 
+    protected fun showNetworkUnavailabe() {
+        val currentState = viewStateLiveData.value ?: BaseViewState()
+        viewStateLiveData.postValue(currentState.copy(networkError = SingleLiveEvent()))
+    }
+
+    protected open fun handleApplicationError(applicationError: ApplicationError) {
+        when(applicationError) {
+            is ApplicationError.NetworkError -> showNetworkUnavailabe()
+            is ApplicationError.ApiError -> showError(ViewError.ToastError(applicationError.message))
+            else -> showError(ViewError.ToastError("Unkown error"))
+        }
+    }
 
     protected fun navigateBack() {
         navigationEventLiveData.call(NavigationEvent.NavigateBack)

@@ -20,8 +20,10 @@ import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import timber.log.Timber
 import com.google.android.gms.common.api.ApiException
 import cz.levinzonr.studypad.domain.interactors.keychain.GoogleLoginInteractor
+import cz.levinzonr.studypad.domain.models.ApplicationError
 import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.screens.Flow
+import java.lang.Exception
 
 
 class LoginViewModel(
@@ -73,8 +75,11 @@ class LoginViewModel(
                     Timber.d("Success $it")
                 }
                 onError {
-                    showError(ViewError.DialogError("Login Error", "Error loggin in, try again"))
-                    Timber.d("Fail: $it")
+                    when(it) {
+                        is ApplicationError.NetworkError -> handleApplicationError(it)
+                        is ApplicationError.ApiError -> showError(ViewError.DialogError("Authentication Error", "Error proceeding reguest"))
+                        is ApplicationError.GenericError -> handleExceptionError(it.exception)
+                    }
                 }
             }
         }
@@ -103,8 +108,7 @@ class LoginViewModel(
             // Signed in successfully, show authenticated UI.
         } catch (e: ApiException) {
             Timber.d("Handle google result: $e")
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            handleExceptionError(e)
         }
 
     }
@@ -118,6 +122,11 @@ class LoginViewModel(
             }
             onError {
                 Timber.d("Error: $it")
+                when(it) {
+                    is ApplicationError.NetworkError -> handleApplicationError(it)
+                    is ApplicationError.ApiError -> showError(ViewError.DialogError("Authentication", "Error proceeding reguest"))
+                    is ApplicationError.GenericError -> handleExceptionError(it.exception)
+                }
             }
         }
     }
@@ -130,8 +139,20 @@ class LoginViewModel(
                     toggleLoading(false)
                     showLoginSuccess(it.newUser)
                 }
+                onError {
+                    toggleLoading(false)
+                    when(it) {
+                        is ApplicationError.NetworkError -> handleApplicationError(it)
+                        is ApplicationError.ApiError -> showError(ViewError.DialogError("Authentication", "Error proceeding reguest"))
+                        is ApplicationError.GenericError -> handleExceptionError(it.exception)
+                    }
+                }
             }
         }
+    }
+
+    private fun handleExceptionError(exception: Exception) {
+        Timber.d("Exceptiopn: $exception")
     }
 
     private fun allFieldsValid(): Boolean {

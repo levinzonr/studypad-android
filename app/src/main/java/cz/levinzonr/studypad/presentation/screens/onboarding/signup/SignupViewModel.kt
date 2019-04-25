@@ -5,12 +5,15 @@ import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.interactors.GetUniversitiesInteractor
 import cz.levinzonr.studypad.domain.interactors.keychain.SignupInteractor
 import cz.levinzonr.studypad.domain.interactors.keychain.UpdateUserInteractor
+import cz.levinzonr.studypad.domain.models.ApplicationError
 import cz.levinzonr.studypad.domain.models.University
+import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import cz.levinzonr.studypad.presentation.screens.Flow
 import timber.log.Timber
+import java.lang.Exception
 
 class SignupViewModel(
     private val updateUserInteractor: UpdateUserInteractor,
@@ -55,12 +58,19 @@ class SignupViewModel(
                     navigateTo(CredentialsInfoFragmentDirections.actionCredentialsInfoFragmentToAccountCreatedFragment())
                 }
                 onError {
-
-
+                    when(it) {
+                        is ApplicationError.NetworkError -> handleApplicationError(it)
+                        is ApplicationError.ApiError -> showError(ViewError.DialogError("Authentication", "Error proceeding reguest"))
+                        is ApplicationError.GenericError -> handleExceptionError(it.exception)
+                    }
                 }
 
             }
         }
+    }
+
+    private fun handleExceptionError(exception: Exception) {
+
     }
 
     fun updateUniversity(university: University) {
@@ -70,7 +80,7 @@ class SignupViewModel(
                 showMain()
             }
             onError {
-
+                handleApplicationError(it)
             }
         }
     }

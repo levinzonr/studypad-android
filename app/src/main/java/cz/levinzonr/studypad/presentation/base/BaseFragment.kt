@@ -52,6 +52,7 @@ abstract class BaseFragment : Fragment() {
             Timber.d("Base State: $state")
             showLoading(state.isLoading)
             state.error?.handle { showError(it) }
+            state.networkError?.handle { showNetworkUnavailableError() }
         }
 
 
@@ -79,6 +80,10 @@ abstract class BaseFragment : Fragment() {
             is ViewError.DialogError -> showSimpleDialog(viewError.title, viewError.message)
             is ViewError.ToastError -> showToast(viewError.message)
         }
+    }
+
+    open fun showNetworkUnavailableError() {
+        showToast("Error has occured, check your internet connection")
     }
 
     protected open fun showLoading(isLoading: Boolean) {

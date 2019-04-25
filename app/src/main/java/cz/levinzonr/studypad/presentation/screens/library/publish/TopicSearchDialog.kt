@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Topic
+import cz.levinzonr.studypad.onQueryTextChanged
 import cz.levinzonr.studypad.presentation.adapters.TopicsAdapter
 import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
 import kotlinx.android.synthetic.main.dialog_topic_search.view.*
@@ -43,6 +44,9 @@ class TopicSearchDialog : BottomSheetDialog(), TopicsAdapter.TopicListener {
         viewModel.getTopicsObservable().observe(viewLifecycleOwner, Observer {
             adapter.item = it
         })
+        searchView.onQueryTextChanged {
+            viewModel.filterTopics(it)
+        }
     }
 
 

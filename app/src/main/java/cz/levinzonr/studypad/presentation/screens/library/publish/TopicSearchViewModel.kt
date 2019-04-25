@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetTopicsInteractor
 import cz.levinzonr.studypad.domain.models.Topic
+import cz.levinzonr.studypad.presentation.base.BaseViewModel
 
-class TopicSearchViewModel(private val getTopicsInteractor: GetTopicsInteractor) : ViewModel() {
+class TopicSearchViewModel(private val getTopicsInteractor: GetTopicsInteractor) : BaseViewModel() {
 
     private val topicLiveData = MutableLiveData<List<Topic>>()
 
@@ -15,6 +16,7 @@ class TopicSearchViewModel(private val getTopicsInteractor: GetTopicsInteractor)
             onComplete {
                 topicLiveData.postValue(it)
             }
+            onError { handleApplicationError(it) }
         }
     }
 

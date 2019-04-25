@@ -48,6 +48,9 @@ class NotebookListViewModel(
             onComplete {
                Timber.d("Done")
             }
+            onError {
+                handleApplicationError(it)
+            }
         }
     }
 
@@ -59,6 +62,7 @@ class NotebookListViewModel(
                 onComplete {
                   Timber.d("Updated")
                 }
+                onError { handleApplicationError(it) }
             }
         }
     }
@@ -69,6 +73,7 @@ class NotebookListViewModel(
             onComplete {
                 Timber.d("Updated")
             }
+            onError { handleApplicationError(it) }
         }
     }
 
@@ -78,6 +83,7 @@ class NotebookListViewModel(
                 getNotebooksInteractor.execute {  }
                 notebookPublishedEven.call(it)
             }
+            onError { handleApplicationError(it) }
         }
     }
 

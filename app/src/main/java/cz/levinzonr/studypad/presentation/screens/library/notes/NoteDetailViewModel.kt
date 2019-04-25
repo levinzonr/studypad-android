@@ -56,6 +56,10 @@ class NoteDetailViewModel(
                 navigateBack()
             }
 
+            onError {
+                handleApplicationError(it)
+            }
+
         }
     }
 
@@ -75,6 +79,9 @@ class NoteDetailViewModel(
                 deleteNoteInteractor.executeWithInput(note.id) {
                     onComplete {
                         navigateBack()
+                    }
+                    onError {
+                        handleApplicationError(it)
                     }
                 }
             }
