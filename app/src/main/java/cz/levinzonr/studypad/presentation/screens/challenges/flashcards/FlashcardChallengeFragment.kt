@@ -23,7 +23,7 @@ class FlashcardChallengeFragment : BaseFragment(), FlashcardChallengeAdapter.Lea
 
     private val adapter: FlashcardChallengeAdapter by inject { parametersOf(this) }
 
-    override val viewModel: ChallengeViewModel by sharedViewModel()
+    override val viewModel: ChallengeViewModel<*> by sharedViewModel()
 
     private val questions: List<ChallengesModels.NoteItem> by lazy {
        val array = arguments?.getParcelableArrayList<ChallengesModels.NoteItem>(ARG_QUESTIONS)
@@ -37,7 +37,7 @@ class FlashcardChallengeFragment : BaseFragment(), FlashcardChallengeAdapter.Lea
             Timber.d("$position/${adapter.itemCount}")
             if (position == adapter.itemCount - 1) {
                 Timber.d("on complete")
-                viewModel.onChallengeComplete(false)
+                viewModel.handleChallengeFinish()
             }
         }
 

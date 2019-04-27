@@ -1,13 +1,63 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeFragment">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context="cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeFragment">
 
 
     <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
-</FrameLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttons"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+    <LinearLayout
+            android:id="@+id/buttons"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+                style="@style/Button.Primary"
+                android:text="Study Again"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/space_large"
+                android:layout_height="wrap_content"
+                android:id="@+id/repeatButton"
+                android:backgroundTint="@color/red"/>
+
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/knowButton"
+                android:layout_weight="1"
+                style="@style/Button.Primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="@dimen/space_large"
+                android:text="I know that!"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green"/>
+
+        <com.google.android.material.button.MaterialButton
+                style="@style/Button.Primary"
+                android:text="Proceed"
+                android:layout_weight="1"
+                android:id="@+id/continueBtn"
+                android:layout_margin="@dimen/space_big"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

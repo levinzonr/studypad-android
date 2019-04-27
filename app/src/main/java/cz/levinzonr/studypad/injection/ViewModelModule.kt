@@ -1,13 +1,18 @@
- package cz.levinzonr.studypad.injection
+package cz.levinzonr.studypad.injection
 
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.screens.about.feedback.SendFeedbackViewModel
+import cz.levinzonr.studypad.presentation.screens.challenges.ChallengeType
+import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesModels
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesOverviewViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.challenge.ChallengeViewModel
+import cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewState
+import cz.levinzonr.studypad.presentation.screens.challenges.write.WriteChallengeViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailModels
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailViewModel
@@ -36,7 +41,7 @@ import org.koin.dsl.module.module
 
 val viewModelModule = module {
 
-    viewModel  { NotebookListViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
+    viewModel { NotebookListViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
 
     viewModel { (id: String) -> NotesListViewModel(id, get(), get()) }
 
@@ -48,10 +53,19 @@ val viewModelModule = module {
 
     viewModel { (mode: NoteDetailModels.NoteViewMode) -> NoteDetailViewModel(mode, get(), get(), get(), get()) }
 
-    viewModel { (notebook: Notebook?, id: String?) -> PublishNotebookViewModel(notebook, id, get(),  get(), get(), get()) }
+    viewModel { (notebook: Notebook?, id: String?) ->
+        PublishNotebookViewModel(
+            notebook,
+            id,
+            get(),
+            get(),
+            get(),
+            get()
+        )
+    }
 
 
-    viewModel { (isPreviewMode: Boolean) -> NotificationsViewModel(isPreviewMode, get(), get())}
+    viewModel { (isPreviewMode: Boolean) -> NotificationsViewModel(isPreviewMode, get(), get()) }
 
     viewModel { SharingHubViewModel(get(), get()) }
 
@@ -81,7 +95,12 @@ val viewModelModule = module {
 
     viewModel { PublishedNotesListViewModel() }
 
-    viewModel { (notes: Array<Note>, suggestions: Array<PublishedNotebook.Modification>) -> NotebookSuggestionsViewModel(suggestions.toList(), notes.toList()) }
+    viewModel { (notes: Array<Note>, suggestions: Array<PublishedNotebook.Modification>) ->
+        NotebookSuggestionsViewModel(
+            suggestions.toList(),
+            notes.toList()
+        )
+    }
 
     viewModel { LanguageSelectorViewModel(get()) }
 
@@ -89,18 +108,34 @@ val viewModelModule = module {
 
     viewModel { (searchState: NotebookSearchModels.SearchState?) -> NotebooksSearchViewModel(searchState, get()) }
 
-    viewModel { (list: Array<PublishedNotebook.Modification>, notes: Array<Note>) -> ReviewSuggestionsViewModel(notes.toList(), list.toList(), get()) }
+    viewModel { (list: Array<PublishedNotebook.Modification>, notes: Array<Note>) ->
+        ReviewSuggestionsViewModel(
+            notes.toList(),
+            list.toList(),
+            get()
+        )
+    }
 
     viewModel { EditProfileViewModel(get(), get()) }
 
-    viewModel { SetupChallengeViewModel() }
+    viewModel<BaseViewModel> { SetupChallengeViewModel() }
 
-    viewModel { SettingsViewModel(get(), get() )}
+    viewModel { SettingsViewModel(get(), get()) }
 
-    viewModel { (setup: SetupChallengeViewState) -> ChallengeViewModel(get(), get(), setup) }
+    viewModel { (setup: SetupChallengeViewState) ->
+        when (setup.currentType) {
+            ChallengeType.Selfcheck -> LearningChallengeViewModel(get(), get(), setup)
+            ChallengeType.Write -> WriteChallengeViewModel(get(), get(), setup)
+            else -> WriteChallengeViewModel(get(), get(), setup)
+        }
+    }
+
+    viewModel { SetupChallengeViewModel()}
+
 
     viewModel { ChallengesOverviewViewModel(get()) }
 
     viewModel { SendFeedbackViewModel(get()) }
+
 
 }

@@ -1,3 +1,4 @@
+/*
 package cz.levinzonr.studypad.presentation.common
 
 import android.app.AlertDialog
@@ -48,4 +49,4 @@ class ProgressDialog : DialogFragment() {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return dialog
     }
-}
+}*/

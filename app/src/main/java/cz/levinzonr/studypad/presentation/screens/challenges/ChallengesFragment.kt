@@ -14,6 +14,7 @@ import cz.levinzonr.studypad.first
 import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.selectors.NotebookSelectorDialog
+import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_challenges.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,13 +38,15 @@ class ChallengesFragment : BaseFragment() {
     override fun subscribe() {
         viewModel.recentChallenges.observeNonNull(viewLifecycleOwner) { list ->
             adapter.submitList(list)
+            emptyView.setVisible(list.isEmpty())
+            sectinName.setVisible(!list.isEmpty())
         }
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        emptyView.configure("No challenges", "Time to start learning! Select a quick challenge or configure your own")
         adapter = ChallengesOverviewAdapter()
         challengesRv.adapter = adapter
 

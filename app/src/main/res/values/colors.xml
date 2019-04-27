@@ -15,14 +15,14 @@
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#ffffff</color>
     <color name="oragne">#FFA500</color>
-    <color name="red">#B00020</color>
     <color name="blue">#1976d2</color>
     <color name="white">#fff</color>
-    <color name="green">#32CD32</color>
 
     <color name="greyDivider">#1FFFFFFF</color>
     <color name="facebookBlue">#3B5998</color>
     <color name="lightGrey">#F0F0F0</color>
     <color name="greysih">#D3D3D3</color>
     <color name="grey">#A9A9A9</color>
+    <color name="green">#2E7D32</color>
+    <color name="red">#B71C1C</color>
 </resources>

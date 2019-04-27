@@ -2,6 +2,8 @@ package cz.levinzonr.studypad.domain.interactors
 
 
 
+import com.google.firebase.FirebaseException
+import com.google.firebase.FirebaseNetworkException
 import com.google.gson.Gson
 import cz.levinzonr.studypad.data.ErrorResponse
 import cz.levinzonr.studypad.domain.models.ApplicationError
@@ -57,7 +59,8 @@ abstract class BaseInteractor<T> {
                 val gson = Gson().fromJson<ErrorResponse>(errorBody, ErrorResponse::class.java)
                 return ApplicationError.ApiError(gson.message)
             }
-            is IOException -> ApplicationError.NetworkError
+            is IOException, is FirebaseNetworkException -> ApplicationError.NetworkError
+            is FirebaseException -> ApplicationError.ApiError(e.message.toString())
             else -> ApplicationError.ApiError("Else: $e")
         }
     }

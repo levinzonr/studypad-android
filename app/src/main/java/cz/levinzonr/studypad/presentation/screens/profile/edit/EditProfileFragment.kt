@@ -1,13 +1,11 @@
 package cz.levinzonr.studypad.presentation.screens.profile.edit
 import android.os.Bundle
 import android.view.*
-import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.loadAuthorImage
 import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.common.ProgressDialog
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
 import kotlinx.android.synthetic.main.fragment_edit_profile.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -58,7 +56,8 @@ class EditProfileFragment : BaseFragment() {
     }
 
     override fun showLoading(isLoading: Boolean) {
-        if (isLoading) ProgressDialog.show(childFragmentManager) else ProgressDialog.hide(childFragmentManager)
+        progressDialog?.getMessageTextView()?.text = "Applying changes..."
+        if (isLoading) progressDialog?.show() else progressDialog?.dismiss()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -42,7 +42,7 @@ abstract class BaseViewModel : ViewModel() {
 
     protected fun showNetworkUnavailabe() {
         val currentState = viewStateLiveData.value ?: BaseViewState()
-        viewStateLiveData.postValue(currentState.copy(networkError = SingleLiveEvent()))
+        viewStateLiveData.postValue(currentState.copy(isLoading = false, networkError = SingleLiveEvent()))
     }
 
     protected open fun handleApplicationError(applicationError: ApplicationError) {

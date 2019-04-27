@@ -22,7 +22,7 @@ class ChallengeCompleteFragment : BaseFragment() {
 
     private val args: ChallengeCompleteFragmentArgs by navArgs()
 
-    override val viewModel: ChallengeViewModel by sharedViewModel()
+    override val viewModel: ChallengeViewModel<*> by sharedViewModel()
 
 
     override fun onCreateView(
@@ -48,6 +48,10 @@ class ChallengeCompleteFragment : BaseFragment() {
         challengeCompleteTv.text = textType
         challengeCompleteBtnRepeat.setOnClickListener {
             viewModel.repeatChallenge()
+        }
+
+        challengeCompleteExitBtn.setOnClickListener {
+            activity?.onBackPressed()
         }
     }
 

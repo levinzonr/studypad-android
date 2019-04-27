@@ -59,50 +59,6 @@
     </com.csot.fliplayout.lib.FlipLayout>
 
 
-    <LinearLayout
-            android:id="@+id/buttons"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-        <com.google.android.material.button.MaterialButton
-                style="@style/Button.Primary"
-                android:text="Study Again"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_margin="@dimen/space_large"
-                android:layout_height="wrap_content"
-                android:id="@+id/repeatButton"
-                android:backgroundTint="#B71C1C"/>
-
-
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/knowButton"
-                android:layout_weight="1"
-                style="@style/Button.Primary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_margin="@dimen/space_large"
-                android:text="I know that!"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#2E7D32"/>
-
-        <com.google.android.material.button.MaterialButton
-                style="@style/Button.Primary
-"
-                android:text="Proceed"
-                android:layout_weight="1"
-                android:id="@+id/continueBtn"
-                android:layout_margin="@dimen/space_big"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-
-    </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

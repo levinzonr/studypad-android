@@ -16,6 +16,9 @@
         <action
                 android:id="@+id/action_challengeFragment2_to_learningChallengeFragment"
                 app:destination="@id/learningChallengeFragment"/>
+        <action
+                android:id="@+id/action_challengeFragment2_to_writeChallengeFragment"
+                app:destination="@id/writeChallengeFragment"/>
     </fragment>
     <fragment
             android:id="@+id/flashcardChallengeFragment2"
@@ -39,5 +42,14 @@
         <argument
                 android:name="stats"
                 app:argType="cz.levinzonr.studypad.presentation.screens.challenges.ChallengeStats"/>
+    </fragment>
+    <fragment
+            android:id="@+id/writeChallengeFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.challenges.write.WriteChallengeFragment"
+            android:label="fragment_write_challenge"
+            tools:layout="@layout/fragment_write_challenge">
+        <action
+                android:id="@+id/action_writeChallengeFragment_to_challengeCompleteFragment"
+                app:destination="@id/challengeCompleteFragment"/>
     </fragment>
 </navigation>

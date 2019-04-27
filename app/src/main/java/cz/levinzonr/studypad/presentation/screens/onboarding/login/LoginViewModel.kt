@@ -51,6 +51,7 @@ class LoginViewModel(
         }
 
         override fun onError(error: FacebookException?) {
+            showError(ViewError.DialogError("Auth Error", error?.localizedMessage ?: ""))
             Timber.d("Facebook Error ${error.toString()}")
         }
     }

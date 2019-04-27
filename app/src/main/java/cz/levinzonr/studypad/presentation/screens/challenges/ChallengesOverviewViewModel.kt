@@ -1,14 +1,18 @@
 package cz.levinzonr.studypad.presentation.screens.challenges
 
+import androidx.lifecycle.Transformations
 import cz.levinzonr.studypad.domain.models.ChallengeEntry
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.repository.ChallengesRepository
+import cz.levinzonr.studypad.first
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewState
 
 class ChallengesOverviewViewModel(private val repository: ChallengesRepository) : BaseViewModel()  {
 
-    val recentChallenges = repository.getRecentlyCompleted()
+    val recentChallenges = Transformations.map(repository.getRecentlyCompleted()) {
+        it.reversed().first(3)
+    }
 
 
     fun onConfigureChallengeClicked() {

@@ -35,7 +35,7 @@ class LearningChallengeAdapter(private val listener: LearningChallengeItemListen
 
         fun bindView(noteItem: ChallengesModels.NoteItem) {
 
-            view.questionText.text = noteItem.question
+        /*    view.questionText.text = noteItem.question
             view.answerText.text = noteItem.answer
 
 
@@ -62,7 +62,7 @@ class LearningChallengeAdapter(private val listener: LearningChallengeItemListen
                 listener.onRepeatButtonPressed(noteItem)
             }
             view.continueBtn.setOnClickListener { listener.onProceedButton(noteItem) }
-
+*/
         }
     }
 }

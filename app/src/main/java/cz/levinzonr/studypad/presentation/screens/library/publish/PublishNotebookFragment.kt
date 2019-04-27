@@ -10,7 +10,6 @@ import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.common.ProgressDialog
 import cz.levinzonr.studypad.presentation.screens.library.publish.steps.*
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
 import ernestoyaquello.com.verticalstepperform.listener.StepperFormListener

@@ -44,6 +44,11 @@ class CredentialsInfoFragment : BaseFragment() {
     }
 
 
+    override fun showLoading(isLoading: Boolean) {
+        progressDialog?.getMessageTextView()?.text = "Creating an account"
+        if (isLoading) progressDialog?.show() else progressDialog?.dismiss()
+    }
+
     private fun setupListeners() {
 
         credentialsInfoEmailEt.onTextChanged {

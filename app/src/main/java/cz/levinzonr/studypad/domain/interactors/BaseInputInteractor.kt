@@ -1,5 +1,6 @@
 package cz.levinzonr.studypad.domain.interactors
 
+import com.google.firebase.FirebaseNetworkException
 import cz.levinzonr.studypad.domain.models.ApplicationError
 import kotlinx.coroutines.*
 import retrofit2.HttpException
@@ -44,7 +45,7 @@ abstract class BaseInputInteractor<in I, O> {
                 val errorBody = e.response().body().toString() ?: "empty"
                 return ApplicationError.ApiError(errorBody)
             }
-            is IOException -> ApplicationError.NetworkError
+            is IOException, is FirebaseNetworkException -> ApplicationError.NetworkError
             else -> ApplicationError.ApiError("Else: $e")
         }
     }

@@ -14,7 +14,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import cz.levinzonr.studypad.presentation.common.ProgressDialog
 import cz.levinzonr.studypad.setVisible
 import timber.log.Timber
 
@@ -75,7 +74,8 @@ class LoginFragment : BaseFragment() {
     }
 
     override fun showLoading(isLoading: Boolean) {
-        if (isLoading) ProgressDialog.show(childFragmentManager, "Logging in...") else ProgressDialog.hide(childFragmentManager)
+        progressDialog?.getMessageTextView()?.text = "Loggin in..,"
+        if (isLoading) progressDialog?.show() else progressDialog?.dismiss()
     }
 
     private fun setupListeners() {

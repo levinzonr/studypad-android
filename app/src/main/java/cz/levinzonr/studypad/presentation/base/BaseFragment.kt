@@ -57,7 +57,8 @@ abstract class BaseFragment : Fragment() {
 
 
         activity?.let {
-            progressDialog = ProgressDialog(it).apply { setCancelable(false) }
+            progressDialog = ProgressDialog(it)
+            progressDialog?.setCancelable(false)
         }
 
         subscribe()

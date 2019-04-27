@@ -9,13 +9,15 @@
 
 
     <ImageView
+            tools:visibility="visible"
             android:visibility="gone"
             android:id="@+id/emptyViewIv"
             android:layout_marginBottom="@dimen/space_large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="64dp"
+            android:layout_height="64dp"/>
 
     <TextView
+            tools:visibility="visible"
             android:visibility="gone"
             android:textSize="17sp"
             tools:text="Empty state View"
@@ -27,6 +29,7 @@
 
 
     <TextView
+            tools:visibility="visible"
             android:visibility="gone"
             android:gravity="center"
             android:layout_marginTop="@dimen/space_big"
