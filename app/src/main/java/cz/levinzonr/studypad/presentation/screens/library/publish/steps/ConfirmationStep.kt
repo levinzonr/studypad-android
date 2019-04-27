@@ -4,7 +4,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.presentation.screens.library.publish.PublishModels
 import kotlinx.android.synthetic.main.view_publish_step_confirmation.view.*
 
-class ConfirmationStep(listener: StepViewClickListener) : BaseStep<PublishModels.StepFourResult> (listener,"Confirmation"){
+class ConfirmationStep(stepViewClickListener: StepViewClickListener, title: String, content: String) : BaseStep<PublishModels.StepFourResult>(stepViewClickListener,title, content) {
 
     override fun onStepViewCreated() {
         stepView.publishButton.setOnClickListener {

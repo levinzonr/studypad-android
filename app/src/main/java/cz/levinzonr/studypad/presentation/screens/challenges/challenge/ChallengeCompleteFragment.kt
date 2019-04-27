@@ -41,11 +41,11 @@ class ChallengeCompleteFragment : BaseFragment() {
 
 
     private fun showChallengeResults(challengeStats: ChallengeStats) {
-        val textType = "${challengeStats.type.getName(context!!)} challenge is completed!"
+        val textType = challengeStats.type.getName(context!!)
         val percentage = (challengeStats.correctCount * 100) / challengeStats.total
         showProgress(percentage)
-        challengeCompleteProgressTv.text = "$percentage%"
-        challengeCompleteTv.text = textType
+        challengeCompleteProgressTv.text = getString(R.string.challenge_completed_percentage, percentage)
+        challengeCompleteTv.text = getString(R.string.challenge_completed_message, textType)
         challengeCompleteBtnRepeat.setOnClickListener {
             viewModel.repeatChallenge()
         }

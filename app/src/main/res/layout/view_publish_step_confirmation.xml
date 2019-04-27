@@ -6,9 +6,9 @@
               android:layout_height="match_parent">
 
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <TextView
             android:layout_width="match_parent"
-            android:text="Receive Notifications"
+            android:text="@string/publish_step4_message"
             android:textSize="16sp"
             android:checked="true"
             android:layout_height="wrap_content"/>
@@ -20,7 +20,7 @@
             app:iconGravity="textStart"
             app:icon="@drawable/ic_round_publish_24px"
             android:id="@+id/publishButton"
-            android:text="Publish"
+            android:text="@string/library_publish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

@@ -37,7 +37,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="@dimen/space_normal"
             android:gravity="center"
-            android:text="Roman Levinzon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
@@ -50,7 +49,6 @@
             android:layout_marginTop="@dimen/space_small"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:text="Czech Technical University (CTU)"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/profileUserNae"
             app:layout_constraintTop_toBottomOf="@+id/profileUserNae" />
@@ -74,7 +72,7 @@
             android:id="@+id/editProfileBtn"
             app:icon="@drawable/ic_edit"
             android:gravity="start"
-            android:text="Edit Profile"
+            android:text="@string/profile_edit"
             style="@style/Button.Text.Pref"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -84,7 +82,7 @@
                 android:id="@+id/notificationBtn"
             app:icon="@drawable/ic_notifications_black_24dp"
             android:gravity="start"
-            android:text="Notifications"
+            android:text="@string/profile_notifications"
             style="@style/Button.Text.Pref"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -94,7 +92,7 @@
         <com.google.android.material.button.MaterialButton
             app:icon="@drawable/ic_settings_black_24dp"
             android:gravity="start"
-            android:text="Settings"
+            android:text="@string/profile_settings"
             android:id="@+id/profileSettingsBtn"
             style="@style/Button.Text.Pref"
             android:layout_width="match_parent"
@@ -106,7 +104,7 @@
                 android:id="@+id/profileAboutBtn"
                 app:icon="@drawable/ic_info_outline_black_24dp"
                 android:gravity="start"
-                android:text="About"
+                android:text="@string/profile_about"
                 style="@style/Button.Text.Pref"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

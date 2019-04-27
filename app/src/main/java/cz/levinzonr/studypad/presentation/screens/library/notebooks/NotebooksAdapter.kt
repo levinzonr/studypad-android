@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
+import cz.levinzonr.studypad.getQuantityString
 import kotlinx.android.synthetic.main.item_notebook.view.*
 
 class NotebooksAdapter : RecyclerView.Adapter<NotebooksAdapter.ViewHolder>() {
@@ -37,16 +38,13 @@ class NotebooksAdapter : RecyclerView.Adapter<NotebooksAdapter.ViewHolder>() {
         fun bindView(notebook: Notebook) {
             view.notebookTitleTv.text = notebook.name
             val sharedStatus = when {
-                notebook.publishedNotebookId !=  null && notebook.authoredByMe -> "• published"
-                notebook.publishedNotebookId !=  null && !notebook.authoredByMe -> "• imported"
-                else -> ""
+                notebook.publishedNotebookId !=  null && notebook.authoredByMe -> R.plurals.library_notescount_published
+                notebook.publishedNotebookId !=  null && !notebook.authoredByMe -> R.plurals.library_notescount_imported
+                else -> R.plurals.library_notescount
 
             }
-            view.notebookNotesCountLayout.text = when(notebook.notesCount) {
-                0 -> "no notes $sharedStatus"
-                1 -> "1 note $sharedStatus"
-                else -> "${notebook.notesCount} notes $sharedStatus"
-            }
+            view.notebookNotesCountLayout.text = view.context.resources.getQuantityString(sharedStatus, notebook.notesCount, notebook.notesCount)
+
             val gradient = GradientDrawable(GradientDrawable.Orientation.BL_TR, notebook.color.toIntArray())
             view.notebookColor.background = gradient
             view.setOnClickListener { listener?.onNotebookSelected(notebook) }

@@ -91,10 +91,10 @@ class SetupChallengeFragment : BaseFragment() {
         preferenceTitleSwitch.isChecked = viewState.titleFirst
 
         challengePrefTypeTv.text = when (viewState.currentType) {
-            ChallengeType.Flashcards -> "Walk through your notes one by one and try to learn as much as you can!"
-            ChallengeType.Write -> "Best way to words in different language"
-            ChallengeType.Selfcheck -> "Check yourself if you every single note in the notebook"
-            ChallengeType.None -> "Select challenge to continue"
+            ChallengeType.Flashcards -> getString(R.string.challenges_setup_type_flashcards)
+            ChallengeType.Write ->  getString(R.string.challenges_setup_type_write)
+            ChallengeType.Selfcheck -> getString(R.string.challenges_setup_type_selfcheck)
+            ChallengeType.None -> getString(R.string.challenges_setup_type_default)
         }
 
         preferenceReorderingSwitch.setOnClickListener { preferenceReordering.performClick() }

@@ -20,7 +20,6 @@
             android:id="@+id/notebookVersionTv"
             android:layout_marginTop="@dimen/space_normal"
             android:gravity="center"
-            android:text="Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -29,7 +28,6 @@
             android:layout_marginBottom="@dimen/space_big"
             android:textAllCaps="false"
             style="@style/Button.Primary"
-            android:text="Update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

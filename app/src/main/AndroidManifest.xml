@@ -15,7 +15,7 @@
         <activity android:name=".presentation.screens.challenges.challenge.ChallengeActivity">
         </activity>
         <activity android:name=".presentation.screens.MainActivity"/>
-        <activity android:name=".presentation.screens.onboarding.OnboardingActivity">
+        <activity android:screenOrientation="portrait" android:name=".presentation.screens.onboarding.OnboardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

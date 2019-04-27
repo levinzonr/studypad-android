@@ -17,7 +17,7 @@
                 android:textStyle="bold"
                 android:textColor="#000"
                 android:layout_marginStart="@dimen/space_normal"
-                android:text="More Information"
+                android:text="@string/sharinghub_dets_more_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -27,9 +27,9 @@
                 android:layout_marginTop="@dimen/space_big"
                 android:textStyle="bold"
                 style="@style/TextStyle"
-                android:text="Description"
+                android:text="@string/sharinghub_dets_desc_title"
                 android:layout_marginEnd="@dimen/space_big"
-                android:layout_marginStart="@dimen/space_big"
+                android:layout_marginStart="@dimen/space_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -37,7 +37,7 @@
         <TextView
                 android:id="@+id/notebookDescriptionTv"
                 android:layout_marginEnd="@dimen/space_big"
-                android:layout_marginStart="@dimen/space_big"
+                android:layout_marginStart="@dimen/space_normal"
                 tools:text="Sed posuere consectetur est at lobortis. Etiam porta sem malesuada magna mollis euismod. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -48,8 +48,8 @@
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/space_big"
                 android:layout_marginEnd="@dimen/space_big"
-                android:layout_marginStart="@dimen/space_big"
-                android:text="Attached tags"
+                android:layout_marginStart="@dimen/space_normal"
+                android:text="@string/sharinghub_dets_tags_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -59,7 +59,7 @@
                 android:id="@+id/notebookTagsCg"
                 android:layout_marginTop="@dimen/space_normal"
                 android:layout_marginEnd="@dimen/space_big"
-                android:layout_marginStart="@dimen/space_big"
+                android:layout_marginStart="@dimen/space_normal"
                 android:layout_marginBottom="@dimen/space_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

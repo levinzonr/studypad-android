@@ -21,7 +21,7 @@
     <com.google.android.material.button.MaterialButton
             android:id="@+id/nextStepBtn"
             android:layout_marginTop="@dimen/space_big"
-            android:text="Continue"
+            android:text="@string/default_continue"
             style="@style/Button.Primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

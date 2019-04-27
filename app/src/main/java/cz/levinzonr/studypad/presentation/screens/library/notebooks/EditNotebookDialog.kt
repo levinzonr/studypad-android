@@ -44,6 +44,12 @@ class EditNotebookDialog : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val title = if (notebook != null) R.string.library_notebook_edit_title else R.string.library_notebook_create_title
+        val message = if (notebook != null) R.string.library_notebook_edit_message else R.string.library_notebook_create_message
+
+        editNotebookTitleTv.setText(title)
+        editNotebookContentTv.setText(message)
+
         confirmBtn.setOnClickListener {
             onEdit.invoke(notebook, notebookEditEt.text.toString())
             dismiss()

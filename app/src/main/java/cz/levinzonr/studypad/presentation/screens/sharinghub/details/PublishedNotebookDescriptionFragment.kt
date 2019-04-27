@@ -62,7 +62,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         val message = if (versionState.modifications.isEmpty())
             "There are no pending suggestions yet. Have something to add?"
         else "There are ${versionState.modifications.count()} pending suggestion from $unigueUsers users"
-        notebookSuggestionsMessage.text = message
+        notebookSuggestionsMessage.text = getQuantatyString(R.plurals.sharinghub_dets_suggestions_message, versionState.modifications.count())
         notebookSuggestionsLayout.setVisible(true)
 
     }
@@ -142,25 +142,24 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         when (state) {
             is State.UpdateAvailable -> {
                 notebookVersionBtn.setIconResource(R.drawable.ic_sync_black_24dp)
-                notebookVersionTv.text = "New version notebook is available! Tap to update"
-                notebookVersionBtn.text = "Update"
+                notebookVersionTv.setText(R.string.sharinghub_version_update_message)
+                notebookVersionBtn.setText(R.string.sharinghub_version_update_action)
                 notebookVersionBtn.setOnClickListener { viewModel.handleSaveAction() }
                 notebookVersionLayout.setVisible(true)
 
             }
             is State.SaveAvailable -> {
                 notebookVersionBtn.setIconResource(R.drawable.ic_baseline_save_alt_24px)
-                notebookVersionTv.text = "Doesn't look like you have this notebook yet"
-                notebookVersionBtn.text = "Save"
+                notebookVersionTv.setText(R.string.sharinghub_version_none_message)
+                notebookVersionBtn.setText(R.string.sharinghub_version_none_action)
                 notebookVersionBtn.setOnClickListener { viewModel.handleSaveAction() }
                 notebookVersionLayout.setVisible(true)
 
             }
             is State.MergeAvailable -> {
                 notebookVersionBtn.setIconResource(R.drawable.ic_round_publish_24px)
-                notebookVersionBtn.text = "Apply local changes"
-                notebookVersionTv.text =
-                    "Looks like you local notebook has divered from this one. Would you like apply your local changes?"
+                notebookVersionBtn.text = if (state.authoredByMe) getString(R.string.sharinghub_version_modify_action) else getString(R.string.sharinghub_version_suggest_action)
+                notebookVersionTv.text = if (state.authoredByMe) getString(R.string.sharinghub_version_modify_message) else getString(R.string.sharinghub_version_suggest_message)
                 notebookVersionBtn.setOnClickListener { viewModel.handleApplyChanges() }
                 notebookVersionLayout.setVisible(true)
 

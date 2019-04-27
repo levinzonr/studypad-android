@@ -8,7 +8,7 @@
     <fragment
             android:id="@+id/notebookListFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookListFragment"
-            android:label="@string/screen_notebooks"
+            android:label="@string/library_notebooks_title"
             tools:layout="@layout/fragment_notebook_list">
         <action
                 android:id="@+id/action_notebookListFragment_to_notesListFragment"
@@ -28,7 +28,7 @@
     <fragment
             android:id="@+id/notesListFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.library.notes.NotesListFragment"
-            android:label="fragment_notes_list"
+            android:label="@string/library_notes_title"
             tools:layout="@layout/fragment_notes_list">
         <argument
                 android:name="NOTEBOOK"
@@ -50,7 +50,7 @@
     <fragment
             android:id="@+id/sharingHubFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.feed.SharingHubFragment"
-            android:label="@string/screen_sharing_hub"
+            android:label="@string/sharinghub_title"
             tools:layout="@layout/fragment_shared">
         <action
                 app:enterAnim="@anim/nav_default_pop_enter_anim"
@@ -71,7 +71,7 @@
     <fragment
             android:id="@+id/challengesFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.challenges.ChallengesFragment"
-            android:label="@string/screen_challenges"
+            android:label="@string/challenges_title"
             tools:layout="@layout/fragment_challenges">
         <action
                 app:enterAnim="@animator/slide_left_enter"
@@ -88,7 +88,7 @@
     <fragment
             android:id="@+id/profileFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.profile.ProfileFragment"
-            android:label="fragment_profile"
+            android:label="@string/profile_title"
             tools:layout="@layout/fragment_profile">
         <action
                 app:enterAnim="@animator/slide_left_enter"
@@ -113,7 +113,11 @@
                 app:popExitAnim="@animator/slide_right_exit"/>
         <action
                 android:id="@+id/action_profileFragment_to_aboutFragment"
-                app:destination="@id/aboutFragment"/>
+                app:destination="@id/aboutFragment"
+                app:enterAnim="@animator/slide_left_enter"
+                app:exitAnim="@animator/slide_left_exit"
+                app:popEnterAnim="@animator/slide_right_enter"
+                app:popExitAnim="@animator/slide_right_exit"/>
     </fragment>
     <fragment
             android:id="@+id/publishNotebookFragment"
@@ -219,7 +223,7 @@
     <fragment
             android:id="@+id/notificationsFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.notifications.NotificationsFragment"
-            android:label="fragment_notifications"
+            android:label="@string/settings_notifications_title"
             tools:layout="@layout/fragment_notifications"/>
     <action
             android:id="@+id/action_global_publishedNotebookDetailFragment"
@@ -247,12 +251,12 @@
     <fragment
             android:id="@+id/editProfileFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.profile.edit.EditProfileFragment"
-            android:label="fragment_edit_profile"
+            android:label="@string/profile_edit"
             tools:layout="@layout/fragment_edit_profile"/>
     <fragment
             android:id="@+id/setupChallengeFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeFragment"
-            android:label="fragment_setup_challenge"
+            android:label="@string/challenges_setup_title"
             tools:layout="@layout/fragment_setup_challenge">
         <action
                 android:id="@+id/action_setupChallengeFragment_to_challengeActivity"
@@ -271,11 +275,15 @@
     <fragment
             android:id="@+id/aboutFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.about.AboutFragment"
-            android:label="fragment_about"
+            android:label="@string/profile_about"
             tools:layout="@layout/fragment_about">
         <action
                 android:id="@+id/action_aboutFragment_to_sendFeedbackFragment"
-                app:destination="@id/sendFeedbackFragment"/>
+                app:destination="@id/sendFeedbackFragment"
+                app:enterAnim="@animator/slide_left_enter"
+                app:exitAnim="@animator/slide_left_exit"
+                app:popEnterAnim="@animator/slide_right_enter"
+                app:popExitAnim="@animator/slide_right_exit"/>
     </fragment>
     <fragment
             android:id="@+id/sendFeedbackFragment"

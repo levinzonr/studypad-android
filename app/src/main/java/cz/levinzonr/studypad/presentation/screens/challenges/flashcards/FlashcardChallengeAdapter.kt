@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.getQuantityString
 import cz.levinzonr.studypad.layoutInflater
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesModels
 import kotlinx.android.synthetic.main.item_flashcard_end.view.*
@@ -82,7 +83,7 @@ class FlashcardChallengeAdapter(private val listener: LearningChallengeAdapterLi
     inner class CompleteViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bindView() {
-            view.challengeCompleteStatTv.text = "${items.size} notes studied"
+            view.challengeCompleteStatTv.text = view.context.getQuantityString(R.plurals.challenge_completed_flashcards_message, items.count())
             view.challengeCompleteRepeatBtn.setOnClickListener { listener.onRepeatChallengeClicked() }
         }
     }

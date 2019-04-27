@@ -24,7 +24,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:hint="Display name"
+            android:hint="@string/profile_edit_name_hint"
             android:layout_marginTop="@dimen/space_large"
             app:layout_constraintVertical_bias="0.3"
             android:layout_marginStart="@dimen/space_big"
@@ -53,7 +53,7 @@
             android:layout_marginStart="@dimen/space_big"
             android:layout_marginEnd="@dimen/space_big"
             android:layout_width="match_parent"
-            android:hint="University"
+            android:hint="@string/profile_edit_uni_hint"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
             app:layout_constraintStart_toStartOf="parent"

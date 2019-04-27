@@ -28,7 +28,7 @@
 
         <TextView
                 android:layout_marginStart="@dimen/space_small"
-                android:text="Notifications"
+                android:text="@string/settings_notifications_title"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content">
 
             <TextView
-                    android:text="Push Notifications"
+                    android:text="@string/settings_notifications_value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/settingsNotificationsTv"
@@ -109,7 +109,7 @@
 
         <TextView
                 android:layout_marginStart="@dimen/space_small"
-                android:text="Language"
+                android:text="@string/settings_language_title"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -142,7 +142,7 @@
 
 
             <TextView
-                    android:text="Language"
+                    android:text="@string/settings_language_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -182,7 +182,7 @@
 
         <TextView
                 android:layout_marginStart="@dimen/space_small"
-                android:text="Account"
+                android:text="@string/settings_account_title"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -204,7 +204,7 @@
 
         <TextView
                 style="@style/TextStyle.Preference"
-                android:text="Logout"
+                android:text="@string/settings_account_logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/settingsLogoutBtn"
@@ -221,7 +221,7 @@
 
         <TextView
                 style="@style/TextStyle.Preference"
-                android:text="Delete account"
+                android:text="@string/settings_account_delete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/settingsDeleteAccountBtn"

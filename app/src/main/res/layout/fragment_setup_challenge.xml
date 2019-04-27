@@ -10,7 +10,7 @@
 
     <TextView
             android:id="@+id/challengePrefTypeTv"
-            android:text="Select challenge type"
+            android:text="@string/challenges_setup_type_default"
             android:layout_width="0dp"
             android:gravity="center"
             android:layout_marginBottom="@dimen/space_big"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_big"
             android:layout_marginBottom="@dimen/space_large"
-            app:buttonText="Flashcards"
+            app:buttonText="@string/challenges_type_flashcards"
             app:buttonIcon="@drawable/ic_flashcards_24dp"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/challengeTypeLearnBtn"
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/space_big"
-            app:buttonText="Write"
+            app:buttonText="@string/challenges_type_write"
             app:buttonIcon="@drawable/ic_challenges"
             app:layout_constraintTop_toTopOf="@+id/challengeTypeLearnBtn"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:buttonIcon="@drawable/ic_done_all_black_24dp"
-            app:buttonText="Self-check"
+            app:buttonText="@string/challenges_type_selfcheck"
             app:layout_constraintTop_toTopOf="@+id/challengeTypeLearnBtn"
             app:layout_constraintEnd_toStartOf="@+id/challengeTypeWriteBtn"
             app:layout_constraintStart_toEndOf="@+id/challengeTypeLearnBtn"
@@ -74,7 +74,7 @@
 
 
             <TextView
-                    android:text="Notebook"
+                    android:text="@string/challenges_setup_notebook_title"
                     android:layout_marginTop="@dimen/space_large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
 
             <TextView
                     android:textColor="@color/grey"
-                    android:text="Select notebook to study"
+                    android:text="@string/challenges_setup_notebook_subtitle"
                     android:layout_width="wrap_content"
                     android:layout_marginBottom="@dimen/space_large"
                     android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
 
 
             <TextView
-                    android:text="Shuffle"
+                    android:text="@string/challenges_setup_shuffle_title"
                     android:layout_marginTop="@dimen/space_large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
 
             <TextView
                     android:textColor="@color/grey"
-                    android:text="Randomize notes order"
+                    android:text="@string/challenges_setup_shuffle_subtitle"
                     android:layout_width="wrap_content"
                     android:layout_marginBottom="@dimen/space_large"
                     android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
 
 
             <TextView
-                    android:text="Title First"
+                    android:text="@string/challenges_setup_revers_title"
                     android:layout_marginTop="@dimen/space_large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -175,7 +175,7 @@
 
             <TextView
                     android:textColor="@color/grey"
-                    android:text="Show notes title when opening"
+                    android:text="@string/challenges_setup_reverse_subtitle"
                     android:layout_width="wrap_content"
                     android:layout_marginBottom="@dimen/space_large"
                     android:layout_height="wrap_content"
@@ -202,7 +202,7 @@
                 android:id="@+id/challengeStartBtn"
                 style="@style/Button.Primary"
                 app:iconGravity="textStart"
-                android:text="Start Challenge"
+                android:text="@string/challenges_setup_start"
                 app:icon="@drawable/ic_play_arrow_black_24dp"
                 android:layout_marginStart="@dimen/space_large"
                 android:layout_marginEnd="@dimen/space_large"

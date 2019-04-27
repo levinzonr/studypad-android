@@ -44,15 +44,24 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        supportActionBar?.title = args.NOTEBOOK.name
 
         notesCreateNoteBtn.setOnClickListener {
             viewModel.showNoteCreation()
         }
 
-        emptyStateView.configure("No Notes", "There are no notes in this notebook")
+        emptyStateView.configure(R.string.library_notes_empty_title, R.string.library_notes_empty_message)
     }
 
+    override fun onStart() {
+        super.onStart()
+        supportActionBar?.subtitle = args.NOTEBOOK.name
+    }
+
+    override fun onStop() {
+        super.onStop()
+        supportActionBar?.subtitle = ""
+
+    }
 
     private fun setupRecyclerView() {
         adapter.listener = this

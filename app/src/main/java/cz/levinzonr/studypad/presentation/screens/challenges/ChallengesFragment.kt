@@ -46,7 +46,7 @@ class ChallengesFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        emptyView.configure("No challenges", "Time to start learning! Select a quick challenge or configure your own")
+        emptyView.configure(R.string.challenges_empty_title, R.string.challenges_empty_message)
         adapter = ChallengesOverviewAdapter()
         challengesRv.adapter = adapter
 

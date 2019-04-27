@@ -35,8 +35,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
         setupListeners()
 
         emptyStateView.configure(
-            "No notebooks",
-            "No notebooks saved in the library")
+            R.string.library_notebooks_empty_title, R.string.library_notebooks_empty_message)
     }
 
     private fun setupListeners() {
@@ -72,7 +71,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
         }
 
         viewModel.notebookPublishedEven.onHandle(viewLifecycleOwner) {
-            val link = "${BuildConfig.API_URL}/shared/${it.id}"
+            val link = it.id.toNotebookLink()
             shareMessage(link)
         }
 
@@ -100,7 +99,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
                     if (notebook.publishedNotebookId == null) {
                         viewModel.publishNotebook(notebook)
                     } else {
-                        val link = "${BuildConfig.API_URL}/shared/${notebook.publishedNotebookId}"
+                        val link = notebook.publishedNotebookId?.toNotebookLink()
                         shareMessage(link)
                     }
                 }

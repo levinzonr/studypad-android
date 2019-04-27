@@ -20,9 +20,9 @@ enum class ChallengeType {
 
     fun getName(context: Context) : String {
         return when(this) {
-            Flashcards -> "Flashcards"
-            Selfcheck -> "Self-check"
-            else -> "Write"
+            Flashcards -> context.getString(R.string.challenges_type_flashcards)
+            Selfcheck -> context.getString(R.string.challenges_type_selfcheck)
+            else -> context.getString(R.string.challenges_type_write)
         }
     }
     fun getDrawableRes() : Int {

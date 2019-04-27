@@ -22,7 +22,7 @@
 
         <SearchView
                 android:iconifiedByDefault="false"
-                android:queryHint="Search"
+                android:queryHint="@string/default_search"
                 android:queryBackground="@android:color/transparent"
                 android:id="@+id/tagSearchView"
                 android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_round_timelapse_24px"
                 android:drawablePadding="@dimen/space_normal"
-                android:text="Section Name"
+                android:text="@string/selector_tag_lastlyused"
                 android:textStyle="bold" />
 
             <com.google.android.material.chip.ChipGroup
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Done"
+            android:text="@string/default_confirm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sectionLayout" />

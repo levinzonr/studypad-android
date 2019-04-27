@@ -24,7 +24,7 @@
 
         <com.google.android.material.button.MaterialButton
                 style="@style/Button.Primary"
-                android:text="Study Again"
+                android:text="@string/challenge_selfcheck_dontknow"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_margin="@dimen/space_large"
@@ -40,14 +40,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="@dimen/space_large"
-                android:text="I know that!"
+                android:text="@string/challenge_selfcheck_know"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green"/>
 
         <com.google.android.material.button.MaterialButton
                 style="@style/Button.Primary"
-                android:text="Proceed"
+                android:text="@string/default_continue"
                 android:layout_weight="1"
                 android:id="@+id/continueBtn"
                 android:layout_margin="@dimen/space_big"

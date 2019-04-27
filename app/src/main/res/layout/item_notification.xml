@@ -57,7 +57,7 @@
             app:chipEndPadding="@dimen/space_large"
             android:textColor="@color/white"
             app:chipBackgroundColor="@color/blue"
-            android:text="Mark as Read"
+            android:text="@string/notifications_mark_read"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

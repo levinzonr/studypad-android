@@ -1,75 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:focusableInTouchMode="true"
-    app:layout_behavior="@string/bottom_sheet_behavior">
+                                       xmlns:app="http://schemas.android.com/apk/res-auto"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       android:orientation="vertical"
+                                       android:focusableInTouchMode="true"
+                                       app:layout_behavior="@string/bottom_sheet_behavior">
 
     <LinearLayout
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
         <TextView
-            style="@style/TextStyle.Header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/space_big"
-            android:gravity="center"
-            android:text="Edit" />
+                android:id="@+id/editNotebookTitleTv"
+                style="@style/TextStyle.Header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_big"
+                android:gravity="center"
+                android:text=""/>
 
 
         <TextView
-            style="@style/TextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_big"
-            android:layout_marginEnd="@dimen/space_big"
-            android:gravity="center"
-            android:text="Etiam porta sem malesuada magna mollis euismod." />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:focusable="false"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/space_big"
-            android:background="@color/lightGrey"
-            app:boxBackgroundColor="@color/white">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/notebookEditEt"
+                android:id="@+id/editNotebookContentTv"
                 style="@style/TextStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Notebook name"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:maxLines="1" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_big"
+                android:layout_marginEnd="@dimen/space_big"
+                android:gravity="center"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:focusable="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_big"
+                android:background="@color/lightGrey"
+                app:boxBackgroundColor="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/notebookEditEt"
+                    style="@style/TextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/library_notebook_create_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/confirmBtn"
-            style="@style/Button.Primary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Confirm" />
+                android:id="@+id/confirmBtn"
+                style="@style/Button.Primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/default_confirm"/>
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/cancelBtn"
-            style="@style/Button.Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Cancel" />
+                android:id="@+id/cancelBtn"
+                style="@style/Button.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/default_cancel"/>
     </LinearLayout>
 
 

@@ -23,7 +23,8 @@ class SharingHubViewModel(
             onComplete {
                 toggleLoading(false)
                 Timber.d("Sections: $it")
-                dataSource.postValue(it.map { sectionResponse ->  sectionResponse.toDomain() })
+                val data = it.map { it.toDomain() }
+                dataSource.postValue(data)
             }
             onError {
                 handleApplicationError(it)

@@ -28,7 +28,8 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        appVersionTv.text = "Version ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
+        val versionInfo = getString(R.string.about_version, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)
+        appVersionTv.text = versionInfo
         aboutLicenceBtn.setOnClickListener {
             startActivity( Intent(context, OssLicensesMenuActivity::class.java))
         }

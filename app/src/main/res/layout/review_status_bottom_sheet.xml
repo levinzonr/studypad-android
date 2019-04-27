@@ -34,7 +34,6 @@
                     android:id="@+id/reviewStatusTotal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Order Details"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:gravity="center"
@@ -86,7 +85,7 @@
 
                 <com.google.android.material.button.MaterialButton
                         style="@style/Button.Primary"
-                        android:text="Confirm"
+                        android:text="@string/default_confirm"
                         android:id="@+id/confirmBtn"
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/space_large"

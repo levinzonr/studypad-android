@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:hint="Subject"
+        android:hint="@string/publish_step2_topic_hint"
         app:helperText="Main subject or topic of your notebook"
         android:layout_marginTop="@dimen/space_normal"
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
     <TextView
         android:textStyle="bold"
         android:layout_marginTop="@dimen/space_big"
-        android:text="Tags"
+        android:text="@string/publish_step2_tags_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -41,7 +41,7 @@
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/nextStepBtn"
-            android:text="Continue"
+            android:text="@string/default_continue"
             style="@style/Button.Primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

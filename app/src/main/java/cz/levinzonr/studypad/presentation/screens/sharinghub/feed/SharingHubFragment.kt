@@ -3,6 +3,7 @@ package cz.levinzonr.studypad.presentation.screens.sharinghub.feed
 import android.os.Bundle
 import android.view.*
 import android.widget.LinearLayout
+import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.*
 
 import cz.levinzonr.studypad.domain.models.*
@@ -70,11 +71,14 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
     }
 
     override fun subscribe() {
-        viewModel.dataSource.observeNonNull(viewLifecycleOwner) {
+        viewModel.dataSource.observe(viewLifecycleOwner, Observer {
             emptyView.setVisible(false)
             sectionContainer.setVisible(true)
-            it.forEach(this::addSection)
-        }
+            Timber.d("state: $it")
+            if (sectionContainer.childCount <= it.count()) {
+                it.forEach(this::addSection)
+            }
+        })
 
     }
 
@@ -83,6 +87,7 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
     }
 
     private fun addSection(section: Section) {
+        Timber.d("adde sectiom")
         val adapter =
             PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Short)
         val sectionView = LayoutInflater.from(context).inflate(R.layout.view_section, null, false)
@@ -93,15 +98,15 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
             }
             SectionType.POPULAR -> {
                 sectionView.sectionImage.setImageResource(R.drawable.ic_whatshot_black_24dp)
-                sectionView.sectionName.text = "Popular"
+                sectionView.sectionName.text = getString(R.string.sharinghub_section_popular)
             }
             SectionType.RECENT ->  {
                 sectionView.sectionImage.setImageResource(R.drawable.ic_access_time_black_24dp)
-                sectionView.sectionName.text = "Recently added"
+                sectionView.sectionName.text = getString(R.string.sharinghub_section_recent)
             }
             SectionType.SCHOOL -> {
                 sectionView.sectionImage.setImageResource(R.drawable.ic_school_black_24dp)
-                sectionView.sectionName.text = "From Your School"
+                sectionView.sectionName.text = getString(R.string.sharinghub_section_uni)
             }
         }
 
@@ -112,7 +117,6 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
         val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         params.setMargins(8.dp, 8.dp, 8.dp, 8.dp)
         sectionView.layoutParams = params
-
         sectionContainer.addView(sectionView)
 
     }

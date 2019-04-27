@@ -17,7 +17,7 @@
         <TextView
                 android:textSize="15sp"
                 android:gravity="center"
-                android:text="This notebook is only accessable using a link.Provide additional details for others to find it"
+                android:text="@string/sharinghub_excluded_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -25,7 +25,7 @@
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/notebookPublishBtn"
                 style="@style/Button.Primary"
-                android:text="Make public"
+                android:text="@string/sharinghub_excluded_btn"
                 android:layout_marginTop="@dimen/space_normal"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"

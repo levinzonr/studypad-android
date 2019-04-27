@@ -8,7 +8,7 @@ import cz.levinzonr.studypad.removeIf
 import cz.levinzonr.studypad.views
 import kotlinx.android.synthetic.main.view_publish_step_info.view.*
 
-class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishModels.StepTwoData>(listener,"Notebook's topic", "Help other users to find your notebook by sharing some additional details") {
+class AdditionalInfoStep(listener: StepViewClickListener, title: String, content: String) : BaseStep<PublishModels.StepTwoData>(listener,title, content) {
 
 
 
@@ -18,7 +18,7 @@ class AdditionalInfoStep(listener: StepViewClickListener) : BaseStep<PublishMode
         updateButton()
         stepView.notebookTopicEt.setOnClickListener { listener?.onClick(it) }
         val addTagButton = Chip(context).apply {
-            text = "Add Tag"
+            text = context.getString(R.string.publish_step2_tags_add)
             setChipIconResource(R.drawable.ic_round_add_24px)
             setChipIconTintResource(R.color.blue)
         }

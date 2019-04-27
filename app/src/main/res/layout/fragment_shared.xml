@@ -44,7 +44,7 @@
 
 
                             <TextView
-                                    android:text="Recent Notifcations"
+                                    android:text="@string/sharinghub_recent_notifications"
                                     android:textStyle="bold"
                                     android:textSize="15sp"
                                     android:layout_width="0dp"
@@ -60,7 +60,7 @@
                                     android:textSize="12sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="See All"
+                                    android:text="@string/default_see_all"
                                     android:textAllCaps="true"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     android:layout_marginEnd="@dimen/space_normal"

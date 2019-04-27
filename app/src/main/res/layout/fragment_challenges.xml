@@ -28,7 +28,7 @@
                     android:layout_marginStart="8dp"
                     android:id="@+id/sectinName"
                     android:layout_width="match_parent"
-                    android:text="Recently completed"
+                    android:text="@string/challenges_recently"
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/selfcheckButton"
-            app:buttonText="Self-check"
+            app:buttonText="@string/challenges_type_selfcheck"
             app:buttonIcon="@drawable/ic_done_all_black_24dp"
             app:layout_constraintEnd_toStartOf="@+id/writeButton"
             app:layout_constraintStart_toEndOf="@+id/flashcardButton"
@@ -90,7 +90,7 @@
 
     <cz.levinzonr.studypad.presentation.common.SquareButton
             android:layout_marginEnd="8dp"
-            app:buttonText="Write"
+            app:buttonText="@string/challenges_type_write"
             app:buttonIcon="@drawable/ic_challenges"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
 
     <cz.levinzonr.studypad.presentation.common.SquareButton
             android:layout_width="wrap_content"
-            app:buttonText="Flashcards"
+            app:buttonText="@string/challenges_type_flashcards"
             app:buttonIcon="@drawable/ic_flashcards_24dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@+id/materialButton2"
@@ -110,7 +110,7 @@
 
     <com.google.android.material.button.MaterialButton
             style="@style/Button.Primary"
-            android:text="Configure Challenge"
+            android:text="@string/challenges_configure"
             android:layout_width="0dp"
             app:iconGravity="textStart"
             app:icon="@drawable/ic_settings_black_24dp"

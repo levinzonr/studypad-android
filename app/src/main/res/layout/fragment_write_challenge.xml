@@ -21,7 +21,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
-            android:hint="Answer"
+            android:hint="@string/challenge_write_hint"
             android:layout_marginStart="@dimen/space_big"
             android:layout_marginBottom="@dimen/space_normal"
             android:layout_width="0dp"
@@ -42,7 +42,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-            android:text="Submit"
+            android:text="@string/default_submit"
             style="@style/Button.Text"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -57,7 +57,7 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/skipButton"
-            android:text="Proceed"
+            android:text="@string/default_continue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

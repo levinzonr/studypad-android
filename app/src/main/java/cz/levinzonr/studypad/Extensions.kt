@@ -18,6 +18,7 @@ import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -329,6 +330,17 @@ fun Collection<String>.buildTags(context: Context): List<Chip> {
     }
 }
 
+fun String.toNotebookLink() : String {
+    return "${BuildConfig.API_URL}/shared/$this"
+}
+
+fun Fragment.getQuantatyString(stirngRes: Int, quantaty: Int) : String? {
+    return context?.resources?.getQuantityString(stirngRes, quantaty, quantaty)
+}
+
+fun Context.getQuantityString(stringRes: Int, quantaty: Int) : String? {
+    return resources?.getQuantityString(stringRes, quantaty, quantaty)
+}
 
 fun View.showKeyboard() {
     requestFocus()

@@ -42,12 +42,11 @@ class NotificationsFragment : BaseFragment(), NotificationsAdapter.NotificationI
         super.onActivityCreated(savedInstanceState)
 
         notificationsRv.adapter = notificationsAdapter
-
-
     }
 
     override fun subscribe() {
         viewModel.notifications.observeNonNull(viewLifecycleOwner) {
+            Timber.d("State: $it")
             notificationsRv.setVisible(it.isNotEmpty())
             emptyView.setVisible(it.isEmpty())
             notificationsAdapter.submitList(it)
@@ -56,7 +55,7 @@ class NotificationsFragment : BaseFragment(), NotificationsAdapter.NotificationI
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        emptyView.configure("Up to Date", "No new notifcations received")
+        emptyView.configure(R.string.notifications_empty_title, R.string.notifications_empty_message)
     }
 
     override fun showLoading(isLoading: Boolean) {

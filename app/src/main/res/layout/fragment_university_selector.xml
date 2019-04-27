@@ -23,7 +23,7 @@
                 app:defaultQueryHint="Search"
                 app:searchIcon="@drawable/ic_search"
                 app:queryHint="Search"
-                android:tooltipText="Search"
+                android:tooltipText="@string/default_search"
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

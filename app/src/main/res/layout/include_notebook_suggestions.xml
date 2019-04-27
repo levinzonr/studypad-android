@@ -31,7 +31,6 @@
                 android:layout_marginStart="@dimen/space_large"
                 android:layout_marginTop="@dimen/space_normal"
                 android:layout_marginEnd="@dimen/space_large"
-                android:text="TextView"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:chipIcon="@drawable/ic_subject"
-                    android:text="View all suggestions"
+                    android:text="@string/sharinghub_dets_suggestions_view"
                     app:layout_constraintStart_toStartOf="parent"/>
 
                 <com.google.android.material.chip.Chip
@@ -64,7 +63,7 @@
                     android:id="@+id/notebookSuggestionsAddBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add New Suggestion"
+                    android:text="@string/sharinhub_dets_suggestions_add"
                     app:chipIcon="@drawable/ic_round_add_24px"
                     app:chipIconTint="@color/blue"
                     app:layout_constraintEnd_toEndOf="parent"/>

@@ -28,7 +28,7 @@
             android:inputType="textPersonName"
             android:imeOptions="actionNext"
             android:layout_height="match_parent"
-            android:hint="First name"
+            android:hint="@string/signup_firstname_hint"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -53,7 +53,7 @@
             android:maxLines="1"
             android:imeOptions="actionDone"
             android:inputType="textPersonName"
-            android:hint="Last name"
+            android:hint="@string/signup_lastname_hint"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

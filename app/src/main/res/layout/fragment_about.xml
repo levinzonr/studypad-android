@@ -78,7 +78,7 @@
 
             <TextView
                     style="@style/TextStyle.Preference"
-                    android:text="Open Sourced Licenses"
+                    android:text="@string/about_licenses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/aboutLicenceBtn"/>
@@ -92,7 +92,7 @@
 
             <TextView
                     style="@style/TextStyle.Preference"
-                    android:text="Privacy policy"
+                    android:text="@string/about_privacy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/aboutPolicyBtn"/>
@@ -108,7 +108,7 @@
 
             <TextView
                     style="@style/TextStyle.Preference"
-                    android:text="Send Feedback"
+                    android:text="@string/about_feedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:layout_editor_absoluteX="175dp"

@@ -30,7 +30,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/challengeCompleteTv"/>
 
         <TextView
-                android:text="Well done!"
+                android:text="@string/challenge_completed_flashcards_title"
                 android:layout_margin="@dimen/space_large"
                 android:textSize="23sp"
                 style="@style/TextStyle.Header"
@@ -58,7 +58,7 @@
 
         <com.google.android.material.button.MaterialButton
                 style="@style/Button.Primary"
-                android:text="Study Again"
+                android:text="@string/challenge_completed_start_again"
                 app:iconGravity="textStart"
                 app:icon="@drawable/ic_refresh_black_24dp"
                 android:layout_width="0dp"

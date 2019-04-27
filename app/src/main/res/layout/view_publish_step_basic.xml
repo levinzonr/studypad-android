@@ -10,7 +10,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="@dimen/space_normal"
         android:layout_width="match_parent"
-        android:hint="Notebook name"
+        android:hint="@string/publish_step1_notebook_hint"
         app:helperTextEnabled="true"
         android:layout_height="wrap_content">
 
@@ -28,7 +28,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         app:helperText="Language of your notes"
-        android:hint="Language"
+        android:hint="@string/publish_step1_language_hint"
         android:layout_marginTop="@dimen/space_normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -44,7 +44,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="@dimen/space_normal"
-        android:hint="Associated University"
+        android:hint="@string/publish_step1_uni_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -59,7 +59,7 @@
     <com.google.android.material.button.MaterialButton
             android:layout_marginTop="@dimen/space_big"
             android:id="@+id/nextStepBtn"
-            android:text="Continue"
+            android:text="@string/default_continue"
             style="@style/Button.Primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

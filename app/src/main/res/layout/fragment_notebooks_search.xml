@@ -23,7 +23,7 @@
 
             <SearchView
                     android:id="@+id/searchView"
-                    android:queryHint="Search"
+                    android:queryHint="@string/default_search"
                     android:queryBackground="@android:color/transparent"
                     android:background="@android:color/transparent"
                     android:searchIcon="@null"
@@ -51,7 +51,7 @@
                         android:id="@+id/searchOptionUniversity"
                         app:closeIcon="@drawable/ic_expand_more_black_24dp"
                         app:closeIconVisible="true"
-                        android:text="Universitiy"
+                        android:text="@string/sharinghub_search_options_uni"
                         app:chipIcon="@drawable/ic_school_black_24dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -61,7 +61,7 @@
                         android:id="@+id/searchOptionCategory"
                         app:closeIcon="@drawable/ic_expand_more_black_24dp"
                         app:closeIconVisible="true"
-                        android:text="Category"
+                        android:text="@string/sharinghub_search_options_category"
                         app:chipIcon="@drawable/ic_subject"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -72,7 +72,7 @@
                         app:closeIconVisible="true"
                         app:closeIcon="@drawable/ic_expand_more_black_24dp"
                         app:chipIcon="@drawable/ic_speech_bubbles_comment_option"
-                        android:text="Tags"
+                        android:text="@string/sharinghub_search_options_tags"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
