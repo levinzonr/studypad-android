@@ -20,9 +20,9 @@ import java.security.InvalidParameterException
 import cz.levinzonr.studypad.baseActivity
 import cz.levinzonr.studypad.notifications.NotificationPayload
 import cz.levinzonr.studypad.presentation.base.BackButtonHandler
+import cz.levinzonr.studypad.presentation.base.BottomSheetOptionsDialog
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
-import cz.levinzonr.studypad.presentation.screens.sharinghub.PublishedNotebookOptionsMenu
 
 
 class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.CommentsItemListener, BackButtonHandler, NotificationHandler {
@@ -94,9 +94,8 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
 
 
     override fun onCommentMoreButtonPressed(comment: PublishedNotebook.Comment) {
-        PublishedNotebookOptionsMenu.show(
-            childFragmentManager
-        ) {
+        BottomSheetOptionsDialog.builder<CommentOptionsMenu>()
+            .show(childFragmentManager) {
             Timber.d("onSelected")
             when (it) {
                 R.id.commentEdit -> {

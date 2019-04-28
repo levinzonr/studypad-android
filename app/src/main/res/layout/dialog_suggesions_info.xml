@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="@dimen/space_huge"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.google.android.material.card.MaterialCardView
+            app:cardCornerRadius="@dimen/corner_radius"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_gravity="center"
+                    android:layout_width="70dp"
+                    android:layout_height="80dp">
+
+                <ImageView
+                        android:layout_gravity="center"
+                        android:tint="@color/blue"
+                        android:layout_marginBottom="@dimen/space_normal"
+                        android:src="@drawable/ic_studypad"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                <ImageView
+                        android:padding="@dimen/space_normal"
+                        android:src="@drawable/ic_support"
+                        android:background="@drawable/background_circle"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+            <TextView
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:text="@string/suggestions_info_title"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_big"
+                    android:layout_marginStart="@dimen/space_big"
+                    android:gravity="center|start"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/textView12"/>
+
+
+            <TextView
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/suggestionInfoTv"
+                    android:lineSpacingExtra="4sp"
+                    android:text="@string/suggestions_info_message"
+                    android:layout_margin="@dimen/space_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView12"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>

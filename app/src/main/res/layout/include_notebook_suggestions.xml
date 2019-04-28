@@ -57,20 +57,22 @@
                     android:text="@string/sharinghub_dets_suggestions_view"
                     app:layout_constraintStart_toStartOf="parent"/>
 
-                <com.google.android.material.chip.Chip
-                    android:layout_marginStart="@dimen/space_normal"
-                    android:layout_marginEnd="@dimen/space_normal"
-                    android:id="@+id/notebookSuggestionsAddBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sharinhub_dets_suggestions_add"
-                    app:chipIcon="@drawable/ic_round_add_24px"
-                    app:chipIconTint="@color/blue"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+
 
             </LinearLayout>
 
-
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/notebookSuggestionsInfoBtn"
+                    android:layout_width="wrap_content"
+                    style="@style/Button.Text"
+                    android:gravity="end"
+                    app:layout_constraintHorizontal_bias="0.9"
+                    android:textAlignment="viewEnd"
+                    android:layout_height="wrap_content"
+                    android:text="@string/suggestion_info_btn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -236,6 +236,11 @@
     <string name="suggestion_conflict">Suggestions conflict</string>
     <string name="suggestion_conflict_message">Both %1$s and %2$s have suggested to update this note, casing a conflict. Only one must be applied</string>
     <string name="suggestion_empty">No new suggestions yet</string>
+    <string name="suggestions_info_title">Collaboration in StudyPad</string>
+    <string name="suggestions_info_message">When you have published notebook saved in your library, you can help others users build perfect study materials\n\n Every modification and change you make to you local version can be made into suggestion, allowing author of the notebook either approve or reject it \n\n
+        When you\'re the author of published notebook, you can apply these changes (i.e changes from your local notebook) straight away, and, being the author of a notebook, it is your responsibility
+        to review suggestions you receive from your other users. Just remember: No conflicts :)
+    </string>
 
 
     <!-- Login  -->
@@ -262,6 +267,7 @@
     <string name="selector_tag_lastlyused">Lastly used</string>
 
     <string name="time_just_now">just now</string>
+    <string name="suggestion_info_btn">Learn more</string>
 
     <plurals name="time_minutes">
         <item quantity="zero">just now</item>

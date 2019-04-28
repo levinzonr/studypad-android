@@ -16,6 +16,7 @@ import cz.levinzonr.studypad.notifications.NotificationPayload
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
+import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.SuggestionsInfoDialog
 import kotlinx.android.synthetic.main.fragment_published_notebook_description.*
 import kotlinx.android.synthetic.main.include_notebook_details.*
 import kotlinx.android.synthetic.main.include_notebook_excluded_view.*
@@ -55,8 +56,8 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         notebookSuggestionShowAllBtn.setOnClickListener {
             viewModel.onShowAllSuggestionsClicked()
         }
-        notebookSuggestionsAddBtn.setOnClickListener {
-            viewModel.onCreateNewSuggestionClicked()
+        notebookSuggestionsInfoBtn.setOnClickListener {
+            SuggestionsInfoDialog.show(childFragmentManager)
         }
         notebookSuggestionsMessage.text = getQuantatyString(R.plurals.sharinghub_dets_suggestions_message, versionState.modifications.count())
         notebookSuggestionsLayout.setVisible(true)
