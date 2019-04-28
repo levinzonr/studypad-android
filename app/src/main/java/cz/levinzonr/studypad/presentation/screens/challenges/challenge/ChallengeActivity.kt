@@ -11,6 +11,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.onHandle
 import cz.levinzonr.studypad.presentation.base.BaseActivity
+import cz.levinzonr.studypad.presentation.common.StudyPadDialog
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengeType
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesModels
 import cz.levinzonr.studypad.presentation.screens.challenges.flashcards.FlashcardChallengeFragment
@@ -78,11 +79,11 @@ class ChallengeActivity : AppCompatActivity() {
         val fragment = supportFragmentManager.findFragmentByTag(TAG)
         if (fragment is ChallengeCompleteFragment) super.onBackPressed()
         else {
-            AlertDialog.Builder(this)
-                .setTitle("Leaving challenge")
-                .setMessage("Are youre sure you want to leave this challenge? Progress won't be saved")
-                .setPositiveButton(android.R.string.yes) { _, _ -> super.onBackPressed()}
-                .setNegativeButton(android.R.string.no) { d, _ -> d.dismiss()}
+            StudyPadDialog.Builder(this)
+                .setTitle(getString(R.string.challenges_leave_title))
+                .setMessage(getString(R.string.challenges_leave_message))
+                .setPositiveButton(getString(android.R.string.yes)) {  super.onBackPressed()}
+                .setNegativeButton(getString(android.R.string.no)) { d -> d.dismiss()}
                 .show()
         }
     }

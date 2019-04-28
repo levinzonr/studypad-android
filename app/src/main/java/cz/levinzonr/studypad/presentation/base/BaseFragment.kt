@@ -25,6 +25,7 @@ import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import androidx.core.content.ContextCompat.getSystemService
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.presentation.common.StudyPadDialog
 
 
 abstract class BaseFragment : Fragment() {
@@ -108,10 +109,10 @@ abstract class BaseFragment : Fragment() {
     }
 
     protected fun showSimpleDialog(title: String, message: String) {
-        AlertDialog.Builder(context)
+        StudyPadDialog.Builder(context)
             .setTitle(title)
             .setMessage(message)
-            .setPositiveButton("Ok") { d, _ -> d.dismiss() }
+            .setPositiveButton("Ok") { d -> d.dismiss() }
             .show()
     }
 

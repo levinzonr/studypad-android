@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:paddingStart="@dimen/space_big"
+        android:padding="@dimen/space_big"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:cardCornerRadius="@dimen/space_normal"
+            app:contentPadding="@dimen/space_normal"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_width="match_parent">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_margin="@dimen/space_normal"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            <TextView
+                    android:textSize="17sp"
+                    style="@style/TextStyle"
+                    android:layout_marginTop="@dimen/space_normal"
+                    android:layout_marginStart="@dimen/space_normal"
+                    tools:text="_Title"
+                    android:id="@+id/dialogTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+            <TextView
+                    android:textSize="16sp"
+                    style="@style/TextStyle"
+                    android:layout_margin="@dimen/space_normal"
+                    app:layout_constraintTop_toBottomOf="@id/dialogTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="_Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum."
+                    android:id="@+id/dialogMessage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+
+            <com.google.android.material.button.MaterialButton
+                    app:layout_constraintTop_toBottomOf="@id/dialogMessage"
+                    style="@style/Button.Text"
+                    tools:visibility="visible"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/space_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="_Yes"
+                    android:id="@+id/buttonPositive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <com.google.android.material.button.MaterialButton
+                    app:layout_constraintBottom_toBottomOf="@id/buttonPositive"
+                    app:layout_constraintEnd_toStartOf="@id/buttonPositive"
+                    style="@style/Button.Text"
+                    tools:visibility="visible"
+                    android:visibility="gone"
+                    tools:text="_No"
+                    android:id="@+id/buttonNegative"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>
