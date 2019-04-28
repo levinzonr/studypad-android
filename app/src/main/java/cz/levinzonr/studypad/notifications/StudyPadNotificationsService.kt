@@ -57,7 +57,7 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
             .build()
 
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        if (!schedyked && notificationsEnabled) manager.notify(code(payload?.type ?: 1), notification)
+        if (!schedyked && notificationsEnabled) manager.notify(code(payload?.type ?: ""), notification)
     }
 
 
