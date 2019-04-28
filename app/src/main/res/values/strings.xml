@@ -123,6 +123,12 @@
     <string name="notifications_empty_message">You haven\'t receive any notifications yet</string>
     <string name="notifications_mark_read">Mark as Read</string>
 
+    <string name="notification_comment_title">New comment</string>
+    <string name="notification_comment_message">%1$s left a new comment on your %2$s notebook</string>
+    <string name="notification_suggestion_title">Suggestion Added</string>
+    <string name="notification_suggestion_message">%1$s notebook got a new suggestion, take a look!</string>
+    <string name="notification_update_title">Notebook update</string>
+    <string name="notification_update_message">New version of the %1$s notebook is available</string>
 
 
     <!-- Sharing hub Section -->
@@ -237,6 +243,27 @@
     <string translatable="false" name="fb_login_protocol_scheme">fb1993571567628934</string>
     <string name="selector_tag_lastlyused">Lastly used</string>
 
+    <string name="time_just_now">just now</string>
 
+    <plurals name="time_minutes">
+        <item quantity="zero">just now</item>
+        <item quantity="one">One minute ago</item>
+        <item quantity="other">%d minutes ago</item>
+    </plurals>
+
+    <plurals name="time_hours">
+        <item quantity="one">One hour ago</item>
+        <item quantity="other">%d hours ago</item>
+    </plurals>
+
+    <plurals name="time_days">
+        <item quantity="one">One day ago</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
+
+    <plurals name="time_month">
+        <item quantity="one">One month ago</item>
+        <item quantity="other">%d months ago</item>
+    </plurals>
 
 </resources>

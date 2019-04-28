@@ -58,10 +58,6 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         notebookSuggestionsAddBtn.setOnClickListener {
             viewModel.onCreateNewSuggestionClicked()
         }
-
-        val message = if (versionState.modifications.isEmpty())
-            "There are no pending suggestions yet. Have something to add?"
-        else "There are ${versionState.modifications.count()} pending suggestion from $unigueUsers users"
         notebookSuggestionsMessage.text = getQuantatyString(R.plurals.sharinghub_dets_suggestions_message, versionState.modifications.count())
         notebookSuggestionsLayout.setVisible(true)
 
@@ -99,7 +95,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
             NotePreviewAdapter(detail.notes, this)
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
 
-        publishBookDateTv.text = "last updated: ${detail.lastUpdate.formatTime()}"
+        publishBookDateTv.text = "last updated: ${detail.lastUpdate.formatTime(context!!)}"
         notebookInfoLayout.setVisible(true)
         notesPreviewLayout.setVisible(true)
 
@@ -130,7 +126,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         publishedBookTopicTv.text = feed.topic
         publishedBookNotesRv.layoutManager = LinearLayoutManager(context)
 
-        publishBookDateTv.text = "last updated: ${feed.lastUpdate.formatTime()}"
+        publishBookDateTv.text = getString(R.string.sharinghub_dets_lastupdated,  "${feed.lastUpdate.formatTime(context!!)}")
         publishedBookSchoolTv.shownText = feed.university?.fullName
 
         notebookInfoLayout.setVisible(true)

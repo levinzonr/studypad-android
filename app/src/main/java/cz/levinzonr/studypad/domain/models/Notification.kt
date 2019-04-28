@@ -11,5 +11,7 @@ data class Notification(
     val read: Boolean,
     val notebookId: String,
     val body: String = "Nullam quis risus eget urna mollis ornare vel eu leo.",
-    val time: Long = System.currentTimeMillis()
+    val time: Long = System.currentTimeMillis(),
+    val notebookName: String,
+    val userName: String? = null
 ) : Parcelable

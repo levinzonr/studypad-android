@@ -34,7 +34,7 @@ class CommentsAdapter(val listener: CommentsItemListener, val authorId: String? 
             view.commentAuthorTv.text = comment.author.displayName
             view.commentContentTv.text = comment.content
             view.commentAuthorIv.loadAuthorImage(comment.author.photoUrl)
-            view.commentDateTv.text = comment.dateCreated.formatTime()
+            view.commentDateTv.text = comment.dateCreated.formatTime(view.context)
             Timber.d("${authorId} == ${comment.author.uuid}")
             view.commentMorBtn.setVisible(authorId == comment.author.uuid)
 

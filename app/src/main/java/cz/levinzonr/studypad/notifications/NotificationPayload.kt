@@ -20,4 +20,4 @@ data class NotificationPayload(
 data class NotebookInfo(val notebookId: String, val notebookName: String) : Parcelable
 
 @Parcelize
-data class UserInfo(val userId: String, val userName: String) : Parcelable
+data class UserInfo(val authorId: String, val authorName: String) : Parcelable

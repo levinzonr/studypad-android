@@ -7,11 +7,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.models.Notification
-import cz.levinzonr.studypad.formatTime
-import cz.levinzonr.studypad.layoutInflater
-import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.item_notification.view.*
 
 class NotificationsAdapter(private val listener: NotificationItemsListener) : ListAdapter<Notification, NotificationsAdapter.ViewHolder>(
@@ -34,26 +31,32 @@ class NotificationsAdapter(private val listener: NotificationItemsListener) : Li
     }
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        val context = view.context
         fun bindView(notification: Notification) {
             view.notificationBodyTv.text = notification.body
             view.notificationReadBtn.setVisible(!notification.read)
             when(notification.type) {
                NotificationType.Comment -> {
-                    view.notificationTimeTv.text = "New Comment • ${notification.time.formatTime()}"
-
+                    view.notificationTimeTv.text = "${context.getString(R.string.notification_comment_title)} • ${notification.time.formatTime(context)}"
+                    val body = context.getString(R.string.notification_comment_message, notification.userName, notification.notebookName)
+                    view.notificationBodyTv.setSpannableText(body, notification.userName, notification.notebookName)
                     view.notificationTypeIv.setImageResource(R.drawable.ic_comment)
                     val color = ContextCompat.getColor(view.context, R.color.blue)
                     view.notificationTypeIv.imageTintList = ColorStateList.valueOf(color)
                 }
                NotificationType.Update -> {
-                    view.notificationTimeTv.text = "Update Available • ${notification.time.formatTime()}"
+                   view.notificationTimeTv.text = "${context.getString(R.string.notification_update_title)} • ${notification.time.formatTime(context)}"
                     val color = ContextCompat.getColor(view.context, R.color.oragne)
+                    val body = context.getString(R.string.notification_update_message, notification.notebookName)
+                    view.notificationBodyTv.setSpannableText(body, notification.notebookName)
                     view.notificationTypeIv.setImageResource(R.drawable.ic_sync_black_24dp)
                     view.notificationTypeIv.imageTintList = ColorStateList.valueOf(color)
                 }
                 NotificationType.Suggestion -> {
-                    view.notificationTimeTv.text = "Suggestion Added • ${notification.time.formatTime()}"
+                    view.notificationTimeTv.text = "${context.getString(R.string.notification_update_title)} • ${notification.time.formatTime(context)}"
                     val color = ContextCompat.getColor(view.context, R.color.green)
+                    val text = context.getString(R.string.notification_suggestion_message, notification.notebookName)
+                    view.notificationBodyTv.setSpannableText(text, notification.notebookName)
                     view.notificationTypeIv.setImageResource(R.drawable.ic_support)
                     view.notificationTypeIv.imageTintList = ColorStateList.valueOf(color)
                 }

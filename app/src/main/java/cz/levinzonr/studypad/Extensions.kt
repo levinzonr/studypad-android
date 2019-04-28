@@ -217,35 +217,22 @@ inline fun <T> List<T>.indexOfFirstOrNull(condition: (T) -> Boolean): Int? {
     return if (indexOfFirst { condition.invoke(it) } == -1) null else indexOfFirst { condition.invoke(it) }
 }
 
-fun Long.formatTime(): String {
+fun Long.formatTime(context: Context): String? {
     val date = DateTime(this)
     val now = DateTime()
-
 
     val minutesBetween = Minutes.minutesBetween(date, now).minutes
     val hoursBetween = Hours.hoursBetween(date, now).hours
     val daysBetween = Days.daysBetween(date, now).days
     val monthsBetween = Months.monthsBetween(date, now).months
 
-
     Timber.d("Mins: $minutesBetween, hours: $hoursBetween, days: $daysBetween")
-
-
     return when {
-        monthsBetween >= 12 -> "more than a year ago"
-        monthsBetween > 1 -> "$monthsBetween months ago"
-        monthsBetween == 1 -> "month ago"
-
-        daysBetween > 1 -> "$daysBetween days ago"
-        daysBetween == 1 -> "yesterday"
-
-        hoursBetween > 1 -> "$hoursBetween hours ago"
-        hoursBetween == 1 -> "an hour ago"
-
-        minutesBetween > 1 -> "$minutesBetween minutes ago"
-        minutesBetween < 1 -> "just now"
-        minutesBetween == 1 -> "one minute ago"
-        else -> "${date.toLocalTime()}"
+        monthsBetween >= 1 -> context.getQuantityString(R.plurals.time_month, monthsBetween)
+        daysBetween >= 1 -> context.getQuantityString(R.plurals.time_days, daysBetween)
+        hoursBetween >= 1 -> context.getQuantityString(R.plurals.time_hours, hoursBetween)
+        minutesBetween <= 0 -> context.getString(R.string.time_just_now)
+        else -> context.getQuantityString(R.plurals.time_minutes, minutesBetween)
 
     }
 }
@@ -330,15 +317,15 @@ fun Collection<String>.buildTags(context: Context): List<Chip> {
     }
 }
 
-fun String.toNotebookLink() : String {
+fun String.toNotebookLink(): String {
     return "${BuildConfig.API_URL}/shared/$this"
 }
 
-fun Fragment.getQuantatyString(stirngRes: Int, quantaty: Int) : String? {
+fun Fragment.getQuantatyString(stirngRes: Int, quantaty: Int): String? {
     return context?.resources?.getQuantityString(stirngRes, quantaty, quantaty)
 }
 
-fun Context.getQuantityString(stringRes: Int, quantaty: Int) : String? {
+fun Context.getQuantityString(stringRes: Int, quantaty: Int): String? {
     return resources?.getQuantityString(stringRes, quantaty, quantaty)
 }
 
