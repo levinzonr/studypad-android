@@ -8,6 +8,7 @@
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/publishedBookShareBtn"
+            style="@style/Button.TextMenu"
             app:icon="@drawable/ic_round_share_24px"
             android:text="@string/default_share"
             android:layout_width="match_parent"

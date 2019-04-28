@@ -50,6 +50,10 @@ class PublishedNotebooksAdapter(val type: AdapterType = AdapterType.Full) :
             view.notebookTopicTv.text = notebook.topic
             view.notebookSchoolTv.shownText = notebook.university?.fullName
 
+            view.notebookOptionsBtn.setOnClickListener {
+                listener?.onPublishedNotebookOptionsClicked(notebook)
+            }
+
             view.notebookTagsCg.removeAllViews()
             view.notebookTagsCg.addAll(notebook.tags.sortedBy { it.length }.map {
                 if (it.length > 7) "${it.substring(0, 7)}..." else it

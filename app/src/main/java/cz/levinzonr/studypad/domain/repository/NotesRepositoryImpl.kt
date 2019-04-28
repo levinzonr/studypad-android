@@ -33,6 +33,7 @@ class NotesRepositoryImpl(
 
     override suspend fun deleteNote(noteId: Long) {
         remoteDataSource.deleteNoteAsync(noteId).await()
+        localDataSource.notesDao().deleteById(noteId)
     }
 
     override fun notesLiveData(notebookId: String): LiveData<List<Note>> {
