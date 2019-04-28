@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -50,19 +51,20 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
             .setTitle(this, payload)
             .setMessage(this, payload)
             .setContentIntent(getPendingIntent(message))
-            .setSmallIcon(R.drawable.ic_sync_black_24dp)
+            .setColor(ContextCompat.getColor(this, R.color.blue))
+            .setSmallIcon(R.drawable.ic_notification)
             .setChannelId(CHANNEL_ID)
             .build()
 
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        if (!schedyked && notificationsEnabled) manager.notify(1, notification)
+        if (!schedyked && notificationsEnabled) manager.notify(code(payload?.type ?: 1), notification)
     }
 
 
     private fun getPendingIntent(message: RemoteMessage): PendingIntent? {
         val notification = extractPayload(message) ?: return null
         val intent = Intent(this, MainActivity::class.java).apply {
-            action = "id"
+            action = ""
             putExtra("payload", notification)
         }
         return PendingIntent.getActivity(this, code(notification.type), intent, PendingIntent.FLAG_UPDATE_CURRENT)
