@@ -194,7 +194,7 @@
     <fragment
             android:id="@+id/notebookSuggestionsFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.NotebookSuggestionsFragment"
-            android:label="fragment_notebook_suggestions"
+            android:label="@string/suggestions_title"
             tools:layout="@layout/fragment_notebook_suggestions">
         <argument
                 android:name="suggestions"
@@ -208,6 +208,9 @@
         <argument
                 android:name="notebookId"
                 app:argType="string"/>
+        <argument
+                android:name="authoredByMe"
+                app:argType="boolean"/>
     </fragment>
     <fragment
             android:id="@+id/notebooksSearchFragment"
@@ -235,7 +238,7 @@
 
     <fragment
             android:id="@+id/reviewSuggestionsFragment"
-            android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.ReviewSuggestionsFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.review.ReviewSuggestionsFragment"
             android:label="fragment_review_suggestions"
             tools:layout="@layout/fragment_review_suggestions">
         <argument

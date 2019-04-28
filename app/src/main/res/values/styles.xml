@@ -69,6 +69,13 @@
         <item name="android:background">@drawable/background_dialog</item>
     </style>
 
+    <style name="SuggestionCardView">
+        <item name="cardCornerRadius">@dimen/corner_radius</item>
+        <item name="android:layout_margin">@dimen/space_big</item>
+        <item name="cardBackgroundColor">@color/lightGrey</item>
+        <item name="cardElevation">@dimen/space_normal</item>
+    </style>
+
     <style name="TextStyle.Header">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">21sp</item>

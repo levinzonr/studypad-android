@@ -1,26 +1,49 @@
 package cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import cz.levinzonr.studypad.domain.interactors.sharinghub.GetPendingSuggestionsInteractor
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 
-class NotebookSuggestionsViewModel(val suggestions: List<PublishedNotebook.Modification>, val notes: List<Note>) : BaseViewModel() {
+class NotebookSuggestionsViewModel(
+    val notebookId: String,
+    val authoredByMe: Boolean,
+    val notes: List<Note>,
+    private val getPendingSuggestionsInteractor: GetPendingSuggestionsInteractor) : BaseViewModel() {
 
-    val suggestionsLiveData: MutableLiveData<List<SuggestionsModels.SuggestionItem>> = MutableLiveData()
+    val viewState: MutableLiveData<SuggestionsViewState> = MutableLiveData()
 
+
+    private lateinit var suggestions: List<PublishedNotebook.Modification>
     init {
-        val list = List(suggestions.size) {
-            val suggestion = suggestions[it]
-            SuggestionsModels.SuggestionItem(suggestion, notes.firstOrNull { note -> suggestion.sourceId == note.id})
-        }
-        suggestionsLiveData.postValue(list)
+        viewState.postValue(SuggestionsViewState())
+        refresh()
     }
 
-    fun onReviewButtonClicked(notebooid:String) {
-        val list = suggestionsLiveData.value ?: listOf()
-        navigateTo(NotebookSuggestionsFragmentDirections.actionNotebookSuggestionsFragmentToReviewSuggestionsFragment(suggestions.toTypedArray(),notebooid, notes.toTypedArray()))
+    fun onReviewButtonClicked() {
+        navigateTo(NotebookSuggestionsFragmentDirections.actionNotebookSuggestionsFragmentToReviewSuggestionsFragment(
+            suggestions.toTypedArray(), notebookId, notes.toTypedArray())
+        )
+    }
+
+    private fun transformAndPost(mods: List<PublishedNotebook.Modification>) {
+        suggestions = mods
+        val list = List(suggestions.size) {
+            val suggestion = suggestions[it]
+            SuggestionsModels.SuggestionItem(
+                suggestion,
+                notes.firstOrNull { note -> suggestion.sourceId == note.id })
+        }
+        viewState.postValue(viewState.value?.copy(isReviewButtonEnabled = authoredByMe && list.isNotEmpty(), items = list))
+    }
+
+
+    fun refresh() {
+        getPendingSuggestionsInteractor.executeWithInput(notebookId) {
+            onComplete { transformAndPost(it) }
+            onError { handleApplicationError(it) }
+        }
     }
 
 

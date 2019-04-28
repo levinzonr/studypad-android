@@ -34,6 +34,21 @@ object PublishedNotebook {
         val author: UserProfile
     ) : Parcelable
 
+    enum class ModificationType {
+        Added, Deleted, Updated;
+        companion object {
+            fun from(string: String) : ModificationType {
+                return when(string) {
+                    "upd" -> Updated
+                    "add" -> Added
+                    else -> Deleted
+                }
+            }
+        }
+    }
+
+
+
 
     data class Detail(
         val id: String,
@@ -61,3 +76,6 @@ object PublishedNotebook {
     )
 
 }
+
+val String.modType: PublishedNotebook.ModificationType
+    get() = PublishedNotebook.ModificationType.from(this)

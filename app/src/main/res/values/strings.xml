@@ -30,6 +30,7 @@
     <string name="progress_login">Logging in…</string>
     <string name="progress_signup">Creating an account…</string>
     <string name="progress_publishing">Publishing your notebook…</string>
+    <string name="progress_review">Submitting review</string>
 
     <!-- My Library Section -->
     <string name="library_notebooks_title">My Notebooks</string>
@@ -218,6 +219,23 @@
         <item quantity="other">%d notes studied</item>
     </plurals>
 
+
+    <string name="suggestions_title">Pending suggestions</string>
+    <string name="suggestions_review">Review</string>
+    <string name="suggestion_body_update">%1$s suggested to update the %2$s note</string>
+    <string name="suggestion_body_add">%1$s suggested to add new note: %2$s</string>
+    <string name="suggestions_reject">Reject</string>
+    <string name="suggestions_approve">Approve</string>
+    <string name="suggestion_type_add">New note %s</string>
+    <string name="suggestion_type_upd">Updated note %s</string>
+    <string name="suggestion_upd_new">Updated version</string>
+    <string name="suggestion_upd_old">Current version</string>
+    <string name="suggestion_author">∙ by %1$s</string>
+    <string name="suggestions_review_state">%1$d approved ∙ %2$d rejected</string>
+    <string name="suggestions_review_count">%1$d/%2$d reviewed</string>
+    <string name="suggestion_conflict">Suggestions conflict</string>
+    <string name="suggestion_conflict_message">Both %1$s and %2$s have suggested to update this note, casing a conflict. Only one must be applied</string>
+    <string name="suggestion_empty">No new suggestions yet</string>
 
 
     <!-- Login  -->

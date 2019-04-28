@@ -69,13 +69,15 @@ class PublishedNotebookDetailViewModel(
     }
 
     fun onShowAllSuggestionsClicked() {
+        val authoredByMe = sharedDetailLiveData.value?.authoredByMe ?: false
         val modifications = sharedDetailLiveData.value?.versionState?.modifications ?: listOf()
         val notes = sharedDetailLiveData.value?.notes ?: listOf()
         navigateTo(
             PublishedNotebookDetailFragmentDirections.actionPublishedNotebookDetailFragmentToNotebookSuggestionsFragment(
                 modifications.toTypedArray(),
                 notes.toTypedArray(),
-                notebookId
+                notebookId,
+                authoredByMe = authoredByMe
             )
         )
     }

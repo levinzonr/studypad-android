@@ -38,7 +38,7 @@ interface Api {
 
 
     @POST("$API/notifications/read")
-    fun markNotificationsAsRead(@Query("ids") list: List<Long>) : Deferred<Unit>
+    fun markNotificationsAsReadAsync(@Query("ids") list: List<Long>) : Deferred<Unit>
 
 
     @POST("$API/users/notifications/register")
@@ -112,6 +112,8 @@ interface Api {
 
     //-----------------------------------------------------------------------------
 
+    @GET("$API/shared/{id}/suggestions")
+    fun getPendingSuggestionsAsync(@Path("id") notebookId: String) : Deferred<List<PublishedNotebook.Modification>>
 
     @PATCH("$API/shared/{id}/suggestions/local")
     fun applyLocalChangesAsync(@Path("id") notebookId: String) : Deferred<PublishedNotebook.Detail>

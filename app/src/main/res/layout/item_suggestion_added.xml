@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:id="@+id/root"
+        android:layout_height="match_parent">
+
+
+    <TextView
+            android:padding="@dimen/space_normal"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:layout_marginTop="@dimen/space_normal"
+            tools:text="Updated note by Roman Levinzon"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/space_big"
+            android:layout_marginEnd="@dimen/space_big"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/suggestionTitle"/>
+
+
+    <com.google.android.material.card.MaterialCardView
+            style="@style/SuggestionCardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/rejectedBtn"
+            app:layout_constraintTop_toBottomOf="@+id/suggestionTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:padding="@dimen/space_normal"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:layout_marginTop="@dimen/space_normal"
+                    android:layout_marginEnd="@dimen/space_normal"
+                    android:gravity="end"
+                    android:text="@string/suggestion_upd_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <include layout="@layout/include_note"/>
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+    <com.google.android.material.button.MaterialButton
+            style="@style/Button.Text"
+            android:text="@string/suggestions_reject"
+            app:icon="@drawable/ic_thumb_down_black_24dp"
+            android:id="@+id/rejectedBtn"
+            android:layout_margin="@dimen/space_big"
+            android:textColor="@color/red"
+            app:iconGravity="textStart"
+            app:iconPadding="@dimen/space_normal"
+            app:iconTint="@color/red"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/approveBtn"
+            style="@style/Button.Text"
+            app:iconGravity="textStart"
+            app:iconPadding="@dimen/space_normal"
+            app:icon="@drawable/ic_thumb_up_black_24dp"
+            android:textColor="@color/green"
+            app:iconTint="@color/green"
+            android:text="@string/suggestions_approve"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_big"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

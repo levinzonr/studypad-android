@@ -6,9 +6,7 @@ import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.screens.about.feedback.SendFeedbackViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengeType
-import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesModels
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesOverviewViewModel
-import cz.levinzonr.studypad.presentation.screens.challenges.challenge.ChallengeViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewModel
 import cz.levinzonr.studypad.presentation.screens.challenges.setup.SetupChallengeViewState
@@ -35,7 +33,7 @@ import cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNo
 import cz.levinzonr.studypad.presentation.screens.sharinghub.feed.SharingHubViewModel
 import cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebookSearchModels
 import cz.levinzonr.studypad.presentation.screens.sharinghub.search.NotebooksSearchViewModel
-import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.ReviewSuggestionsViewModel
+import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.review.ReviewSuggestionsViewModel
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
@@ -95,10 +93,12 @@ val viewModelModule = module {
 
     viewModel { PublishedNotesListViewModel() }
 
-    viewModel { (notes: Array<Note>, suggestions: Array<PublishedNotebook.Modification>) ->
+    viewModel { (notes: Array<Note>, notebookId: String, authoreByMe: Boolean) ->
         NotebookSuggestionsViewModel(
-            suggestions.toList(),
-            notes.toList()
+            notebookId,
+            authoreByMe,
+            notes.toList(),
+            get()
         )
     }
 

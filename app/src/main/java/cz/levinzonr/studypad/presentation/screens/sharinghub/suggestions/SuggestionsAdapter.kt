@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.loadAuthorImage
 import cz.levinzonr.studypad.setSpannableText
 import kotlinx.android.synthetic.main.item_suggestion.view.*
@@ -32,14 +33,14 @@ class SuggestionsAdapter : ListAdapter<SuggestionsModels.SuggestionItem, Suggest
         fun bindView(modification: SuggestionsModels.SuggestionItem) {
             val author = modification.suggestion.author
             view.suggestionAuthorIv.loadAuthorImage(modification.suggestion.author.photoUrl)
-            val text = when(modification.suggestion.type) {
-                "upd" -> "${author.displayName} has suggestion an update to a note: ${modification.sourceNote?.title}"
-                "add" -> "${author.displayName} has suggested a new note called ${modification.suggestion.title}"
-                "del" -> "${author.displayName} has suggested to delete a note ${modification.sourceNote?.title}"
-                else -> ""
+            val modType = PublishedNotebook.ModificationType.from(modification.suggestion.type)
+            val text = when(modType) {
+                PublishedNotebook.ModificationType.Updated -> view.context.getString(R.string.suggestion_body_update, author.displayName, modification.sourceNote?.title)
+                PublishedNotebook.ModificationType.Added ->  view.context.getString(R.string.suggestion_body_add, author.displayName, modification.suggestion.title)
+                PublishedNotebook.ModificationType.Deleted -> "${author.displayName} has suggested to delete a note ${modification.sourceNote?.title}"
             }
 
-            view.suggestionChageContentTv.setSpannableText(text, author.displayName, modification.sourceNote?.title)
+            view.suggestionChageContentTv.setSpannableText(text, author.displayName, modification.sourceNote?.title, modification.suggestion.title)
 
             val background = when {
                 modification.rejected -> ContextCompat.getDrawable(view.context, R.drawable.background_shadow_red)

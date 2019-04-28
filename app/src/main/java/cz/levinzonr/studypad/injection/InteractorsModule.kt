@@ -85,4 +85,6 @@ val interacorModule = module {
     factory { SaveChallengeInteractor(get()) }
 
     factory { LeaveFeedbackInteractor(get()) }
+
+    factory { GetPendingSuggestionsInteractor(get()) }
 }
