@@ -8,7 +8,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/notebookOpenShared"
         app:icon="@drawable/ic_round_open_in_browser_24px"
-        android:text="Open Shared Notebook"
+        android:text="@string/library_openshared"
         style="@style/Button.TextMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

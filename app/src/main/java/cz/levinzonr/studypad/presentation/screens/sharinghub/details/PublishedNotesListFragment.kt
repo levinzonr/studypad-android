@@ -44,11 +44,15 @@ class PublishedNotesListFragment : BaseFragment(), NotesAdapter.NotesItemListene
     }
 
 
+    override fun onNoteLongClicked(note: Note) {
+
+    }
+
     override fun subscribe() {
 
     }
 
-    override fun onNoteSelected(note: Note) {
+    override fun onNoteClicked(note: Note) {
         PublishedNoteDetailDialog.show(childFragmentManager, note)
     }
 

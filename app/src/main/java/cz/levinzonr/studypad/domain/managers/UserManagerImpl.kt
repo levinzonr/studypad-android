@@ -2,6 +2,7 @@ package cz.levinzonr.studypad.domain.managers
 
 import androidx.lifecycle.LiveData
 import com.google.firebase.auth.*
+import com.google.firebase.messaging.FirebaseMessaging
 import cz.levinzonr.studypad.data.CreateAccountRequest
 import cz.levinzonr.studypad.domain.models.*
 import cz.levinzonr.studypad.domain.repository.LocaleRepository
@@ -33,6 +34,7 @@ class UserManagerImpl(private val preferencesRepository: UserPreferencesReposito
         tokenRepository.saveToken(token, -1)
         userProfileRepository.saveUserProfile(userProfile)
         setNotificationsEnabled(true)
+        FirebaseMessaging.getInstance().subscribeToTopic("user_${userProfile.uuid}")
     }
 
     override fun getCurrentUserInfo(): CurrentUserInfo? {
@@ -56,12 +58,15 @@ class UserManagerImpl(private val preferencesRepository: UserPreferencesReposito
     }
 
     override fun logout() {
+        val user = getCurrentUserInfo()?.id
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("user_$user")
         firebaseAuth.signOut()
         tokenRepository.clear()
         userProfileRepository.clear()
         searchHistoryRepository.clear()
         preferencesRepository.clear()
         localeRepository.clear()
+
     }
 
 }

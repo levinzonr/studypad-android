@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.base.BottomSheetOptionsDialog
+import cz.levinzonr.studypad.presentation.base.NoteOptionsDialog
 import cz.levinzonr.studypad.setVisible
 import cz.levinzonr.studypad.supportActionBar
 import kotlinx.android.synthetic.main.fragment_notes_list.*
@@ -70,7 +72,17 @@ class NotesListFragment : BaseFragment(), NotesAdapter.NotesItemListener {
         notesRv.adapter = adapter
     }
 
-    override fun onNoteSelected(note: Note) {
+    override fun onNoteClicked(note: Note) {
         viewModel.showNoteDetail(note)
+    }
+
+    override fun onNoteLongClicked(note: Note) {
+        BottomSheetOptionsDialog.builder<NoteOptionsDialog>()
+            .show(childFragmentManager) {
+                when(it) {
+                    R.id.noteCopy -> copyToClipboard("${note.title}\n${note.content}")
+                    R.id.noteDelete -> viewModel.deleteNote(note)
+                }
+            }
     }
 }

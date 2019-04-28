@@ -77,7 +77,7 @@ class PublishedNotebooksAdapter(val type: AdapterType = AdapterType.Full) :
 
 
     interface PublishedNotebookItemListener {
-
+        fun onPublishedNotebookOptionsClicked(publishedNotebook: PublishedNotebook.Feed)
         fun onPublishedNotebookClicked(publishedNotebook: PublishedNotebook.Feed)
     }
 }

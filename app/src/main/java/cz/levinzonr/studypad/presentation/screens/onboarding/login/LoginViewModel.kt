@@ -154,6 +154,7 @@ class LoginViewModel(
 
     private fun handleExceptionError(exception: Exception) {
         Timber.d("Exceptiopn: $exception")
+        handleApplicationError(ApplicationError.GenericError(exception))
     }
 
     private fun allFieldsValid(): Boolean {

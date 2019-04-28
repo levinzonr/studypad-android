@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.hideKeyboard
 import cz.levinzonr.studypad.observeNonNull
+import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_send_feedback.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -25,13 +28,24 @@ class SendFeedbackFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_send_feedback, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        feedbackSendBtn.setOnClickListener {
+            feedbackSendBtn.hideKeyboard()
+            viewModel.onSendFeedbackButtonClicked(feedbackEt.text.toString())
+        }
+
+        feedbackEt.onTextChanged { viewModel.onMessageChanged(it) }
+    }
+
     override fun subscribe() {
         viewModel.stateLiveData.observeNonNull(viewLifecycleOwner) {
+            feedbackSendBtn.isEnabled = it.sendButtonEnabled
             it.feedbackSentEvent?.handle {
+                showToast(getString(R.string.about_feedback_success))
                 activity?.onBackPressed()
-                showToast("Thanks for the feedback!")
             }
-
         }
+
     }
 }

@@ -12,6 +12,8 @@ import cz.levinzonr.studypad.domain.models.InteractorResult
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.presentation.screens.sharinghub.feed.PublishedNotebooksAdapter
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.base.BottomSheetOptionsDialog
+import cz.levinzonr.studypad.presentation.base.PublishedBookOptionsDialog
 import cz.levinzonr.studypad.presentation.common.ToolbarSpaceDecoration
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialog
@@ -186,5 +188,12 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
 
     }
 
-
+    override fun onPublishedNotebookOptionsClicked(publishedNotebook: PublishedNotebook.Feed) {
+        BottomSheetOptionsDialog.builder<PublishedBookOptionsDialog>()
+            .show(childFragmentManager) {
+                when(it) {
+                    R.id.publishedBookShareBtn -> shareMessage(publishedNotebook.id.toNotebookLink())
+                }
+            }
+    }
 }

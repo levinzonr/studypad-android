@@ -5,6 +5,5 @@ data class UserFeedback(
     val appVersionCode: Int,
     val androidVersion: String,
     val device: String,
-    val userId: String,
     val feedback: String
 )

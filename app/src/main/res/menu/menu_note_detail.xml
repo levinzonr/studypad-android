@@ -4,8 +4,14 @@
 
     <item
             android:id="@+id/noteDelete"
-            app:showAsAction="always"
+            app:showAsAction="ifRoom"
             android:icon="@drawable/ic_outline_delete_24px"
-            android:title="Delete"/>
+            android:title="@string/default_delete"/>
+
+    <item
+            android:id="@+id/noteCopy"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/ic_content_copy_black_24dp"
+            android:title="@string/default_delete"/>
 
 </menu>

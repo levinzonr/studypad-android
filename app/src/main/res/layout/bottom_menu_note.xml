@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/noteCopy"
+            app:icon="@drawable/ic_content_copy_black_24dp"
+            android:text="@string/default_copy"
+            style="@style/Button.TextMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/noteDelete"
+            app:icon="@drawable/ic_outline_delete_24px"
+            android:text="@string/default_delete"
+            style="@style/Button.TextMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

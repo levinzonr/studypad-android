@@ -11,11 +11,15 @@
     <!-- Default Section -->
     <string name="default_edit">Edit</string>
     <string name="default_delete">Delete</string>
+    <string name="default_send">Send</string>
     <string name="default_share">Share</string>
+    <string name="default_copy">Copy</string>
     <string name="default_cancel">Cancel</string>
     <string name="default_confirm">Confirm</string>
     <string name="default_continue">Continue</string>
     <string name="default_see_all">See All</string>
+    <string name="default_share_with">Share via…</string>
+    <string name="default_copied">Copied to clipboard</string>
     <string name="default_show_all">Show all</string>
     <string name="default_or">Or</string>
     <string name="default_exit">Exit</string>
@@ -62,7 +66,7 @@
     <string name="library_notes_empty_message">There are no notes in this notebook</string>
     <string name="library_notebooks_empty_title">No notebooks</string>
     <string name="library_notebooks_empty_message">There are no notebooks in your library yet</string>
-
+    <string name="library_note_detail">Note details</string>
     <!-- Publishing Section -->
 
     <string name="publish_step1_title">Basic details</string>
@@ -109,6 +113,8 @@
     <string name="about_privacy">Privacy policy</string>
     <string name="about_feedback">Send feedback</string>
     <string name="about_feedback_hint">Your feedback</string>
+    <string name="about_feedback_success">Thank you for your feedback</string>
+    <string name="about_feedback_title">Send Feedback</string>
     <string name="about_feedback_message">We will automatically collect basic information such as the app version, OS version and device information</string>
     <string name="about_version">Version %1$s (%2$d)</string>
 

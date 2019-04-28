@@ -9,7 +9,9 @@ import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.models.*
 import cz.levinzonr.studypad.notifications.NotificationPayload
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.base.BottomSheetOptionsDialog
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
+import cz.levinzonr.studypad.presentation.base.PublishedBookOptionsDialog
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationsFragment
 import kotlinx.android.synthetic.main.fragment_shared.*
@@ -119,6 +121,16 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
         sectionView.layoutParams = params
         sectionContainer.addView(sectionView)
 
+    }
+
+
+    override fun onPublishedNotebookOptionsClicked(publishedNotebook: PublishedNotebook.Feed) {
+        BottomSheetOptionsDialog.builder<PublishedBookOptionsDialog>()
+            .show(childFragmentManager) {
+                when(it) {
+                    R.id.publishedBookShareBtn -> shareMessage(publishedNotebook.id.toNotebookLink())
+                }
+            }
     }
 
     override fun onPublishedNotebookClicked(publishedNotebook: PublishedNotebook.Feed) {

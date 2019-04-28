@@ -176,7 +176,7 @@
     <fragment
             android:id="@+id/noteDetailFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailFragment"
-            android:label="note_detail_fragment"
+            android:label="@string/library_note_detail"
             tools:layout="@layout/fragment_note_detail">
         <argument
                 android:name="viewMode"

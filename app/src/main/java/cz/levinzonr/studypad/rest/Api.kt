@@ -27,6 +27,9 @@ interface Api {
     @GET("$API/users/me")
     fun getAuthenticatedUserProfileAsync() : Deferred<UserProfile>
 
+    @POST("$API/config/feedback")
+    fun leaveFeedbackAsync(@Body feedback: UserFeedback) : Deferred<Unit>
+
     //-----------------------------------------------------------------------------
 
 

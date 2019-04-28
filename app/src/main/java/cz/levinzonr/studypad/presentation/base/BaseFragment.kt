@@ -18,6 +18,14 @@ import cz.levinzonr.studypad.presentation.screens.MainActivity
 import cz.levinzonr.studypad.presentation.screens.NavigationEvent
 import cz.levinzonr.studypad.presentation.screens.onboarding.OnboardingActivity
 import timber.log.Timber
+import android.R.attr.label
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
+import androidx.core.content.ContextCompat.getSystemService
+import cz.levinzonr.studypad.R
+
 
 abstract class BaseFragment : Fragment() {
 
@@ -91,6 +99,13 @@ abstract class BaseFragment : Fragment() {
 
     }
 
+    protected fun copyToClipboard(text: String) {
+        val label = "StudyPad"
+        val clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText(label, text)
+        clipboard.primaryClip = clip
+        showToast(getString(R.string.default_copied))
+    }
 
     protected fun showSimpleDialog(title: String, message: String) {
         AlertDialog.Builder(context)

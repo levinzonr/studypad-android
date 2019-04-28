@@ -35,13 +35,15 @@ class NotesAdapter : RecyclerView.Adapter<NotesAdapter.ViewHolder>(){
         fun bindView(note: Note) {
             view.noteTitleTv.text = note.title
             view.noteContentTv.text = note.content
-            view.setOnClickListener { listener?.onNoteSelected(note) }
+            view.setOnClickListener { listener?.onNoteClicked(note) }
+            view.setOnLongClickListener { listener?.onNoteLongClicked(note);true }
         }
 
     }
 
     interface NotesItemListener {
-        fun onNoteSelected(note: Note)
+        fun onNoteClicked(note: Note)
+        fun onNoteLongClicked(note: Note)
     }
 
 

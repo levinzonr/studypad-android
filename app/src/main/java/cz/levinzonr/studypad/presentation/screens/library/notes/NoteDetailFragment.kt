@@ -23,7 +23,7 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
 
     private val args: NoteDetailFragmentArgs by navArgs()
 
-
+    private lateinit var menu: Menu
     override val viewModel: NoteDetailViewModel by viewModel { parametersOf(args.viewMode) }
 
     override fun onCreateView(
@@ -46,6 +46,8 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
             noteDetailView.setVisible(!editMode)
             noteEditView.setVisible(editMode)
             noteEditView.showFocused(editMode)
+            menu.getItem(0).setVisible(!editMode)
+            menu.getItem(1).setVisible(!editMode)
 
         })
 
@@ -70,6 +72,18 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_note_detail, menu)
+        this.menu = menu
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val note = viewModel.noteLiveData.value
+        when(item.itemId) {
+            R.id.noteDelete -> viewModel.deleteNote()
+            R.id.noteCopy -> note?.let {
+                copyToClipboard("${note.title}\n${note.content}")
+            }
+        }
+        return true
     }
 
 
