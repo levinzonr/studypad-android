@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_challenges.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class ChallengesFragment : BaseFragment() {
+class ChallengesFragment : BaseFragment(), ChallengesOverviewAdapter.ChallengesListItemListener {
 
     override val viewModel: ChallengesOverviewViewModel by viewModel()
 
@@ -49,7 +49,7 @@ class ChallengesFragment : BaseFragment() {
         emptyView.configure(R.string.challenges_empty_title, R.string.challenges_empty_message)
         adapter = ChallengesOverviewAdapter()
         challengesRv.adapter = adapter
-
+        adapter.listener = this
 
 
 
@@ -74,5 +74,9 @@ class ChallengesFragment : BaseFragment() {
                 viewModel.onLuanchQuickChallenge(ChallengeType.Write, it)
             }
         }
+    }
+
+    override fun onRecentChallengeSelected(challengeEntry: ChallengeEntry) {
+        viewModel.onRecentChallengeClicked(challengeEntry)
     }
 }

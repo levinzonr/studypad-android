@@ -96,7 +96,7 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // Create the NotificationChannel
             val name = "StudyPad notifications"
-            val descriptionText = "Nootifications about latest activities"
+            val descriptionText = "Notifications about latest activities"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val mChannel = NotificationChannel(CHANNEL_ID, name, importance)
             mChannel.description = descriptionText

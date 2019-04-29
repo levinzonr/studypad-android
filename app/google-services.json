@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:776080318800:android:7e3ac61c242b196c",
+        "android_client_info": {
+          "package_name": "cz.levinzonr.studypad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776080318800-i418gmlle2kb322fn68ll8r2k6cqji7l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cz.levinzonr.studypad",
+            "certificate_hash": "2e459bdf40afebbd7e3ade04b7d69d920354cffb"
+          }
+        },
+        {
+          "client_id": "776080318800-bauvbv9e53pf6vl9spjrh49h520gmas4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6gLFaiQFG4EoyyHclhTRD8X6sbxeaeAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776080318800-bauvbv9e53pf6vl9spjrh49h520gmas4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:776080318800:android:f13fb7e4ff18514e",
         "android_client_info": {
           "package_name": "cz.levinzonr.studypad.dev"
@@ -33,20 +70,50 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "776080318800-bauvbv9e53pf6vl9spjrh49h520gmas4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776080318800:android:92ec7092b69ce0e5",
+        "android_client_info": {
+          "package_name": "cz.levinzonr.studypad.staging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776080318800-r1502r2qbrj7b1r3ipkc1dpnceop3sc1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cz.levinzonr.studypad.staging",
+            "certificate_hash": "faeda4180222e6a4d1cb6e940bc4ccbd9f36382c"
+          }
         },
-        "ads_service": {
-          "status": 2
+        {
+          "client_id": "776080318800-bauvbv9e53pf6vl9spjrh49h520gmas4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6gLFaiQFG4EoyyHclhTRD8X6sbxeaeAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776080318800-bauvbv9e53pf6vl9spjrh49h520gmas4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

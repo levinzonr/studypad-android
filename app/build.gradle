@@ -10,7 +10,12 @@ apply plugin: 'io.fabric'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "cz.levinzonr.studypad"
@@ -28,32 +33,70 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildTypes {
 
-        debug {
-            applicationIdSuffix ".dev"
-            buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com\""
-           // buildConfigField "String", "API_URL", "\"http://10.0.2.2:8080\""
+    lintOptions {
+        checkReleaseBuilds true
+        abortOnError false
+    }
 
-            manifestPlaceholders = [
-                    FB_APP_ID: "1993571567628934"
-            ]
-
-        }
+    signingConfigs {
 
         release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file('../studypad.keystore')
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+
+
+    buildTypes {
+
+        release {
+            signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "default"
+    productFlavors {
+
+        production {
+            dimension "default"
+            applicationId "cz.levinzonr.studypad"
+            manifestPlaceholders = [
+                    FB_APP_ID: "1993571567628934",
+                    APP_NAME: "StudyPad"
+            ]
+            buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com\""
+            signingConfig signingConfigs.release
+            // buildConfigField "String", "API_URL", "\"http://10.0.2.2:8080\""
+
+        }
+
+        staging {
+            dimension "default"
+            applicationIdSuffix ".staging"
+            manifestPlaceholders = [
+                    FB_APP_ID: "1993571567628934",
+                    APP_NAME: "StudyPad - Staging"
+            ]
+            buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com\""
+            // buildConfigField "String", "API_URL", "\"http://10.0.2.2:8080\""
+        }
+    }
+
+
 }
 
 dependencies {
     def koin_version = '1.0.2',
-        nav_version = "2.0.0",
+        nav_version = '2.1.0-alpha02',
         retrofit_version = "2.5.0",
-        okhttp_version = "3.9.0",
-        room_version = "2.1.0-alpha03"
+        okhttp_version = '3.14.1',
+        room_version = '2.1.0-alpha03'
 
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version" // For Kotlin use navigation-fragment-ktx
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version" // For Kotlin use navigation-ui-ktx
@@ -87,7 +130,7 @@ dependencies {
     implementation 'com.ernestoyaquello.stepperform:vertical-stepper-form:2.1.1'
 
     implementation "androidx.room:room-runtime:$room_version"
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-alpha04'
     kapt "androidx.room:room-compiler:$room_version" // use kapt for Kotlin
 
     // optional - Coroutines support for Room
@@ -109,7 +152,7 @@ dependencies {
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
@@ -128,13 +171,13 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
 
-    implementation 'dk.nodes.utils:okhttp:0.11-LOCAL'
+    implementation 'dk.nodes.utils:okhttp:0.11'
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1-beta01'
+    androidTestImplementation 'androidx.test:runner:1.2.0-alpha04'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1-beta01'
     implementation 'com.google.android.material:material:1.1.0-alpha05'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha04'
     implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha03'
     implementation 'com.google.android.gms:play-services-oss-licenses:16.0.2'
     implementation 'com.lmntrx.android.library.livin.missme:missme:0.1.5'

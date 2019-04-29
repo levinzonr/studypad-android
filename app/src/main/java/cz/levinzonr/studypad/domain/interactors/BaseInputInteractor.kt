@@ -42,7 +42,7 @@ abstract class BaseInputInteractor<in I, O> {
         return when(e) {
             is HttpException -> {
                 Timber.d("HttpException")
-                val errorBody = e.response().body().toString() ?: "empty"
+                val errorBody = e.response().body()?.toString() ?: "empty"
                 return ApplicationError.ApiError(errorBody)
             }
             is IOException, is FirebaseNetworkException -> ApplicationError.NetworkError

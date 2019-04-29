@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.item_challenge.view.*
 
 class ChallengesOverviewAdapter() : ListAdapter<ChallengeEntry, ChallengesOverviewAdapter.ViewHolder>(DiffCallback()){
 
+    var listener: ChallengesListItemListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_challenge, parent, false)
@@ -33,6 +34,7 @@ class ChallengesOverviewAdapter() : ListAdapter<ChallengeEntry, ChallengesOvervi
             view.challengeIcon.setImageResource(iconRes)
             view.challengeTv.text = "${challengeEntry.notebook.name} • ${challengeEntry.type.getName(view.context)}"
             view.challengeSubTv.text = challengeEntry.optionsAsString(view.context)
+            view.setOnClickListener { listener?.onRecentChallengeSelected(challengeEntry) }
         }
     }
 
@@ -44,5 +46,9 @@ class ChallengesOverviewAdapter() : ListAdapter<ChallengeEntry, ChallengesOvervi
         override fun areContentsTheSame(oldItem: ChallengeEntry, newItem: ChallengeEntry): Boolean {
             return newItem == oldItem
         }
+    }
+
+    interface ChallengesListItemListener {
+        fun onRecentChallengeSelected(challengeEntry: ChallengeEntry)
     }
 }
