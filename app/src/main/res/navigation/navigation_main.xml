@@ -164,7 +164,8 @@
                 app:destination="@id/notebookSuggestionsFragment"/>
         <deepLink
                 android:id="@+id/deepLink"
-                app:uri="studypad://notebooksId/{id}"/>
+                app:uri="studypad://shared/{id}"/>
+
         <action
                 android:id="@+id/action_publishedNotebookDetailFragment_to_publishNotebookFragment"
                 app:destination="@id/publishNotebookFragment"

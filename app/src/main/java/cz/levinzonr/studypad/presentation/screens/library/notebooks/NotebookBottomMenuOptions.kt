@@ -7,11 +7,11 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.presentation.base.BottomSheetOptionsDialog
 import cz.levinzonr.studypad.setVisible
-import kotlinx.android.synthetic.main.notebook_bottom_menu.*
+import kotlinx.android.synthetic.main.bottom_menu_notebook.*
 
 class NotebookBottomMenuOptions : BottomSheetOptionsDialog() {
 
-    override val layoutResource: Int = R.layout.notebook_bottom_menu
+    override val layoutResource: Int = R.layout.bottom_menu_notebook
 
     private val notebook: Notebook
         get() = arguments?.getParcelable(ARG_NOTEBOOK)!!
@@ -20,9 +20,10 @@ class NotebookBottomMenuOptions : BottomSheetOptionsDialog() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val avail = notebook.publishedNotebookId == null
-        notebookPublishBtn.setVisible(avail)
-        notebookOpenShared.setVisible(!avail)
+        val shareable = notebook.publishedNotebookId != null
+        notebookPublishBtn.setVisible(!shareable)
+        notebookOpenShared.setVisible(shareable)
+        notebookCopyBtn.setVisible(shareable)
 
     }
 

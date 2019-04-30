@@ -43,6 +43,7 @@
     <string name="default_exit">Exit</string>
     <string name="default_submit">Submit</string>
     <string name="default_search">Search</string>
+    <string name="defautl_share_message">Checkout this notebook\n%1$s</string>
 
     <string name="progress_default">Loading…</string>
     <string name="progress_login">Logging in…</string>
@@ -284,6 +285,10 @@
 
     <string name="time_just_now">just now</string>
     <string name="suggestion_info_btn">Learn more</string>
+    <string name="library_action_copy_link">Copy link</string>
+    <string name="not_logged_in">Please login in to be able to view this content</string>
+    <string name="login_welcome_msg">Welcome to StudyPad!</string>
+    <string name="not_logged_in_title">Welcome</string>
 
     <plurals name="time_minutes">
         <item quantity="zero">just now</item>

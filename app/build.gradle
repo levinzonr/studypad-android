@@ -50,7 +50,6 @@ android {
     }
 
 
-
     buildTypes {
 
         release {
@@ -66,7 +65,7 @@ android {
         production {
             dimension "default"
             applicationId "cz.levinzonr.studypad"
-           
+
             resValue "string", "facebook_app_id", "1207464616087822"
             resValue "string", "fb_login_protocol_scheme", "1207464616087822"
 
@@ -126,7 +125,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
-
+    implementation 'com.github.ibrahimsn98:android-particles:1.6'
     implementation 'com.ernestoyaquello.stepperform:vertical-stepper-form:2.1.1'
 
     implementation "androidx.room:room-runtime:$room_version"

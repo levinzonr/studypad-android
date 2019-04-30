@@ -101,8 +101,14 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
                     if (notebook.publishedNotebookId == null) {
                         viewModel.publishNotebook(notebook)
                     } else {
-                        val link = notebook.publishedNotebookId?.toNotebookLink()
+                        val link = notebook.publishedNotebookId.toNotebookLink()
                         shareMessage(link)
+                    }
+                }
+                R.id.notebookCopyBtn -> {
+                    if (notebook.publishedNotebookId != null) {
+                        val link = notebook.publishedNotebookId.toNotebookLink()
+                        copyToClipboard(link)
                     }
                 }
             }

@@ -12,15 +12,30 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".presentation.screens.challenges.challenge.ChallengeActivity">
-        </activity>
-        <activity android:name=".presentation.screens.MainActivity"/>
-        <activity android:screenOrientation="portrait" android:name=".presentation.screens.onboarding.OnboardingActivity">
+        <activity
+                android:theme="@style/SplashTheme"
+                android:name=".presentation.screens.spash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <data
+                        android:host="studypad.herokuapp.com"
+                        android:pathPrefix="/shared"
+                        android:scheme="https"/>
+
             </intent-filter>
+        </activity>
+        <activity android:name=".presentation.screens.challenges.challenge.ChallengeActivity">
+        </activity>
+        <activity android:name=".presentation.screens.MainActivity"/>
+        <activity
+                android:name=".presentation.screens.onboarding.OnboardingActivity"
+                android:screenOrientation="portrait">
+
         </activity>
 
         <meta-data

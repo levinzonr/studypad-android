@@ -24,6 +24,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.presentation.common.StudyPadDialog
 
 
+
 abstract class BaseFragment : Fragment() {
 
     protected fun showToast(message: String) {
@@ -63,10 +64,15 @@ abstract class BaseFragment : Fragment() {
 
     }
     protected fun shareMessage(message: String) {
-        ShareCompat.IntentBuilder.from(activity)
-            .setText(message)
-            .setType("*/*")
-            .startChooser()
+        val shareLinkIntent = Intent()
+        shareLinkIntent.action = Intent.ACTION_SEND
+        shareLinkIntent.putExtra(
+            Intent.EXTRA_TEXT,
+            getString(R.string.defautl_share_message, message)
+        )
+        shareLinkIntent.type = "text/plain"
+        startActivity(Intent.createChooser(shareLinkIntent, getString(R.string.default_share_with)))
+
     }
 
     open fun onLoseFocus() {}

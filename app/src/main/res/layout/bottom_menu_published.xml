@@ -16,5 +16,12 @@
 
 
 
+    <com.google.android.material.button.MaterialButton
+            app:icon="@drawable/ic_content_copy_black_24dp"
+            style="@style/Button.TextMenu"
+            android:id="@+id/publishedBookCopyBtn"
+            android:text="@string/library_action_copy_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 </LinearLayout>

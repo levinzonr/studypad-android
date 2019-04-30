@@ -61,8 +61,16 @@ class MainActivity : BaseActivity() {
     }
 
     private fun handleDeepLink() {
-        val notebookId = intent.getParcelableExtra<NotificationPayload>("payload")?.notebookInfo?.notebookId ?: return
-        navController.navigate(NavigationMainDirections.actionGlobalPublishedNotebookDetailFragment(notebookId))
+        val notificationPayload = intent.getParcelableExtra<NotificationPayload>("payload")
+        val deeploink = intent?.data
+
+        val notebookId = when{
+            notificationPayload != null -> notificationPayload.notebookInfo.notebookId
+            deeploink?.lastPathSegment != null -> deeploink.lastPathSegment
+            else -> null
+        }
+        notebookId?.let { id ->
+            navController.navigate(NavigationMainDirections.actionGlobalPublishedNotebookDetailFragment(id))}
     }
 
     private fun registerBroadcastReceiver() {

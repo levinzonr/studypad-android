@@ -129,6 +129,7 @@ class SharingHubFragment : BaseFragment(),  NotificationHandler,
             .show(childFragmentManager) {
                 when(it) {
                     R.id.publishedBookShareBtn -> shareMessage(publishedNotebook.id.toNotebookLink())
+                    R.id.publishedBookCopyBtn -> copyToClipboard(publishedNotebook.id.toNotebookLink())
                 }
             }
     }

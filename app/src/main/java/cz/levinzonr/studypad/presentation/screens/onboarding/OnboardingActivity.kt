@@ -16,6 +16,7 @@ class OnboardingActivity : BaseActivity() {
     }
 
 
+
     override val navHostFragment: Fragment by lazy { fragment }
 
     override val navController: NavController by lazy { findNavController(R.id.fragment)}

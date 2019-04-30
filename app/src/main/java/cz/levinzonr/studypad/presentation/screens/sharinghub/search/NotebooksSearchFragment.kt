@@ -197,6 +197,7 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
             .show(childFragmentManager) {
                 when(it) {
                     R.id.publishedBookShareBtn -> shareMessage(publishedNotebook.id.toNotebookLink())
+                    R.id.publishedBookCopyBtn -> copyToClipboard(publishedNotebook.id.toNotebookLink())
                 }
             }
     }
