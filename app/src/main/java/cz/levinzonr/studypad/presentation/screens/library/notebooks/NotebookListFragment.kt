@@ -38,6 +38,11 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
             R.string.library_notebooks_empty_title, R.string.library_notebooks_empty_message)
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshNotebooks()
+    }
+
     private fun setupListeners() {
         notebooksAddFab.setOnClickListener {
             EditNotebookDialog.show(fragmentManager, null) { _, name: String ->

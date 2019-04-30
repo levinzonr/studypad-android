@@ -31,6 +31,7 @@ class EmptyStateView @JvmOverloads constructor(context: Context, attributeSet: A
     }
 
     fun setActionButton(text: Int = R.string.default_try_again, action: () -> Unit) {
+        actionButton.setText(text)
         actionButton.visibility = View.VISIBLE
         actionButton.setOnClickListener { action.invoke() }
     }

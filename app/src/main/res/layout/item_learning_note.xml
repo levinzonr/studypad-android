@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-        android:animateLayoutChanges="true"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:animateLayoutChanges="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -11,54 +11,64 @@
     <com.csot.fliplayout.lib.FlipLayout
             android:id="@+id/flipView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            app:transitionDuration="400"
+            android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/buttons">
 
 
-    <com.google.android.material.card.MaterialCardView
+        <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/Flashcard"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/repeatButton">
+                android:layout_height="match_parent">
 
 
-            <TextView
-                    android:id="@+id/questionText"
-                    android:text="@string/firebase_database_url"
-                    android:gravity="center"
-                    android:layout_margin="@dimen/space_large"
+            <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    style="@style/Flashcard"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/repeatButton">
 
 
-        </com.google.android.material.card.MaterialCardView>
+                <TextView
+                        android:id="@+id/questionText"
+                        android:text="@string/firebase_database_url"
+                        android:gravity="center"
+                        android:layout_margin="@dimen/space_large"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
 
-        <com.google.android.material.card.MaterialCardView
+
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+
+        <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/Flashcard"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/repeatButton">
+                android:layout_height="match_parent">
 
-
-            <TextView
-                    android:id="@+id/answerText"
-                    android:text="@string/firebase_database_url"
-                    android:gravity="center"
-                    android:layout_margin="@dimen/space_large"
+            <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    style="@style/Flashcard"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/repeatButton">
 
 
-        </com.google.android.material.card.MaterialCardView>
+                <TextView
+                        android:id="@+id/answerText"
+                        android:text="@string/firebase_database_url"
+                        android:gravity="center"
+                        android:layout_margin="@dimen/space_large"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
 
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </FrameLayout>
 
 
     </com.csot.fliplayout.lib.FlipLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

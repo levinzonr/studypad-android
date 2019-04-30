@@ -36,6 +36,7 @@
     <string name="default_continue">Continue</string>
     <string name="default_see_all">See All</string>
     <string name="default_share_with">Share via…</string>
+    <string name="default_reload">Reload</string>
     <string name="default_copied">Copied to clipboard</string>
     <string name="default_show_all">Show all</string>
     <string name="default_or">Or</string>

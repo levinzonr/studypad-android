@@ -11,6 +11,7 @@
 
     <com.google.android.material.card.MaterialCardView
             app:contentPadding="@dimen/space_normal"
+            app:cardCornerRadius="@dimen/corner_radius"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/textView6"
             android:layout_margin="@dimen/space_big"

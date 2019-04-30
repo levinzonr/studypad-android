@@ -26,21 +26,24 @@ class NotebookListViewModel(
 
 
     val dataSource = notebookRepository.notebooksLiveData()
-    val syncCompletedEvent = liveEvent()
     val notebookPublishedEven = MutableLiveData<Event<PublishedNotebook.Feed>>()
 
     init {
         synchronize()
-        refreshFirebaseTokenInteractor.execute {
+    }
+
+    private fun synchronize() {
+        librarySyncInteractor.execute {
+            onComplete {
+            }
+            onError {
+
+            }
         }
     }
 
-    fun synchronize() {
-        librarySyncInteractor.execute {
-            onComplete {
-                syncCompletedEvent.call()
-            }
-        }
+    fun refreshNotebooks() {
+        getNotebooksInteractor.execute {  }
     }
 
     fun createNewNotebook(name: String) {
@@ -80,7 +83,7 @@ class NotebookListViewModel(
     fun publishNotebook(notebook: Notebook) {
         quiclPublishInteractor.executeWithInput(notebook.id) {
             onComplete {
-                getNotebooksInteractor.execute {  }
+                refreshNotebooks()
                 notebookPublishedEven.call(it)
             }
             onError { handleApplicationError(it) }

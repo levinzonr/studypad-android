@@ -49,7 +49,7 @@ class FlashcardChallengeAdapter(private val listener: LearningChallengeAdapterLi
 
         fun bindView(noteItem: ChallengesModels.NoteItem) {
             Timber.d("Bind View: $noteItem")
-            view.answerText.text = noteItem.question
+            view.questionText.text = noteItem.question
             view.answerText.text = noteItem.answer
 
             if (revealed.contains(noteItem)) {
