@@ -61,7 +61,7 @@ class AccountInfoFragment : BaseFragment() {
             viewModel.lastName = it
         }
 
-
+        backButton.setOnClickListener { viewModel.onBackButtonClicked() }
 
     }
 

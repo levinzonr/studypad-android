@@ -6,6 +6,30 @@
     android:layout_height="match_parent"
     tools:context="cz.levinzonr.studypad.presentation.screens.onboarding.signup.AccountInfoFragment">
 
+    <ImageButton
+            android:layout_margin="@dimen/space_big"
+            android:layout_marginStart="@dimen/space_normal"
+            android:background="?selectableItemBackgroundBorderless"
+            android:padding="@dimen/space_normal"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/backButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+    <TextView
+            android:layout_marginTop="@dimen/space_big"
+            android:layout_marginStart="@dimen/space_normal"
+            android:textSize="21sp"
+            app:layout_constraintStart_toStartOf="@id/backButton"
+            app:layout_constraintTop_toBottomOf="@id/backButton"
+            android:text="@string/login_introduce_yourself"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/accountFirstNameInputLayout"
@@ -71,6 +95,7 @@
         android:src="@drawable/ic_round_arrow_forward_24px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 
 
 

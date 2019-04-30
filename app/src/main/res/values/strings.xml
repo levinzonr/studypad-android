@@ -289,6 +289,8 @@
     <string name="not_logged_in">Please login in to be able to view this content</string>
     <string name="login_welcome_msg">Welcome to StudyPad!</string>
     <string name="not_logged_in_title">Welcome</string>
+    <string name="login_introduce_yourself">Introduce yourself...</string>
+    <string name="signup_credentials_message">Which email and password do you want to use to login?</string>
 
     <plurals name="time_minutes">
         <item quantity="zero">just now</item>

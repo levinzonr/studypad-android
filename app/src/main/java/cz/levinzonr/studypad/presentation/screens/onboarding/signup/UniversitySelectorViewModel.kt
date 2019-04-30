@@ -36,4 +36,5 @@ class UniversitySelectorViewModel(private val getUniversitiesInteractor: GetUniv
         }
     }
 
+
 }

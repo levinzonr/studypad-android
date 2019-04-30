@@ -24,7 +24,6 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.presentation.common.StudyPadDialog
 
 
-
 abstract class BaseFragment : Fragment() {
 
     protected fun showToast(message: String) {
@@ -57,12 +56,14 @@ abstract class BaseFragment : Fragment() {
 
         activity?.let {
             progressDialog = ProgressDialog(it)
+            progressDialog?.getMessageTextView()?.setText(R.string.progress_default)
             progressDialog?.setCancelable(false)
         }
 
         subscribe()
 
     }
+
     protected fun shareMessage(message: String) {
         val shareLinkIntent = Intent()
         shareLinkIntent.action = Intent.ACTION_SEND
@@ -81,14 +82,14 @@ abstract class BaseFragment : Fragment() {
 
 
     open fun showError(viewError: ViewError) {
-        when(viewError) {
+        when (viewError) {
             is ViewError.DialogError -> showSimpleDialog(viewError.title, viewError.message)
             is ViewError.ToastError -> showToast(viewError.message)
         }
     }
 
     open fun showNetworkUnavailableError() {
-       showToast(getString(R.string.error_network_message))
+        showToast(getString(R.string.error_network_message))
     }
 
     protected open fun showLoading(isLoading: Boolean) {
@@ -113,11 +114,11 @@ abstract class BaseFragment : Fragment() {
 
 
     private fun handleNavigationEvent(navigationEvent: NavigationEvent) {
-        when(navigationEvent) {
+        when (navigationEvent) {
             is NavigationEvent.NavigateTo -> view?.findNavController()?.navigate(navigationEvent.directions)
             is NavigationEvent.NavigateBack -> view?.findNavController()?.popBackStack()
             is NavigationEvent.ChangeFlow -> {
-                when(navigationEvent.flow) {
+                when (navigationEvent.flow) {
                     Flow.ONBOARDING -> {
                         val intent = Intent(context, OnboardingActivity::class.java)
                         activity?.finish()

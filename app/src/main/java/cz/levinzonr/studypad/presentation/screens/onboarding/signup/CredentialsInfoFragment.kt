@@ -65,7 +65,9 @@ class CredentialsInfoFragment : BaseFragment() {
             viewModel.createAccount()
         }
 
-
+        backButton.setOnClickListener {
+            viewModel.onBackButtonClicked()
+        }
     }
 
     override fun onStart() {

@@ -105,5 +105,8 @@ class SignupViewModel(
         navigateTo(AccountInfoFragmentDirections.actionAccountInfoFragmentToCredentialsInfoFragment())
     }
 
+    fun onBackButtonClicked() {
+        navigateBack()
+    }
 
 }

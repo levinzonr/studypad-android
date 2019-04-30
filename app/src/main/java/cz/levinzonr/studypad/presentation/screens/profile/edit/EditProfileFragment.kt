@@ -56,7 +56,7 @@ class EditProfileFragment : BaseFragment() {
     }
 
     override fun showLoading(isLoading: Boolean) {
-        progressDialog?.getMessageTextView()?.text = "Applying changes..."
+        progressDialog?.getMessageTextView()?.setText(R.string.progress_default)
         if (isLoading) progressDialog?.show() else progressDialog?.dismiss()
     }
 

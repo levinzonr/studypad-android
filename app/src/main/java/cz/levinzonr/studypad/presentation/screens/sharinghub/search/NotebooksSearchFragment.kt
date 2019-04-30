@@ -20,6 +20,7 @@ import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialo
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
 import cz.levinzonr.studypad.presentation.screens.selectors.MultipleTopicsSelector
 import kotlinx.android.synthetic.main.fragment_notebooks_search.*
+import kotlinx.android.synthetic.main.view_empty_state.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
@@ -42,8 +43,7 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter =
-            PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Full)
+        adapter = PublishedNotebooksAdapter(PublishedNotebooksAdapter.AdapterType.Full)
         resultsRv.adapter = adapter
         adapter.listener = this
 
@@ -70,6 +70,7 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
     override fun showNetworkUnavailableError() {
         progressBar.setVisible(false)
         emptyView.configureAsNetworkError()
+        emptyView.actionButton.visibility = View.VISIBLE
         emptyView.setVisible(true)
     }
 
@@ -152,12 +153,15 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
         when (type) {
             NotebookSearchModels.EmptyType.Error -> {
                 resultsRv.setVisible(false)
+                emptyView.actionButton.visibility = View.VISIBLE
                 emptyView.configure(R.string.sharinghub_search_error_title)
             }
             NotebookSearchModels.EmptyType.Default -> {
+                emptyView.actionButton.visibility = View.GONE
                 emptyView.configure(R.string.sharinghub_search_default_title, R.string.sharinghub_search_default_message)
             }
             NotebookSearchModels.EmptyType.Empty -> {
+                emptyView.actionButton.visibility = View.VISIBLE
                 emptyView.configure(R.string.sharinghub_search_empty_title, R.string.sharinghub_search_empty_message)
             }
         }
