@@ -33,7 +33,7 @@ class EmptyStateView @JvmOverloads constructor(context: Context, attributeSet: A
         get() =  emptyViewIv
 
     fun configureAsNetworkError() {
-        configure("You're offline", "Please check your internet connection", R.drawable.ic_cloud_off_black_24dp)
+        configure(R.string.error_network_title, R.string.error_network_message, R.drawable.ic_cloud_off_black_24dp)
     }
 
 }

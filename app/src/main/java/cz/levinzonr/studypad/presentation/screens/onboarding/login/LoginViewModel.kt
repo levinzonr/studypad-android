@@ -19,6 +19,9 @@ import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import timber.log.Timber
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.interactors.keychain.GoogleLoginInteractor
 import cz.levinzonr.studypad.domain.models.ApplicationError
 import cz.levinzonr.studypad.domain.models.ViewError
@@ -51,7 +54,7 @@ class LoginViewModel(
         }
 
         override fun onError(error: FacebookException?) {
-            showError(ViewError.DialogError("Auth Error", error?.localizedMessage ?: ""))
+            showError(ViewError.DialogError(string(R.string.error_login_title), error?.localizedMessage ?: string(R.string.error_unknown_message)))
             Timber.d("Facebook Error ${error.toString()}")
         }
     }
@@ -78,7 +81,7 @@ class LoginViewModel(
                 onError {
                     when(it) {
                         is ApplicationError.NetworkError -> handleApplicationError(it)
-                        is ApplicationError.ApiError -> showError(ViewError.DialogError("Authentication Error", "Error proceeding reguest"))
+                        is ApplicationError.ApiError -> showError(ViewError.DialogError(string(R.string.error_login_title),  it.message))
                         is ApplicationError.GenericError -> handleExceptionError(it.exception)
                     }
                 }
@@ -125,7 +128,7 @@ class LoginViewModel(
                 Timber.d("Error: $it")
                 when(it) {
                     is ApplicationError.NetworkError -> handleApplicationError(it)
-                    is ApplicationError.ApiError -> showError(ViewError.DialogError("Authentication", "Error proceeding reguest"))
+                    is ApplicationError.ApiError -> showError(ViewError.DialogError(string(R.string.error_login_title), it.message))
                     is ApplicationError.GenericError -> handleExceptionError(it.exception)
                 }
             }
@@ -144,7 +147,7 @@ class LoginViewModel(
                     toggleLoading(false)
                     when(it) {
                         is ApplicationError.NetworkError -> handleApplicationError(it)
-                        is ApplicationError.ApiError -> showError(ViewError.DialogError("Authentication", "Error proceeding reguest"))
+                        is ApplicationError.ApiError -> showError(ViewError.DialogError(string(R.string.error_login_title), it.message))
                         is ApplicationError.GenericError -> handleExceptionError(it.exception)
                     }
                 }
@@ -154,7 +157,12 @@ class LoginViewModel(
 
     private fun handleExceptionError(exception: Exception) {
         Timber.d("Exceptiopn: $exception")
-        handleApplicationError(ApplicationError.GenericError(exception))
+        // Credentials Error
+        if (exception is FirebaseAuthInvalidCredentialsException || exception is FirebaseAuthInvalidUserException) {
+            showError(ViewError.DialogError(string(R.string.error_login_title), string(R.string.error_login_credentials_message)))
+        } else {
+            handleApplicationError(ApplicationError.GenericError(exception))
+        }
     }
 
     private fun allFieldsValid(): Boolean {

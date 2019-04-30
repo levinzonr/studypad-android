@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.lmntrx.android.library.livin.missme.ProgressDialog
-import cz.levinzonr.studypad.domain.models.ApplicationError
 import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.presentation.screens.Flow
@@ -18,12 +17,9 @@ import cz.levinzonr.studypad.presentation.screens.MainActivity
 import cz.levinzonr.studypad.presentation.screens.NavigationEvent
 import cz.levinzonr.studypad.presentation.screens.onboarding.OnboardingActivity
 import timber.log.Timber
-import android.R.attr.label
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.Context.CLIPBOARD_SERVICE
-import androidx.core.content.ContextCompat.getSystemService
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.presentation.common.StudyPadDialog
 
@@ -38,13 +34,6 @@ abstract class BaseFragment : Fragment() {
 
     abstract val viewModel: BaseViewModel
 
-    protected fun showErrorDialog(title: String = "error", message: String) {
-        AlertDialog.Builder(context)
-            .setTitle(title)
-            .setMessage(message)
-            .setPositiveButton(android.R.string.ok) {_, _ -> }
-            .show()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -93,7 +82,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     open fun showNetworkUnavailableError() {
-        showToast("Error has occured, check your internet connection")
+       showToast(getString(R.string.error_network_message))
     }
 
     protected open fun showLoading(isLoading: Boolean) {

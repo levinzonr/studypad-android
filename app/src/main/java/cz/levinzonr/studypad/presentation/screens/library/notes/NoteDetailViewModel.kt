@@ -68,7 +68,8 @@ class NoteDetailViewModel(
         note.let {
             updateNoteInteractor.input = UpdateNoteInteractor.Input(it.id, title, content)
             updateNoteInteractor.execute {
-                editModeLiveData.postValue(false)
+                onComplete {  editModeLiveData.postValue(false) }
+                onError { handleApplicationError(it) }
             }
         }
     }
@@ -92,7 +93,6 @@ class NoteDetailViewModel(
 
     fun handleModeChangeButton() {
         viewMode.let { viewMode ->
-
             when (viewMode) {
                 is NoteDetailModels.NoteViewMode.Edit -> handleNoteUpdate(viewMode.note)
                 is NoteDetailModels.NoteViewMode.Create -> {
@@ -100,6 +100,7 @@ class NoteDetailViewModel(
                         createNote(viewMode.notebookId)
                     else {
                     }
+
                 }
             }
         }

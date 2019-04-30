@@ -1,7 +1,10 @@
 package cz.levinzonr.studypad.domain.interactors
 
 import com.google.firebase.FirebaseNetworkException
+import com.google.gson.Gson
 import cz.levinzonr.studypad.domain.models.ApplicationError
+import cz.levinzonr.studypad.domain.models.ErrorResponse
+import cz.levinzonr.studypad.fromJson
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import timber.log.Timber
@@ -41,12 +44,14 @@ abstract class BaseInputInteractor<in I, O> {
     private fun handleException(e: Exception) : ApplicationError {
         return when(e) {
             is HttpException -> {
-                Timber.d("HttpException")
-                val errorBody = e.response().body()?.toString() ?: "empty"
-                return ApplicationError.ApiError(errorBody)
+                val errorBody = e.response().errorBody()?.string() ?: ""
+                val errorResponse = Gson().fromJson<ErrorResponse>(errorBody)
+                return if (e.code() != 500 && errorResponse != null)
+                    ApplicationError.ApiError(errorResponse.message)
+                else ApplicationError.GenericError(e)
             }
             is IOException, is FirebaseNetworkException -> ApplicationError.NetworkError
-            else -> ApplicationError.ApiError("Else: $e")
+            else -> ApplicationError.GenericError(e)
         }
     }
 

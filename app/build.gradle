@@ -66,10 +66,10 @@ android {
         production {
             dimension "default"
             applicationId "cz.levinzonr.studypad"
-            manifestPlaceholders = [
-                    FB_APP_ID: "1993571567628934",
-                    APP_NAME: "StudyPad"
-            ]
+           
+            resValue "string", "facebook_app_id", "1207464616087822"
+            resValue "string", "fb_login_protocol_scheme", "1207464616087822"
+
             buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com\""
             signingConfig signingConfigs.release
             // buildConfigField "String", "API_URL", "\"http://10.0.2.2:8080\""
@@ -79,10 +79,10 @@ android {
         staging {
             dimension "default"
             applicationIdSuffix ".staging"
-            manifestPlaceholders = [
-                    FB_APP_ID: "1993571567628934",
-                    APP_NAME: "StudyPad - Staging"
-            ]
+
+            resValue "string", "facebook_app_id", "329358501112026"
+            resValue "string", "fb_login_protocol_scheme", "fb329358501112026"
+
             buildConfigField "String", "API_URL", "\"https://studypad.herokuapp.com\""
             // buildConfigField "String", "API_URL", "\"http://10.0.2.2:8080\""
         }

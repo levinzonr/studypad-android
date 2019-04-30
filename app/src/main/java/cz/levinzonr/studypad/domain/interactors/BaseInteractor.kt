@@ -7,6 +7,7 @@ import com.google.firebase.FirebaseNetworkException
 import com.google.gson.Gson
 import cz.levinzonr.studypad.data.ErrorResponse
 import cz.levinzonr.studypad.domain.models.ApplicationError
+import cz.levinzonr.studypad.fromJson
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import timber.log.Timber
@@ -52,16 +53,19 @@ abstract class BaseInteractor<T> {
         }
     }
 
+
+
     private fun handleException(e: Exception) : ApplicationError {
         return when(e) {
             is HttpException -> {
-                val errorBody = e.response().errorBody()?.string() ?: "{}"
-                val gson = Gson().fromJson<ErrorResponse>(errorBody, ErrorResponse::class.java)
-                return ApplicationError.ApiError(gson.message)
+                val errorBody = e.response().errorBody()?.string() ?: ""
+                val errorResponse = Gson().fromJson<cz.levinzonr.studypad.domain.models.ErrorResponse>(errorBody)
+                return if (e.code() != 500 && errorResponse != null)
+                    ApplicationError.ApiError(errorResponse.message)
+                else ApplicationError.GenericError(e)
             }
             is IOException, is FirebaseNetworkException -> ApplicationError.NetworkError
-            is FirebaseException -> ApplicationError.ApiError(e.message.toString())
-            else -> ApplicationError.ApiError("Else: $e")
+            else -> ApplicationError.GenericError(e)
         }
     }
 

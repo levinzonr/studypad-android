@@ -45,7 +45,7 @@ class CredentialsInfoFragment : BaseFragment() {
 
 
     override fun showLoading(isLoading: Boolean) {
-        progressDialog?.getMessageTextView()?.text = "Creating an account"
+        progressDialog?.getMessageTextView()?.text = getString(R.string.progress_signup)
         if (isLoading) progressDialog?.show() else progressDialog?.dismiss()
     }
 

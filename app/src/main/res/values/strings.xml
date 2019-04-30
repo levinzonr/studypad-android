@@ -3,6 +3,18 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="error_network_title">Your\'e offline</string>
+    <string name="error_network_message">You seem to offline. Please check your internet connection and try again</string>
+
+    <string name="error_unknown_title">Unknown error</string>
+    <string name="error_unknown_message">An unknown error has occurred</string>
+
+    <string name="error_login_title">Error Logging In</string>
+    <string name="error_login_credentials_message">We haven\'t find any user with such Email/Password combination.\nPlease check your credentials and try again</string>
+    <string name="error_login_provider_message">Looks like you\'ve already signed up with another provider. Please choose the provider you\'ve used during registration</string>
+    <string name="error_signup_title">Error creating account</string>
+
+
     <string name="navigation_library">My Library</string>
     <string name="navigation_sharing_hub">Sharing Hub</string>
     <string name="navigation_profile">Profile</string>
@@ -15,6 +27,7 @@
     <string name="default_share">Share</string>
     <string name="default_copy">Copy</string>
     <string name="default_cancel">Cancel</string>
+    <string name="default_try_again">Try Again</string>
     <string name="default_confirm">Confirm</string>
     <string name="default_continue">Continue</string>
     <string name="default_see_all">See All</string>
@@ -262,8 +275,6 @@
     <string name="signup_completed_message">Connect with your fellow students by choosing a University or a School. This help us to show you more relevant content and keep you in touch with your friends. You can always do it later ;)</string>
     <string name="signup_completed_choose">Choose University</string>
     <string name="signup_completed_later">Not right now</string>
-    <string translatable="false" name="facebook_app_id">1993571567628934</string>
-    <string translatable="false" name="fb_login_protocol_scheme">fb1993571567628934</string>
     <string name="selector_tag_lastlyused">Lastly used</string>
 
     <string name="time_just_now">just now</string>

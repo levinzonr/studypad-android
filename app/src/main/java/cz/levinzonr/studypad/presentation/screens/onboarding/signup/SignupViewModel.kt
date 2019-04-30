@@ -60,7 +60,7 @@ class SignupViewModel(
                 onError {
                     when(it) {
                         is ApplicationError.NetworkError -> handleApplicationError(it)
-                        is ApplicationError.ApiError -> showError(ViewError.DialogError("Authentication", "Error proceeding reguest"))
+                        is ApplicationError.ApiError -> showError(ViewError.DialogError(string(R.string.error_signup_title), it.message))
                         is ApplicationError.GenericError -> handleExceptionError(it.exception)
                     }
                 }
@@ -70,7 +70,7 @@ class SignupViewModel(
     }
 
     private fun handleExceptionError(exception: Exception) {
-
+        showError(ViewError.DialogError(string(R.string.error_signup_title), exception.localizedMessage))
     }
 
     fun updateUniversity(university: University) {

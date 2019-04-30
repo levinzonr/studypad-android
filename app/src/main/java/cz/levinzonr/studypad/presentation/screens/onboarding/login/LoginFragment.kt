@@ -74,7 +74,7 @@ class LoginFragment : BaseFragment() {
     }
 
     override fun showLoading(isLoading: Boolean) {
-        progressDialog?.getMessageTextView()?.text = "Loggin in..,"
+        progressDialog?.getMessageTextView()?.text = getString(R.string.progress_login)
         if (isLoading) progressDialog?.show() else progressDialog?.dismiss()
     }
 

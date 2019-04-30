@@ -1,18 +1,25 @@
 package cz.levinzonr.studypad.presentation.base
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import cz.levinzonr.studypad.call
+import cz.levinzonr.studypad.domain.managers.TranslationManager
 import cz.levinzonr.studypad.domain.models.ApplicationError
 import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import cz.levinzonr.studypad.presentation.screens.Flow
 import cz.levinzonr.studypad.presentation.screens.NavigationEvent
+import org.koin.standalone.KoinComponent
+import org.koin.standalone.inject
 
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel(), KoinComponent {
+
+    private val translationManager: TranslationManager by inject()
 
     private val navigationEventLiveData = MutableLiveData<Event<NavigationEvent>>()
     private val viewStateLiveData = MutableLiveData<BaseViewState>()
@@ -49,7 +56,7 @@ abstract class BaseViewModel : ViewModel() {
         when(applicationError) {
             is ApplicationError.NetworkError -> showNetworkUnavailabe()
             is ApplicationError.ApiError -> showError(ViewError.ToastError(applicationError.message))
-            else -> showError(ViewError.ToastError("Unkown error"))
+            is ApplicationError.GenericError -> showError(ViewError.ToastError(applicationError.exception.localizedMessage))
         }
     }
 
@@ -64,6 +71,8 @@ abstract class BaseViewModel : ViewModel() {
     protected fun changeFlow(flow: Flow) {
         navigationEventLiveData.call(NavigationEvent.ChangeFlow(flow))
     }
+
+    protected fun string(id: Int) : String = translationManager.getResourceById(id)
 
 
 }

@@ -23,7 +23,7 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
 
     private val args: NoteDetailFragmentArgs by navArgs()
 
-    private lateinit var menu: Menu
+    private var menu: Menu? = null
     override val viewModel: NoteDetailViewModel by viewModel { parametersOf(args.viewMode) }
 
     override fun onCreateView(
@@ -46,8 +46,8 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
             noteDetailView.setVisible(!editMode)
             noteEditView.setVisible(editMode)
             noteEditView.showFocused(editMode)
-            menu.getItem(0).setVisible(!editMode)
-            menu.getItem(1).setVisible(!editMode)
+            this.menu?.getItem(0)?.isVisible = !editMode
+            this.menu?.getItem(1)?.isVisible = !editMode
 
         })
 
@@ -61,6 +61,10 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
             viewModel.handleModeChangeButton()
         }
 
+    }
+
+    override fun showNetworkUnavailableError() {
+        showSimpleDialog(getString(R.string.error_network_title), getString(R.string.error_network_message))
     }
 
     override fun onPause() {
