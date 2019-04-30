@@ -49,8 +49,10 @@ class NotebookSuggestionsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-
         reviewBtn.setOnClickListener { viewModel.onReviewButtonClicked() }
+        emptyView.setActionButton {
+            viewModel.refresh()
+        }
     }
 
     override fun onResume() {

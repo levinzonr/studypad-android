@@ -115,6 +115,10 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
         searchView.onQueryTextChanged {
             viewModel.onQueryChanged(it)
         }
+
+        emptyView.setActionButton {
+            viewModel.performSearch()
+        }
     }
 
     override fun subscribe() {

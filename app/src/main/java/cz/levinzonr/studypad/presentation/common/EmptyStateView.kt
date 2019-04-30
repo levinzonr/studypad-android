@@ -2,6 +2,7 @@ package cz.levinzonr.studypad.presentation.common
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import cz.levinzonr.studypad.R
@@ -27,6 +28,11 @@ class EmptyStateView @JvmOverloads constructor(context: Context, attributeSet: A
         val title = titleRes?.let(context::getString)
         val message = messageRes?.let(context::getString)
         configure(title, message, imageRes)
+    }
+
+    fun setActionButton(text: Int = R.string.default_try_again, action: () -> Unit) {
+        actionButton.visibility = View.VISIBLE
+        actionButton.setOnClickListener { action.invoke() }
     }
 
     val imageView: ImageView

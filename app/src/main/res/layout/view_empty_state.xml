@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:gravity="center"
               android:layout_margin="@dimen/space_large"
@@ -36,6 +37,16 @@
             tools:text="Empty state View"
             android:id="@+id/emptyViewMessageTv"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+            app:icon="@drawable/ic_sync_black_24dp"
+            android:visibility="gone"
+            android:id="@+id/actionButton"
+            android:layout_marginTop="@dimen/space_normal"
+            style="@style/Button.Text"
+            android:text="@string/default_try_again"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
 

@@ -48,6 +48,13 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        emptyView.setActionButton {
+            viewModel.refreshAll()
+        }
+    }
+
     private fun showSugesstionsState(versionState: PublishedNotebook.VersionState) {
 
         val unigueUsers = versionState.modifications.map { it.author }.distinctBy { it.uuid }.count()

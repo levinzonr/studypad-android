@@ -65,5 +65,10 @@ class NotebooksSearchViewModel(initialState:  NotebookSearchModels.SearchState?,
         navigateTo(NotebooksSearchFragmentDirections.actionGlobalPublishedNotebookDetailFragment(feed.id, feed))
     }
 
+    fun performSearch() {
+        currentSearchState?.let {
+            _searchStateLiveDate.postValue(it.copy())
+        }
+    }
 
 }

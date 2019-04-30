@@ -56,6 +56,9 @@ class NotificationsFragment : BaseFragment(), NotificationsAdapter.NotificationI
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         emptyView.configure(R.string.notifications_empty_title, R.string.notifications_empty_message)
+        emptyView.setActionButton {
+            viewModel.refresh()
+        }
     }
 
     override fun showLoading(isLoading: Boolean) {
