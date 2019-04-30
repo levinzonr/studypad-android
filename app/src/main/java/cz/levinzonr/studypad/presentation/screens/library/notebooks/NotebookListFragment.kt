@@ -71,9 +71,6 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
             showNotebooks(it)
         }
 
-        viewModel.syncCompletedEvent.onHandle(viewLifecycleOwner) {
-            showToast("Library is Synchronized")
-        }
 
         viewModel.notebookPublishedEven.onHandle(viewLifecycleOwner) {
             val link = it.id.toNotebookLink()

@@ -73,7 +73,7 @@ class NotificationsAdapter(private val listener: NotificationItemsListener) : Li
         }
 
         override fun areContentsTheSame(oldItem: Notification, newItem: Notification): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem == newItem
         }
     }
 
