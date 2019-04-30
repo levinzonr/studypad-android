@@ -239,7 +239,7 @@
     <fragment
             android:id="@+id/reviewSuggestionsFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.review.ReviewSuggestionsFragment"
-            android:label="fragment_review_suggestions"
+            android:label="@string/suggestions_review"
             tools:layout="@layout/fragment_review_suggestions">
         <argument
                 android:name="suggestions"

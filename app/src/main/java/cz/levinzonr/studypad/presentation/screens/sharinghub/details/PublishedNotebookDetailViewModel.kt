@@ -33,13 +33,17 @@ class PublishedNotebookDetailViewModel(
 
     fun refreshAll() {
         getPublishedNotebookDetail.executeWithInput(notebookId) {
+            toggleLoading(false)
             onComplete {
                 sharedDetailLiveData.postValue(it)
                 getNotebookVersionStateInteractor.executeWithInput(it) {
                     onComplete { stateLiveData.postValue(it) }
+                    onError { handleApplicationError(it) }
                 }
-                toggleLoading(false)
 
+            }
+            onError {
+                handleApplicationError(it)
             }
         }
     }
@@ -63,6 +67,7 @@ class PublishedNotebookDetailViewModel(
             onComplete {
                 stateLiveData.postValue(State.UpToDate)
                 sharedDetailLiveData.postValue(it)
+                refreshAll()
             }
             onError { handleApplicationError(it) }
         }
@@ -93,9 +98,5 @@ class PublishedNotebookDetailViewModel(
                 notes.map { Note(-1, it.title, it.content, notebookId) }.toTypedArray()
             )
         )
-    }
-
-    fun onCreateNewSuggestionClicked() {
-
     }
 }

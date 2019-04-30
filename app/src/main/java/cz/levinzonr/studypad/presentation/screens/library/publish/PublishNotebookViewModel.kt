@@ -2,10 +2,12 @@ package cz.levinzonr.studypad.presentation.screens.library.publish
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetPublishedNotebookDetail
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetTagsByNameInteractor
 import cz.levinzonr.studypad.domain.interactors.sharinghub.PublishNotebookInteractor
 import cz.levinzonr.studypad.domain.managers.UserManager
+import cz.levinzonr.studypad.domain.models.ApplicationError
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.ViewError
@@ -59,7 +61,10 @@ class PublishNotebookViewModel(
 
             onError {
                 toggleLoading(false)
-                showError(ViewError.DialogError("Error", "Error publishing notebook"))
+                when(it) {
+                    is ApplicationError.NetworkError -> handleApplicationError(it)
+                    else -> showError(ViewError.DialogError(string(R.string.error_publish_title), string(R.string.error_publish_message)))
+                }
             }
         }
 
@@ -84,8 +89,10 @@ class PublishNotebookViewModel(
             }
 
             onError {
-                toggleLoading(false)
-                showError(ViewError.DialogError("Error", "Error publishing notebook"))
+                when(it) {
+                    is ApplicationError.NetworkError -> handleApplicationError(it)
+                    else -> showError(ViewError.DialogError(string(R.string.error_publish_title), string(R.string.error_publish_message)))
+                }
 
             }
         }
@@ -114,7 +121,8 @@ class PublishNotebookViewModel(
                     viewState.postValue(PublishModels.PublishViewState(stepOne, stepTwo, stepThree))
                 }
                 onError {
-
+                    handleApplicationError(it)
+                    navigateBack()
                 }
             }
             return

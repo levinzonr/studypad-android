@@ -60,6 +60,7 @@ class NotebookSuggestionsFragment : BaseFragment() {
 
     override fun showNetworkUnavailableError() {
         emptyView.setVisible(true)
+        suggestionsRv.setVisible(false)
         emptyView.configureAsNetworkError()
     }
 

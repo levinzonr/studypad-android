@@ -60,7 +60,7 @@ abstract class BaseInteractor<T> {
             is HttpException -> {
                 val errorBody = e.response().errorBody()?.string() ?: ""
                 val errorResponse = Gson().fromJson<cz.levinzonr.studypad.domain.models.ErrorResponse>(errorBody)
-                return if (e.code() != 500 && errorResponse != null)
+                return if (e.code() < 500 && errorResponse != null)
                     ApplicationError.ApiError(errorResponse.message)
                 else ApplicationError.GenericError(e)
             }

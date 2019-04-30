@@ -84,6 +84,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
     }
 
     private fun showDetail(detail: PublishedNotebook.Detail) {
+        emptyView.setVisible(false)
         publishedNotebookNameTv.text = detail.title
         publishedNotebookAuthorTv.text = detail.author.displayName
         publishedBookAuthorIv.loadAuthorImage(detail.author.photoUrl)
@@ -170,6 +171,13 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
     override fun showLoading(isLoading: Boolean) {
         Timber.d("Show Loading :$isLoading")
         progressBar.setVisible(isLoading)
+    }
+
+
+    override fun showNetworkUnavailableError() {
+        super.showNetworkUnavailableError()
+        emptyView.configureAsNetworkError()
+        emptyView.setVisible(true)
     }
 
     override fun handleNotification(type: NotificationType, notificationPayload: NotificationPayload) {

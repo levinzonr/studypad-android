@@ -62,6 +62,7 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
 
 
     override fun showLoading(isLoading: Boolean) {
+        progressDialog?.getMessageTextView()?.setText(R.string.progress_publishing)
         if (isLoading) progressDialog?.show() else progressDialog?.dismiss()
     }
 
@@ -85,6 +86,11 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
 
     override fun showError(viewError: ViewError) {
         super.showError(viewError)
+        stepperForm.cancelFormCompletionOrCancellationAttempt()
+    }
+
+    override fun showNetworkUnavailableError() {
+        showSimpleDialog(getString(R.string.error_network_title),getString(R.string.error_network_message))
         stepperForm.cancelFormCompletionOrCancellationAttempt()
     }
 

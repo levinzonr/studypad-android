@@ -15,6 +15,10 @@
     <string name="error_signup_title">Error creating account</string>
 
 
+    <string name="error_publish_title">Error publishing</string>
+    <string name="error_publish_message">There was an error while making this notebook public. Please make sure this notebook is not published already and all details provided are valid</string>
+
+
     <string name="navigation_library">My Library</string>
     <string name="navigation_sharing_hub">Sharing Hub</string>
     <string name="navigation_profile">Profile</string>
@@ -191,7 +195,7 @@
     <string name="sharinghub_search_options_tags">Tags</string>
     <string name="sharinghub_search_empty_title">Nothing found</string>
     <string name="sharinghub_search_empty_message">There are no notebooks like that yet</string>
-
+    <string name="sharinghub_search_error_title">Error loading notebooks</string>
 
     <!-- Challenges Section -->
     <string name="challenges_title">Challenges</string>

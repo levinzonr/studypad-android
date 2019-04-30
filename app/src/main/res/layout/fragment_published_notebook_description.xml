@@ -14,11 +14,23 @@
             tools:context="cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNotebookDetailFragment">
 
 
+
         <LinearLayout
                 android:animateLayoutChanges="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
+            <include
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:layout_marginTop="@dimen/space_normal"
+                    android:id="@+id/notebookExcludedLayout"
+                    layout="@layout/include_notebook_excluded_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
 
             <include
@@ -30,6 +42,13 @@
                     layout="@layout/include_notebook_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+
+
+            <cz.levinzonr.studypad.presentation.common.EmptyStateView
+                    android:id="@+id/emptyView"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
             <include
                     android:layout_marginStart="4dp"
@@ -43,16 +62,6 @@
                     android:layout_height="wrap_content"/>
 
 
-            <include
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:visibility="gone"
-                    tools:visibility="visible"
-                    android:layout_marginTop="@dimen/space_normal"
-                    android:id="@+id/notebookExcludedLayout"
-                    layout="@layout/include_notebook_excluded_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
 
             <include
                     android:layout_marginStart="4dp"

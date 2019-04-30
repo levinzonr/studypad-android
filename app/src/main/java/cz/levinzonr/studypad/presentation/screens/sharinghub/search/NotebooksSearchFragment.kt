@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_notebooks_search.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
+import java.io.IOException
 
 class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.PublishedNotebookItemListener {
 
@@ -135,7 +136,8 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
                 }
                 is InteractorResult.Error -> {
                     showLoading(false)
-                    showEmptyView(NotebookSearchModels.EmptyType.Error)
+                    if (it.exception is IOException) showNetworkUnavailableError()
+                    else showEmptyView(NotebookSearchModels.EmptyType.Error)
                 }
             }
 
@@ -146,20 +148,18 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
         when (type) {
             NotebookSearchModels.EmptyType.Error -> {
                 resultsRv.setVisible(false)
-                emptyView.configure("Error", "Error while loading notebooks")
+                emptyView.configure(R.string.sharinghub_search_error_title)
             }
             NotebookSearchModels.EmptyType.Default -> {
-                emptyView.configure(
-                    "Explore!",
-                    " Start exploring new notebooks for your collection by choosing a search option"
-                )
+                emptyView.configure(R.string.sharinghub_search_default_title, R.string.sharinghub_search_default_message)
             }
             NotebookSearchModels.EmptyType.Empty -> {
-                emptyView.configure("Nothing found", "There are notebooks found using these search options")
+                emptyView.configure(R.string.sharinghub_search_empty_title, R.string.sharinghub_search_empty_message)
             }
         }
         emptyView.setVisible(true)
     }
+
 
     private fun updateSearchState(searchState: NotebookSearchModels.SearchState) {
 

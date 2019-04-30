@@ -33,12 +33,6 @@ class SuggestionsInfoDialog : DialogFragment() {
     }
 
 
-    override fun onStart() {
-        super.onStart()
-        val max = WindowManager.LayoutParams.MATCH_PARENT * 0.2
-
-    }
-
     companion object {
         private const val TAG = "tag:suggest"
         fun show(fm: FragmentManager) {
