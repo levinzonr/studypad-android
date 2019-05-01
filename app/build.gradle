@@ -64,8 +64,6 @@ android {
 
         production {
             dimension "default"
-            applicationId "cz.levinzonr.studypad"
-
             resValue "string", "facebook_app_id", "1207464616087822"
             resValue "string", "fb_login_protocol_scheme", "1207464616087822"
 

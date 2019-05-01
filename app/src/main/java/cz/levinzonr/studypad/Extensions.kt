@@ -293,15 +293,18 @@ inline fun <T> LiveData<T>.observeNonNull(
 
 fun TextView.setSpannableText(text: String, vararg spans: String?) {
     val str = SpannableStringBuilder(text)
+    Timber.d("Text: $text, Spans: ${spans.toList()}")
     spans.filterNotNull().forEach {
         val startIndex = text.indexOf(it)
-        val endIndex = startIndex + it.length
-        str.setSpan(
-            android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
-            startIndex,
-            endIndex,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
+        if (startIndex != -1) {
+            val endIndex = startIndex + it.length
+            str.setSpan(
+                android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
+                startIndex,
+                endIndex,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
     }
     setText(str)
 }

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="cz.levinzonr.studypad">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
             android:name=".presentation.App"
-            android:allowBackup="true"
+            android:allowBackup="false"
+            tools:replace="allowBackup"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
@@ -17,8 +19,10 @@
                 android:name=".presentation.screens.spash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
+
+            </intent-filter>
+            <intent-filter>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <action android:name="android.intent.action.VIEW"/>
@@ -26,7 +30,6 @@
                         android:host="studypad.herokuapp.com"
                         android:pathPrefix="/shared"
                         android:scheme="https"/>
-
             </intent-filter>
         </activity>
         <activity android:name=".presentation.screens.challenges.challenge.ChallengeActivity">
