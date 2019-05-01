@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.screens.library.publish.LanguageSelectorDialog
+import cz.levinzonr.studypad.presentation.screens.selectors.language.LanguageSelectorDialog
 import kotlinx.android.synthetic.main.fragment_settings.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

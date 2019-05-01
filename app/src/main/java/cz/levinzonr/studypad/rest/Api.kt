@@ -21,6 +21,9 @@ interface Api {
     @GET("$API/university/find")
     fun getUniversitiesAsync(@Query("query") query: String) : Deferred<List<University>>
 
+    @POST("$API/university/tmp")
+    fun createUniversitySuggestionAsync(@Query("name") name: String) : Deferred<University>
+
     @POST("$API/users/me")
     fun updateUserAsync(@Body updateProfileRequest: UpdateProfileRequest) : Deferred<UserProfile>
 

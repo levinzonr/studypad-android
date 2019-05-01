@@ -15,10 +15,10 @@ import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebookList
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailModels
 import cz.levinzonr.studypad.presentation.screens.library.notes.NoteDetailViewModel
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesListViewModel
-import cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookViewModel
-import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchViewModel
-import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchViewModel
-import cz.levinzonr.studypad.presentation.screens.library.publish.LanguageSelectorViewModel
+import cz.levinzonr.studypad.presentation.screens.publish.PublishNotebookViewModel
+import cz.levinzonr.studypad.presentation.screens.selectors.tag.TagSearchViewModel
+import cz.levinzonr.studypad.presentation.screens.selectors.topic.TopicSearchViewModel
+import cz.levinzonr.studypad.presentation.screens.selectors.language.LanguageSelectorViewModel
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationsViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewModel

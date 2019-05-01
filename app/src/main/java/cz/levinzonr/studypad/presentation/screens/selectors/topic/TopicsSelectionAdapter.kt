@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.selectors
+package cz.levinzonr.studypad.presentation.screens.selectors.topic
 
 import android.view.View
 import android.view.ViewGroup

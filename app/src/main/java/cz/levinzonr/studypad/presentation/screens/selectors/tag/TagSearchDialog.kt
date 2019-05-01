@@ -1,30 +1,23 @@
-package cz.levinzonr.studypad.presentation.screens.library.publish
+package cz.levinzonr.studypad.presentation.screens.selectors.tag
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.SearchView
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.onQueryTextChanged
 import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
 import cz.levinzonr.studypad.setVisible
 import cz.levinzonr.studypad.views
 import kotlinx.android.synthetic.main.fragment_tag_search_dialog.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
 

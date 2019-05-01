@@ -16,9 +16,8 @@ import cz.levinzonr.studypad.presentation.base.BottomSheetOptionsDialog
 import cz.levinzonr.studypad.presentation.base.PublishedBookOptionsDialog
 import cz.levinzonr.studypad.presentation.common.ToolbarSpaceDecoration
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
-import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialog
-import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorFragment
-import cz.levinzonr.studypad.presentation.screens.selectors.MultipleTopicsSelector
+import cz.levinzonr.studypad.presentation.screens.selectors.tag.TagSearchDialog
+import cz.levinzonr.studypad.presentation.screens.selectors.topic.MultipleTopicsSelector
 import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorViewModel
 import kotlinx.android.synthetic.main.fragment_notebooks_search.*
 import kotlinx.android.synthetic.main.view_empty_state.view.*

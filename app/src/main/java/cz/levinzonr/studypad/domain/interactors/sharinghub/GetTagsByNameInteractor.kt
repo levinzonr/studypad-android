@@ -2,7 +2,7 @@ package cz.levinzonr.studypad.domain.interactors.sharinghub
 
 import cz.levinzonr.studypad.domain.interactors.BaseInputInteractor
 import cz.levinzonr.studypad.domain.repository.TagsRepository
-import cz.levinzonr.studypad.presentation.screens.library.publish.TagsModels
+import cz.levinzonr.studypad.presentation.screens.selectors.tag.TagsModels
 import cz.levinzonr.studypad.rest.Api
 import timber.log.Timber
 

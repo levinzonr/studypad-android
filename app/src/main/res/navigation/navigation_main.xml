@@ -121,7 +121,7 @@
     </fragment>
     <fragment
             android:id="@+id/publishNotebookFragment"
-            android:name="cz.levinzonr.studypad.presentation.screens.library.publish.PublishNotebookFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.publish.PublishNotebookFragment"
             android:label="fragment_publish_notebook"
             tools:layout="@layout/fragment_publish_notebook">
         <argument

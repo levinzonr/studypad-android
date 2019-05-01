@@ -5,11 +5,11 @@ import cz.levinzonr.studypad.presentation.screens.challenges.flashcards.Flashcar
 import cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeAdapter
 import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebooksAdapter
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesAdapter
-import cz.levinzonr.studypad.presentation.screens.library.publish.LanguagesAdapter
-import cz.levinzonr.studypad.presentation.screens.library.publish.TopicsAdapter
+import cz.levinzonr.studypad.presentation.screens.selectors.language.LanguagesAdapter
+import cz.levinzonr.studypad.presentation.screens.selectors.topic.TopicsAdapter
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationsAdapter
 import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversityAdapter
-import cz.levinzonr.studypad.presentation.screens.selectors.TopicsSelectionAdapter
+import cz.levinzonr.studypad.presentation.screens.selectors.topic.TopicsSelectionAdapter
 import cz.levinzonr.studypad.presentation.screens.sharinghub.comments.CommentsAdapter
 import cz.levinzonr.studypad.presentation.screens.sharinghub.feed.PublishedNotebooksAdapter
 import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.SuggestionsAdapter

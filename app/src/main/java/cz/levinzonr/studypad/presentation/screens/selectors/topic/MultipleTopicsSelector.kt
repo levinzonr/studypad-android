@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.selectors
+package cz.levinzonr.studypad.presentation.screens.selectors.topic
 
 
 import android.os.Bundle
@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Topic
 import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
-import cz.levinzonr.studypad.presentation.screens.library.publish.TopicSearchViewModel
 import kotlinx.android.synthetic.main.fragment_multiple_topics_selector.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -46,7 +45,9 @@ class MultipleTopicsSelector : BottomSheetDialog(), TopicsSelectionAdapter.Topic
             val frag = fragmentManager.findFragmentByTag(TAG) as? MultipleTopicsSelector? ?: MultipleTopicsSelector()
             frag.listener = onSelectionChanged
             frag.items = alreadySelected
-            frag.show(fragmentManager, TAG)
+            frag.show(fragmentManager,
+                TAG
+            )
         }
     }
 

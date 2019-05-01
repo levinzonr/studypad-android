@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="wrap_content"
-    tools:context="cz.levinzonr.studypad.presentation.screens.library.publish.BasicInfoFragment">
+    tools:context=".presentation.screens.publish.BasicInfoFragment">
 
 
     <com.google.android.material.textfield.TextInputLayout

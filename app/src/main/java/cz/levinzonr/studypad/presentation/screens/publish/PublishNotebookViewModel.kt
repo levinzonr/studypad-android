@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.library.publish
+package cz.levinzonr.studypad.presentation.screens.publish
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,6 @@ import cz.levinzonr.studypad.domain.interactors.sharinghub.PublishNotebookIntera
 import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.ApplicationError
 import cz.levinzonr.studypad.domain.models.Notebook
-import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import java.util.*

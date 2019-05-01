@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.library.publish
+package cz.levinzonr.studypad.presentation.screens.selectors.language
 
 
 import android.os.Bundle
@@ -17,7 +17,8 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class LanguageSelectorDialog : BottomSheetDialog(), LanguagesAdapter.LanguageItemListener {
+class LanguageSelectorDialog : BottomSheetDialog(),
+    LanguagesAdapter.LanguageItemListener {
 
     override val viewModel: LanguageSelectorViewModel by viewModel()
     private val adapter: LanguagesAdapter by inject { parametersOf(this)}
@@ -52,7 +53,9 @@ class LanguageSelectorDialog : BottomSheetDialog(), LanguagesAdapter.LanguageIte
         fun show(fragmentManager: FragmentManager, onSelected: (Locale) -> Unit) {
             val fragment = fragmentManager.findFragmentByTag(TAG) as? LanguageSelectorDialog? ?: LanguageSelectorDialog()
             fragment.listener = onSelected
-            fragment.show(fragmentManager, TAG)
+            fragment.show(fragmentManager,
+                TAG
+            )
         }
     }
 

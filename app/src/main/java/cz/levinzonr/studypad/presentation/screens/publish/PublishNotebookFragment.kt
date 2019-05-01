@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.library.publish
+package cz.levinzonr.studypad.presentation.screens.publish
 
 
 import android.os.Bundle
@@ -10,8 +10,10 @@ import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.screens.library.publish.steps.*
-import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorFragment
+import cz.levinzonr.studypad.presentation.screens.publish.steps.*
+import cz.levinzonr.studypad.presentation.screens.selectors.language.LanguageSelectorDialog
+import cz.levinzonr.studypad.presentation.screens.selectors.tag.TagSearchDialog
+import cz.levinzonr.studypad.presentation.screens.selectors.topic.TopicSearchDialog
 import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorViewModel
 import ernestoyaquello.com.verticalstepperform.listener.StepperFormListener
 import kotlinx.android.synthetic.main.fragment_publish_notebook.*

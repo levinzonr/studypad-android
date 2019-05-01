@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.library.publish
+package cz.levinzonr.studypad.presentation.screens.selectors.topic
 
 import android.view.LayoutInflater
 import android.view.View

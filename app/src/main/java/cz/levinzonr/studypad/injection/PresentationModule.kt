@@ -1,8 +1,7 @@
 package cz.levinzonr.studypad.injection
 
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.domain.models.Notebook
-import cz.levinzonr.studypad.presentation.screens.library.publish.steps.*
+import cz.levinzonr.studypad.presentation.screens.publish.steps.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module.module
 

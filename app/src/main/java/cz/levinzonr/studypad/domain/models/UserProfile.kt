@@ -12,5 +12,6 @@ data class UserProfile(
     val university: University?,
     val photoUrl: String?,
     val newUser: Boolean = false,
-    val displayName: String
+    val displayName: String,
+    val unreadNotifications: Int
 ) : Parcelable

@@ -1,7 +1,7 @@
-package cz.levinzonr.studypad.presentation.screens.library.publish.steps
+package cz.levinzonr.studypad.presentation.screens.publish.steps
 
 import cz.levinzonr.studypad.R
-import cz.levinzonr.studypad.presentation.screens.library.publish.PublishModels
+import cz.levinzonr.studypad.presentation.screens.publish.PublishModels
 import kotlinx.android.synthetic.main.view_publish_step_description.view.*
 
 class DescriptionStep(stepViewClickListener: StepViewClickListener, title: String, content: String) : BaseStep<PublishModels.StepThreeData>(stepViewClickListener,title, content) {

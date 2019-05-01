@@ -1,13 +1,11 @@
-package cz.levinzonr.studypad.presentation.screens.library.publish.steps
+package cz.levinzonr.studypad.presentation.screens.publish.steps
 
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.defaultLanguageCode
-import cz.levinzonr.studypad.domain.managers.UserManager
 import cz.levinzonr.studypad.domain.models.Locale
-import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.onTextChanged
-import cz.levinzonr.studypad.presentation.screens.library.publish.PublishModels
+import cz.levinzonr.studypad.presentation.screens.publish.PublishModels
 import kotlinx.android.synthetic.main.view_publish_step_basic.view.*
 
 class BasicStep(stepViewClickListener: StepViewClickListener, title: String, content: String) : BaseStep<PublishModels.StepOneData>(stepViewClickListener,title, content) {

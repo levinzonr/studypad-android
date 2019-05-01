@@ -1,8 +1,7 @@
-package cz.levinzonr.studypad.presentation.screens.library.publish
+package cz.levinzonr.studypad.presentation.screens.selectors.topic
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetTopicsInteractor
 import cz.levinzonr.studypad.domain.models.Topic
 import cz.levinzonr.studypad.presentation.base.BaseViewModel

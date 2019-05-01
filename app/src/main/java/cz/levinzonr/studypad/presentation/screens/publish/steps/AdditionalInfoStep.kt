@@ -1,9 +1,9 @@
-package cz.levinzonr.studypad.presentation.screens.library.publish.steps
+package cz.levinzonr.studypad.presentation.screens.publish.steps
 
 import com.google.android.material.chip.Chip
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Topic
-import cz.levinzonr.studypad.presentation.screens.library.publish.PublishModels
+import cz.levinzonr.studypad.presentation.screens.publish.PublishModels
 import cz.levinzonr.studypad.removeIf
 import cz.levinzonr.studypad.views
 import kotlinx.android.synthetic.main.view_publish_step_info.view.*

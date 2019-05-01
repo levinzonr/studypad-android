@@ -1,8 +1,8 @@
-package cz.levinzonr.studypad.presentation.screens.library.publish.steps
+package cz.levinzonr.studypad.presentation.screens.publish.steps
 
 import android.view.View
 import cz.levinzonr.studypad.layoutInflater
-import cz.levinzonr.studypad.presentation.screens.library.publish.StepDataHolder
+import cz.levinzonr.studypad.presentation.screens.publish.StepDataHolder
 import ernestoyaquello.com.verticalstepperform.Step
 import timber.log.Timber
 

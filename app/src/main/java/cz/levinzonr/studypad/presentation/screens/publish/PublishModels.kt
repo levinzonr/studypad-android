@@ -1,9 +1,7 @@
-package cz.levinzonr.studypad.presentation.screens.library.publish
+package cz.levinzonr.studypad.presentation.screens.publish
 
-import android.os.Parcelable
 import cz.levinzonr.studypad.domain.models.Topic
 import cz.levinzonr.studypad.domain.models.University
-import kotlinx.android.parcel.Parcelize
 
 class PublishModels {
 

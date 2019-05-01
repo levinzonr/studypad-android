@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.library.publish
+package cz.levinzonr.studypad.presentation.screens.selectors.language
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
