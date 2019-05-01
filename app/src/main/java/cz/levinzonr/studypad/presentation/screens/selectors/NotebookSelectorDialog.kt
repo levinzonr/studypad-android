@@ -20,7 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NotebookSelectorDialog : BottomSheetDialog(), NotebookSelectionAdapter.NotebookSelectionListener {
 
-    private val viewModel : NotebookListViewModel by viewModel()
+    override val viewModel : NotebookListViewModel by viewModel()
     private var onSelected: ((Notebook) -> Unit)? = null
     private lateinit var adapter: NotebookSelectionAdapter
 

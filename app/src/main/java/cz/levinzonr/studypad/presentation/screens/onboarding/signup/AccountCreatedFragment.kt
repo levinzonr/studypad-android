@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.presentation.base.BaseFragment
+import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorFragment
+import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorViewModel
 import kotlinx.android.synthetic.main.fragment_account_created.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -15,6 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class AccountCreatedFragment : BaseFragment() {
 
     override val viewModel: SignupViewModel by sharedViewModel()
+    private val univerViewModel: UniversitySelectorViewModel by sharedViewModel()
 
 
     override fun onCreateView(
@@ -30,9 +33,7 @@ class AccountCreatedFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         newAccountChooseUniBtn.setOnClickListener {
-            UniversitySelectorFragment.show(childFragmentManager) {
-                viewModel.updateUniversity(it)
-            }
+            viewModel.onSelectUniversityClicked()
         }
 
         newAccountLaterBtn.setOnClickListener {
@@ -43,6 +44,10 @@ class AccountCreatedFragment : BaseFragment() {
 
 
     override fun subscribe() {
-
+        univerViewModel.universitySelectedEvent.observeNonNull(viewLifecycleOwner) {
+            it?.handle {
+                viewModel.updateUniversity(it)
+            }
+        }
     }
 }

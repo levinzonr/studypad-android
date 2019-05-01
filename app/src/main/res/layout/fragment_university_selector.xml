@@ -5,57 +5,55 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment">
+        tools:context="cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorFragment">
+
 
     <com.google.android.material.card.MaterialCardView
             android:layout_margin="@dimen/space_big"
             android:layout_width="0dp"
-            app:cardElevation="2dp"
+            app:cardCornerRadius="@dimen/space_normal"
+            app:cardElevation="4dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/materialCardView3">
 
         <androidx.appcompat.widget.SearchView
                 app:iconifiedByDefault="false"
-                app:queryBackground="@android:color/transparent"
-                app:defaultQueryHint="Search"
-                app:searchIcon="@drawable/ic_search"
-                app:queryHint="Search"
-                android:tooltipText="@string/default_search"
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="45dp"/>
 
     </com.google.android.material.card.MaterialCardView>
 
 
     <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
             android:id="@+id/universitiesRv"
             android:layout_width="match_parent"
-            android:visibility="gone"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp"/>
 
 
-    <TextView
-            android:textSize="20sp"
-            android:id="@+id/emptyViewTv"
-            android:text="Empty text"
-            android:gravity="center"
+    <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
-            android:padding="60dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView3"/>
+
+
+    <cz.levinzonr.studypad.presentation.common.EmptyStateView
+            android:id="@+id/emptyView"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView3"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

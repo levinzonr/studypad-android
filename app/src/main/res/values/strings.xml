@@ -151,6 +151,14 @@
     <string name="notification_update_message">New version of the %1$s notebook is available</string>
 
 
+    <string name="university_default_title">Start by typing schools name</string>
+    <string name="university_empty_title">No universities found</string>
+    <string name="university_add_title">Missing school</string>
+    <string name="university_add_message">Provide the school name you think is missing</string>
+    <string name="university_add_action">Suggest missing school</string>
+    <string name="university_hint">School name</string>
+
+
     <!-- Sharing hub Section -->
     <string name="sharinghub_title">Sharing Hub</string>
     <string name="sharinghub_recent_notifications">Recent notifications</string>
@@ -291,6 +299,7 @@
     <string name="not_logged_in_title">Welcome</string>
     <string name="login_introduce_yourself">Introduce yourself...</string>
     <string name="signup_credentials_message">Which email and password do you want to use to login?</string>
+    <string name="univerisity_created_message">University suggested</string>
 
     <plurals name="time_minutes">
         <item quantity="zero">just now</item>

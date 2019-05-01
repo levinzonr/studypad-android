@@ -10,6 +10,8 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.onTextChanged
+import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.dialog_generic.*
 
 class StudyPadDialog(context: Context?) : Dialog(context) {
@@ -19,6 +21,9 @@ class StudyPadDialog(context: Context?) : Dialog(context) {
 
     private var postiveButtonText: String? = null
     private var positiveButtonListener: ((Dialog) -> Unit)? = null
+
+    private var inputFieldListener: ((String) -> Unit)? = null
+    private var inputFieldHint: String = ""
 
     private var cancelListener: () -> Unit = {}
 
@@ -37,6 +42,21 @@ class StudyPadDialog(context: Context?) : Dialog(context) {
 
         dialogTitle.text = title
         dialogMessage.text = message
+
+        if (inputFieldListener != null) {
+            textInputLayout3.hint = inputFieldHint
+            textInputLayout3.setVisible(true)
+            buttonPositive.isEnabled = false
+            inputField.onTextChanged { buttonPositive.isEnabled = it.isNotBlank() }
+            setupButton(buttonPositive, context.getString(R.string.default_confirm)) {
+                inputFieldListener?.invoke(inputField.text?.toString() ?: "")
+                it.dismiss()
+            }
+            setupButton(buttonNegative, context.getString(R.string.default_cancel)) {
+                it.dismiss()
+            }
+        }
+
     }
 
 
@@ -75,6 +95,12 @@ class StudyPadDialog(context: Context?) : Dialog(context) {
         fun setPositiveButton(text: String?, onClick: (Dialog) -> Unit): Builder {
             dialog.postiveButtonText = text
             dialog.positiveButtonListener = onClick
+            return this
+        }
+
+        fun setInputField(hint: String, onConffrm: (String) -> Unit) : Builder {
+            dialog.inputFieldHint = hint
+            dialog.inputFieldListener = onConffrm
             return this
         }
 

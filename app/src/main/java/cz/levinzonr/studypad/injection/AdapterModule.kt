@@ -8,7 +8,7 @@ import cz.levinzonr.studypad.presentation.screens.library.notes.NotesAdapter
 import cz.levinzonr.studypad.presentation.screens.library.publish.LanguagesAdapter
 import cz.levinzonr.studypad.presentation.screens.library.publish.TopicsAdapter
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationsAdapter
-import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversityAdapter
+import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversityAdapter
 import cz.levinzonr.studypad.presentation.screens.selectors.TopicsSelectionAdapter
 import cz.levinzonr.studypad.presentation.screens.sharinghub.comments.CommentsAdapter
 import cz.levinzonr.studypad.presentation.screens.sharinghub.feed.PublishedNotebooksAdapter

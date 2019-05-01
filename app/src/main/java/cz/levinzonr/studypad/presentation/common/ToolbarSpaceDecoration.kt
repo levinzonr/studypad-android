@@ -5,11 +5,11 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.dp
 
-class ToolbarSpaceDecoration : RecyclerView.ItemDecoration() {
+class ToolbarSpaceDecoration(private val spaece: Int = 16) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         if (parent.getChildAdapterPosition(view) == 0) {
-            outRect.top = 16.dp
+            outRect.top = spaece.dp
         }
     }
 }

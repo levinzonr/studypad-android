@@ -294,4 +294,22 @@
             android:name="cz.levinzonr.studypad.presentation.screens.about.feedback.SendFeedbackFragment"
             android:label="@string/about_feedback"
             tools:layout="@layout/fragment_send_feedback"/>
+    <fragment
+            android:id="@+id/universitySelectorFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorFragment"
+            android:label="fragment_university_selector"
+            tools:layout="@layout/fragment_university_selector">
+        <argument
+                android:name="allowSuggestion"
+                app:argType="boolean"
+                android:defaultValue="true"/>
+    </fragment>
+    <action
+            android:id="@+id/action_global_universitySelectorFragment"
+            app:destination="@id/universitySelectorFragment"
+            app:enterAnim="@animator/slide_left_enter"
+            app:exitAnim="@animator/slide_left_exit"
+            app:popEnterAnim="@animator/slide_right_enter"
+            app:popExitAnim="@animator/slide_right_exit">
+    </action>
 </navigation>

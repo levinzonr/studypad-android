@@ -86,6 +86,10 @@ class SignupViewModel(
     }
 
 
+    fun onSelectUniversityClicked() {
+        navigateTo(AccountCreatedFragmentDirections.actionGlobalUniversitySelectorFragment(true))
+    }
+
     private fun validateCredentials() : Boolean {
         invalidEmmailEvent.callIf(!email.isValidEmail())
         invalidPasswordEvent.callIf(!password.isValidPassword())

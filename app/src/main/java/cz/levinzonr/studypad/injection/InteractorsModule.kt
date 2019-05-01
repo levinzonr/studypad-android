@@ -87,4 +87,6 @@ val interacorModule = module {
     factory { LeaveFeedbackInteractor(get()) }
 
     factory { GetPendingSuggestionsInteractor(get()) }
+
+    factory { SuggestUniversityInteractor(get()) }
 }

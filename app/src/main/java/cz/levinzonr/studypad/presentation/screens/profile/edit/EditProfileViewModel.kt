@@ -8,6 +8,7 @@ import cz.levinzonr.studypad.domain.models.CurrentUserInfo
 import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.domain.models.UserProfile
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import org.koin.androidx.viewmodel.ext.koin.viewModel
 import timber.log.Timber
 
 class EditProfileViewModel(
@@ -54,6 +55,10 @@ class EditProfileViewModel(
                 handleApplicationError(it)
             }
         }
+    }
+
+    fun onSelectUniversityClicked() {
+        navigateTo(EditProfileFragmentDirections.actionGlobalUniversitySelectorFragment(true))
     }
 
     private fun onUpdate() {

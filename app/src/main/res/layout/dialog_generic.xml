@@ -11,9 +11,6 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             app:cardCornerRadius="@dimen/space_normal"
             app:contentPadding="@dimen/space_normal"
             android:gravity="center"
@@ -57,17 +54,32 @@
                     android:layout_height="wrap_content"/>
 
 
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_margin="8dp"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/dialogMessage"
+                    android:id="@+id/textInputLayout3">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputField"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
             <com.google.android.material.button.MaterialButton
-                    app:layout_constraintTop_toBottomOf="@id/dialogMessage"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
                     style="@style/Button.Text"
                     tools:visibility="visible"
                     android:visibility="gone"
-                    android:layout_marginTop="@dimen/space_normal"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="_Yes"
                     android:id="@+id/buttonPositive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
 
             <com.google.android.material.button.MaterialButton
                     app:layout_constraintBottom_toBottomOf="@id/buttonPositive"

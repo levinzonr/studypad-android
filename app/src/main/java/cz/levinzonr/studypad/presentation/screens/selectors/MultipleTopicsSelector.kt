@@ -19,7 +19,7 @@ import org.koin.core.parameter.parametersOf
 
 class MultipleTopicsSelector : BottomSheetDialog(), TopicsSelectionAdapter.TopicSelectionListener {
 
-    private val viewModel: TopicSearchViewModel by viewModel()
+    override val viewModel: TopicSearchViewModel by viewModel()
     private val adapter: TopicsSelectionAdapter by inject { parametersOf(this) }
     private var listener: ((List<Topic>) -> Unit)? = null
     private var items: List<Topic> = listOf()

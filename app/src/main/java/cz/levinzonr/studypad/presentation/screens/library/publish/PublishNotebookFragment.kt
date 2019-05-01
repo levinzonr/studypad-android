@@ -11,10 +11,12 @@ import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.screens.library.publish.steps.*
-import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
+import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorFragment
+import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorViewModel
 import ernestoyaquello.com.verticalstepperform.listener.StepperFormListener
 import kotlinx.android.synthetic.main.fragment_publish_notebook.*
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -22,7 +24,7 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
 
     private val args: PublishNotebookFragmentArgs by navArgs()
     override val viewModel: PublishNotebookViewModel by viewModel { parametersOf(args.notebook, args.publishedId) }
-
+    private val universitySelectorViewModel: UniversitySelectorViewModel by sharedViewModel()
 
     private val stepOne: BasicStep by inject { parametersOf(this) }
     private val stepTwo: AdditionalInfoStep by inject { parametersOf(this) }
@@ -52,6 +54,10 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
 
 
     override fun subscribe() {
+
+        universitySelectorViewModel.universitySelectedEvent.observeNonNull(viewLifecycleOwner) {
+            it?.handle { stepOne.setUniversity(it, true) }
+        }
 
         viewModel.defaultStateObservable.observeNonNull(viewLifecycleOwner) { state ->
             state.stepOneDefaults.let(stepOne::setDefaultData)
@@ -109,9 +115,7 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
     }
 
     private fun showUniversitySelector() {
-        UniversitySelectorFragment.show(childFragmentManager) {
-            stepOne.setUniversity(it, true)
-        }
+        viewModel.onSelectUniversityClicked()
     }
 
     private fun showTopicSelector() {

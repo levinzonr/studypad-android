@@ -27,7 +27,7 @@ class TopicSearchDialog : BottomSheetDialog(), TopicsAdapter.TopicListener {
     private lateinit var recyclerView: RecyclerView
 
     private val adapter: TopicsAdapter  by inject { parametersOf(this) }
-    private val viewModel: TopicSearchViewModel by viewModel()
+    override val viewModel: TopicSearchViewModel by viewModel()
 
     private var callback: (Topic) -> Unit = {}
 

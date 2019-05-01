@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.presentation.screens.onboarding.signup
+package cz.levinzonr.studypad.presentation.screens.selectors.university
 
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +48,6 @@ class UniversityAdapter : ListAdapter<University, UniversityAdapter.ViewHolder>(
         }
 
         override fun areContentsTheSame(oldItem: University, newItem: University): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem == newItem
         }
     }}

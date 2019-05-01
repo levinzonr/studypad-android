@@ -40,7 +40,6 @@
             android:layout_height="wrap_content"/>
 
     <com.google.android.material.button.MaterialButton
-            app:icon="@drawable/ic_sync_black_24dp"
             android:visibility="gone"
             android:id="@+id/actionButton"
             android:layout_marginTop="@dimen/space_normal"

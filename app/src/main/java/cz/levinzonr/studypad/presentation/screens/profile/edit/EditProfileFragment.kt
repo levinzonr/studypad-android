@@ -6,14 +6,17 @@ import cz.levinzonr.studypad.loadAuthorImage
 import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
+import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorFragment
+import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorViewModel
 import kotlinx.android.synthetic.main.fragment_edit_profile.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class EditProfileFragment : BaseFragment() {
 
     override val viewModel: EditProfileViewModel by viewModel()
+    private val univerViewModel: UniversitySelectorViewModel by sharedViewModel()
     private lateinit var saveMenuItem: MenuItem
 
     override fun onCreateView(
@@ -33,10 +36,7 @@ class EditProfileFragment : BaseFragment() {
         }
 
         editProfileSchoolEt.setOnClickListener {
-            UniversitySelectorFragment.show(childFragmentManager) {
-                viewModel.onUniversityChanged(it)
-                editProfileSchoolEt.setText(it.fullName)
-            }
+            viewModel.onSelectUniversityClicked()
         }
 
     }
@@ -48,6 +48,13 @@ class EditProfileFragment : BaseFragment() {
             editProfileIv.loadAuthorImage(it.imageUrl)
         }
 
+
+        univerViewModel.universitySelectedEvent.observeNonNull(viewLifecycleOwner) {
+            it?.handle {
+                editProfileSchoolEt.setText(it.fullName)
+                viewModel.onUniversityChanged(it)
+            }
+        }
 
         viewModel.stateLiveData.observeNonNull(viewLifecycleOwner) {
             Timber.d("state ${it.isSaveEnabled}")

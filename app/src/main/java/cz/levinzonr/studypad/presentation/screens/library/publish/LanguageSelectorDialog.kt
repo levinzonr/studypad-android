@@ -19,7 +19,7 @@ import org.koin.core.parameter.parametersOf
 
 class LanguageSelectorDialog : BottomSheetDialog(), LanguagesAdapter.LanguageItemListener {
 
-    private val viewModel: LanguageSelectorViewModel by viewModel()
+    override val viewModel: LanguageSelectorViewModel by viewModel()
     private val adapter: LanguagesAdapter by inject { parametersOf(this)}
 
     private var listener: ((Locale) -> Unit)? = null

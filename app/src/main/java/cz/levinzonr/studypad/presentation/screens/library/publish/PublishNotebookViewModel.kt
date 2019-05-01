@@ -41,6 +41,10 @@ class PublishNotebookViewModel(
 
     }
 
+    fun onSelectUniversityClicked() {
+        navigateTo(PublishNotebookFragmentDirections.actionGlobalUniversitySelectorFragment(true))
+    }
+
     private fun publishNotebook(notebook: Notebook, stepOneData: PublishModels.StepOneData, stepTwoData: PublishModels.StepTwoData, stepThreeData: PublishModels.StepThreeData) {
         publishNotebookInteractor.executeWithInput(
             PublishNotebookInteractor.Input(
@@ -97,6 +101,7 @@ class PublishNotebookViewModel(
             }
         }
     }
+
 
 
     private fun postDefaultState() {

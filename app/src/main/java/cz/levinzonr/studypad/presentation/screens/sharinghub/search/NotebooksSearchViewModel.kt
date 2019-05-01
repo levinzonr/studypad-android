@@ -71,4 +71,8 @@ class NotebooksSearchViewModel(initialState:  NotebookSearchModels.SearchState?,
         }
     }
 
+    fun onSelectUniversityClicked() {
+        navigateTo(NotebooksSearchFragmentDirections.actionGlobalUniversitySelectorFragment(true))
+    }
+
 }

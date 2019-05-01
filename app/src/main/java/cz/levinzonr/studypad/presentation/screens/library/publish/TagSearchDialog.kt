@@ -37,7 +37,7 @@ class TagSearchDialog : BottomSheetDialog(){
     private var callback: (String, Boolean) -> Unit = {_, _ -> Timber.d("Default callback")}
     private var callback2: (Set<String>) -> Unit = { Timber.d("Default callback")}
 
-    private val viewModel : TagSearchViewModel  by viewModel()
+    override val viewModel : TagSearchViewModel  by viewModel()
 
 
     private val selectedTags : Set<String>

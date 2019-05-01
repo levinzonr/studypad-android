@@ -17,10 +17,12 @@ import cz.levinzonr.studypad.presentation.base.PublishedBookOptionsDialog
 import cz.levinzonr.studypad.presentation.common.ToolbarSpaceDecoration
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import cz.levinzonr.studypad.presentation.screens.library.publish.TagSearchDialog
-import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorFragment
+import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorFragment
 import cz.levinzonr.studypad.presentation.screens.selectors.MultipleTopicsSelector
+import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorViewModel
 import kotlinx.android.synthetic.main.fragment_notebooks_search.*
 import kotlinx.android.synthetic.main.view_empty_state.view.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
@@ -30,6 +32,7 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
 
     private val args: NotebooksSearchFragmentArgs by navArgs()
     override val viewModel: NotebooksSearchViewModel by viewModel { parametersOf(args.initState) }
+    private val univerViewModel: UniversitySelectorViewModel by sharedViewModel()
     private lateinit var adapter: PublishedNotebooksAdapter
 
 
@@ -106,10 +109,8 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
         searchOptionUniversity.setFilterListener { clear ->
             if (clear) viewModel.onUniversityOptionChanged(null)
             else {
+                viewModel.onSelectUniversityClicked()
                 searchView.hideKeyboard()
-                UniversitySelectorFragment.show(childFragmentManager) {
-                    viewModel.onUniversityOptionChanged(it)
-                }
             }
         }
 
@@ -126,6 +127,10 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
         viewModel.searchStateLiveData.observe(viewLifecycleOwner, Observer {
             updateSearchState(it)
         })
+
+        univerViewModel.universitySelectedEvent.observeNonNull(viewLifecycleOwner) {
+            it?.handle { viewModel.onUniversityOptionChanged(it) }
+        }
 
         viewModel.resultsLiveData.observeNonNull(viewLifecycleOwner) {
             Timber.d("Result: $it")

@@ -9,11 +9,13 @@ import cz.levinzonr.studypad.presentation.base.BaseViewModel
 
 class TopicSearchViewModel(private val getTopicsInteractor: GetTopicsInteractor) : BaseViewModel() {
 
+    private var list: List<Topic> = listOf()
     private val topicLiveData = MutableLiveData<List<Topic>>()
 
     init {
-        getTopicsInteractor.executeWithInput("" ) {
+        getTopicsInteractor.executeWithInput("") {
             onComplete {
+                list = it
                 topicLiveData.postValue(it)
             }
             onError { handleApplicationError(it) }
@@ -21,10 +23,10 @@ class TopicSearchViewModel(private val getTopicsInteractor: GetTopicsInteractor)
     }
 
     fun filterTopics(query: String) {
-        topicLiveData.postValue(topicLiveData.value?.filter { it.name.contains(query) })
+        topicLiveData.postValue(list.filter { it.name.contains(query) })
     }
 
-    fun getTopicsObservable() : LiveData<List<Topic>> {
+    fun getTopicsObservable(): LiveData<List<Topic>> {
         return topicLiveData
     }
 }

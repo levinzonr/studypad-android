@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/navigation_university"
+            app:startDestination="@id/universitySelectorFragment">
+
+    <fragment
+            android:id="@+id/universitySelectorFragment"
+            android:name="cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorFragment"
+            android:label="fragment_university_selector"
+            tools:layout="@layout/fragment_university_selector">
+        <argument
+                android:name="allowSuggestion"
+                android:defaultValue="true"/>
+    </fragment>
+    <action
+            android:id="@+id/action_global_universitySelectorFragment"
+            app:destination="@id/universitySelectorFragment"
+            app:enterAnim="@animator/slide_left_enter"
+            app:exitAnim="@animator/slide_left_exit"
+            app:popEnterAnim="@animator/slide_right_enter"
+            app:popExitAnim="@animator/slide_right_exit"/>
+</navigation>

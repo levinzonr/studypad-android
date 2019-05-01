@@ -5,8 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetTagsByNameInteractor
+import cz.levinzonr.studypad.presentation.base.BaseViewModel
 
-class TagSearchViewModel(private val gatTagsByNameInteractor: GetTagsByNameInteractor) : ViewModel() {
+class TagSearchViewModel(private val gatTagsByNameInteractor: GetTagsByNameInteractor) : BaseViewModel() {
 
     private val tagsLiveData = MutableLiveData<Set<String>>()
     private val tagsQuery = MutableLiveData<String>()
@@ -23,12 +24,15 @@ class TagSearchViewModel(private val gatTagsByNameInteractor: GetTagsByNameInter
                 it.forEach {
                     when(it) {
                         is TagsModels.TagSection.Recent -> recentTagsLiveData.postValue(it.tags)
-                        is TagsModels.TagSection.Default -> tagsLiveData.postValue(it.tags)
+                        is TagsModels.TagSection.Default -> tagsLiveData.postValue(List(100) { "Tag $it"}.toSet())
                     }
                 }
                 if (!it.any { it is TagsModels.TagSection.Recent }) {
                     recentTagsLiveData.postValue(null)
                 }
+            }
+            onError {
+                handleApplicationError(it)
             }
         }
     }

@@ -22,7 +22,7 @@ import cz.levinzonr.studypad.presentation.screens.library.publish.LanguageSelect
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationsViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.login.LoginViewModel
 import cz.levinzonr.studypad.presentation.screens.onboarding.signup.SignupViewModel
-import cz.levinzonr.studypad.presentation.screens.onboarding.signup.UniversitySelectorViewModel
+import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorViewModel
 import cz.levinzonr.studypad.presentation.screens.profile.ProfileViewModel
 import cz.levinzonr.studypad.presentation.screens.profile.edit.EditProfileViewModel
 import cz.levinzonr.studypad.presentation.screens.settings.SettingsViewModel
@@ -104,7 +104,7 @@ val viewModelModule = module {
 
     viewModel { LanguageSelectorViewModel(get()) }
 
-    viewModel { UniversitySelectorViewModel(get()) }
+    viewModel { UniversitySelectorViewModel(get(), get()) }
 
     viewModel { (searchState: NotebookSearchModels.SearchState?) -> NotebooksSearchViewModel(searchState, get()) }
 
