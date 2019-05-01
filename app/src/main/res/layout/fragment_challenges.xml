@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<androidx.core.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -8,121 +9,126 @@
         android:layout_height="match_parent"
         tools:context=".presentation.screens.challenges.ChallengesFragment">
 
-
-    <com.google.android.material.card.MaterialCardView
-            app:contentPadding="@dimen/space_normal"
-            app:cardCornerRadius="@dimen/corner_radius"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/textView6"
-            android:layout_margin="@dimen/space_big"
-            android:maxHeight="0dp"
-            app:layout_constraintVertical_bias="0.1"
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-        <LinearLayout
-                android:orientation="vertical"
+
+        <com.google.android.material.card.MaterialCardView
+                app:contentPadding="@dimen/space_normal"
+                app:cardCornerRadius="@dimen/corner_radius"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/textView6"
+                android:layout_margin="@dimen/space_big"
+                android:maxHeight="0dp"
+                app:layout_constraintVertical_bias="0.1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
-            <TextView
-                    android:layout_marginStart="8dp"
-                    android:id="@+id/sectinName"
+            <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:text="@string/challenges_recently"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toStartOf="@+id/sectionSeeAllBtn"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/sectionSeeAllBtn"
-                    app:layout_constraintStart_toEndOf="@+id/sectionImage"/>
+                    android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/challengesRv"
-                    tools:listitem="@layout/item_challenge"
-                    app:layoutManager="LinearLayoutManager"
+                <TextView
+                        android:layout_marginStart="8dp"
+                        android:id="@+id/sectinName"
+                        android:layout_width="match_parent"
+                        android:text="@string/challenges_recently"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@+id/sectionSeeAllBtn"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/sectionSeeAllBtn"
+                        app:layout_constraintStart_toEndOf="@+id/sectionImage"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/challengesRv"
+                        tools:listitem="@layout/item_challenge"
+                        app:layoutManager="LinearLayoutManager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <cz.levinzonr.studypad.presentation.common.EmptyStateView
+                    android:visibility="gone"
+                    android:id="@+id/emptyView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-        </LinearLayout>
-
-        <cz.levinzonr.studypad.presentation.common.EmptyStateView
-                android:visibility="gone"
-                android:id="@+id/emptyView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"/>
 
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
 
+        <TextView
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="Quick Challenge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6"
+                android:layout_marginBottom="@dimen/space_big"
+                app:layout_constraintBottom_toTopOf="@+id/selfcheckButton"
+                app:layout_constraintStart_toStartOf="@+id/materialButton2"/>
 
-    <TextView
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="Quick Challenge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView6"
-            android:layout_marginBottom="@dimen/space_big"
-            app:layout_constraintBottom_toTopOf="@+id/selfcheckButton"
-            app:layout_constraintStart_toStartOf="@+id/materialButton2"/>
+        <TextView
+                android:text="Or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_big"
+                app:layout_constraintBottom_toTopOf="@+id/materialButton2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/textView7"/>
 
-    <TextView
-            android:text="Or"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/space_big"
-            app:layout_constraintBottom_toTopOf="@+id/materialButton2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/textView7"/>
+        <cz.levinzonr.studypad.presentation.common.SquareButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/selfcheckButton"
+                app:buttonText="@string/challenges_type_selfcheck"
+                app:buttonIcon="@drawable/ic_done_all_black_24dp"
+                app:layout_constraintEnd_toStartOf="@+id/writeButton"
+                app:layout_constraintStart_toEndOf="@+id/flashcardButton"
+                android:layout_marginBottom="@dimen/space_large"
+                app:layout_constraintBottom_toTopOf="@+id/textView7"/>
 
-    <cz.levinzonr.studypad.presentation.common.SquareButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/selfcheckButton"
-            app:buttonText="@string/challenges_type_selfcheck"
-            app:buttonIcon="@drawable/ic_done_all_black_24dp"
-            app:layout_constraintEnd_toStartOf="@+id/writeButton"
-            app:layout_constraintStart_toEndOf="@+id/flashcardButton"
-            android:layout_marginBottom="@dimen/space_large"
-            app:layout_constraintBottom_toTopOf="@+id/textView7"/>
+        <cz.levinzonr.studypad.presentation.common.SquareButton
+                android:layout_marginEnd="8dp"
+                app:buttonText="@string/challenges_type_write"
+                app:buttonIcon="@drawable/ic_challenges"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/materialButton2"
+                android:id="@+id/writeButton"
+                app:layout_constraintBottom_toBottomOf="@+id/selfcheckButton"/>
 
-    <cz.levinzonr.studypad.presentation.common.SquareButton
-            android:layout_marginEnd="8dp"
-            app:buttonText="@string/challenges_type_write"
-            app:buttonIcon="@drawable/ic_challenges"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/materialButton2"
-            android:id="@+id/writeButton"
-            app:layout_constraintBottom_toBottomOf="@+id/selfcheckButton"/>
-
-    <cz.levinzonr.studypad.presentation.common.SquareButton
-            android:layout_width="wrap_content"
-            app:buttonText="@string/challenges_type_flashcards"
-            app:buttonIcon="@drawable/ic_flashcards_24dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/materialButton2"
-            android:id="@+id/flashcardButton"
-            app:layout_constraintBottom_toBottomOf="@+id/selfcheckButton"/>
-
-
-    <com.google.android.material.button.MaterialButton
-            style="@style/Button.Primary"
-            android:text="@string/challenges_configure"
-            android:layout_width="0dp"
-            app:iconGravity="textStart"
-            app:icon="@drawable/ic_settings_black_24dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/space_big"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="@dimen/space_big"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="@dimen/space_big"
-            android:id="@+id/materialButton2"/>
+        <cz.levinzonr.studypad.presentation.common.SquareButton
+                android:layout_width="wrap_content"
+                app:buttonText="@string/challenges_type_flashcards"
+                app:buttonIcon="@drawable/ic_flashcards_24dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/materialButton2"
+                android:id="@+id/flashcardButton"
+                app:layout_constraintBottom_toBottomOf="@+id/selfcheckButton"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+                style="@style/Button.Primary"
+                android:text="@string/challenges_configure"
+                android:layout_width="0dp"
+                app:iconGravity="textStart"
+                app:icon="@drawable/ic_settings_black_24dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_big"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/space_big"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/space_big"
+                android:id="@+id/materialButton2"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

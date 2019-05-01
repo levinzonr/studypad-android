@@ -1,103 +1,101 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="cz.levinzonr.studypad.presentation.screens.profile.ProfileFragment">
-
+<androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="cz.levinzonr.studypad.presentation.screens.profile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/materialCardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        android:layout_margin="@dimen/space_big"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/materialCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="@dimen/space_big"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_margin="@dimen/space_small"
-            android:src="@drawable/no_profile_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                android:id="@+id/circleImageView"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="@dimen/space_small"
+                android:src="@drawable/no_profile_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
 
         <TextView
-            android:id="@+id/profileUserNae"
-            style="@style/TextStyle.Header"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/space_normal"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+                android:id="@+id/profileUserNae"
+                style="@style/TextStyle.Header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="@dimen/space_normal"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/circleImageView"/>
 
 
         <TextView
-            android:id="@+id/profileUserUni"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_small"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/profileUserNae"
-            app:layout_constraintTop_toBottomOf="@+id/profileUserNae" />
+                android:id="@+id/profileUserUni"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_small"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/profileUserNae"
+                app:layout_constraintTop_toBottomOf="@+id/profileUserNae"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/profileLogoutBtn"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView">
-
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/profileLogoutBtn"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/editProfileBtn"
-            app:icon="@drawable/ic_edit"
-            android:gravity="start"
-            android:text="@string/profile_edit"
-            style="@style/Button.Text.Pref"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                android:id="@+id/editProfileBtn"
+                app:icon="@drawable/ic_edit"
+                android:gravity="start"
+                android:text="@string/profile_edit"
+                style="@style/Button.Text.Pref"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
 
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/notificationBtn"
-            app:icon="@drawable/ic_notifications_black_24dp"
-            android:gravity="start"
-            android:text="@string/profile_notifications"
-            style="@style/Button.Text.Pref"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+                app:icon="@drawable/ic_notifications_black_24dp"
+                android:gravity="start"
+                android:text="@string/profile_notifications"
+                style="@style/Button.Text.Pref"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
 
         <com.google.android.material.button.MaterialButton
-            app:icon="@drawable/ic_settings_black_24dp"
-            android:gravity="start"
-            android:text="@string/profile_settings"
-            android:id="@+id/profileSettingsBtn"
-            style="@style/Button.Text.Pref"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+                app:icon="@drawable/ic_settings_black_24dp"
+                android:gravity="start"
+                android:text="@string/profile_settings"
+                android:id="@+id/profileSettingsBtn"
+                style="@style/Button.Text.Pref"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
 
         <com.google.android.material.button.MaterialButton
@@ -107,11 +105,10 @@
                 android:text="@string/profile_about"
                 style="@style/Button.Text.Pref"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

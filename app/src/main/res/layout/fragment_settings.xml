@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.core.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,40 +11,156 @@
 
 
     <LinearLayout
-            android:paddingStart="@dimen/space_small"
-            android:paddingEnd="@dimen/space_small"
-            android:paddingTop="@dimen/space_big"
-            android:paddingBottom="@dimen/space_big"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <ImageView
-                android:layout_marginStart="@dimen/space_small"
-                android:tint="@color/blue"
-                android:src="@drawable/ic_notifications_black_24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        <TextView
-                android:layout_marginStart="@dimen/space_small"
-                android:text="@string/settings_notifications_title"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-    <View
-            android:background="@color/greyDivider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
-
-    <LinearLayout
-            android:background="@color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
+
+        <LinearLayout
+                android:paddingStart="@dimen/space_small"
+                android:paddingEnd="@dimen/space_small"
+                android:paddingTop="@dimen/space_big"
+                android:paddingBottom="@dimen/space_big"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:layout_marginStart="@dimen/space_small"
+                    android:tint="@color/blue"
+                    android:src="@drawable/ic_notifications_black_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_marginStart="@dimen/space_small"
+                    android:text="@string/settings_notifications_title"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+                android:background="@color/greyDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+        <LinearLayout
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <View xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:background="@color/lightGrey"
+                  android:layout_height="1dp"
+                  android:orientation="vertical"/>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:padding="@dimen/space_large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="@string/settings_notifications_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/settingsNotificationsTv"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/notificationsSwitch"/>
+
+
+                <Switch
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/notificationsSwitch"
+                        android:layout_marginEnd="@dimen/space_normal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/settingsNotificationsTv"
+                        app:layout_constraintBottom_toBottomOf="@+id/settingsNotificationsTv"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:background="@color/lightGrey"
+                  android:layout_height="1dp"
+                  android:orientation="vertical"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:layout_marginTop="@dimen/space_big"
+                android:paddingStart="@dimen/space_small"
+                android:paddingEnd="@dimen/space_small"
+                android:paddingTop="@dimen/space_big"
+                android:paddingBottom="@dimen/space_big"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:layout_marginStart="@dimen/space_small"
+                    android:tint="@color/blue"
+                    android:src="@drawable/ic_round_language_24px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_marginStart="@dimen/space_small"
+                    android:text="@string/settings_language_title"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+        <View xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@color/lightGrey"
+              android:layout_height="1dp"
+              android:orientation="vertical"/>
+
+        <LinearLayout
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:id="@+id/settingsLanguageBtn"
+                    android:background="?selectableItemBackground"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/space_big"
+                    android:paddingBottom="@dimen/space_big"
+                    android:paddingStart="@dimen/space_large"
+                    android:paddingEnd="@dimen/space_large"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                <TextView
+                        android:text="@string/settings_language_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/settingsLanguagePrefTv"
+                        android:textColor="@color/grey"
+                        android:text="English"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+            </LinearLayout>
+        </LinearLayout>
 
         <View xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
@@ -53,191 +169,83 @@
               android:orientation="vertical"/>
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="@dimen/space_large"
+        <LinearLayout
+                android:layout_marginTop="@dimen/space_big"
+                android:paddingStart="@dimen/space_small"
+                android:paddingEnd="@dimen/space_small"
+                android:paddingTop="@dimen/space_big"
+                android:paddingBottom="@dimen/space_big"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+            <ImageView
+                    android:layout_marginStart="@dimen/space_small"
+                    android:tint="@color/blue"
+                    android:src="@drawable/ic_person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
             <TextView
-                    android:text="@string/settings_notifications_value"
-                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/space_small"
+                    android:text="@string/settings_account_title"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <View xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:background="@color/lightGrey"
+                  android:layout_height="1dp"
+                  android:orientation="vertical"/>
+
+
+            <TextView
+                    style="@style/TextStyle.Preference"
+                    android:text="@string/settings_account_logout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/settingsNotificationsTv"
+                    android:id="@+id/settingsLogoutBtn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/notificationsSwitch"/>
+
+            <View xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:background="@color/lightGrey"
+                  android:layout_height="1dp"
+                  android:layout_marginStart="@dimen/space_big"
+                  android:orientation="vertical"/>
+
+            <TextView
+                    style="@style/TextStyle.Preference"
+                    android:text="@string/settings_account_delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/settingsDeleteAccountBtn"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/notificationsSwitch"/>
 
 
-            <Switch
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/notificationsSwitch"
-                    android:layout_marginEnd="@dimen/space_normal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/settingsNotificationsTv"
-                    app:layout_constraintBottom_toBottomOf="@+id/settingsNotificationsTv"/>
+            <View xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:background="@color/lightGrey"
+                  android:layout_height="1dp"
+                  android:orientation="vertical"/>
 
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <View xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:background="@color/lightGrey"
-              android:layout_height="1dp"
-              android:orientation="vertical"/>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-            android:layout_marginTop="@dimen/space_big"
-            android:paddingStart="@dimen/space_small"
-            android:paddingEnd="@dimen/space_small"
-            android:paddingTop="@dimen/space_big"
-            android:paddingBottom="@dimen/space_big"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <ImageView
-                android:layout_marginStart="@dimen/space_small"
-                android:tint="@color/blue"
-                android:src="@drawable/ic_round_language_24px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        <TextView
-                android:layout_marginStart="@dimen/space_small"
-                android:text="@string/settings_language_title"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-
-    <View xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="match_parent"
-          android:background="@color/lightGrey"
-          android:layout_height="1dp"
-          android:orientation="vertical"/>
-
-    <LinearLayout
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <LinearLayout
-                android:id="@+id/settingsLanguageBtn"
-                android:background="?selectableItemBackground"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/space_big"
-                android:paddingBottom="@dimen/space_big"
-                android:paddingStart="@dimen/space_large"
-                android:paddingEnd="@dimen/space_large"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-            <TextView
-                    android:text="@string/settings_language_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:id="@+id/settingsLanguagePrefTv"
-                    android:textColor="@color/grey"
-                    android:text="English"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
 
         </LinearLayout>
-    </LinearLayout>
-
-    <View xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="match_parent"
-          android:background="@color/lightGrey"
-          android:layout_height="1dp"
-          android:orientation="vertical"/>
-
-
-    <LinearLayout
-            android:layout_marginTop="@dimen/space_big"
-            android:paddingStart="@dimen/space_small"
-            android:paddingEnd="@dimen/space_small"
-            android:paddingTop="@dimen/space_big"
-            android:paddingBottom="@dimen/space_big"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <ImageView
-                android:layout_marginStart="@dimen/space_small"
-                android:tint="@color/blue"
-                android:src="@drawable/ic_person"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        <TextView
-                android:layout_marginStart="@dimen/space_small"
-                android:text="@string/settings_account_title"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <View xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:background="@color/lightGrey"
-              android:layout_height="1dp"
-              android:orientation="vertical"/>
-
-
-        <TextView
-                style="@style/TextStyle.Preference"
-                android:text="@string/settings_account_logout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/settingsLogoutBtn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/notificationsSwitch"/>
-
-        <View xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:background="@color/lightGrey"
-              android:layout_height="1dp"
-              android:layout_marginStart="@dimen/space_big"
-              android:orientation="vertical"/>
-
-        <TextView
-                style="@style/TextStyle.Preference"
-                android:text="@string/settings_account_delete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/settingsDeleteAccountBtn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/notificationsSwitch"/>
-
-
-        <View xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:background="@color/lightGrey"
-              android:layout_height="1dp"
-              android:orientation="vertical"/>
-
 
     </LinearLayout>
 
 
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

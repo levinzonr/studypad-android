@@ -292,6 +292,6 @@
     <fragment
             android:id="@+id/sendFeedbackFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.about.feedback.SendFeedbackFragment"
-            android:label="fragment_send_feedback"
+            android:label="@string/about_feedback"
             tools:layout="@layout/fragment_send_feedback"/>
 </navigation>
