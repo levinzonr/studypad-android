@@ -33,8 +33,9 @@ class PublishedNotebookDetailViewModel(
 
     fun refreshAll() {
         getPublishedNotebookDetail.executeWithInput(notebookId) {
-            toggleLoading(false)
+            toggleLoading(true)
             onComplete {
+                toggleLoading(false)
                 sharedDetailLiveData.postValue(it)
                 getNotebookVersionStateInteractor.executeWithInput(it) {
                     onComplete { stateLiveData.postValue(it) }
@@ -43,6 +44,7 @@ class PublishedNotebookDetailViewModel(
 
             }
             onError {
+                toggleLoading(false)
                 handleApplicationError(it)
             }
         }
