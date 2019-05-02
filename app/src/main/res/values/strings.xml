@@ -169,6 +169,11 @@
     <string name="sharinghub_dets_title">Details</string>
     <string name="sharinghub_dets_comments">Comments</string>
     <string name="sharinghub_dets_more_title">More information</string>
+    <string name="sharinghub_success_import">Notebook saved</string>
+    <string name="sharinghub_success_import_copy">Notebook copied</string>
+    <string name="sharinghub_success_import_updated">Notebook updated</string>
+
+
     <string name="sharinghub_dets_desc_title">Description</string>
     <string name="sharinghub_dets_tags_title">Associated tags</string>
     <string name="sharinghub_dets_notes_title">Notes inside</string>
@@ -301,6 +306,8 @@
     <string name="signup_credentials_message">Which email and password do you want to use to login?</string>
     <string name="univerisity_created_message">University suggested</string>
     <string name="notifications_uptodate">You\'re up to date</string>
+    <string name="import_a_copy">Import a copy</string>
+    <string name="notes">Notes</string>
 
     <plurals name="time_minutes">
         <item quantity="zero">just now</item>

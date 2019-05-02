@@ -55,4 +55,10 @@ class NotebookRepositoryImpl(
         localDataSource.notebookDao().put(created)
         return created
     }
+
+    override suspend fun importAsCopy(id: String): Notebook {
+        val created = remoteDataSource.importAsCopyAsync(id).await().toDomain()
+        localDataSource.notebookDao().put(created)
+        return created
+    }
 }

@@ -68,6 +68,9 @@ interface Api {
     @POST("$API/notebooks/import")
     fun importPublisheNotebookAsync(@Query("id") id: String) : Deferred<NotebooksResponse>
 
+    @POST("$API/notebooks/copy")
+    fun importAsCopyAsync(@Query("id") id: String) : Deferred<NotebooksResponse>
+
     //-----------------------------------------------------------------------------
 
     @GET("$API/notebooks/{id}/notes")

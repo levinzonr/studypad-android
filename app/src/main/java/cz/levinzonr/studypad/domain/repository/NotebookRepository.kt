@@ -16,6 +16,8 @@ interface NotebookRepository {
 
     suspend fun importNotebook(id: String) : Notebook
 
+    suspend fun importAsCopy(id: String) : Notebook
+
     fun notebooksLiveData() : LiveData<List<Notebook>>
 
     fun getStoredNotebooks() : List<Notebook>

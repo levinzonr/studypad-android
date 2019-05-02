@@ -1,23 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:gravity="center"
-        android:layout_gravity="center"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
 
-    <LinearLayout
-            android:gravity="center"
+
+
+
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            android:layout_height="match_parent"
+            android:background="@color/lightGrey"
+            tools:context="cz.levinzonr.studypad.presentation.screens.sharinghub.details.PublishedNotebookDetailFragment">
 
-        <TextView
-                android:gravity="center"
-                android:text="Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus."
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
 
-    </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
 
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <ProgressBar
+            android:layout_margin="@dimen/space_normal"
+            app:layout_anchorGravity="bottom|end"
+            app:layout_anchor="@id/scrollView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -12,30 +12,101 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <ImageButton
-                android:layout_margin="@dimen/space_normal"
-                android:background="?selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_round_share_24px"
-                android:layout_width="wrap_content"
-                android:padding="@dimen/space_big"
-                android:layout_height="wrap_content"/>
+        <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+            <ImageButton
+                    android:tint="@color/blue"
+                    android:id="@+id/publishedShareBtn"
+                    android:layout_marginStart="@dimen/space_normal"
+                    android:layout_marginEnd="@dimen/space_normal"
+                    android:layout_marginTop="@dimen/space_normal"
+                    android:paddingTop="@dimen/space_big"
+                    android:paddingBottom="@dimen/space_big"
+                    android:paddingEnd="@dimen/space_big"
+                    android:paddingStart="@dimen/space_big"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_round_share_24px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_marginBottom="@dimen/space_normal"
+                    android:gravity="center"
+                    android:text="@string/default_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
 
-        <ImageButton
-                android:layout_margin="@dimen/space_normal"
-                android:background="?selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_content_copy_black_24dp"
-                android:layout_width="wrap_content"
-                android:padding="@dimen/space_big"
-                android:layout_height="wrap_content"/>
+        <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
 
-        <ImageButton
-                android:layout_margin="@dimen/space_normal"
-                android:background="?selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_round_share_24px"
-                android:layout_width="wrap_content"
-                android:padding="@dimen/space_big"
-                android:layout_height="wrap_content"/>
+            <ImageButton
+                    android:id="@+id/publishedImportCopyBtn"
+                    android:tint="@color/blue"
+                    android:layout_marginStart="@dimen/space_normal"
+                    android:layout_marginEnd="@dimen/space_normal"
+                    android:layout_marginTop="@dimen/space_normal"
+                    android:paddingTop="@dimen/space_big"
+                    android:paddingBottom="@dimen/space_big"
+                    android:paddingEnd="@dimen/space_big"
+                    android:paddingStart="@dimen/space_big"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_library_add_black_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_marginBottom="@dimen/space_normal"
+                    android:gravity="center"
+                    android:text="@string/import_a_copy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+            <ImageButton
+                    android:id="@+id/publishedCopyLinkBtn"
+                    android:tint="@color/blue"
+                    android:layout_marginStart="@dimen/space_normal"
+                    android:layout_marginEnd="@dimen/space_normal"
+                    android:layout_marginTop="@dimen/space_normal"
+                    android:paddingTop="@dimen/space_big"
+                    android:paddingBottom="@dimen/space_big"
+                    android:paddingEnd="@dimen/space_big"
+                    android:paddingStart="@dimen/space_big"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_content_copy_black_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_marginBottom="@dimen/space_normal"
+                    android:gravity="center"
+                    android:text="@string/library_action_copy_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

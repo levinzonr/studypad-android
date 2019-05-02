@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.include_notebook_excluded_view.*
 import kotlinx.android.synthetic.main.include_notebook_info.*
 import kotlinx.android.synthetic.main.include_notebook_suggestions.*
 import kotlinx.android.synthetic.main.include_notebook_version.*
+import kotlinx.android.synthetic.main.inlcude_published_actions.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
@@ -53,6 +54,18 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         emptyView.setActionButton {
             viewModel.refreshAll()
         }
+
+        publishedShareBtn.setOnClickListener {
+            shareMessage(notebookId.toNotebookLink())
+        }
+        publishedCopyLinkBtn.setOnClickListener {
+            copyToClipboard(notebookId.toNotebookLink())
+        }
+
+        publishedImportCopyBtn.setOnClickListener {
+            viewModel.onImportCopyButtonClicked()
+        }
+
     }
 
     override fun onResume() {
@@ -86,7 +99,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         })
 
         viewModel.updated.observe(viewLifecycleOwner, Observer {
-            it.handle { showToast("Done") }
+           it?.handle { showToast(it) }
         })
 
         viewModel.stateLiveData.observe(viewLifecycleOwner, Observer {
@@ -120,6 +133,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         }
 
         showDecsription(detail.description ?: "", detail.tags.toList())
+        notebookInfoActionsLayout.setVisible(true)
 
     }
 

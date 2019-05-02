@@ -2,16 +2,18 @@ package cz.levinzonr.studypad.presentation.screens.sharinghub.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import cz.levinzonr.studypad.call
+import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.interactors.library.GetNotebookVersionStateInteractor
 import cz.levinzonr.studypad.domain.interactors.sharinghub.ApplyLocalChangesInteractor
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetPublishedNotebookDetail
+import cz.levinzonr.studypad.domain.interactors.sharinghub.ImportCopyInteractor
 import cz.levinzonr.studypad.domain.interactors.sharinghub.ImportPublishedNotebookInteractor
 import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.domain.models.State
 import cz.levinzonr.studypad.liveEvent
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import cz.levinzonr.studypad.presentation.events.Event
 
 
 class PublishedNotebookDetailViewModel(
@@ -19,14 +21,16 @@ class PublishedNotebookDetailViewModel(
     private val applyLocalChangesInteractor: ApplyLocalChangesInteractor,
     private val getPublishedNotebookDetail: GetPublishedNotebookDetail,
     private val importPublishedNotebookInteractor: ImportPublishedNotebookInteractor,
-    private val getNotebookVersionStateInteractor: GetNotebookVersionStateInteractor
+    private val getNotebookVersionStateInteractor: GetNotebookVersionStateInteractor,
+    private val importCopyInteractor: ImportCopyInteractor
 ) : BaseViewModel() {
 
     private val sharedDetailLiveData = MutableLiveData<PublishedNotebook.Detail>()
-    val updated = liveEvent()
+    val updated = MutableLiveData<Event<String>?>()
     val stateLiveData = MutableLiveData<State>()
 
     init {
+        updated.postValue(null)
         toggleLoading(true)
         refreshAll()
     }
@@ -57,7 +61,7 @@ class PublishedNotebookDetailViewModel(
     fun handleSaveAction() {
         importPublishedNotebookInteractor.executeWithInput(notebookId) {
             onComplete {
-                updated.call()
+                updated.postValue(Event(string(R.string.sharinghub_success_import)))
                 refreshAll()
             }
             onError { handleApplicationError(it) }
@@ -100,5 +104,12 @@ class PublishedNotebookDetailViewModel(
                 notes.map { Note(-1, it.title, it.content, notebookId) }.toTypedArray()
             )
         )
+    }
+
+    fun onImportCopyButtonClicked() {
+        importCopyInteractor.executeWithInput(notebookId) {
+            onComplete { updated.postValue(Event(string(R.string.sharinghub_success_import_copy))) }
+            onError { handleApplicationError(it) }
+        }
     }
 }
