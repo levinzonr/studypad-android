@@ -177,8 +177,8 @@
     <string name="sharinghub_dets_desc_title">Description</string>
     <string name="sharinghub_dets_tags_title">Associated tags</string>
     <string name="sharinghub_dets_notes_title">Notes inside</string>
+    <string name="sharinghub_dets_syggestions_empty">There are no pending suggestions yet</string>
     <plurals name="sharinghub_dets_suggestions_message">
-        <item quantity="zero">There are no pending suggestions yet</item>
         <item quantity="one">There is one pending suggestion</item>
         <item quantity="other">There are %d pending suggestions</item>
     </plurals>

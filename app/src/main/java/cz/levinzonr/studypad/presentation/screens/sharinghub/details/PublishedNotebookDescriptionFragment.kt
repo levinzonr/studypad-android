@@ -84,7 +84,13 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         notebookSuggestionsInfoBtn.setOnClickListener {
             SuggestionsInfoDialog.show(childFragmentManager)
         }
-        notebookSuggestionsMessage.text = getQuantatyString(R.plurals.sharinghub_dets_suggestions_message, versionState.modifications.count())
+        if (versionState.modifications.count() == 0) {
+            notebookSuggestionsMessage.text = getString(R.string.sharinghub_dets_syggestions_empty)
+
+        } else {
+            notebookSuggestionsMessage.text = getQuantatyString(R.plurals.sharinghub_dets_suggestions_message, versionState.modifications.count())
+
+        }
         notebookSuggestionsLayout.setVisible(true)
 
     }
