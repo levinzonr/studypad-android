@@ -2,7 +2,6 @@ package cz.levinzonr.studypad.injection
 
 import cz.levinzonr.studypad.presentation.adapters.*
 import cz.levinzonr.studypad.presentation.screens.challenges.flashcards.FlashcardChallengeAdapter
-import cz.levinzonr.studypad.presentation.screens.challenges.learning.LearningChallengeAdapter
 import cz.levinzonr.studypad.presentation.screens.library.notebooks.NotebooksAdapter
 import cz.levinzonr.studypad.presentation.screens.library.notes.NotesAdapter
 import cz.levinzonr.studypad.presentation.screens.selectors.language.LanguagesAdapter
@@ -64,5 +63,4 @@ val adapterModule = module {
 
     factory { (listenr: FlashcardChallengeAdapter.LearningChallengeAdapterListener) -> FlashcardChallengeAdapter(listener = listenr) }
 
-    factory { (listener:  LearningChallengeAdapter.LearningChallengeItemListener) -> LearningChallengeAdapter(listener) }
 }

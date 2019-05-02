@@ -8,4 +8,11 @@
     <declare-styleable name="MaxLinesChipGroup">
         <attr name="maxLines" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="NoteContentView">
+        <attr name="alignment" format="enum">
+            <enum name="normal" value="0"/>
+            <enum name="center" value="1"/>
+        </attr>
+    </declare-styleable>
 </resources>

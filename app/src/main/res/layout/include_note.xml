@@ -21,9 +21,8 @@
                 android:layout_height="match_parent"/>
 
 
-        <TextView
+        <cz.levinzonr.studypad.presentation.common.NoteContentView
                 android:id="@+id/noteContentTv"
-                style="@style/TextStyle"
                 tools:text="Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

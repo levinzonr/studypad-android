@@ -9,15 +9,10 @@ import android.view.ViewGroup
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.events.Event
-import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import cz.levinzonr.studypad.presentation.screens.challenges.ChallengesModels
 import cz.levinzonr.studypad.presentation.screens.challenges.challenge.ChallengeViewModel
 import kotlinx.android.synthetic.main.fragment_write_challenge.*
-import kotlinx.android.synthetic.main.item_learning_note.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
 

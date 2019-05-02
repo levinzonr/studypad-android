@@ -17,10 +17,12 @@ import cz.levinzonr.studypad.presentation.screens.selectors.topic.TopicSearchDia
 import cz.levinzonr.studypad.presentation.screens.selectors.university.UniversitySelectorViewModel
 import ernestoyaquello.com.verticalstepperform.listener.StepperFormListener
 import kotlinx.android.synthetic.main.fragment_publish_notebook.*
+import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import java.lang.Exception
 
 class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.StepViewClickListener, BackButtonHandler {
 
@@ -28,10 +30,10 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
     override val viewModel: PublishNotebookViewModel by viewModel { parametersOf(args.notebook, args.publishedId) }
     private val universitySelectorViewModel: UniversitySelectorViewModel by sharedViewModel()
 
-    private val stepOne: BasicStep by inject { parametersOf(this) }
-    private val stepTwo: AdditionalInfoStep by inject { parametersOf(this) }
-    private val stepThree: DescriptionStep by inject { parametersOf(this) }
-    private val stepFour: ConfirmationStep by inject { parametersOf(this) }
+    private lateinit var stepOne: BasicStep
+    private lateinit var stepTwo: AdditionalInfoStep
+    private lateinit var stepThree: DescriptionStep
+    private lateinit var stepFour: ConfirmationStep
 
 
     override fun onCreateView(
@@ -45,6 +47,11 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        stepOne = get { parametersOf(this) }
+        stepTwo = get { parametersOf(this) }
+        stepThree = get { parametersOf(this) }
+        stepFour = get { parametersOf(this) }
+
         stepperForm
             .setup(this, listOf(stepOne, stepTwo, stepThree, stepFour))
             .displayStepButtons(false)
@@ -55,16 +62,19 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
     }
 
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+    }
+
     override fun subscribe() {
-
-        universitySelectorViewModel.universitySelectedEvent.observeNonNull(viewLifecycleOwner) {
-            it?.handle { stepOne.setUniversity(it, true) }
-        }
-
         viewModel.defaultStateObservable.observeNonNull(viewLifecycleOwner) { state ->
             state.stepOneDefaults.let(stepOne::setDefaultData)
             state.stepTwoDefaults?.let(stepTwo::setDefaultData)
             state.stepThreeDefaults?.let(stepThree::setDefaultData)
+        }
+
+        universitySelectorViewModel.universitySelectedEvent.observeNonNull(viewLifecycleOwner) {
+            it?.handle { stepOne.setUniversity(it, true) }
         }
     }
 
@@ -92,13 +102,14 @@ class PublishNotebookFragment : BaseFragment(), StepperFormListener, BaseStep.St
         }
     }
 
+
     override fun showError(viewError: ViewError) {
         super.showError(viewError)
         stepperForm.cancelFormCompletionOrCancellationAttempt()
     }
 
     override fun showNetworkUnavailableError() {
-        showSimpleDialog(getString(R.string.error_network_title),getString(R.string.error_network_message))
+        showSimpleDialog(getString(R.string.error_network_title), getString(R.string.error_network_message))
         stepperForm.cancelFormCompletionOrCancellationAttempt()
     }
 

@@ -120,6 +120,9 @@ dependencies {
         exclude module: "retrofit:$retrofit_version"
     }
 
+    implementation 'com.github.frhnfrq:MathView:1.1'
+    compile 'io.github.kexanie.library:MathView:0.0.6'
+
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
@@ -146,6 +149,7 @@ dependencies {
 
 
     implementation 'com.github.Nishant-Pathak:MathView:v1.1'
+    implementation 'com.github.gregcockroft:AndroidMath:ALPHA'
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
 

@@ -7,6 +7,7 @@ import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.screens.publish.PublishModels
 import kotlinx.android.synthetic.main.view_publish_step_basic.view.*
+import timber.log.Timber
 
 class BasicStep(stepViewClickListener: StepViewClickListener, title: String, content: String) : BaseStep<PublishModels.StepOneData>(stepViewClickListener,title, content) {
 
@@ -41,6 +42,7 @@ class BasicStep(stepViewClickListener: StepViewClickListener, title: String, con
     fun setUniversity(university: University, checkInput: Boolean = false) {
         stepView.notebookSchoolEt.tag = university
         stepView.notebookSchoolEt.setText(university.fullName)
+        Timber.d("SET $university")
         if (checkInput) markAsCompletedOrUncompleted(true)
     }
 

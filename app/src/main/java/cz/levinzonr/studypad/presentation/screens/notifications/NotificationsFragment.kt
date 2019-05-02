@@ -14,6 +14,7 @@ import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.fragment_notifications.*
+import kotlinx.android.synthetic.main.view_empty_state.view.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -48,22 +49,30 @@ class NotificationsFragment : BaseFragment(), NotificationsAdapter.NotificationI
         viewModel.notifications.observeNonNull(viewLifecycleOwner) {
             Timber.d("State: $it")
             notificationsRv.setVisible(it.isNotEmpty())
-            emptyView.setVisible(it.isEmpty())
+            if (it.isEmpty()) showEmpty()
             notificationsAdapter.submitList(it)
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        emptyView.configure(R.string.notifications_empty_title, R.string.notifications_empty_message)
-        emptyView.setActionButton(R.string.default_reload) {
-            viewModel.refresh()
+
+    private fun showEmpty() {
+        if (!isPreview) {
+            emptyView.configure(R.string.notifications_empty_title, R.string.notifications_empty_message)
+            emptyView.setActionButton(R.string.default_reload) {
+                viewModel.refresh()
+            }
+        } else {
+            emptyView.configure(R.string.notifications_uptodate)
         }
+        emptyView.actionButton.setVisible(!isPreview)
+        emptyView.setVisible(true)
+        Timber.d("visible")
     }
 
     override fun showLoading(isLoading: Boolean) {
+        Timber.d("loading: $isLoading")
         progressBar.setVisible(isLoading)
-        emptyView.setVisible(!isLoading)
+        //emptyView.setVisible(!isLoading)
     }
 
     override fun showNetworkUnavailableError() {

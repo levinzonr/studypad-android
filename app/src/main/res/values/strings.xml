@@ -300,6 +300,7 @@
     <string name="login_introduce_yourself">Introduce yourself...</string>
     <string name="signup_credentials_message">Which email and password do you want to use to login?</string>
     <string name="univerisity_created_message">University suggested</string>
+    <string name="notifications_uptodate">You\'re up to date</string>
 
     <plurals name="time_minutes">
         <item quantity="zero">just now</item>
