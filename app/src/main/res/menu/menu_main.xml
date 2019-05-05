@@ -8,7 +8,7 @@
             android:title="@string/navigation_library"/>
 
     <item
-            android:icon="@drawable/ic_search"
+            android:icon="@drawable/ic_group_black_24dp"
             android:id="@+id/sharingHubFragment"
             android:title="@string/navigation_sharing_hub"/>
 

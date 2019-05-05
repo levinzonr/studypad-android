@@ -24,24 +24,13 @@
                     android:layout_height="match_parent">
 
 
-                <androidx.core.widget.NestedScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                <cz.levinzonr.studypad.presentation.common.NoteContentView
+                        app:alignment="center"
                         android:layout_margin="@dimen/space_big"
-                        android:layout_gravity="center"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent">
+                        android:id="@+id/questionText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
 
-                    <cz.levinzonr.studypad.presentation.common.NoteContentView
-                            app:alignment="center"
-                            android:id="@+id/questionText"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"/>
-
-
-                </androidx.core.widget.NestedScrollView>
 
             </LinearLayout>
 
@@ -67,30 +56,18 @@
                     android:layout_height="match_parent">
 
 
-                <androidx.core.widget.NestedScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                <cz.levinzonr.studypad.presentation.common.NoteContentView
                         android:layout_margin="@dimen/space_big"
-                        android:layout_gravity="center"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent">
+                        app:alignment="center"
+                        android:id="@+id/answerText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
 
-                    <cz.levinzonr.studypad.presentation.common.NoteContentView
-                            app:alignment="center"
-                            android:id="@+id/answerText"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"/>
-
-
-                </androidx.core.widget.NestedScrollView>
 
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
     </FrameLayout>
-
 
 
     <FrameLayout
@@ -104,10 +81,10 @@
                 android:layout_height="match_parent">
 
 
-           <cz.levinzonr.studypad.presentation.common.EmptyStateView
-                   android:id="@+id/emptyView"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"/>
+            <cz.levinzonr.studypad.presentation.common.EmptyStateView
+                    android:id="@+id/emptyView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
         </com.google.android.material.card.MaterialCardView>
     </FrameLayout>

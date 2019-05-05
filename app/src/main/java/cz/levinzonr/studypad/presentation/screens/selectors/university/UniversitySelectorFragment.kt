@@ -90,6 +90,11 @@ class UniversitySelectorFragment : BaseFragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        searchView.showKeyboard()
+    }
+
 
     private fun updateViewState(state: UniversitySelectorViewState) {
         universitiesRv.setVisible(state.universities.isNotEmpty())

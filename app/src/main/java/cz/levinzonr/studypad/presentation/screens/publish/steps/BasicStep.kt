@@ -4,6 +4,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.defaultLanguageCode
 import cz.levinzonr.studypad.domain.models.Locale
 import cz.levinzonr.studypad.domain.models.University
+import cz.levinzonr.studypad.hideKeyboard
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.screens.publish.PublishModels
 import kotlinx.android.synthetic.main.view_publish_step_basic.view.*
@@ -23,6 +24,7 @@ class BasicStep(stepViewClickListener: StepViewClickListener, title: String, con
             markAsCompletedOrUncompleted(true)
         }
         stepView.nextStepBtn.setOnClickListener {
+            stepView.notebookNameEt.hideKeyboard()
             formView.goToNextStep(true)
         }
     }

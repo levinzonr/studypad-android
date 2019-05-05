@@ -22,7 +22,7 @@ class TagSearchViewModel(private val gatTagsByNameInteractor: GetTagsByNameInter
                 it.forEach {
                     when(it) {
                         is TagsModels.TagSection.Recent -> recentTagsLiveData.postValue(it.tags)
-                        is TagsModels.TagSection.Default -> tagsLiveData.postValue(List(100) { "Tag $it"}.toSet())
+                        is TagsModels.TagSection.Default -> tagsLiveData.postValue(it.tags)
                     }
                 }
                 if (!it.any { it is TagsModels.TagSection.Recent }) {

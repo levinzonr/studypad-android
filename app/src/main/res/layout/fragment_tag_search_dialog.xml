@@ -1,84 +1,103 @@
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                                       xmlns:app="http://schemas.android.com/apk/res-auto"
-                                       xmlns:tools="http://schemas.android.com/tools"
-                                       android:layout_width="match_parent"
-                                       android:layout_height="match_parent"
-                                       app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
-                                       tools:context=".presentation.screens.selectors.tag.TagSearchDialog">
+<LinearLayout
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+        tools:context=".presentation.screens.selectors.tag.TagSearchDialog">
 
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:fillViewport="true"
+            android:id="@+id/scrollView"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-        <SearchView
-                android:iconifiedByDefault="false"
-                android:queryHint="@string/default_search"
-                android:queryBackground="@android:color/transparent"
-                android:id="@+id/tagSearchView"
+    <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <LinearLayout
-                android:layout_marginTop="@dimen/space_normal"
-                android:layout_marginBottom="@dimen/space_large"
-                android:id="@+id/sectionLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tagSearchView">
 
-            <TextView
-                    android:id="@+id/tagSectionName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_round_timelapse_24px"
-                    android:drawablePadding="@dimen/space_normal"
-                    android:text="@string/selector_tag_lastlyused"
-                    android:textStyle="bold"/>
-
-            <com.google.android.material.chip.ChipGroup
-                    android:layout_margin="@dimen/space_normal"
-                    android:layout_gravity="center"
-                    app:chipSpacingVertical="@dimen/space_normal"
-                    android:id="@+id/sectionTagsCG"
+            <SearchView
+                    android:iconifiedByDefault="false"
+                    android:queryHint="@string/default_search"
+                    android:queryBackground="@android:color/transparent"
+                    android:id="@+id/tagSearchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                    android:layout_marginTop="@dimen/space_normal"
+                    android:layout_marginBottom="@dimen/space_large"
+                    android:id="@+id/sectionLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tagSearchView">
+
+                <TextView
+                        android:id="@+id/tagSectionName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_round_timelapse_24px"
+                        android:drawablePadding="@dimen/space_normal"
+                        android:text="@string/selector_tag_lastlyused"
+                        android:textStyle="bold"/>
+
+                <com.google.android.material.chip.ChipGroup
+                        android:layout_margin="@dimen/space_normal"
+                        android:layout_gravity="center"
+                        app:chipSpacingVertical="@dimen/space_normal"
+                        android:id="@+id/sectionTagsCG"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+            <com.google.android.material.chip.ChipGroup
+                    app:chipSpacingVertical="@dimen/space_normal"
+                    android:id="@+id/tagsChipBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/space_normal"
+                    tools:layout_editor_absoluteX="32dp"
+                    tools:layout_editor_absoluteY="88dp">
+
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+
 
         </LinearLayout>
 
 
-        <com.google.android.material.chip.ChipGroup
-                app:chipSpacingVertical="@dimen/space_normal"
-                android:id="@+id/tagsChipBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/space_normal"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="88dp">
+    </androidx.core.widget.NestedScrollView>
 
 
-        </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.button.MaterialButton
+            android:layout_gravity="center"
+            android:id="@+id/tagsDoneBtn"
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/space_big"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_done"
+            android:text="@string/default_confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sectionLayout"/>
+
+</LinearLayout>
 
 
-        <Button
-                android:layout_gravity="center"
-                android:id="@+id/tagsDoneBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/default_confirm"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sectionLayout"/>
 
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>

@@ -65,6 +65,10 @@
         <item quantity="other">%d notes ∙ imported</item>
     </plurals>
 
+    <string name="library_notescount_0">No notes</string>
+    <string name="library_notescount_0_imported">No notes ∙ imported</string>
+    <string name="library_notescount_0_published">No notes ∙ published</string>
+
     <plurals name="library_notescount">
         <item quantity="zero">No notes</item>
         <item quantity="one">%d note</item>

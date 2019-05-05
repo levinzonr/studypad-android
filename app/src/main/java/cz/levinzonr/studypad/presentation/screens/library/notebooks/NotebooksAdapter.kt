@@ -37,18 +37,27 @@ class NotebooksAdapter : RecyclerView.Adapter<NotebooksAdapter.ViewHolder>() {
 
         fun bindView(notebook: Notebook) {
             view.notebookTitleTv.text = notebook.name
-            val sharedStatus = when {
+
+
+
+            val sharedStatus =   if (notebook.notesCount == 0) {
+                view.context.getString(when {
+                    notebook.publishedNotebookId != null && notebook.authoredByMe -> R.string.library_notescount_0_published
+                    notebook.publishedNotebookId != null && !notebook.authoredByMe -> R.string.library_notescount_0_imported
+                    else -> R.string.library_notescount_0
+                })
+            } else view.context.getQuantityString(when {
                 notebook.publishedNotebookId !=  null && notebook.authoredByMe -> R.plurals.library_notescount_published
                 notebook.publishedNotebookId !=  null && !notebook.authoredByMe -> R.plurals.library_notescount_imported
-                else -> R.plurals.library_notescount
+                else -> R.plurals.library_notescount}, notebook.notesCount)
 
-            }
-            view.notebookNotesCountLayout.text = view.context.resources.getQuantityString(sharedStatus, notebook.notesCount, notebook.notesCount)
+            view.notebookNotesCountLayout.text = sharedStatus
 
             val gradient = GradientDrawable(GradientDrawable.Orientation.BL_TR, notebook.color.toIntArray())
             view.notebookColor.background = gradient
             view.setOnClickListener { listener?.onNotebookSelected(notebook) }
             view.notebookMoreBtn.setOnClickListener { listener?.onNotebookMoreClicked(notebook) }
+            view.setOnLongClickListener { listener?.onNotebookMoreClicked(notebook); true }
         }
     }
 
