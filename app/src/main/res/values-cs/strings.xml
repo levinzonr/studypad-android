@@ -1,0 +1,348 @@
+<resources>
+
+    <string name="app_name" translatable="false">StudyPad</string>
+
+
+    <string name="error_network_title">Jste offline</string>
+    <string name="error_network_message">Zdá se, že jste offline. Zkontrolujte prosím připojení k internetu a zkuste to znovu</string>
+
+    <string name="error_unknown_title">Neznámá chyba</string>
+    <string name="error_unknown_message">Nastala neznámá chyba</string>
+
+    <string name="error_login_title">Chyba přihlášení</string>
+    <string name="error_login_credentials_message">Nenalezli jsme žádného uživatele s takovou kombinací e-mailů a hesel, zkontrolujte prosím vaše přihlašovací údaje a zkuste to znovu</string>
+    <string name="error_login_provider_message">Vypadá to, že jste se již zaregistrovali s jiným poskytovatelem. Vyberte prosím poskytovatele, kterého jste použili při registraci</string>
+    <string name="error_signup_title">Chyba při vytváření účtu</string>
+
+
+    <string name="error_publish_title">Chyba při publikování</string>
+    <string name="error_publish_message">Při zveřejňování tohoto notebooku došlo k chybě. Ujistěte se, že tento notebook již není publikován a všechny údaje jsou platné</string>
+
+
+    <string name="navigation_library">Moje knihovna</string>
+    <string name="navigation_sharing_hub">Sharing hub</string>
+    <string name="navigation_profile">Profil</string>
+    <string name="navigation_challenges">Výzvy</string>
+
+
+    <string name="default_edit">Upravit</string>
+    <string name="default_delete">Smazat</string>
+    <string name="default_send">Poslat</string>
+    <string name="default_share">Sdílet</string>
+    <string name="default_copy">Kopírovat</string>
+    <string name="default_cancel">Zrušit</string>
+    <string name="default_try_again">Zkus to znovu</string>
+    <string name="default_confirm">Potvrdit</string>
+    <string name="default_continue">Pokračovat</string>
+    <string name="default_see_all">VUkázat vše</string>
+    <string name="default_share_with">Sdílet přes…</string>
+    <string name="default_reload">Načíst znovu</string>
+    <string name="default_copied">Zkopírováno do schránky</string>
+    <string name="default_show_all">Ukázat vše</string>
+    <string name="default_or">Nebo</string>
+    <string name="default_exit">Výstup</string>
+    <string name="default_submit">Předložit</string>
+    <string name="default_search">Vyhledat</string>
+    <string name="defautl_share_message">Koukni si na tenhle notebook %1$s</string>
+
+    <string name="progress_default">Načítání…</string>
+    <string name="progress_login">Přihlášení ...</string>
+    <string name="progress_signup">Vytvoření účtu…</string>
+    <string name="progress_publishing">Publikování notebooku…</string>
+    <string name="progress_review">Odeslání recenze</string>
+
+
+    <string name="library_notebooks_title">Moje notebooky</string>
+    <plurals name="library_notescount_published">
+        <item quantity="few">No notes ∙ published</item>
+        <item quantity="zero">No notes ∙ published</item>
+        <item quantity="one">%d note ∙ published</item>
+        <item quantity="other">%d notes ∙ published</item>
+    </plurals>
+
+    <plurals name="library_notescount_imported">
+        <item quantity="few">No notes ∙ imported</item>
+        <item quantity="zero">No notes ∙ imported</item>
+        <item quantity="one">%d note ∙ imported</item>
+        <item quantity="other">%d notes ∙ imported</item>
+    </plurals>
+
+    <string name="library_notescount_0">Žádné poznámky</string>
+    <string name="library_notescount_0_imported">Žádné poznámky ∙ importovány</string>
+    <string name="library_notescount_0_published">Nebyly publikovány žádné poznámky</string>
+
+    <plurals name="library_notescount">
+        <item quantity="few">No notes</item>
+        <item quantity="zero">No notes</item>
+        <item quantity="one">%d note</item>
+        <item quantity="other">%d notes</item>
+    </plurals>
+
+    <string name="library_note_title_hint">Název</string>
+    <string name="library_note_content_hint">Zadejte poznámku…</string>
+
+    <string name="library_publish">Publikovat</string>
+    <string name="library_openshared">Otevřít publikovanou verzi</string>
+    <string name="library_notebook_create_title">Nový notebook</string>
+    <string name="library_notebook_create_message">Zadejte nazev nového notebooku</string>
+    <string name="library_notebook_edit_title">Upravit notebook</string>
+    <string name="library_notebook_edit_message">Vyberte nový název notebooku</string>
+    <string name="library_notebook_create_hint">Název notebooku</string>
+    <string name="library_notes_title">Poznámky</string>
+    <string name="library_notes_empty_title">Žádné poznámky</string>
+    <string name="library_notes_empty_message">V tomto notebooky nejsou žádné poznámky</string>
+    <string name="library_notebooks_empty_title">Žádné notebooky</string>
+    <string name="library_notebooks_empty_message">Ve vaší knihovně zatím nejsou žádné notebooky</string>
+    <string name="library_note_detail">Detaily poznámky</string>
+
+
+    <string name="publish_step1_title">Základní údaje</string>
+    <string name="publish_step1_message">Zde je to, co už víme, zkontrolujte, zda je vše v pořádku</string>
+    <string name="publish_step1_notebook_hint">Název notebooku</string>
+    <string name="publish_step1_language_hint">Jazyk</string>
+    <string name="publish_step1_language_message">Jazyk hlavního obsahu</string>
+    <string name="publish_step1_uni_hint">Přidružená škola nebo univerzita</string>
+
+    <string name="publish_step2_title">Téma notebooku</string>
+    <string name="publish_step2_message">Pomozte ostatním najít tyto notebooky poskytnutím dalších detailů</string>
+    <string name="publish_step2_topic_hint">Předmět</string>
+    <string name="publish_step2_topic_message">Hlavna těma vašeho notebooku</string>
+    <string name="publish_step2_tags_title">Přidružené tagy</string>
+    <string name="publish_step2_tags_add">Přidat tagy</string>
+
+    <string name="publish_step3_title">Popis</string>
+    <string name="publish_step3_message">Nebojte se poskytnout jakékoli další informace, které považujete za relevantní, nebo jen zanechte vzkaz svým kolegům :)</string>
+    <string name="publish_step3_hint">Vaše zpráva…</string>
+
+    <string name="publish_step4_title">potvrzení</string>
+    <string name="publish_step4_message">Všechno je v pořadku! Jen jedno kliknutí od publikování</string>
+
+
+
+    <string name="profile_title">Profil</string>
+    <string name="profile_edit">Upravit profil</string>
+    <string name="profile_notifications">Notifikace</string>
+    <string name="profile_settings">Nastavení</string>
+    <string name="profile_about">O Aplikace</string>
+    <string name="profile_edit_name_hint">Zobrazovaný nickname</string>
+    <string name="profile_edit_uni_hint">Vyberte si univerzitu</string>
+
+
+    <string name="settings_notifications_title">Notifikace</string>
+    <string name="settings_notifications_value">Povolit push-notifikace</string>
+    <string name="settings_language_title">Jazyk</string>
+    <string name="settings_account_title">Účet</string>
+    <string name="settings_account_delete">Smazat účet</string>
+    <string name="settings_account_logout">Odhlásit se</string>
+
+
+    <string name="about_licenses">Opensource licencí</string>
+    <string name="about_privacy">Zásady ochrany osobních údajů</string>
+    <string name="about_feedback">Poslat zpětnou vazbu</string>
+    <string name="about_feedback_hint">Vaš feedback</string>
+    <string name="about_feedback_success">Děkujeme vám za vaši reakci</string>
+    <string name="about_feedback_title">Poslat zpětnou vazbu</string>
+    <string name="about_feedback_message">Automaticky shromažďujeme základní informace, jako je verze aplikace, verze operačního systému a informace o zařízení</string>
+    <string name="about_version">Verze Aplikace %1$s (%2$d)</string>
+
+
+    <string name="notifications_empty_title">Up to date…</string>
+    <string name="notifications_empty_message">Zatím jste neobdrželi žádné notifikace</string>
+    <string name="notifications_mark_read">Označit jako přečtené</string>
+
+    <string name="notification_comment_title">Nový komentář</string>
+    <string name="notification_comment_message">%1$s zanechal nový komentář k vašemu notebooku %2$s</string>
+    <string name="notification_suggestion_title">Návrh byl přidán</string>
+    <string name="notification_suggestion_message">Notebook %1$s dostal novou upravu, podívejte se!</string>
+    <string name="notification_update_title">Notebook update</string>
+    <string name="notification_update_message">K dispozici je nová verze notebooku %1$s</string>
+
+
+    <string name="university_default_title">Začněte zadáním názvu školy</string>
+    <string name="university_empty_title">Nebyly nalezeny žádné univerzity</string>
+    <string name="university_add_title">Chybějící škola</string>
+    <string name="university_add_message">Uveďte název školy, o které si myslíte, že chybí</string>
+    <string name="university_add_action">Navrhněte chybějící školu</string>
+    <string name="university_hint">Školní jméno</string>
+
+
+
+    <string name="sharinghub_title">Sharing Hub</string>
+    <string name="sharinghub_recent_notifications">Nove notifikace</string>
+    <string name="sharinghub_section_uni">Z vaší školy</string>
+    <string name="sharinghub_section_popular">Popularní</string>
+    <string name="sharinghub_section_recent">Pravě aktualizované</string>
+    <string name="sharinghub_dets_lastupdated">Poslední aktualizace: %1$s</string>
+    <string name="sharinghub_dets_title">Podrobnosti</string>
+    <string name="sharinghub_dets_comments">Poznámky</string>
+    <string name="sharinghub_dets_more_title">Více informací</string>
+    <string name="sharinghub_success_import">Notebook uložen</string>
+    <string name="sharinghub_success_import_copy">Notebook zkopírován</string>
+    <string name="sharinghub_success_import_updated">Notebook byl aktualizován</string>
+
+
+    <string name="sharinghub_dets_desc_title">Popis</string>
+    <string name="sharinghub_dets_tags_title">Přidružené značky</string>
+    <string name="sharinghub_dets_notes_title">Poznámky uvnitř</string>
+    <string name="sharinghub_dets_syggestions_empty">Zatím nejsou žádné nevyřízené upravy</string>
+    <plurals name="sharinghub_dets_suggestions_message">
+        <item quantity="few">There is one pending suggestion</item>
+        <item quantity="one">There is one pending suggestion</item>
+        <item quantity="other">There are %d pending suggestions</item>
+    </plurals>
+
+    <string name="sharinhub_dets_suggestions_add">Navrhněte upravu</string>
+    <string name="sharinghub_dets_suggestions_view">Zobrazit upravy</string>
+
+    <string name="sharinghub_dets_comment_hint">Komentář…</string>
+    <string name="sharinghub_dets_comment_edit">Upravit komentář</string>
+
+    <string name="sharinghub_excluded_title">Tento notebook je přístupný pouze pomocí odkazu. Uveďte další podrobnosti, aby ho ostatní našli</string>
+    <string name="sharinghub_excluded_btn">Zveřejnit</string>
+
+    <string name="sharinghub_version_none_action">Import</string>
+    <string name="sharinghub_version_none_message">Vypadá to, že ještě nemáte tenhle notebook</string>
+    <string name="sharinghub_version_update_action">Update</string>
+    <string name="sharinghub_version_update_message">K dispozici je novější verze tohoto notebooku</string>
+    <string name="sharinghub_version_modify_action">Aplikovat me upravy</string>
+    <string name="sharinghub_version_modify_message">Váš místní zápisník je odvozen z jeho publikované verze. Klepnutím aplikujte změny</string>
+    <string name="sharinghub_version_suggest_message">Vypadá to, že jste v místním notebooku použili některé změny. Chcete navrhnout vase upravy?</string>
+    <string name="sharinghub_version_suggest_action">Navrhnout mé mé upravy</string>
+
+
+
+    <string name="sharinghub_search_default_title">Explore!</string>
+    <string name="sharinghub_search_default_message">Začněte hledat nové notebooky výběrem možností hledání</string>
+    <string name="sharinghub_search_options_uni">Univerzita</string>
+    <string name="sharinghub_search_options_category">Předmět</string>
+    <string name="sharinghub_search_options_tags">Tagy</string>
+    <string name="sharinghub_search_empty_title">Nic nalezeno</string>
+    <string name="sharinghub_search_empty_message">Takové notebooky zatím nejsou</string>
+    <string name="sharinghub_search_error_title">Chyba při načítání notebooků</string>
+
+
+    <string name="challenges_title">Výzvy</string>
+    <string name="challenges_recently">Nedávno dokončeno</string>
+    <string name="challenges_type_write">Write</string>
+    <string name="challenges_type_flashcards">Flashcards</string>
+    <string name="challenges_type_selfcheck">Self-check</string>
+    <string name="challenges_quick_title">Rychlá výzva</string>
+    <string name="challenges_configure">Konfigurovat výzvu</string>
+    <string name="challenges_empty_title">Žádné nedávné výzvy</string>
+    <string name="challenges_empty_message">Čas začít studovat! Vyberte přednastavené výzvy nebo nakonfigurujte své vlastní!</string>
+
+    <string name="challenges_setup_title">Nastavení výzvy</string>
+    <string name="challenges_setup_type_default">Pokračujte výběrem výzvy</string>
+    <string name="challenges_setup_type_flashcards">Procházejte si poznámky jeden po druhém a pokuste se naučit co nejvíce</string>
+    <string name="challenges_setup_type_selfcheck">Zkontrolujte, zda znáte každou poznámku v knize</string>
+    <string name="challenges_setup_type_write">Písemná výzva, nejvhodnější při učení nového jazyka</string>
+    <string name="challenges_setup_notebook_title">Notebook</string>
+    <string name="challenges_setup_notebook_subtitle">Vyberte notebook, který chcete studovat</string>
+    <string name="challenges_setup_shuffle_title">Zamíchat</string>
+    <string name="challenges_setup_shuffle_subtitle">Náhodné pořadí poznámek</string>
+    <string name="challenges_setup_revers_title">Nazev first</string>
+    <string name="challenges_setup_reverse_subtitle">Jako odpověď použijte obsah poznámky</string>
+    <string name="challenges_setup_start">Začit</string>
+    <string name="challenges_leave_title">Nechte výzvu</string>
+    <string name="challenges_leave_message">Opravdu chcete tuto výzvu opustit, pokrok nebude zachráněn</string>
+
+    <string name="challenge_selfcheck_know">Vím to!</string>
+    <string name="challenge_selfcheck_dontknow">Studovat znovu</string>
+    <string name="challenge_write_hint">Vaše odpověď…</string>
+
+    <string name="challenge_completed_start_again">Začít znovu</string>
+    <string name="challenge_completed_percentage">%1$d%%</string>
+    <string name="challenge_completed_flashcards_title">Výborně!</string>
+    <string name="challenge_completed_message">Vyzva %1$s je dokončena!</string>
+    <plurals name="challenge_completed_flashcards_message">
+        <item quantity="one">%d note studied</item>
+        <item quantity="few"></item>
+        <item quantity="other">%d notes studied</item>
+    </plurals>
+
+
+    <string name="suggestions_title">Čekající upravy</string>
+    <string name="suggestions_review">Review</string>
+    <string name="suggestion_body_update">Uživatel %1$s navrhl aktualizovat poznámku %2$</string>
+    <string name="suggestion_body_add">Uživatel %1$s navrhl přidat novou poznámku: %2$s</string>
+    <string name="suggestions_reject">Odmítnout</string>
+    <string name="suggestions_approve">Schvalovat</string>
+    <string name="suggestion_type_add">Nová poznámka %s</string>
+    <string name="suggestion_type_upd">Aktualizovaná poznámka %s</string>
+    <string name="suggestion_upd_new">Aktualizovaná verze</string>
+    <string name="suggestion_upd_old">Současná verze</string>
+    <string name="suggestion_author">∙ od %1$s</string>
+    <string name="suggestions_review_state">%1$d schváleno ∙ %2$d odmítnuto</string>
+    <string name="suggestions_review_count">%1$d/%2$d zkontrolováno</string>
+    <string name="suggestion_conflict">Konflikty návrhů</string>
+    <string name="suggestion_conflict_message">Jak %1$s, tak %2$s navrhli tuto poznámku upravit, což znamená konflikt. Vyberte prosim jednu z uprav</string>
+    <string name="suggestion_empty">Zatím žádné nové upravy</string>
+    <string name="suggestions_info_title">Spolupráce ve StudyPad</string>
+    <string name="suggestions_info_message">Když máte publikovaný zápisník uložený ve vaší knihovně, můžete ostatním uživatelům pomoci vytvořit perfektní studijní materiály \n Každá změna a změna, kterou provedete ve vaší místní verzi, lze navrhnout jako upravu, což umožní autorovi notebooku buď ji schválit nebo odmítnout. \n\t  Když jste autorem publikovaného notebooku, můžete tyto změny (tj. Změny z vlastniho notebooku) ihned aplikovat, a jako autor poznámkového bloku je vaše odpovědnost  zkontrolovat návrhy, které obdržíte od ostatních uživatelů. Jen nezapomeňte: Žádné konflikty :)     </string>
+
+
+
+
+    <string name="login_login_button">Přihlásit se</string>
+    <string name="login_create_account">Vytvořit účet</string>
+    <string name="login_continue_with">Pokračovat s</string>
+    <string name="login_password_hint">Heslo</string>
+    <string name="login_email_hint">E-mail</string>
+
+    <string name="signup_firstname_hint">Jméno</string>
+    <string name="signup_lastname_hint">Příjmení</string>
+    <string name="signup_firstname_error">Neplatné jméno</string>
+    <string name="signup_lastname_error">Neplatné příjmení</string>
+    <string name="signup_password_error">Neplatné heslo</string>
+    <string name="signup_email_error">Neplatný e-mail</string>
+
+    <string name="signup_completed_title">Jsi student?</string>
+    <string name="signup_completed_message">Spojte se se svými spolužáky výběrem univerzity nebo školy. To nám pomáhá ukázat vám relevantnější obsah a udržet kontakt s vašimi přáteli.  Můžete to udělat i později;)</string>
+    <string name="signup_completed_choose">Vyberte univerzitu</string>
+    <string name="signup_completed_later">Teď ne</string>
+    <string name="selector_tag_lastlyused">Naposledy použitý</string>
+
+    <string name="time_just_now">právě teď</string>
+    <string name="suggestion_info_btn">Další informace</string>
+    <string name="library_action_copy_link">Kopírovat odkaz</string>
+    <string name="not_logged_in">Chcete-li zobrazit tento obsah, přihlaste se prosím</string>
+    <string name="login_welcome_msg">Vítejte v StudyPad!</string>
+    <string name="not_logged_in_title">Vítejte</string>
+    <string name="login_introduce_yourself">Představit se...</string>
+    <string name="signup_credentials_message">Který e-mail a heslo chcete použít pro přihlášení?</string>
+    <string name="univerisity_created_message">Děkujeme za navrh univerzity</string>
+    <string name="notifications_uptodate">Jste up-to-date</string>
+    <string name="import_a_copy">Importujte jako kopii</string>
+    <string name="notes">Poznámky</string>
+
+    <plurals name="time_minutes">
+        <item quantity="zero">Pravě ted</item>
+        <item quantity="few">Před %d mituatama</item>
+        <item quantity="one">Před minutou</item>
+        <item quantity="other">Před %d mituatama</item>
+    </plurals>
+
+    <plurals name="time_hours">
+        <item quantity="zero">Pravě ted</item>
+        <item quantity="few">Před %d mituatama</item>
+        <item quantity="one">Před minutou</item>
+        <item quantity="other">Před %d mituatama</item>
+    </plurals>
+
+    <plurals name="time_days">
+        <item quantity="zero">Před hodinou</item>
+        <item quantity="few">Před %d hodinama</item>
+        <item quantity="one">Před hodinou</item>
+        <item quantity="other">Před %d hodinama</item>
+    </plurals>
+
+    <plurals name="time_month">
+        <item quantity="zero">Pravě ted</item>
+        <item quantity="few">Před %d měsici</item>
+        <item quantity="one">Před měsicem</item>
+        <item quantity="other">Před %d měsici</item>
+    </plurals>
+
+    <!-- Generated by Automatic String Resource Translation
+    --><!--          https://asrt.gluege.boerde.de
+--></resources>
