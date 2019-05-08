@@ -48,6 +48,8 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
             noteEditView.showFocused(editMode)
             this.menu?.getItem(0)?.isVisible = !editMode
             this.menu?.getItem(1)?.isVisible = !editMode
+            val res = if (editMode) R.drawable.ic_done else R.drawable.ic_edit
+            noteDetailEditFab.setImageResource(res)
 
         })
 
@@ -60,7 +62,10 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
         noteDetailEditFab.setOnClickListener {
             viewModel.handleModeChangeButton()
         }
+    }
 
+    override fun showLoading(isLoading: Boolean) {
+        progressBar.setVisible(isLoading)
     }
 
     override fun showNetworkUnavailableError() {

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import cz.levinzonr.studypad.domain.interactors.sharinghub.GetTagsByNameInteractor
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
+import timber.log.Timber
 
 class TagSearchViewModel(private val gatTagsByNameInteractor: GetTagsByNameInteractor) : BaseViewModel() {
 
@@ -20,6 +21,7 @@ class TagSearchViewModel(private val gatTagsByNameInteractor: GetTagsByNameInter
         toggleLoading(true)
         gatTagsByNameInteractor.executeWithInput(query) {
             onComplete {
+                Timber.d("on Complete :$it")
                 toggleLoading(false)
                 it.forEach {
                     when(it) {

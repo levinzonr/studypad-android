@@ -43,7 +43,7 @@ class NoteContentView @JvmOverloads constructor(
 
     var text: String = ""
         set(value) {
-            field = value
+            field = value.replace("`", " ` ")
             updateView()
         }
 

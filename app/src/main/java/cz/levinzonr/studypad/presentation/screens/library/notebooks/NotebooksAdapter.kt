@@ -4,19 +4,16 @@ import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
 import cz.levinzonr.studypad.getQuantityString
 import kotlinx.android.synthetic.main.item_notebook.view.*
 
-class NotebooksAdapter : RecyclerView.Adapter<NotebooksAdapter.ViewHolder>() {
+class NotebooksAdapter : ListAdapter<Notebook, NotebooksAdapter.ViewHolder>(DiffCalback()) {
 
-    var items: List<Notebook> = listOf()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 
     var listener: NotebookItemListener? = null
 
@@ -27,11 +24,10 @@ class NotebooksAdapter : RecyclerView.Adapter<NotebooksAdapter.ViewHolder>() {
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(items[position])
+        holder.bindView(getItem(position))
     }
 
 
-    override fun getItemCount(): Int = items.size
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -66,4 +62,13 @@ class NotebooksAdapter : RecyclerView.Adapter<NotebooksAdapter.ViewHolder>() {
         fun onNotebookMoreClicked(notebook: Notebook)
     }
 
+    class DiffCalback: DiffUtil.ItemCallback<Notebook>() {
+        override fun areItemsTheSame(oldItem: Notebook, newItem: Notebook): Boolean {
+            return newItem.id == oldItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Notebook, newItem: Notebook): Boolean {
+            return newItem == oldItem
+        }
+    }
 }

@@ -116,7 +116,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
     }
 
     private fun showNotebooks(list: List<Notebook>) {
-        adapter.items = list
+        adapter.submitList(list)
         emptyStateView.setVisible(list.isEmpty())
         notebooksRv.setVisible(!list.isEmpty())
     }

@@ -1,6 +1,7 @@
 package cz.levinzonr.studypad.presentation.screens.library.notebooks
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import cz.levinzonr.studypad.call
 import cz.levinzonr.studypad.domain.interactors.keychain.RefreshFirebaseTokenInteractor
 import cz.levinzonr.studypad.domain.interactors.library.*
@@ -25,7 +26,9 @@ class NotebookListViewModel(
 ) : BaseViewModel() {
 
 
-    val dataSource = notebookRepository.notebooksLiveData()
+    val dataSource = Transformations.map(notebookRepository.notebooksLiveData()) {
+        it.reversed()
+    }
     val notebookPublishedEven = MutableLiveData<Event<PublishedNotebook.Feed>>()
 
     init {
