@@ -13,7 +13,9 @@ class TopicSearchViewModel(private val getTopicsInteractor: GetTopicsInteractor)
 
     init {
         getTopicsInteractor.executeWithInput("") {
+            toggleLoading(true)
             onComplete {
+                toggleLoading(false)
                 list = it
                 topicLiveData.postValue(it)
             }
@@ -22,7 +24,7 @@ class TopicSearchViewModel(private val getTopicsInteractor: GetTopicsInteractor)
     }
 
     fun filterTopics(query: String) {
-        topicLiveData.postValue(list.filter { it.name.contains(query) })
+        topicLiveData.postValue(list.filter { it.name.contains(query, ignoreCase = true) })
     }
 
     fun getTopicsObservable(): LiveData<List<Topic>> {

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.SearchView
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import com.google.android.material.chip.Chip
@@ -99,11 +100,19 @@ class TagSearchDialog : BottomSheetDialog(){
                 addChips(it, sectionTagsCG)
             }
         })
+
+        scrollView.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            tagsDoneBtn.setVisible(scrollY >= oldScrollY)
+        }
     }
 
+    override fun showLoading(isLoading: Boolean) {
+        progressBar.setVisible(isLoading)
+    }
 
     private fun addChips(chips: Set<String>, chipGroup: ChipGroup) {
         chipBox.removeAllViews()
+
         Timber.d("Chips: $chips")
         chips.forEach {
            val chip = Chip(context).apply {

@@ -43,7 +43,7 @@
 
         <com.google.android.material.button.MaterialButton
                 style="@style/Button.Text"
-                android:text="See All"
+                android:text="@string/default_show_all"
                 android:textAllCaps="true"
                 android:textSize="12sp"
                 android:textColor="@color/selector_primary"

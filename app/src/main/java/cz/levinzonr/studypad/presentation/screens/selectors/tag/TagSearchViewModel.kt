@@ -17,8 +17,10 @@ class TagSearchViewModel(private val gatTagsByNameInteractor: GetTagsByNameInter
     }
 
     private fun loadTags(query: String) {
+        toggleLoading(true)
         gatTagsByNameInteractor.executeWithInput(query) {
             onComplete {
+                toggleLoading(false)
                 it.forEach {
                     when(it) {
                         is TagsModels.TagSection.Recent -> recentTagsLiveData.postValue(it.tags)
