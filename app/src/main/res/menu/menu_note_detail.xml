@@ -2,16 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <item
-            android:id="@+id/noteDelete"
+            android:title="Add LaTeX"
+            android:icon="@drawable/ic_functions_black_24dp"
             app:showAsAction="ifRoom"
-            android:icon="@drawable/ic_outline_delete_24px"
-            android:title="@string/default_delete"/>
+        android:id="@+id/noteAddMathView"
+        />
+
 
     <item
             android:id="@+id/noteCopy"
             app:showAsAction="ifRoom"
             android:icon="@drawable/ic_content_copy_black_24dp"
             android:title="@string/default_delete"/>
+
+    <item
+            android:id="@+id/noteDelete"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/ic_outline_delete_24px"
+            android:title="@string/default_delete"/>
+
 
 </menu>

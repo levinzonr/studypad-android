@@ -42,7 +42,7 @@
     <string name="default_exit">Exit</string>
     <string name="default_submit">Submit</string>
     <string name="default_search">Search</string>
-    <string name="defautl_share_message">Checkout this notebook\n%1$s</string>
+    <string name="defautl_share_message">Checkout this notebook %1$s \n %2$s</string>
 
     <string name="progress_default">Loading…</string>
     <string name="progress_login">Logging in…</string>

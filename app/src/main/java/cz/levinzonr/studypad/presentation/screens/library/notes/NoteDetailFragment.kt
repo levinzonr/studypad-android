@@ -46,8 +46,9 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
             noteDetailView.setVisible(!editMode)
             noteEditView.setVisible(editMode)
             noteEditView.showFocused(editMode)
-            this.menu?.getItem(0)?.isVisible = !editMode
+            this.menu?.getItem(0)?.isVisible = editMode
             this.menu?.getItem(1)?.isVisible = !editMode
+            this.menu?.getItem(2)?.isVisible = !editMode
             val res = if (editMode) R.drawable.ic_done else R.drawable.ic_edit
             noteDetailEditFab.setImageResource(res)
 
@@ -91,6 +92,7 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
             R.id.noteCopy -> note?.let {
                 copyToClipboard("${note.title}\n${note.content}")
             }
+            R.id.noteAddMathView -> noteEditView.addMathView()
         }
         return true
     }

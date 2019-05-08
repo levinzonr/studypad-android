@@ -12,7 +12,7 @@ class LocaleRepositoryImpl(private val gson: Gson, private val prefManager: Pref
             .filter { it.displayLanguage.isNotEmpty() }
             .distinctBy { it.displayLanguage }
             .sortedBy { it.displayLanguage }
-            .map { Locale(it.displayName, it.isO3Language) }
+            .map { Locale(it.displayName.capitalize(), it.isO3Language) }
     }
 
     override fun getCurrentLocale(): Locale {

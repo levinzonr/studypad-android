@@ -12,6 +12,7 @@ import cz.levinzonr.studypad.domain.models.Note
 import cz.levinzonr.studypad.hideKeyboard
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.showKeyboard
+import kotlinx.android.synthetic.main.view_note_edition.view.*
 
 class NoteEditView @JvmOverloads constructor(
     context: Context,
@@ -68,6 +69,14 @@ class NoteEditView @JvmOverloads constructor(
         } else {
             lastlyFocused?.hideKeyboard()
         }
+    }
+
+
+    fun addMathView() {
+        val cursorPos = noteContentTv.selectionStart
+        val toInser = "`LaTeX formula`"
+        noteContentEt.text?.insert(cursorPos, toInser)
+        noteContentEt.setSelection(cursorPos + 1, cursorPos + toInser.length  - 1)
     }
 
     interface NoteEditViewListener {

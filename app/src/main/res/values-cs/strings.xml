@@ -19,7 +19,7 @@
     <string name="error_publish_message">Při zveřejňování tohoto notebooku došlo k chybě. Ujistěte se, že tento notebook již není publikován a všechny údaje jsou platné</string>
 
 
-    <string name="navigation_library">Moje knihovna</string>
+    <string name="navigation_library">Knihovna</string>
     <string name="navigation_sharing_hub">Sharing hub</string>
     <string name="navigation_profile">Profil</string>
     <string name="navigation_challenges">Výzvy</string>
@@ -43,7 +43,7 @@
     <string name="default_exit">Výstup</string>
     <string name="default_submit">Předložit</string>
     <string name="default_search">Vyhledat</string>
-    <string name="defautl_share_message">Koukni si na tenhle notebook %1$s</string>
+    <string name="defautl_share_message">Koukni si na tenhle notebook %1$s \n %2$s</string>
 
     <string name="progress_default">Načítání…</string>
     <string name="progress_login">Přihlášení ...</string>
