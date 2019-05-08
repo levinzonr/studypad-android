@@ -2,6 +2,7 @@ package cz.levinzonr.studypad.presentation.screens.about
 
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import cz.levinzonr.studypad.BuildConfig
 
 import cz.levinzonr.studypad.R
+import cz.levinzonr.studypad.notifications.IntentActions
 import kotlinx.android.synthetic.main.fragment_about.*
 
 
@@ -32,6 +34,12 @@ class AboutFragment : Fragment() {
         appVersionTv.text = versionInfo
         aboutLicenceBtn.setOnClickListener {
             startActivity( Intent(context, OssLicensesMenuActivity::class.java))
+        }
+
+        aboutPolicyBtn.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://ezpad-7e83e.firebaseapp.com/privacy_policy.html")
+            })
         }
 
         aboutFeedbackBtn.setOnClickListener {
