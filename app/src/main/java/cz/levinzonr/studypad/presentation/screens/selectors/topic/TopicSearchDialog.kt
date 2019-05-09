@@ -14,6 +14,8 @@ import cz.levinzonr.studypad.domain.models.Topic
 import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.onQueryTextChanged
 import cz.levinzonr.studypad.presentation.base.BottomSheetDialog
+import cz.levinzonr.studypad.setVisible
+import kotlinx.android.synthetic.main.dialog_topic_search.*
 import kotlinx.android.synthetic.main.dialog_topic_search.view.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -42,6 +44,9 @@ class TopicSearchDialog : BottomSheetDialog(),
         super.onViewCreated(view, savedInstanceState)
         setupRecylcerView()
         viewModel.getTopicsObservable().observeNonNull(viewLifecycleOwner) {
+            emptyView.configure(R.string.error_unknown_title)
+            emptyView.setVisible(it.isEmpty())
+            recyclerView.setVisible(it.isNotEmpty())
             adapter.item = it
         }
         searchView.onQueryTextChanged {
@@ -50,6 +55,11 @@ class TopicSearchDialog : BottomSheetDialog(),
     }
 
 
+    override fun showNetworkUnavailableError() {
+        emptyView.configureAsNetworkError()
+        emptyView.setVisible(true)
+        recyclerView.setVisible(false)
+    }
 
     private fun setupRecylcerView() {
         recyclerView.adapter = adapter

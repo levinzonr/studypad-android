@@ -64,7 +64,7 @@
         <TextView
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:text="Quick Challenge"
+                android:text="@string/challenges_quick_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView6"
@@ -73,7 +73,7 @@
                 app:layout_constraintStart_toStartOf="@+id/materialButton2"/>
 
         <TextView
-                android:text="Or"
+                android:text="@string/default_or"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/space_big"

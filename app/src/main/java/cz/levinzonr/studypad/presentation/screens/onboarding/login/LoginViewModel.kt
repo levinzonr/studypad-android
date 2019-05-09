@@ -25,6 +25,7 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.interactors.keychain.GoogleLoginInteractor
 import cz.levinzonr.studypad.domain.models.ApplicationError
 import cz.levinzonr.studypad.domain.models.ViewError
+import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.screens.Flow
 import java.lang.Exception
 
@@ -38,9 +39,7 @@ class LoginViewModel(
 
     val PERMISSIONS = listOf("email, public_profile")
 
-
-    val emailValidationEvent = MutableLiveData<SingleLiveEvent>()
-    val passwordValidationEvent = MutableLiveData<SingleLiveEvent>()
+    val validationViewState: MutableLiveData<LoginViewState> = MutableLiveData()
 
     private var facebookActivityResultManager: CallbackManager? = null
     private val facebookLoginResultCallback = object : FacebookCallback<LoginResult> {
@@ -166,11 +165,18 @@ class LoginViewModel(
     }
 
     private fun allFieldsValid(): Boolean {
-        val validEmail = email.isValidEmail()
-        val passwordEmail = password.isValidPassword()
-        emailValidationEvent.callIf(!validEmail)
-        passwordValidationEvent.callIf(!passwordEmail)
-        return validEmail && passwordEmail
+        val validEmail = when {
+            email.isBlank() -> Event(string(R.string.error_required_field))
+            !email.isValidEmail() -> Event(string(R.string.signup_email_error))
+            else -> null
+        }
+        val passwordEmail = when {
+            password.isBlank() -> Event(string(R.string.error_required_field))
+            else -> null
+        }
+        val currentState = validationViewState.value ?: LoginViewState()
+        validationViewState.postValue(currentState.copy(validEmail, passwordEmail))
+        return validEmail == null && passwordEmail == null
     }
 
     fun startAccountCreation() {

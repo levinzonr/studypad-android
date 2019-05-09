@@ -1,45 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:clickable="true"
         android:focusable="true"
         android:background="?selectableItemBackgroundBorderless"
         android:id="@+id/root"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="match_parent">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-    <com.google.android.material.card.MaterialCardView
-            android:layout_margin="@dimen/space_small"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="16dp"
-            android:layout_width="80dp"
-            android:layout_height="80dp">
+        <com.google.android.material.card.MaterialCardView
+                android:layout_gravity="center"
+                app:cardElevation="4dp"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="16dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp">
 
-        <ImageButton
+            <ImageButton
 
-                android:focusable="false"
-                android:clickable="false"
-                android:id="@+id/imageButton"
-                android:tint="@color/selector_primary_square"
-                android:src="@drawable/ic_writing"
-                android:background="@drawable/background_button_squre"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:id="@+id/imageButton"
+                    android:tint="@color/selector_primary_square"
+                    android:src="@drawable/ic_writing"
+                    android:background="@drawable/background_button_squre"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"/>
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
+    </FrameLayout>
 
     <TextView
             android:id="@+id/imageTextView"
             android:textStyle="bold"
             android:textColor="@color/blue"
-            android:gravity="center"
-            android:text="Learn"
+            android:gravity="center|top"
+            android:text="Learчячясчсч    asd ясчяn"
             android:padding="@dimen/space_small"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"/>
 
 </LinearLayout>

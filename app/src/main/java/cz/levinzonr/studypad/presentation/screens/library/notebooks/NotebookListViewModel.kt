@@ -27,7 +27,7 @@ class NotebookListViewModel(
 
 
     val dataSource = Transformations.map(notebookRepository.notebooksLiveData()) {
-        it.reversed()
+        it.sortedBy { it.name }
     }
     val notebookPublishedEven = MutableLiveData<Event<PublishedNotebook.Feed>>()
 

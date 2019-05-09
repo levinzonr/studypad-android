@@ -31,9 +31,7 @@ class SetupChallengeFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.viewStateLiveData.observe(viewLifecycleOwner, Observer {
-            updateView(it)
-        })
+
         setupListeners()
     }
 
@@ -72,7 +70,9 @@ class SetupChallengeFragment : BaseFragment() {
     }
 
     override fun subscribe() {
-
+        viewModel.viewStateLiveData.observe(viewLifecycleOwner, Observer {
+            updateView(it)
+        })
     }
 
     private fun updateView(viewState: SetupChallengeViewState) {

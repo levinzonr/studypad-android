@@ -157,14 +157,17 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
         when (type) {
             NotebookSearchModels.EmptyType.Error -> {
                 resultsRv.setVisible(false)
+                emptyView.actionButton.setVisible(true)
                 emptyView.actionButton.visibility = View.VISIBLE
                 emptyView.configure(R.string.sharinghub_search_error_title)
             }
             NotebookSearchModels.EmptyType.Default -> {
+                emptyView.actionButton.setVisible(false)
                 emptyView.actionButton.visibility = View.GONE
                 emptyView.configure(R.string.sharinghub_search_default_title, R.string.sharinghub_search_default_message)
             }
             NotebookSearchModels.EmptyType.Empty -> {
+                emptyView.actionButton.setVisible(false)
                 emptyView.actionButton.visibility = View.VISIBLE
                 emptyView.configure(R.string.sharinghub_search_empty_title, R.string.sharinghub_search_empty_message)
             }

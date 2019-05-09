@@ -14,13 +14,14 @@ import cz.levinzonr.studypad.presentation.common.ToolbarSpaceDecoration
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.fragment_notebook_list.*
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListener {
 
 
-    override val viewModel: NotebookListViewModel by viewModel()
+    override val viewModel: NotebookListViewModel by sharedViewModel()
     private val adapter: NotebooksAdapter by inject()
 
     override fun onCreateView(

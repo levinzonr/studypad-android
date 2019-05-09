@@ -45,7 +45,7 @@
     <fragment
             android:id="@+id/settingsFragment"
             android:name="cz.levinzonr.studypad.presentation.screens.settings.SettingsFragment"
-            android:label="Settings"
+            android:label="@string/profile_settings"
             tools:layout="@layout/fragment_settings"/>
     <fragment
             android:id="@+id/sharingHubFragment"

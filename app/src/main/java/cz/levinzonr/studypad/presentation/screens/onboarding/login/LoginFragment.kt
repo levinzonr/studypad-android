@@ -14,6 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.setVisible
 import timber.log.Timber
 
@@ -59,18 +60,10 @@ class LoginFragment : BaseFragment() {
     }
 
     override fun subscribe() {
-
-        viewModel.passwordValidationEvent.observe(this, Observer {
-            it.handle {
-               loginPasswordInputLayout.error = "Incorrect password"
-            }
-        })
-
-        viewModel.emailValidationEvent.observe(this, Observer {
-            it.handle {
-                loginEmailInputLayout.error = "Incorrect email"
-            }
-        })
+        viewModel.validationViewState.observeNonNull(viewLifecycleOwner) {
+            it.emailEvent?.handle { loginEmailInputLayout.error = it }
+            it.pwdEvent?.handle { loginPasswordInputLayout.error = it }
+        }
     }
 
     override fun showLoading(isLoading: Boolean) {

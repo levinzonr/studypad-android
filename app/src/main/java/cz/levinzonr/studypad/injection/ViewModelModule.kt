@@ -41,7 +41,7 @@ val viewModelModule = module {
 
     viewModel { NotebookListViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
 
-    viewModel { (id: String) -> NotesListViewModel(id, get(), get()) }
+    viewModel { (id: String) -> NotesListViewModel(id, get(), get(), get()) }
 
     viewModel { LoginViewModel(get(), get(), get(), get()) }
 

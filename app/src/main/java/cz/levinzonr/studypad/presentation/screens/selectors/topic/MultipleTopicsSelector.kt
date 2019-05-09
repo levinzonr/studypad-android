@@ -37,6 +37,10 @@ class MultipleTopicsSelector : BottomSheetDialog(), TopicsSelectionAdapter.Topic
         viewModel.getTopicsObservable().observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
+
+        closeBtn.setOnClickListener {
+            dismiss()
+        }
     }
 
     companion object {

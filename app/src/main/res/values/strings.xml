@@ -2,8 +2,8 @@
     <string translatable="false" name="app_name">StudyPad</string>
 
 
-    <string name="error_network_title">Your\'e offline</string>
-    <string name="error_network_message">You seem to offline. Please check your internet connection and try again</string>
+    <string name="error_network_title">You\'re offline</string>
+    <string name="error_network_message">You seem to be offline. Please check your internet connection and try again</string>
 
     <string name="error_unknown_title">Unknown error</string>
     <string name="error_unknown_message">An unknown error has occurred</string>
@@ -209,7 +209,7 @@
     <string name="sharinghub_search_default_title">Explore!</string>
     <string name="sharinghub_search_default_message">Start searching for new notebooks by selecting on of the search options</string>
     <string name="sharinghub_search_options_uni">University</string>
-    <string name="sharinghub_search_options_category">Subject</string>
+    <string name="sharinghub_search_options_category">Category</string>
     <string name="sharinghub_search_options_tags">Tags</string>
     <string name="sharinghub_search_empty_title">Nothing found</string>
     <string name="sharinghub_search_empty_message">There are no notebooks like that yet</string>
@@ -313,6 +313,7 @@
     <string name="notes">Notes</string>
     <string name="library_notebooks_empty_action">Find new notebooks</string>
     <string name="error_required_field">This field is required</string>
+    <string name="no_notes_to_study">Unavailable, no notes to study</string>
 
     <plurals name="time_minutes">
         <item quantity="zero">just now</item>

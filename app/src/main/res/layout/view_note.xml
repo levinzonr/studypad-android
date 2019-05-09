@@ -19,7 +19,7 @@
             app:cardCornerRadius="@dimen/corner_radius"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/space_big"
-            app:cardElevation="16dp">
+            app:cardElevation="8dp">
 
 
             <LinearLayout

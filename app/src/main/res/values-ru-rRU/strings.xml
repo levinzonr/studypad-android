@@ -21,10 +21,10 @@
     <string name="error_publish_message">При публикации этого блокнота произошла ошибка. Пожалуйста, убедитесь, что этот блокнот еще не опубликован, и все предоставленные данные верны</string>
 
 
-    <string name="navigation_library">Моя библиотека</string>
+    <string name="navigation_library">Библиотека</string>
     <string name="navigation_sharing_hub">Sharing Hub</string>
     <string name="navigation_profile">Профиль</string>
-    <string name="navigation_challenges">Чалленджи</string>
+    <string name="navigation_challenges">Испытания</string>
 
 
     <string name="default_edit">Редактировать</string>
@@ -56,19 +56,17 @@
 
     <string name="library_notebooks_title">Мои блокноты</string>
     <plurals name="library_notescount_published">
-        <item quantity="zero">No notes ∙ published</item>
-        <item quantity="one">%d note ∙ published</item>
-        <item quantity="other">%d notes ∙ published</item>
-        <item quantity="few">%d notes ∙ published</item>
-        <item quantity="many">%d notes ∙ published</item>
+        <item quantity="one">%d заметка ∙ опубликован</item>
+        <item quantity="other">%d заметок ∙ опублиуован</item>
+        <item quantity="few">%d заметки ∙ опублиуова</item>
+        <item quantity="many">%d заметок ∙ опублиуован</item>
     </plurals>
 
     <plurals name="library_notescount_imported">
-        <item quantity="zero">No notes ∙ imported</item>
-        <item quantity="one">%d note ∙ imported</item>
-        <item quantity="many">%d note ∙ imported</item>
-        <item quantity="few">%d note ∙ imported</item>
-        <item quantity="other">%d notes ∙ imported</item>
+        <item quantity="one">%d заметка ∙ имортирован</item>
+        <item quantity="other">%d заметок ∙ имортирован</item>
+        <item quantity="few">%d заметки ∙ имортирован</item>
+        <item quantity="many">%d заметок ∙ имортирован</item>
     </plurals>
 
     <string name="library_notescount_0">Нет заметок</string>
@@ -76,20 +74,19 @@
     <string name="library_notescount_0_published">Нет заметок ∙ опубликован</string>
 
     <plurals name="library_notescount">
-        <item quantity="zero">No notes</item>
-        <item quantity="one">%d note</item>
-        <item quantity="other">%d notes</item>
-        <item quantity="few">%d notes</item>
-        <item quantity="many">%d notes</item>
+        <item quantity="one">%d заметка</item>
+        <item quantity="other">%d заметок</item>
+        <item quantity="few">%d заметки</item>
+        <item quantity="many">%d заметок</item>
     </plurals>
 
     <string name="library_note_title_hint">Название</string>
-    <string name="library_note_content_hint">Введите заметку ..</string>
+    <string name="library_note_content_hint">Введите заметку ...</string>
 
     <string name="library_publish">Опубликовать</string>
     <string name="library_openshared">Открыть опубликованную версию</string>
     <string name="library_notebook_create_title">Новый блокнот</string>
-    <string name="library_notebook_create_message">Введите новое имя блокнота</string>
+    <string name="library_notebook_create_message">Введите имя для нового блокнота</string>
     <string name="library_notebook_edit_title">Отредактировать блокнот</string>
     <string name="library_notebook_edit_message">Выберите новое имя для вашего блокнота</string>
     <string name="library_notebook_create_hint">Название ноутбука</string>
@@ -97,8 +94,8 @@
     <string name="library_notes_empty_title">Нет заметок</string>
     <string name="library_notes_empty_message">В этом блокноте нет заметок</string>
     <string name="library_notebooks_empty_title">Нет блокнотов</string>
-    <string name="library_notebooks_empty_message">В вашей библиотеке еще нет блокнотов</string>
-    <string name="library_note_detail">Детли заметки</string>
+    <string name="library_notebooks_empty_message">В вашей библиотеке пока блокнотов</string>
+    <string name="library_note_detail">Детали заметки</string>
 
 
     <string name="publish_step1_title">Основные данные</string>
@@ -191,10 +188,10 @@
     <string name="sharinghub_dets_notes_title">Заметки внутри</string>
     <string name="sharinghub_dets_syggestions_empty">Пока нет новых предложений</string>
     <plurals name="sharinghub_dets_suggestions_message">
-        <item quantity="one">There is %d pending suggestion</item>
-        <item quantity="other">There are %d pending suggestions</item>
-        <item quantity="few">There are %d pending suggestions</item>
-        <item quantity="many">There are %d pending suggestions</item>
+        <item quantity="one">%d преложение на стадии рассмотрения</item>
+        <item quantity="other">%d предложения на стадии рассмотрения</item>
+        <item quantity="few">%d предложения на стадии рассмотрения</item>
+        <item quantity="many">%d предложений на стадии рассмотрения</item>
     </plurals>
 
     <string name="sharinhub_dets_suggestions_add">Предложить изменение</string>
@@ -224,33 +221,33 @@
     <string name="sharinghub_search_options_tags">Теги</string>
     <string name="sharinghub_search_empty_title">Ничего не найдено</string>
     <string name="sharinghub_search_empty_message">Таких блокнотов пока нет</string>
-    <string name="sharinghub_search_error_title">Ошибка при загрузке блокнотово</string>
+    <string name="sharinghub_search_error_title">Ошибка при загрузке блокнотов</string>
 
 
-    <string name="challenges_title">Чалленджи</string>
+    <string name="challenges_title">Испытания</string>
     <string name="challenges_recently">Недавно завершено</string>
     <string name="challenges_type_write">Написать</string>
     <string name="challenges_type_flashcards">Флэшкарточки</string>
     <string name="challenges_type_selfcheck">Самопроверка</string>
-    <string name="challenges_quick_title">Быстрый чаллендж</string>
-    <string name="challenges_configure">Настроить чаллендж</string>
-    <string name="challenges_empty_title">Пока нет выполеных чалленджей</string>
-    <string name="challenges_empty_message">Время начинать учиться! Выбирайте по заранее заданным задачи или настраойте их самостоятельно!</string>
+    <string name="challenges_quick_title">Быстрое Испытания</string>
+    <string name="challenges_configure">Настроить испытание</string>
+    <string name="challenges_empty_title">Пока нет выполеных испытаний</string>
+    <string name="challenges_empty_message">Время начинать учиться! Выбирайте по заранее заданные испытания или настраойте их самостоятельно!</string>
 
-    <string name="challenges_setup_title">Настройте чаллендж</string>
-    <string name="challenges_setup_type_default">Выберите тип чалленджа, чтобы продолжить</string>
+    <string name="challenges_setup_title">Настроить Испытание</string>
+    <string name="challenges_setup_type_default">Выберите тип испытания, чтобы продолжить</string>
     <string name="challenges_setup_type_flashcards">Пройдите свои заметки одну за другой и постарайтесь выучить как можно больше</string>
     <string name="challenges_setup_type_selfcheck">Проверьте себя, знаете ли вы каждую заметку в книге</string>
-    <string name="challenges_setup_type_write">Письменное задание, наиболее подходящее для изучения нового языка</string>
+    <string name="challenges_setup_type_write">Письменное испытания, наиболее подходящее для изучения нового языка</string>
     <string name="challenges_setup_notebook_title">Блокнот</string>
     <string name="challenges_setup_notebook_subtitle">Выберите блокнот для изучения</string>
     <string name="challenges_setup_shuffle_title">Случайный порядок</string>
     <string name="challenges_setup_shuffle_subtitle">Рандомизировать порядок заметок</string>
     <string name="challenges_setup_revers_title">Сначало Имя заметки</string>
     <string name="challenges_setup_reverse_subtitle">Используйте содержание заметки в качестве ответа</string>
-    <string name="challenges_setup_start">Начать чаллендж</string>
+    <string name="challenges_setup_start">Начать испытание</string>
     <string name="challenges_leave_title">Выйти</string>
-    <string name="challenges_leave_message">Вы уверены, что хотите оставить этот чаллендж, прогресс не будет сохранен</string>
+    <string name="challenges_leave_message">Вы уверены, что хотите оставить этот чаллендж? Прогресс не будет сохранен</string>
 
     <string name="challenge_selfcheck_know">Знаю!</string>
     <string name="challenge_selfcheck_dontknow">Учись снова</string>
@@ -272,8 +269,8 @@
     <string name="suggestions_review">Обзор</string>
     <string name="suggestion_body_update">%1$s предложил обновить заметку %2$s</string>
     <string name="suggestion_body_add">%1$s предложил добавить новую заметку: %2$s</string>
-    <string name="suggestions_reject">Отклонять</string>
-    <string name="suggestions_approve">Утвердить</string>
+    <string name="suggestions_reject">Отклонить</string>
+    <string name="suggestions_approve">Одобрить</string>
     <string name="suggestion_type_add">Новая заметка %s</string>
     <string name="suggestion_type_upd">Обновленная заметка %s</string>
     <string name="suggestion_upd_new">Обновленная версия</string>
@@ -300,7 +297,7 @@
     <string name="signup_lastname_hint">Фамилия</string>
     <string name="signup_firstname_error">Неверное имя</string>
     <string name="signup_lastname_error">Неверная фамилия</string>
-    <string name="signup_password_error">Слабый пароль</string>
+    <string name="signup_password_error">Слишком слабый пароль</string>
     <string name="signup_email_error">Неверный адрес электронной почты</string>
 
     <string name="signup_completed_title">Вы студент?</string>
@@ -321,36 +318,36 @@
     <string name="notifications_uptodate">Ничего нового</string>
     <string name="import_a_copy">Импортировать как копию</string>
     <string name="notes">Заметки</string>
-    <string name="library_notebooks_empty_action">Find new notebooks</string>
-    <string name="error_required_field">This field is required</string>
+    <string name="library_notebooks_empty_action">Найти блокноты</string>
+    <string name="error_required_field">Это поле необходимо</string>
+    <string name="no_notes_to_study">Недоступно - нет заметок для изучения</string>
 
     <plurals name="time_minutes">
-        <item quantity="zero">just now</item>
-        <item quantity="one">%d minute ago</item>
-        <item quantity="other">%d minutes ago</item>
-        <item quantity="few">%d minutes ago</item>
-        <item quantity="many">%d minutes ago</item>
+        <item quantity="one">%d минуту назад</item>
+        <item quantity="other">%d минут назад</item>
+        <item quantity="few">%d минуты назад</item>
+        <item quantity="many">%d минут назад</item>
     </plurals>
 
     <plurals name="time_hours">
-        <item quantity="one">%d hour ago</item>
-        <item quantity="other">%d hours ago</item>
-        <item quantity="few">%d hours ago</item>
-        <item quantity="many">%d hours ago</item>
+        <item quantity="one">%d час назад</item>
+        <item quantity="other">%d часлв назад</item>
+        <item quantity="few">%d часа назад</item>
+        <item quantity="many">%d часов назад</item>
     </plurals>
 
     <plurals name="time_days">
-        <item quantity="one">%d day ago</item>
-        <item quantity="other">%d days ago</item>
-        <item quantity="few">%d days ago</item>
-        <item quantity="many">%d days ago</item>
+        <item quantity="one">%d день назад</item>
+        <item quantity="other">%d дней назад</item>
+        <item quantity="few">%d дня назад</item>
+        <item quantity="many">%d дней назад</item>
     </plurals>
 
     <plurals name="time_month">
-        <item quantity="one">$d month ago</item>
-        <item quantity="other">%d months ago</item>
-        <item quantity="few">%d months ago</item>
-        <item quantity="many">%d months ago</item>
+        <item quantity="one">%d месяц назад</item>
+        <item quantity="other">%d месяцев назад</item>
+        <item quantity="few">%d месяца назад</item>
+        <item quantity="many">%d месяцев назад</item>
     </plurals>
 
     <!-- Generated by Automatic String Resource Translation

@@ -316,30 +316,27 @@
     <string name="notes">Poznámky</string>
     <string name="library_notebooks_empty_action">Find new notebooks</string>
     <string name="error_required_field">This field is required</string>
+    <string name="no_notes_to_study">Unavailable, no notes to study</string>
 
     <plurals name="time_minutes">
-        <item quantity="zero">Pravě ted</item>
         <item quantity="few">Před %d mituatama</item>
         <item quantity="one">Před minutou</item>
-        <item quantity="other">Před %d mituatama</item>
+        <item quantity="other">Před %d minut</item>
     </plurals>
 
     <plurals name="time_hours">
-        <item quantity="zero">Pravě ted</item>
-        <item quantity="few">Před %d mituatama</item>
-        <item quantity="one">Před minutou</item>
+        <item quantity="few">Před %d hodinama</item>
+        <item quantity="one">Před hodinou</item>
         <item quantity="other">Před %d mituatama</item>
     </plurals>
 
     <plurals name="time_days">
-        <item quantity="zero">Před hodinou</item>
         <item quantity="few">Před %d hodinama</item>
         <item quantity="one">Před hodinou</item>
         <item quantity="other">Před %d hodinama</item>
     </plurals>
 
     <plurals name="time_month">
-        <item quantity="zero">Pravě ted</item>
         <item quantity="few">Před %d měsici</item>
         <item quantity="one">Před měsicem</item>
         <item quantity="other">Před %d měsici</item>

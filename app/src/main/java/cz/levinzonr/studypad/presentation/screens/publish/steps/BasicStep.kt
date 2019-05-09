@@ -32,6 +32,7 @@ class BasicStep(stepViewClickListener: StepViewClickListener, title: String, con
     override fun getStepData(): PublishModels.StepOneData {
         val uni = stepView.notebookSchoolEt.tag as? University?
         val locale = stepView.notebookLanguageEt.tag as? Locale?
+        Timber.d("Stpe: ${stepView.notebookNameEt.text.toString()}")
         return PublishModels.StepOneData(stepView.notebookNameEt.text.toString(), uni, langCode = locale?.code ?: defaultLanguageCode() )
     }
 

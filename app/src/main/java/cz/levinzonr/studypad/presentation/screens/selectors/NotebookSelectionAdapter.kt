@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.domain.models.Notebook
+import cz.levinzonr.studypad.getQuantityString
 import cz.levinzonr.studypad.layoutInflater
 import kotlinx.android.synthetic.main.item_notebook_small.view.*
 
@@ -33,9 +34,9 @@ class NotebookSelectionAdapter(private val listener: NotebookSelectionListener):
 
             view.notebookNameTv.text = notebook.name
             view.notesCountTv.text = when(notebook.notesCount) {
-                1 -> notebook.notesCount.toString() + "1 note"
-                0 -> "Unavailable, there are no notes to study"
-                else -> "${notebook.notesCount} notes"
+                0 -> view.context.getString(R.string.no_notes_to_study)
+                else -> view.context.getQuantityString(R.plurals.library_notescount, notebook.notesCount)
+
             }
 
             if (!view.isEnabled) {

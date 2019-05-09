@@ -28,6 +28,9 @@ import kotlinx.android.synthetic.main.include_toolbar.*
 import timber.log.Timber
 import q.rorbin.badgeview.QBadgeView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import cz.levinzonr.studypad.observeNonNull
+import cz.levinzonr.studypad.presentation.screens.profile.ProfileViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import q.rorbin.badgeview.Badge
 
 
@@ -38,6 +41,8 @@ class MainActivity : BaseActivity() {
 
     private var badgeView: Badge? = null
 
+    private val profileViewModel: ProfileViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,6 +51,11 @@ class MainActivity : BaseActivity() {
         setSupportActionBar(toolbar)
         handleDeepLink()
         initBadgeView()
+
+        profileViewModel.profileLiveData.observeNonNull(this) {
+            badgeView?.badgeNumber = it.notificationsCount
+        }
+
         with(findNavController(R.id.fragment)) {
             bottomNav.setupWithNavController(this)
             addOnDestinationChangedListener { _, destination, _ ->

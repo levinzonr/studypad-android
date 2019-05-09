@@ -10,10 +10,14 @@ import cz.levinzonr.studypad.presentation.base.BaseViewModel
 class NotesListViewModel(
     private val notebookId: String,
     private val deleteNoteInteractor: DeleteNoteInteractor,
+    private val getNotesInteractor: GetNotesInteractor,
     private val notesRepository: NotesRepository
 ) : BaseViewModel() {
 
     val dataSource = notesRepository.notesLiveData(notebookId)
+    init {
+        getNotesInteractor.executeWithInput(notebookId) {}
+    }
 
     fun showNoteDetail(note: Note) {
         val editMode = NoteDetailModels.NoteViewMode.Edit(note)
