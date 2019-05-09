@@ -38,7 +38,7 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
--
+
     signingConfigs {
 
         release {
