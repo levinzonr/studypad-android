@@ -56,7 +56,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         }
 
         publishedShareBtn.setOnClickListener {
-            shareMessage(notebookId.toNotebookLink())
+            shareMessage("", notebookId.toNotebookLink())
         }
         publishedCopyLinkBtn.setOnClickListener {
             copyToClipboard(notebookId.toNotebookLink())

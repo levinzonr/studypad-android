@@ -64,12 +64,12 @@ abstract class BaseFragment : Fragment() {
 
     }
 
-    protected fun shareMessage(message: String) {
+    protected fun shareMessage(name: String, link: String) {
         val shareLinkIntent = Intent()
         shareLinkIntent.action = Intent.ACTION_SEND
         shareLinkIntent.putExtra(
             Intent.EXTRA_TEXT,
-            getString(R.string.defautl_share_message, message)
+            getString(R.string.defautl_share_message, name, link)
         )
         shareLinkIntent.type = "text/plain"
         startActivity(Intent.createChooser(shareLinkIntent, getString(R.string.default_share_with)))

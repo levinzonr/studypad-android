@@ -204,7 +204,7 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
         BottomSheetOptionsDialog.builder<PublishedBookOptionsDialog>()
             .show(childFragmentManager) {
                 when(it) {
-                    R.id.publishedBookShareBtn -> shareMessage(publishedNotebook.id.toNotebookLink())
+                    R.id.publishedBookShareBtn -> shareMessage(publishedNotebook.title, publishedNotebook.id.toNotebookLink())
                     R.id.publishedBookCopyBtn -> copyToClipboard(publishedNotebook.id.toNotebookLink())
                 }
             }

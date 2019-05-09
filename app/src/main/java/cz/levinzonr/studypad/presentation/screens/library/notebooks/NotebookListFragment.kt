@@ -74,7 +74,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
 
         viewModel.notebookPublishedEven.onHandle(viewLifecycleOwner) {
             val link = it.id.toNotebookLink()
-            shareMessage(link)
+            shareMessage(it.title, link)
         }
 
     }
@@ -102,7 +102,7 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
                         viewModel.publishNotebook(notebook)
                     } else {
                         val link = notebook.publishedNotebookId.toNotebookLink()
-                        shareMessage(link)
+                        shareMessage(notebook.name, link)
                     }
                 }
                 R.id.notebookCopyBtn -> {
