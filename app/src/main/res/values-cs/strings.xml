@@ -314,6 +314,8 @@
     <string name="notifications_uptodate">Jste up-to-date</string>
     <string name="import_a_copy">Importujte jako kopii</string>
     <string name="notes">Poznámky</string>
+    <string name="library_notebooks_empty_action">Find new notebooks</string>
+    <string name="error_required_field">This field is required</string>
 
     <plurals name="time_minutes">
         <item quantity="zero">Pravě ted</item>

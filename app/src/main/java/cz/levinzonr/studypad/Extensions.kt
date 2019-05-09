@@ -195,7 +195,7 @@ fun String.isValidPassword(): Boolean {
 }
 
 fun String.isValidName(): Boolean {
-    return this.matches(Regex("([A-Z][a-zA-Z]*)+( [A-Z][a-zA-Z]*)*"))
+    return this.matches(Regex("^\\p{L}+[\\p{L}\\p{Z}\\p{P}]{0,}"))
 }
 
 fun liveEvent() = MutableLiveData<SingleLiveEvent>()

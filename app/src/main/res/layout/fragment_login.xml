@@ -8,11 +8,13 @@
 
 
         <TextView
+                android:textColor="#000"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/loginEmailInputLayout"
                 android:id="@+id/image"
                 android:gravity="center"
+                android:textStyle="normal"
                 android:text="@string/login_welcome_msg"
                 style="@style/TextStyle.Header"
                 app:layout_constraintTop_toTopOf="parent"

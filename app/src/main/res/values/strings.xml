@@ -311,6 +311,8 @@
     <string name="notifications_uptodate">You\'re up to date</string>
     <string name="import_a_copy">Import a copy</string>
     <string name="notes">Notes</string>
+    <string name="library_notebooks_empty_action">Find new notebooks</string>
+    <string name="error_required_field">This field is required</string>
 
     <plurals name="time_minutes">
         <item quantity="zero">just now</item>

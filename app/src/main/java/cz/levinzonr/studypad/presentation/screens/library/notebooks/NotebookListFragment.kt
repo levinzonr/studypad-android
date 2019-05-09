@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.levinzonr.studypad.*
 
@@ -36,6 +37,9 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
 
         emptyStateView.configure(
             R.string.library_notebooks_empty_title, R.string.library_notebooks_empty_message)
+        emptyStateView.setActionButton(R.string.library_notebooks_empty_action) {
+            findNavController().navigate(R.id.sharingHubFragment)
+        }
     }
 
     override fun onResume() {
@@ -54,7 +58,6 @@ class NotebookListFragment : BaseFragment(), NotebooksAdapter.NotebookItemListen
 
     override fun showLoading(isLoading: Boolean) {
         progressBar.setVisible(isLoading)
-        emptyStateView.setVisible(false)
     }
     private fun setupRecyclerView() {
         adapter.listener = this

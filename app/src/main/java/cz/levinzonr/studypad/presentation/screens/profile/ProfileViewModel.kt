@@ -19,12 +19,17 @@ class ProfileViewModel(
 ) : BaseViewModel() {
 
 
+    val profileLiveData = MutableLiveData<ProfieViewState>()
+
     init {
         loadProfile()
+        userManager.getCurrentUserInfo()?.let {
+            val state = ProfieViewState(it.displayName, it.university, 0, it.imageUrl)
+            profileLiveData.postValue(state)
+        }
     }
 
 
-    val profileLiveData = MutableLiveData<UserProfile>()
 
 
     fun onNotificationsButtonClicked() {
@@ -37,7 +42,10 @@ class ProfileViewModel(
 
     fun loadProfile() {
         getUserProfileInteractor.execute {
-            onComplete { profileLiveData.postValue(it) }
+            onComplete {
+                val state = ProfieViewState(it.displayName, it.university, it.unreadNotifications, it.photoUrl)
+                profileLiveData.postValue(state)
+            }
             onError { handleApplicationError(it) }
         }
     }
