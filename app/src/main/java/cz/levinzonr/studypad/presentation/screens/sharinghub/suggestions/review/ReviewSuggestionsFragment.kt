@@ -14,6 +14,7 @@ import androidx.annotation.NonNull
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import cz.levinzonr.studypad.dp
+import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.StudyPadDialog
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
@@ -86,9 +87,16 @@ class ReviewSuggestionsFragment : BaseFragment(),
             updateSheet(it.suggestions)
         })
 
-        viewModel.conflictedSuggestion.observe(viewLifecycleOwner, Observer {
-            it?.handle(this::showConfictDialog)
-        })
+        viewModel.actionViewState.observeNonNull(viewLifecycleOwner) {
+            it.allDone?.handle {
+                val sheetBehavior = BottomSheetBehavior.from(bottom_sheet)
+                sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+            it.conflictAppeared?.handle(this::showConfictDialog)
+            it.showNextSuggestion?.handle {
+                viewPager.setCurrentItem(it, true)
+            }
+        }
 
     }
 
@@ -121,8 +129,8 @@ class ReviewSuggestionsFragment : BaseFragment(),
         reviewStatusProgress.text = getString(R.string.suggestions_review_state, approved, rejected)
         confirmBtn.isEnabled = remains != list.count()
         if (remains == 0) {
-            val sheetBehavior = BottomSheetBehavior.from(bottom_sheet)
-            sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+         /*   val sheetBehavior = BottomSheetBehavior.from(bottom_sheet)
+            sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED*/
         }
     }
 
