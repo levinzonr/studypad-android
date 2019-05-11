@@ -77,10 +77,9 @@ class ChallengeActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         val fragment = supportFragmentManager.findFragmentByTag(TAG)
-        when {
-            fragment is ChallengeCompleteFragment -> super.onBackPressed()
-            viewModel.challengeCompleted -> super.onBackPressed()
-            else -> StudyPadDialog.Builder(this)
+        if (fragment is ChallengeCompleteFragment) super.onBackPressed()
+        else {
+            StudyPadDialog.Builder(this)
                 .setTitle(getString(R.string.challenges_leave_title))
                 .setMessage(getString(R.string.challenges_leave_message))
                 .setPositiveButton(getString(android.R.string.yes)) {  super.onBackPressed()}

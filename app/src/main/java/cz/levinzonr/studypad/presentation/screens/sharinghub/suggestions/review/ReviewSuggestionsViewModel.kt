@@ -7,7 +7,6 @@ import cz.levinzonr.studypad.domain.models.PublishedNotebook
 import cz.levinzonr.studypad.indexOfFirstOrNull
 import cz.levinzonr.studypad.presentation.base.BaseViewModel
 import cz.levinzonr.studypad.presentation.events.Event
-import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.SuggestionsModels
 import timber.log.Timber
 
@@ -23,13 +22,11 @@ class ReviewSuggestionsViewModel(
         get() = suggestionsLiveData.value ?: ReviewSuggestionsViewState()
 
 
-    val actionViewState: MutableLiveData<ActionViewState> = MutableLiveData()
-    private val currentActionState: ActionViewState
-        get() = actionViewState.value ?: ActionViewState()
+    val conflictedSuggestion: MutableLiveData<Event<Conflict>?> = MutableLiveData()
 
 
     init {
-        actionViewState.postValue(null)
+        conflictedSuggestion.postValue(null)
         val list = List(suggestions.size) {
             val suggestion = suggestions[it]
             SuggestionsModels.SuggestionItem(
@@ -56,31 +53,16 @@ class ReviewSuggestionsViewModel(
         if (alreadyChosen != null && alreadyChosen.approved) {
             Timber.d("Conflict :${alreadyChosen.suggestion.author.displayName}")
             Timber.d("Treid: ${suggestionItem.suggestion.author.displayName}")
-            actionViewState.postValue(currentActionState.copy(conflictAppeared =Event(Conflict(alreadyChosen, suggestionItem))))
-            return
+            conflictedSuggestion.postValue(Event(Conflict(alreadyChosen, suggestionItem)))
         } else {
             suggestions[existed] = when (suggestions[existed].state) {
                 is SuggestionsModels.SuggestionState.Default -> suggestions[existed].copy(state = SuggestionsModels.SuggestionState.Approved)
-                else -> suggestions[existed].copy(state = SuggestionsModels.SuggestionState.Default)
+                else -> suggestions[existed].copy(state = SuggestionsModels.SuggestionState.Approved)
             }
             Timber.d("exit: ${suggestions[existed].state}")
 
         }
         suggestionsLiveData.postValue(currentViewState.copy(suggestions = suggestions))
-        onSuggestionProcessed(existed, suggestions)
-
-    }
-
-    private fun onSuggestionProcessed(index: Int, all: List<SuggestionsModels.SuggestionItem>) {
-        val allDone = all.none { it.state == SuggestionsModels.SuggestionState.Default }
-        if (allDone) {
-            actionViewState.postValue(ActionViewState(allDone = SingleLiveEvent()))
-        }
-        if (!allDone && index < all.size - 1) {
-            actionViewState.postValue(currentActionState.copy(showNextSuggestion = Event(index.inc())))
-        }
-
-
     }
 
     fun onRejectSuggestionClicked(suggestionItem: SuggestionsModels.SuggestionItem) {
@@ -91,7 +73,6 @@ class ReviewSuggestionsViewModel(
         else
             list[index] = suggestionItem.copy(state = SuggestionsModels.SuggestionState.Default)
         suggestionsLiveData.postValue(currentViewState.copy(suggestions = list))
-        onSuggestionProcessed(index, list)
     }
 
 
