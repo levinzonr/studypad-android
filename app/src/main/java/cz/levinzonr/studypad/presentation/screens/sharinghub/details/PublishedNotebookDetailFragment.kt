@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager.widget.ViewPager
 import cz.levinzonr.studypad.R
@@ -69,6 +70,8 @@ class PublishedNotebookDetailFragment: BaseFragment(), NotificationHandler, Back
         if (current is BackButtonHandler) {
             Timber.d("hand")
             current.handleBackButton()
+        } else {
+            findNavController().navigateUp()
         }
     }
 
