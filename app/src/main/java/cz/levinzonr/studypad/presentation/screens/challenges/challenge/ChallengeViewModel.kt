@@ -22,7 +22,6 @@ abstract class ChallengeViewModel<in T>(
     val questionsLiveData: LiveData<List<ChallengesModels.NoteItem>>
     val viewState: MutableLiveData<BaseChallengeViewState> = MutableLiveData()
 
-    var challengeCompleted: Boolean = false
 
     protected val currentBaseState: BaseChallengeViewState
         get() = viewState.value ?: BaseChallengeViewState()
@@ -112,7 +111,6 @@ abstract class ChallengeViewModel<in T>(
     protected abstract fun validateAnswer(answers: T): Boolean
 
     open fun handleChallengeFinish() {
-        challengeCompleted = true
         val stats = ChallengeStats(challengeSetup.currentType, notes.size, answeredCorrect.size, answeredWrong.size)
         saveChallengeInteractor.executeWithInput(SaveChallengeInteractor.Input(challengeSetup, stats)) {
             onComplete { viewState.postValue(currentBaseState.copy(completedEvent = Event(stats))) }

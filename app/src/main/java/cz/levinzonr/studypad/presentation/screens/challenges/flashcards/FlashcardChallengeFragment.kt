@@ -78,7 +78,7 @@ class FlashcardChallengeFragment : BaseFragment(), FlashcardChallengeAdapter.Lea
     }
 
     override fun onExitChallengeClicked() {
-        activity?.onBackPressed()
+
     }
 
     companion object {

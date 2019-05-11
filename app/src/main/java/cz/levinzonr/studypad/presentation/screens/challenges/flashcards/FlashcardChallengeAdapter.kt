@@ -85,7 +85,6 @@ class FlashcardChallengeAdapter(private val listener: LearningChallengeAdapterLi
         fun bindView() {
             view.challengeCompleteStatTv.text = view.context.getQuantityString(R.plurals.challenge_completed_flashcards_message, items.count())
             view.challengeCompleteRepeatBtn.setOnClickListener { listener.onRepeatChallengeClicked() }
-            view.challengeCompleteExitBtn.setOnClickListener { listener.onExitChallengeClicked() }
         }
     }
 
