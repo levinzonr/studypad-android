@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView
 import cz.levinzonr.studypad.*
 import cz.levinzonr.studypad.domain.models.InteractorResult
 
@@ -93,6 +94,14 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
                 }
             }
         }
+
+        resultsRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                // Hide keyboard when user starts scrolling
+                searchView.hideKeyboard()
+            }
+        })
 
         searchOptionTags.setFilterListener { clear ->
             val tags = viewModel.currentSearchState?.tags ?: listOf()
