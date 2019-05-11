@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    app:contentPadding="@dimen/space_normal"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   app:contentPadding="@dimen/space_normal"
+                                                   android:layout_height="wrap_content"
+                                                   android:orientation="vertical">
 
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:visibility="visible"
             android:id="@+id/notebookSuggestionsView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
+
+        <ImageView
 
                 android:id="@+id/imageView2"
                 android:layout_width="64dp"
@@ -22,9 +22,9 @@
                 android:src="@drawable/ic_support"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
+        <TextView
                 android:id="@+id/notebookSuggestionsMessage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -34,48 +34,30 @@
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"/>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:gravity="center"
-                android:layout_marginTop="@dimen/space_normal"
+        <com.google.android.material.chip.Chip
+                app:chipIconTint="@color/white"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/blue"
+                android:layout_marginStart="@dimen/space_normal"
+                android:layout_marginTop="@dimen/space_big"
+                android:id="@+id/notebookSuggestionShowAllBtn"
+                android:visibility="visible"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                app:chipIcon="@drawable/ic_subject"
+                android:text="@string/sharinghub_dets_suggestions_view"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/notebookSuggestionsMessage">
-
-                <com.google.android.material.chip.Chip
-                    android:layout_marginStart="@dimen/space_normal"
-                    android:id="@+id/notebookSuggestionShowAllBtn"
-                    android:visibility="visible"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:chipIcon="@drawable/ic_subject"
-                    android:text="@string/sharinghub_dets_suggestions_view"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/notebookSuggestionsMessage"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
 
 
-            </LinearLayout>
 
-            <com.google.android.material.button.MaterialButton
-                    android:id="@+id/notebookSuggestionsInfoBtn"
-                    android:layout_width="wrap_content"
-                    style="@style/Button.Text"
-                    android:gravity="end"
-                    app:layout_constraintHorizontal_bias="0.9"
-                    android:textAlignment="viewEnd"
-                    android:layout_height="wrap_content"
-                    android:text="@string/suggestion_info_btn"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </com.google.android.material.card.MaterialCardView>
