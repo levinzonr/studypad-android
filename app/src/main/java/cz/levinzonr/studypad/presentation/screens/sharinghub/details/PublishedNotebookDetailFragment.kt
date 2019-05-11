@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.notifications.NotificationPayload
 import cz.levinzonr.studypad.presentation.adapters.ViewPagerAdapter
+import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
 import cz.levinzonr.studypad.presentation.screens.notifications.NotificationType
@@ -19,7 +20,7 @@ import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
 
-class PublishedNotebookDetailFragment: BaseFragment(), NotificationHandler {
+class PublishedNotebookDetailFragment: BaseFragment(), NotificationHandler, BackButtonHandler {
 
     private val args: PublishedNotebookDetailFragmentArgs by navArgs()
 
@@ -62,6 +63,14 @@ class PublishedNotebookDetailFragment: BaseFragment(), NotificationHandler {
 
     }
 
+    override fun handleBackButton() {
+        val current = adapter.fragments.get(viewPager.currentItem)
+        Timber.d("hand $current")
+        if (current is BackButtonHandler) {
+            Timber.d("hand")
+            current.handleBackButton()
+        }
+    }
 
     override fun handleNotification(type: NotificationType, notificationPayload: NotificationPayload) {
         val current = adapter.fragments.get(viewPager.currentItem)
