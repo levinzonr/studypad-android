@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.crashlytics.android.Crashlytics
+import cz.levinzonr.studypad.BuildConfig
 
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.observeNonNull
@@ -41,9 +43,19 @@ class SettingsFragment : BaseFragment() {
             viewModel.onLogoutButtonClicked()
         }
 
-        settingsDeleteAccountBtn.setOnClickListener {
-            showToast("Not supported yet")
+        if (BuildConfig.DEBUG) {
+            settingsDeleteAccountBtn.text = "Force a crash"
+            settingsDeleteAccountBtn.setOnClickListener {
+                Crashlytics.getInstance().crash()
+
+            }
+        } else {
+            settingsDeleteAccountBtn.setOnClickListener {
+                showToast("Not supported yet")
+            }
         }
+
+
 
         notificationsSwitch.setOnCheckedChangeListener { _, value ->
             viewModel.onChangeNotificationPreference(value)

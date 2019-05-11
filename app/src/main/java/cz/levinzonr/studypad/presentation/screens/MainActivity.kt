@@ -16,6 +16,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.crashlytics.android.Crashlytics
 import cz.levinzonr.studypad.NavigationMainDirections
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.notifications.IntentActions
@@ -51,7 +52,6 @@ class MainActivity : BaseActivity() {
         setSupportActionBar(toolbar)
         handleDeepLink()
         initBadgeView()
-
         profileViewModel.profileLiveData.observeNonNull(this) {
             badgeView?.badgeNumber = it.notificationsCount
         }
