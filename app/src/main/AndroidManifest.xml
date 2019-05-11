@@ -31,6 +31,11 @@
                         android:host="studypad.herokuapp.com"
                         android:pathPrefix="/shared"
                         android:scheme="https"/>
+
+                <data
+                        android:host="shared"
+                        android:scheme="studypad"/>
+
             </intent-filter>
         </activity>
         <activity

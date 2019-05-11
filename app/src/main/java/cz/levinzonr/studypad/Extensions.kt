@@ -321,7 +321,7 @@ fun Collection<String>.buildTags(context: Context): List<Chip> {
 }
 
 fun String.toNotebookLink(): String {
-    return "${BuildConfig.API_URL}/shared/$this"
+    return "studypad://shared/$this"
 }
 
 fun Fragment.getQuantatyString(stirngRes: Int, quantaty: Int): String? {

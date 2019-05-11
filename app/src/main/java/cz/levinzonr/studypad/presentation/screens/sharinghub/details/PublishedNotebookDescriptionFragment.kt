@@ -81,9 +81,7 @@ class PublishedNotebookDescriptionFragment : BaseFragment(), NotePreviewAdapter.
         notebookSuggestionShowAllBtn.setOnClickListener {
             viewModel.onShowAllSuggestionsClicked()
         }
-        notebookSuggestionsInfoBtn.setOnClickListener {
-            SuggestionsInfoDialog.show(childFragmentManager)
-        }
+
         if (versionState.modifications.count() == 0) {
             notebookSuggestionsMessage.text = getString(R.string.sharinghub_dets_syggestions_empty)
 
