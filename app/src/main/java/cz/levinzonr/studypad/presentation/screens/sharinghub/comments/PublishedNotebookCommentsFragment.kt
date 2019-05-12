@@ -19,6 +19,7 @@ import timber.log.Timber
 import java.security.InvalidParameterException
 import cz.levinzonr.studypad.baseActivity
 import cz.levinzonr.studypad.notifications.NotificationPayload
+import cz.levinzonr.studypad.observeNonNull
 import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BottomSheetOptionsDialog
 import cz.levinzonr.studypad.presentation.base.NotificationHandler
@@ -50,11 +51,11 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
 
     override fun subscribe() {
 
-        viewModel.getCommentsLiveData().observe(viewLifecycleOwner, Observer {
+        viewModel.getCommentsLiveData().observeNonNull(viewLifecycleOwner) {
             Timber.d("submti $it")
             adapter.submitList(it)
             commentsRecyclerView.smoothScrollToPosition(0)
-        })
+        }
 
     }
 
