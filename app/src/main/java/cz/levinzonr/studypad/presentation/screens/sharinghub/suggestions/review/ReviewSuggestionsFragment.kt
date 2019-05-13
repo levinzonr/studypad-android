@@ -79,9 +79,11 @@ class ReviewSuggestionsFragment : BaseFragment(),
 
         sheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(@NonNull bottomSheet: View, newState: Int) {
+
             }
 
             override fun onSlide(@NonNull bottomSheet: View, slideOffset: Float) {
+                sheetArrowView.setRotation(slideOffset * 180);
             }
         })
     }
