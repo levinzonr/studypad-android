@@ -102,7 +102,9 @@ class ReviewSuggestionsFragment : BaseFragment(), BackButtonHandler,
             it.allDone?.handle {expandBottomSheet()}
             it.conflictAppeared?.handle(this::showConfictDialog)
             it.showNextSuggestion?.handle {
-                viewPager.setCurrentItem(it, true)
+                viewPager.postDelayed({
+                    viewPager.setCurrentItem(it, true)
+                }, 500)
             }
         }
 
