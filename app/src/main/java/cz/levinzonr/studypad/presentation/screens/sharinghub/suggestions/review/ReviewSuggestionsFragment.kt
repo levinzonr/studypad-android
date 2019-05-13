@@ -12,9 +12,11 @@ import kotlinx.android.synthetic.main.fragment_review_suggestions.*
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import androidx.annotation.NonNull
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import cz.levinzonr.studypad.dp
 import cz.levinzonr.studypad.observeNonNull
+import cz.levinzonr.studypad.presentation.base.BackButtonHandler
 import cz.levinzonr.studypad.presentation.base.BaseFragment
 import cz.levinzonr.studypad.presentation.common.StudyPadDialog
 import cz.levinzonr.studypad.presentation.common.VerticalSpaceItemDecoration
@@ -25,7 +27,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 
-class ReviewSuggestionsFragment : BaseFragment(),
+class ReviewSuggestionsFragment : BaseFragment(), BackButtonHandler,
     ReviewSuggestionsAdapter.ReviewSuggestionsListener {
 
     private val args: ReviewSuggestionsFragmentArgs by navArgs()
@@ -106,7 +108,23 @@ class ReviewSuggestionsFragment : BaseFragment(),
 
     }
 
-
+    override fun handleBackButton() {
+        val suggestions = viewModel.suggestionsLiveData.value?.suggestions ?: listOf()
+        val reviewStared = suggestions.any { it.state != SuggestionsModels.SuggestionState.Default }
+        if (reviewStared) {
+            StudyPadDialog.Builder(context)
+                .setTitle(getString(R.string.suggestions_review_leave_title))
+                .setMessage(getString(R.string.suggestions_review_leave_message))
+                .setNegativeButton(getString(android.R.string.no)) { it.dismiss()}
+                .setPositiveButton(getString(android.R.string.yes)) {
+                    it.dismiss()
+                    findNavController().navigateUp()
+                }
+                .show()
+        } else {
+            findNavController().navigateUp()
+        }
+    }
 
     override fun showLoading(isLoading: Boolean) {
         progressDialog?.getMessageTextView()?.setText(R.string.progress_review)
