@@ -54,14 +54,14 @@
 
     <string name="library_notebooks_title">Moje notebooky</string>
     <plurals name="library_notescount_published">
-        <item quantity="few">$d poznámky ∙ publikovány</item>
+        <item quantity="few">%d poznámky ∙ publikovány</item>
         <item quantity="one">%d poznámka ∙ publikovány</item>
         <item quantity="other">%d poznámek ∙ publikovány</item>
     </plurals>
 
     <plurals name="library_notescount_imported">
-        <item quantity="few">$d poznámky ∙ importovány</item>
-        <item quantity="one">$d poznámka ∙ importovány</item>
+        <item quantity="few">%d poznámky ∙ importovány</item>
+        <item quantity="one">%d poznámka ∙ importovány</item>
         <item quantity="other">%d poznámek ∙ importovány</item>
     </plurals>
 
@@ -70,8 +70,8 @@
     <string name="library_notescount_0_published">Nebyly publikovány žádné poznámky</string>
 
     <plurals name="library_notescount">
-        <item quantity="few">$d poznámky</item>
-        <item quantity="one">$d poznámka</item>
+        <item quantity="few">%d poznámky</item>
+        <item quantity="one">%d poznámka</item>
         <item quantity="other">%d poznámek</item>
     </plurals>
 
