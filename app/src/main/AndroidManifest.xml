@@ -31,6 +31,11 @@
                         android:host="studypad.herokuapp.com"
                         android:pathPrefix="/shared"
                         android:scheme="https"/>
+
+                <data
+                        android:host="shared"
+                        android:scheme="studypad"/>
+
             </intent-filter>
         </activity>
         <activity
@@ -38,6 +43,7 @@
                 android:name=".presentation.screens.challenges.challenge.ChallengeActivity">
         </activity>
         <activity
+                android:windowSoftInputMode="adjustResize"
                 android:screenOrientation="portrait"
                 android:name=".presentation.screens.MainActivity"/>
         <activity
