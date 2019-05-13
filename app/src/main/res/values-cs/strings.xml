@@ -263,7 +263,7 @@
 
     <string name="suggestions_title">Čekající upravy</string>
     <string name="suggestions_review">Review</string>
-    <string name="suggestion_body_update">Uživatel %1$s navrhl aktualizovat poznámku %2$</string>
+    <string name="suggestion_body_update">Uživatel %1$s navrhl aktualizovat poznámku %2$s</string>
     <string name="suggestion_body_add">Uživatel %1$s navrhl přidat novou poznámku: %2$s</string>
     <string name="suggestions_reject">Odmítnout</string>
     <string name="suggestions_approve">Schvalovat</string>
