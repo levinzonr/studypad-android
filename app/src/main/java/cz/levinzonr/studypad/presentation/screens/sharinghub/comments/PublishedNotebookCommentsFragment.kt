@@ -117,11 +117,14 @@ class PublishedNotebookCommentsFragment : BaseFragment(), CommentsAdapter.Commen
     }
 
     override fun handleBackButton() {
-        if (commentEditText.editModeActive) {
-            commentEditText.clear()
-        } else {
-            baseActivity?.navigateBack()
+        commentEditText?.let {
+            if (it.editModeActive) {
+                it.clear()
+            } else {
+                baseActivity?.navigateBack()
+            }
         }
+
     }
 
     companion object {

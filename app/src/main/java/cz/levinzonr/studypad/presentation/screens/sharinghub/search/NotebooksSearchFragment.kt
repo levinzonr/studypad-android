@@ -96,10 +96,11 @@ class NotebooksSearchFragment : BaseFragment(), PublishedNotebooksAdapter.Publis
         }
 
         resultsRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                // Hide keyboard when user starts scrolling
-                searchView.hideKeyboard()
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    searchView.hideKeyboard()
+                }
             }
         })
 
