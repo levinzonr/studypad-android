@@ -43,6 +43,7 @@
                 android:name=".presentation.screens.challenges.challenge.ChallengeActivity">
         </activity>
         <activity
+                android:windowSoftInputMode="adjustResize"
                 android:screenOrientation="portrait"
                 android:name=".presentation.screens.MainActivity"/>
         <activity
