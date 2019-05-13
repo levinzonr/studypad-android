@@ -34,7 +34,7 @@
     <string name="default_try_again">Zkus to znovu</string>
     <string name="default_confirm">Potvrdit</string>
     <string name="default_continue">Pokračovat</string>
-    <string name="default_see_all">VUkázat vše</string>
+    <string name="default_see_all">Ukázat vše</string>
     <string name="default_share_with">Sdílet přes…</string>
     <string name="default_reload">Načíst znovu</string>
     <string name="default_copied">Zkopírováno do schránky</string>
@@ -46,7 +46,7 @@
     <string name="defautl_share_message">Koukni si na tenhle notebook %1$s \n %2$s</string>
 
     <string name="progress_default">Načítání…</string>
-    <string name="progress_login">Přihlášení ...</string>
+    <string name="progress_login">Přihlášení …</string>
     <string name="progress_signup">Vytvoření účtu…</string>
     <string name="progress_publishing">Publikování notebooku…</string>
     <string name="progress_review">Odeslání recenze</string>
@@ -54,17 +54,15 @@
 
     <string name="library_notebooks_title">Moje notebooky</string>
     <plurals name="library_notescount_published">
-        <item quantity="few">No notes ∙ published</item>
-        <item quantity="zero">No notes ∙ published</item>
-        <item quantity="one">%d note ∙ published</item>
-        <item quantity="other">%d notes ∙ published</item>
+        <item quantity="few">$d poznámky ∙ publikovány</item>
+        <item quantity="one">%d poznámka ∙ publikovány</item>
+        <item quantity="other">%d poznámek ∙ publikovány</item>
     </plurals>
 
     <plurals name="library_notescount_imported">
-        <item quantity="few">No notes ∙ imported</item>
-        <item quantity="zero">No notes ∙ imported</item>
-        <item quantity="one">%d note ∙ imported</item>
-        <item quantity="other">%d notes ∙ imported</item>
+        <item quantity="few">$d poznámky ∙ importovány</item>
+        <item quantity="one">$d poznámka ∙ importovány</item>
+        <item quantity="other">%d poznámek ∙ importovány</item>
     </plurals>
 
     <string name="library_notescount_0">Žádné poznámky</string>
@@ -72,10 +70,9 @@
     <string name="library_notescount_0_published">Nebyly publikovány žádné poznámky</string>
 
     <plurals name="library_notescount">
-        <item quantity="few">No notes</item>
-        <item quantity="zero">No notes</item>
-        <item quantity="one">%d note</item>
-        <item quantity="other">%d notes</item>
+        <item quantity="few">$d poznámky</item>
+        <item quantity="one">$d poznámka</item>
+        <item quantity="other">%d poznámek</item>
     </plurals>
 
     <string name="library_note_title_hint">Název</string>
@@ -142,7 +139,7 @@
     <string name="about_feedback_hint">Vaš feedback</string>
     <string name="about_feedback_success">Děkujeme vám za vaši reakci</string>
     <string name="about_feedback_title">Poslat zpětnou vazbu</string>
-    <string name="about_feedback_message">Automaticky shromažďujeme základní informace, jako je verze aplikace, verze operačního systému a informace o zařízení</string>
+    <string name="about_feedback_message">Automaticky shromažďujeme základní informace, jako jsou verze aplikace, verze operačního systému a informace o zařízení</string>
     <string name="about_version">Verze Aplikace %1$s (%2$d)</string>
 
 
@@ -168,7 +165,7 @@
 
 
     <string name="sharinghub_title">Sharing Hub</string>
-    <string name="sharinghub_recent_notifications">Nove notifikace</string>
+    <string name="sharinghub_recent_notifications">Nové notifikace</string>
     <string name="sharinghub_section_uni">Z vaší školy</string>
     <string name="sharinghub_section_popular">Popularní</string>
     <string name="sharinghub_section_recent">Pravě aktualizované</string>
@@ -255,9 +252,9 @@
     <string name="challenge_completed_flashcards_title">Výborně!</string>
     <string name="challenge_completed_message">Vyzva %1$s je dokončena!</string>
     <plurals name="challenge_completed_flashcards_message">
-        <item quantity="one">%d note studied</item>
-        <item quantity="few"></item>
-        <item quantity="other">%d notes studied</item>
+        <item quantity="one">%d poznámka studována</item>
+        <item quantity="few">%d poznámky studováno</item>
+        <item quantity="other">%d poznámek studováno</item>
     </plurals>
 
 
@@ -296,7 +293,7 @@
     <string name="signup_password_error">Neplatné heslo</string>
     <string name="signup_email_error">Neplatný e-mail</string>
 
-    <string name="signup_completed_title">Jsi student?</string>
+    <string name="signup_completed_title">Jste student?</string>
     <string name="signup_completed_message">Spojte se se svými spolužáky výběrem univerzity nebo školy. To nám pomáhá ukázat vám relevantnější obsah a udržet kontakt s vašimi přáteli.  Můžete to udělat i později;)</string>
     <string name="signup_completed_choose">Vyberte univerzitu</string>
     <string name="signup_completed_later">Teď ne</string>
@@ -308,7 +305,7 @@
     <string name="not_logged_in">Chcete-li zobrazit tento obsah, přihlaste se prosím</string>
     <string name="login_welcome_msg">Vítejte v StudyPad!</string>
     <string name="not_logged_in_title">Vítejte</string>
-    <string name="login_introduce_yourself">Představit se...</string>
+    <string name="login_introduce_yourself">Představit se…</string>
     <string name="signup_credentials_message">Který e-mail a heslo chcete použít pro přihlášení?</string>
     <string name="univerisity_created_message">Děkujeme za navrh univerzity</string>
     <string name="notifications_uptodate">Jste up-to-date</string>
