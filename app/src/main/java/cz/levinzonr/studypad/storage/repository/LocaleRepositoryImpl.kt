@@ -1,11 +1,13 @@
-package cz.levinzonr.studypad.domain.repository
+package cz.levinzonr.studypad.storage.repository
 
 import com.google.gson.Gson
 import cz.levinzonr.studypad.domain.models.Locale
 import cz.levinzonr.studypad.fromJson
-import cz.levinzonr.studypad.storage.PrefManager
+import cz.levinzonr.studypad.domain.managers.PrefManager
+import cz.levinzonr.studypad.domain.repository.LocaleRepository
 
-class LocaleRepositoryImpl(private val gson: Gson, private val prefManager: PrefManager) : LocaleRepository {
+class LocaleRepositoryImpl(private val gson: Gson, private val prefManager: PrefManager) :
+    LocaleRepository {
 
     override suspend fun getAvailableLanguages(): List<Locale> {
         return java.util.Locale.getAvailableLocales()

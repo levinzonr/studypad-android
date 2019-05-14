@@ -12,8 +12,14 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        // Start Koin
         startKoin(this, appModule)
+
+        // Enable Logs if DEBUG Mode
         if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
+
+        // Init Facebook SDK
         FacebookSdk.sdkInitialize(this)
     }
 

@@ -1,27 +1,20 @@
 package cz.levinzonr.studypad.domain.managers
 
-import androidx.lifecycle.LiveData
-import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.*
 import com.google.firebase.messaging.FirebaseMessaging
-import cz.levinzonr.studypad.data.CreateAccountRequest
 import cz.levinzonr.studypad.domain.models.*
 import cz.levinzonr.studypad.domain.repository.LocaleRepository
 import cz.levinzonr.studypad.domain.repository.SearchHistoryRepository
-import cz.levinzonr.studypad.rest.Api
-import cz.levinzonr.studypad.storage.TokenRepository
-import cz.levinzonr.studypad.storage.UserPreferencesRepository
-import cz.levinzonr.studypad.storage.UserProfileRepository
-import timber.log.Timber
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
+import cz.levinzonr.studypad.domain.repository.TokenRepository
+import cz.levinzonr.studypad.domain.repository.UserPreferencesRepository
+import cz.levinzonr.studypad.domain.repository.UserProfileRepository
 
 class UserManagerImpl(private val preferencesRepository: UserPreferencesRepository,
                       private val localeRepository: LocaleRepository,
                       private val tokenRepository: TokenRepository,
                       private val searchHistoryRepository: SearchHistoryRepository,
-                      private val userProfileRepository: UserProfileRepository) : UserManager {
+                      private val userProfileRepository: UserProfileRepository
+) : UserManager {
 
 
     private val firebaseAuth = FirebaseAuth.getInstance()

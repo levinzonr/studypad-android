@@ -1,9 +1,12 @@
-package cz.levinzonr.studypad.storage
+package cz.levinzonr.studypad.storage.repository
 
+import cz.levinzonr.studypad.domain.managers.PrefManager
+import cz.levinzonr.studypad.domain.repository.TokenRepository
 import timber.log.Timber
 import java.util.*
 
-class TokenRepositoryImpl(private val prefManager: PrefManager) : TokenRepository {
+class TokenRepositoryImpl(private val prefManager: PrefManager) :
+    TokenRepository {
 
     companion object {
         private const val PREF_TOKEN = "pref_token"

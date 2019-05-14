@@ -4,12 +4,13 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/bottom_sheet"
+        android:id="@+id/bottomSheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_dialog"
         android:orientation="vertical"
         app:cardElevation="24dp"
+        app:cardCornerRadius="16dp"
+        android:padding="@dimen/space_small"
         app:behavior_hideable="true"
         app:behavior_peekHeight="80dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
@@ -18,7 +19,6 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,6 +60,16 @@
                     android:layout_marginStart="8dp"
                     app:layout_constraintStart_toStartOf="parent"/>
 
+            <ImageView
+                    android:id="@+id/sheetArrowView"
+                    android:tint="@color/white"
+                    android:layout_margin="@dimen/space_big"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/ic_expand_less_black_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.core.widget.NestedScrollView
@@ -71,6 +81,7 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/suggestionsRv"
                         tools:itemCount="2"

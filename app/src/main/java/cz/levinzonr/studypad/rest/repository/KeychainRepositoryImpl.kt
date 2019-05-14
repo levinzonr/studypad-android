@@ -1,20 +1,19 @@
-package cz.levinzonr.studypad.domain.repository
+package cz.levinzonr.studypad.rest.repository
 
 import com.google.firebase.auth.*
 import cz.levinzonr.studypad.data.CreateAccountRequest
 import cz.levinzonr.studypad.domain.managers.UserManager
-import cz.levinzonr.studypad.domain.models.AuthenticationResult
 import cz.levinzonr.studypad.domain.models.UserProfile
+import cz.levinzonr.studypad.domain.repository.KeychainRepository
 import cz.levinzonr.studypad.rest.Api
-import cz.levinzonr.studypad.storage.TokenRepository
-import cz.levinzonr.studypad.storage.UserPreferencesRepository
 import timber.log.Timber
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 class KeychainRepositoryImpl(private val api: Api,
-                             private val userManager: UserManager) : KeychainRepository {
+                             private val userManager: UserManager) :
+    KeychainRepository {
 
     private val firebaseAuth = FirebaseAuth.getInstance()
 

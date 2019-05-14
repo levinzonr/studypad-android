@@ -5,6 +5,9 @@ import cz.levinzonr.studypad.domain.models.ViewError
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 
+/**
+ * BaseViewState to reflect most common UI states
+ */
 data class BaseViewState(
     val isLoading: Boolean = false,
     val networkError: SingleLiveEvent? = null,

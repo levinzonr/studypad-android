@@ -1,10 +1,12 @@
 package cz.levinzonr.studypad.injection
 
-
+/**
+ * Core koin module
+ */
 val appModule = listOf(
     repositoryModule,
     rest,
-    interacorModule,
+    interactorModule,
     adapterModule,
     viewModelModule,
     managerModule,

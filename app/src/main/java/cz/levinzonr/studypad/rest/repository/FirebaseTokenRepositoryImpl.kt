@@ -1,8 +1,10 @@
-package cz.levinzonr.studypad.domain.repository
+package cz.levinzonr.studypad.rest.repository
 
-import cz.levinzonr.studypad.storage.PrefManager
+import cz.levinzonr.studypad.domain.repository.FirebaseTokenRepository
+import cz.levinzonr.studypad.domain.managers.PrefManager
 
-class FirebaseTokenRepositoryImpl(private val prefManager: PrefManager) : FirebaseTokenRepository {
+class FirebaseTokenRepositoryImpl(private val prefManager: PrefManager) :
+    FirebaseTokenRepository {
 
 
     override fun putToken(token: String) {

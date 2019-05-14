@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.storage
+package cz.levinzonr.studypad.domain.managers
 
 interface PrefManager {
     fun getInt(key : String, defaultValue : Int) : Int

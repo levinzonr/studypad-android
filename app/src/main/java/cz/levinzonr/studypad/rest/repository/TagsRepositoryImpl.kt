@@ -1,12 +1,14 @@
-package cz.levinzonr.studypad.domain.repository
+package cz.levinzonr.studypad.rest.repository
 
 import com.google.gson.Gson
 import cz.levinzonr.studypad.domain.models.StoredTag
+import cz.levinzonr.studypad.domain.repository.TagsRepository
 import cz.levinzonr.studypad.first
 import cz.levinzonr.studypad.fromJson
-import cz.levinzonr.studypad.storage.PrefManager
+import cz.levinzonr.studypad.domain.managers.PrefManager
 
-class TagsRepositoryImpl(private val gson: Gson, private val prefManager: PrefManager) : TagsRepository {
+class TagsRepositoryImpl(private val gson: Gson, private val prefManager: PrefManager) :
+    TagsRepository {
 
     override suspend fun getAll(): List<StoredTag> {
         val string = prefManager.getString(PREF_TAGS, null) ?: return emptyList()

@@ -78,7 +78,8 @@ class PublishedNotebookDetailFragment: BaseFragment(), NotificationHandler, Back
     override fun handleNotification(type: NotificationType, notificationPayload: NotificationPayload) {
         val current = adapter.fragments.get(viewPager.currentItem)
         Timber.d("hand $current")
-        if (current is NotificationHandler) {
+        // TODO Find a better way to handle 'em
+        if (current is NotificationHandler && !current.isDetached) {
             Timber.d("hand")
             current.handleNotification(type, notificationPayload)
         }

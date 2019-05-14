@@ -314,6 +314,8 @@
     <string name="library_notebooks_empty_action">Find new notebooks</string>
     <string name="error_required_field">This field is required</string>
     <string name="no_notes_to_study">Unavailable, no notes to study</string>
+    <string name="suggestions_review_leave_title">Leaving Review</string>
+    <string name="suggestions_review_leave_message">You didn\'t finish your review. Are you sure you want to leave now?</string>
 
     <plurals name="time_minutes">
         <item quantity="zero">just now</item>

@@ -75,7 +75,13 @@ class NoteDetailFragment : BaseFragment(), NoteEditView.NoteEditViewListener {
 
     override fun onPause() {
         super.onPause()
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         noteEditView.showFocused(false)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
     }
 
 

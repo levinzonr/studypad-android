@@ -11,16 +11,30 @@ import timber.log.Timber
 import java.io.IOException
 import kotlin.coroutines.CoroutineContext
 
-
+/**
+ * Similar to BaseInteractor, but provides a  better way to handle the input
+ * @param <I> specifies the input type
+ * @param <O> specifies the output type
+ */
 abstract class BaseInputInteractor<in I, O> {
 
 
+    /**
+     * Parent job reference for to be able to cancel the interactor
+     */
     private var parentJob: Job = Job()
+
     var backgroundContext: CoroutineContext = Dispatchers.IO
     var foregroundContext: CoroutineContext = Dispatchers.Main
 
     protected abstract suspend fun executeOnBackground(input: I): O
 
+
+    /**
+     * Executes interactor with specified Input and provides the result via callback
+     * @param input I is the interactor Input
+     * @param block is the callback that will be used to provide an operation result
+     */
     fun executeWithInput(input: I, block: CompletionBlock<O>) {
         val response = BaseInteractor.Request<O>().apply { block() }
         unsubscribe()
@@ -41,6 +55,12 @@ abstract class BaseInputInteractor<in I, O> {
         }
     }
 
+    /**
+     * Transforms an Exception into the object that will be handled by ViewModel
+     * @param e is the exception to handle
+     * @return ApplicationError that serves as an exception wrapper that is easier to handle
+     * @see ApplicationError
+     */
     private fun handleException(e: Exception) : ApplicationError {
         return when(e) {
             is HttpException -> {

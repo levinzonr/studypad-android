@@ -1,6 +1,10 @@
-package cz.levinzonr.studypad.storage
+package cz.levinzonr.studypad.storage.repository
 
-class UserPreferencesRepositoryImpl(private val prefManager: PrefManager) : UserPreferencesRepository {
+import cz.levinzonr.studypad.domain.managers.PrefManager
+import cz.levinzonr.studypad.domain.repository.UserPreferencesRepository
+
+class UserPreferencesRepositoryImpl(private val prefManager: PrefManager) :
+    UserPreferencesRepository {
 
 
     override fun setNotificationsEnabled(value: Boolean) {

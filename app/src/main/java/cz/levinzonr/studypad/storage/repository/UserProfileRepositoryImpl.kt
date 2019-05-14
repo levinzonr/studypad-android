@@ -1,9 +1,12 @@
-package cz.levinzonr.studypad.storage
+package cz.levinzonr.studypad.storage.repository
 
 import com.google.gson.Gson
+import cz.levinzonr.studypad.domain.managers.PrefManager
 import cz.levinzonr.studypad.domain.models.UserProfile
+import cz.levinzonr.studypad.domain.repository.UserProfileRepository
 
-class UserProfileRepositoryImpl(val gson: Gson, private val prefManager: PrefManager) : UserProfileRepository {
+class UserProfileRepositoryImpl(val gson: Gson, private val prefManager: PrefManager) :
+    UserProfileRepository {
 
     companion object {
         private const val PREF_USER = "pref_user_info"

@@ -9,6 +9,7 @@ import retrofit2.http.*
 private const val API = "api"
 private const val AUTH = "/auth"
 
+
 interface Api {
 
     @POST("$AUTH/login")
