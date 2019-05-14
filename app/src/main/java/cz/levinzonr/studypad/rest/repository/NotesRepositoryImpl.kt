@@ -1,9 +1,10 @@
-package cz.levinzonr.studypad.domain.repository
+package cz.levinzonr.studypad.rest.repository
 
 import androidx.lifecycle.LiveData
 import cz.levinzonr.studypad.data.CreateNoteRequest
 import cz.levinzonr.studypad.data.UpdateNoteRequest
 import cz.levinzonr.studypad.domain.models.Note
+import cz.levinzonr.studypad.domain.repository.NotesRepository
 import cz.levinzonr.studypad.rest.Api
 import cz.levinzonr.studypad.storage.database.AppDatabase
 

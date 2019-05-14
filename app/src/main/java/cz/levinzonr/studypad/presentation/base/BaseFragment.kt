@@ -23,7 +23,10 @@ import android.content.Context
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.presentation.common.StudyPadDialog
 
-
+/**
+ * Base Fragment for the others to extend
+ * It provides number of helper methods to address most common actions like dialogs e.t.c
+ */
 abstract class BaseFragment : Fragment() {
 
     protected fun showToast(message: String) {
@@ -42,10 +45,13 @@ abstract class BaseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.navigationLiveData.observe(viewLifecycleOwner, Observer {
-            it.handle(this::handleNavigationEvent)
-        })
 
+        // Listen for navigation events
+        viewModel.navigationLiveData.observeNonNull(viewLifecycleOwner) {
+            it.handle(this::handleNavigationEvent)
+        }
+
+        // Listen for base view state (errors, loading, bad network)
         viewModel.viewStateObservalbe.observeNonNull(viewLifecycleOwner) { state ->
             Timber.d("Base State: $state")
             showLoading(state.isLoading)
@@ -54,16 +60,22 @@ abstract class BaseFragment : Fragment() {
         }
 
 
+        // init progress dialog
         activity?.let {
             progressDialog = ProgressDialog(it)
             progressDialog?.getMessageTextView()?.setText(R.string.progress_default)
             progressDialog?.setCancelable(false)
         }
 
+        // Subscribtion for other fragments
         subscribe()
 
     }
 
+
+    /**
+     * Helper method to share notebook deeplink
+     */
     protected fun shareMessage(name: String, link: String) {
         val shareLinkIntent = Intent()
         shareLinkIntent.action = Intent.ACTION_SEND
@@ -78,9 +90,17 @@ abstract class BaseFragment : Fragment() {
 
     open fun onLoseFocus() {}
 
+
+    /**
+     * Method where all the other fragments manage their subscription
+     */
     abstract fun subscribe()
 
 
+    /**
+     * Default method that will show an error
+     * @param viewError specifies the kind of error to show
+     */
     open fun showError(viewError: ViewError) {
         when (viewError) {
             is ViewError.DialogError -> showSimpleDialog(viewError.title, viewError.message)
@@ -88,14 +108,23 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
+    /**
+     * Default implementation of the method that provides the info about bad connectivity
+     */
     open fun showNetworkUnavailableError() {
         showToast(getString(R.string.error_network_message))
     }
 
+    /**
+     * Default method to reflect the loading state
+     */
     protected open fun showLoading(isLoading: Boolean) {
 
     }
 
+    /**
+     * Helper method to copy text to clipboard
+     */
     protected fun copyToClipboard(text: String) {
         val label = "StudyPad"
         val clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -104,6 +133,9 @@ abstract class BaseFragment : Fragment() {
         showToast(getString(R.string.default_copied))
     }
 
+    /**
+     * Helper method to show simple info dialog
+     */
     protected fun showSimpleDialog(title: String, message: String) {
         StudyPadDialog.Builder(context)
             .setTitle(title)
@@ -113,10 +145,20 @@ abstract class BaseFragment : Fragment() {
     }
 
 
+    /**
+     * Method that handles navigation event
+     * @param navigationEvent is action that shoud be performed
+     */
     private fun handleNavigationEvent(navigationEvent: NavigationEvent) {
         when (navigationEvent) {
+
+            // Direction is specified
             is NavigationEvent.NavigateTo -> view?.findNavController()?.navigate(navigationEvent.directions)
+
+            // Navigate Back
             is NavigationEvent.NavigateBack -> view?.findNavController()?.popBackStack()
+
+            // Change Flow i.e Onboarding - Main
             is NavigationEvent.ChangeFlow -> {
                 when (navigationEvent.flow) {
                     Flow.ONBOARDING -> {

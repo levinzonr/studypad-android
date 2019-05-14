@@ -1,6 +1,7 @@
-package cz.levinzonr.studypad.domain.repository
+package cz.levinzonr.studypad.rest.repository
 
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
+import cz.levinzonr.studypad.domain.repository.CommentsRepository
 import cz.levinzonr.studypad.rest.Api
 
 class CommentsRepositoryImpl(private val api: Api) : CommentsRepository {

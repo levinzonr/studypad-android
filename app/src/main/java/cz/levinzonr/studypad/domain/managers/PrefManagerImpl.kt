@@ -1,9 +1,10 @@
-package cz.levinzonr.studypad.storage
+package cz.levinzonr.studypad.domain.managers
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import cz.levinzonr.studypad.domain.managers.PrefManager
 
 @SuppressLint("ApplySharedPref")
 class PrefManagerImpl(context: Context) : PrefManager {

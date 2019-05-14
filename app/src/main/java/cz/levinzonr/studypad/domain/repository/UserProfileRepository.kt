@@ -1,4 +1,4 @@
-package cz.levinzonr.studypad.storage
+package cz.levinzonr.studypad.domain.repository
 
 import cz.levinzonr.studypad.domain.models.UserProfile
 

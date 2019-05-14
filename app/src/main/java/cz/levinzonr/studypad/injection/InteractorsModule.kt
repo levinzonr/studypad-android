@@ -10,7 +10,10 @@ import cz.levinzonr.studypad.domain.interactors.library.*
 import cz.levinzonr.studypad.domain.interactors.sharinghub.*
 import org.koin.dsl.module.module
 
-val interacorModule = module {
+/**
+ * Module that contains interactors
+ */
+val interactorModule = module {
 
     factory { GetNotebooksInteractor(get()) }
 

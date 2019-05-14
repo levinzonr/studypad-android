@@ -15,6 +15,9 @@ import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.Suggest
 import org.koin.dsl.module.module
 
 
+/**
+ * Koin module that contains RecyclerView adapters
+ */
 val adapterModule = module {
 
 

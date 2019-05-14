@@ -4,7 +4,7 @@ import cz.levinzonr.studypad.data.UpdateProfileRequest
 import cz.levinzonr.studypad.domain.interactors.BaseInteractor
 import cz.levinzonr.studypad.domain.models.University
 import cz.levinzonr.studypad.rest.Api
-import cz.levinzonr.studypad.storage.UserProfileRepository
+import cz.levinzonr.studypad.domain.repository.UserProfileRepository
 
 class UpdateUserInteractor(private val api: Api, private val userProfileRepository: UserProfileRepository) : BaseInteractor<Unit>() {
 

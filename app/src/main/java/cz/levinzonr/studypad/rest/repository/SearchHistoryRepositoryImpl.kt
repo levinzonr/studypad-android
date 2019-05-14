@@ -1,11 +1,13 @@
-package cz.levinzonr.studypad.domain.repository
+package cz.levinzonr.studypad.rest.repository
 
 import androidx.lifecycle.LiveData
 import cz.levinzonr.studypad.domain.models.SearchEntry
+import cz.levinzonr.studypad.domain.repository.SearchHistoryRepository
 import cz.levinzonr.studypad.storage.database.AppDatabase
 import timber.log.Timber
 
-class SearchHistoryRepositoryImpl(val appDatabase: AppDatabase) : SearchHistoryRepository {
+class SearchHistoryRepositoryImpl(val appDatabase: AppDatabase) :
+    SearchHistoryRepository {
 
     override fun saveSearchEntry(searchEntry: SearchEntry) {
         val entry = searchEntry.copy(lastlyUsed = System.currentTimeMillis())

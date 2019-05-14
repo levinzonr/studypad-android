@@ -9,6 +9,9 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import timber.log.Timber
 
+/**
+ * Base Activity for the other activities to extend.
+ */
 abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
@@ -20,11 +23,20 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
+
+    /**
+     * Allows to propagate back button action onto currently displayed fragment
+     */
     override fun onBackPressed() {
+
+        // Check which fragment is currently active/visible
         val currentFragment = navHostFragment.childFragmentManager.fragments.first()
+
+        // If it is a buttonHanlder, let the fragment do the work
         if (currentFragment is BackButtonHandler) {
             currentFragment.handleBackButton()
         } else {
+            // Just navigate back otherwise
             super.onBackPressed()
         }
     }

@@ -37,6 +37,9 @@ import cz.levinzonr.studypad.presentation.screens.sharinghub.suggestions.review.
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
+/**
+ * ViewModel Module
+ */
 val viewModelModule = module {
 
     viewModel { NotebookListViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }

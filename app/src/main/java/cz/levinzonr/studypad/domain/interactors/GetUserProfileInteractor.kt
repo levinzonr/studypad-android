@@ -2,7 +2,7 @@ package cz.levinzonr.studypad.domain.interactors
 
 import cz.levinzonr.studypad.domain.models.UserProfile
 import cz.levinzonr.studypad.domain.repository.ProfileRepository
-import cz.levinzonr.studypad.storage.UserProfileRepository
+import cz.levinzonr.studypad.domain.repository.UserProfileRepository
 
 class GetUserProfileInteractor(private val repository: ProfileRepository, private val userProfileRepository: UserProfileRepository) : BaseInteractor<UserProfile>() {
 
