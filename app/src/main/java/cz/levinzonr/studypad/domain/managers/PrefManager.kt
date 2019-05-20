@@ -1,6 +1,10 @@
 package cz.levinzonr.studypad.domain.managers
 
+/**
+ * An abstraction layer interface for android shared preferences
+ */
 interface PrefManager {
+
     fun getInt(key : String, defaultValue : Int) : Int
     fun setInt(key : String, value : Int)
     fun getLong(key : String, defaultValue : Long) : Long

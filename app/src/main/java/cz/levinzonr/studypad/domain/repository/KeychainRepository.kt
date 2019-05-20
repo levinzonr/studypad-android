@@ -3,6 +3,9 @@ package cz.levinzonr.studypad.domain.repository
 import cz.levinzonr.studypad.domain.models.AuthenticationResult
 import cz.levinzonr.studypad.domain.models.UserProfile
 
+/**
+ * Keychain repository to operate on User entity
+ */
 interface KeychainRepository {
 
     suspend fun login(email: String, password: String)

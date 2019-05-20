@@ -9,6 +9,7 @@ import cz.levinzonr.studypad.domain.repository.TokenRepository
 import cz.levinzonr.studypad.domain.repository.UserPreferencesRepository
 import cz.levinzonr.studypad.domain.repository.UserProfileRepository
 
+
 class UserManagerImpl(private val preferencesRepository: UserPreferencesRepository,
                       private val localeRepository: LocaleRepository,
                       private val tokenRepository: TokenRepository,

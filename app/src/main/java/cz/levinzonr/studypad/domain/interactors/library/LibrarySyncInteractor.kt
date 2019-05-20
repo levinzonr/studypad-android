@@ -5,10 +5,17 @@ import cz.levinzonr.studypad.domain.repository.NotebookRepository
 import cz.levinzonr.studypad.domain.repository.NotesRepository
 import timber.log.Timber
 
+/**
+ * Interactor to synchronize local notebook library with the remote data source
+ * @param notebookRepository Repository with the notebooks
+ * @param notesRepository repository with the notes
+ *
+ */
 class LibrarySyncInteractor(
     private val notebookRepository: NotebookRepository,
     private val notesRepository: NotesRepository
 ) : BaseInteractor<Unit>() {
+
 
 
     override suspend fun executeOnBackground() {

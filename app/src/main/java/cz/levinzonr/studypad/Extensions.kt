@@ -40,6 +40,9 @@ import java.util.*
 
 fun defaultLanguageCode(): String = Locale.getDefault().isO3Language
 
+/**
+ * Allows to iterate of the views in the ViewGroup
+ */
 fun ViewGroup.asSequence(): Sequence<View> = object : Sequence<View> {
     override fun iterator(): Iterator<View> = object : Iterator<View> {
         private var nextValue: View? = null

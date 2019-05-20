@@ -2,6 +2,9 @@ package cz.levinzonr.studypad.domain.repository
 
 import cz.levinzonr.studypad.domain.models.PublishedNotebook
 
+/**
+ * Comments reposiory interface to operate on Cooment model
+ */
 interface CommentsRepository {
 
     suspend fun createComment(notebookId: String, body: String) : PublishedNotebook.Comment
