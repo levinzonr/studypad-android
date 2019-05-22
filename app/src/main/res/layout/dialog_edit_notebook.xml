@@ -49,7 +49,7 @@
                     android:layout_height="match_parent"
                     android:hint="@string/library_notebook_create_hint"
                     android:imeOptions="actionDone"
-                    android:inputType="text"
+                    android:inputType="textCapSentences"
                     android:maxLines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>

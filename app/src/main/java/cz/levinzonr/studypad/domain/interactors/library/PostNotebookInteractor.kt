@@ -9,6 +9,6 @@ class PostNotebookInteractor(private val notebookRepository: NotebookRepository)
 
 
     override suspend fun executeOnBackground(input:  String): Notebook {
-        return notebookRepository.createNotebook(input.capitalize())
+        return notebookRepository.createNotebook(input)
     }
 }
