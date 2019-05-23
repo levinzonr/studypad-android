@@ -30,7 +30,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import cz.levinzonr.studypad.presentation.base.BaseActivity
 import cz.levinzonr.studypad.presentation.base.BaseFragment
-import cz.levinzonr.studypad.presentation.common.FlipAnimation
 import cz.levinzonr.studypad.presentation.events.Event
 import cz.levinzonr.studypad.presentation.events.SingleLiveEvent
 import org.joda.time.*
