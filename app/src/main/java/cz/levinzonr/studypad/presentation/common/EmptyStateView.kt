@@ -12,6 +12,9 @@ import cz.levinzonr.studypad.setVisible
 import cz.levinzonr.studypad.shownText
 import kotlinx.android.synthetic.main.view_empty_state.view.*
 
+/**
+ * Helper view that is used to display empty/default/error states
+ */
 class EmptyStateView @JvmOverloads constructor(context: Context, attributeSet: AttributeSet? = null, style: Int = 0) : LinearLayout(context, attributeSet, style) {
 
     init {

@@ -251,30 +251,6 @@ var TextView.shownText: String?
         this.setVisible(!value.isNullOrBlank())
     }
 
-fun View.flip(toHide: View) {
-    val animation = FlipAnimation(0f, -90f, 0.0f, height / 2.0f)
-    animation.duration = 1000
-    animation.interpolator = AccelerateInterpolator()
-    animation.fillAfter = true
-    animation.setAnimationListener(object : Animation.AnimationListener {
-        override fun onAnimationRepeat(animation: Animation?) {
-        }
-
-        override fun onAnimationEnd(animation: Animation?) {
-            // flipCardView.rotationY = endAngor
-            clearAnimation()
-            setVisible(false)
-            toHide.setVisible(true)
-        }
-
-        override fun onAnimationStart(animation: Animation?) {
-        }
-
-    })
-
-    startAnimation(animation)
-}
-
 inline fun <reified T> Gson.fromJson(json: String): T? {
     val type = object : TypeToken<T>() {}.type
     return try {

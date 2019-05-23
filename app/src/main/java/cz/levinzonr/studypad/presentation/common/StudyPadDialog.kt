@@ -14,6 +14,9 @@ import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.setVisible
 import kotlinx.android.synthetic.main.dialog_generic.*
 
+/**
+ * Generic dialog that is used across the application
+ */
 class StudyPadDialog(context: Context?) : Dialog(context) {
 
     private var negativeButtonText: String? = null
@@ -83,21 +86,42 @@ class StudyPadDialog(context: Context?) : Dialog(context) {
     }
 
 
+    /**
+     * Builder that is used to build the dialog
+     */
     class Builder(context: Context?) {
         private val dialog = StudyPadDialog(context)
 
+        /**
+         * Add a negative button to dialog
+         * @param text - button's text
+         * @param onClick - action to trigger when button is clicked
+         * @return current builder instance
+         */
         fun setNegativeButton(text: String?, onClick: (Dialog) -> Unit): Builder {
             dialog.negativeButtonText = text
             dialog.negativeButtonListener = onClick
             return this
         }
 
+        /**
+         * Sets a positive button to the dialog
+         * @param text - button's text
+         * @param onClick - action to trigger when button is clicked
+         * @return current builder instance
+         */
         fun setPositiveButton(text: String?, onClick: (Dialog) -> Unit): Builder {
             dialog.postiveButtonText = text
             dialog.positiveButtonListener = onClick
             return this
         }
 
+        /**
+         * Add an input fied the get the text input from the user
+         * @param hint - hint of the input field
+         * @param onConffrm - a callback with the inserted value
+         * @return current builder instance
+         */
         fun setInputField(hint: String, onConffrm: (String) -> Unit) : Builder {
             dialog.inputFieldHint = hint
             dialog.inputFieldListener = onConffrm
@@ -105,31 +129,58 @@ class StudyPadDialog(context: Context?) : Dialog(context) {
         }
 
 
+        /**
+         * Set title of the dialog
+         * @param text - title of the dialog
+         * @return current builder instance
+         */
         fun setTitle(text: String?): Builder {
             dialog.title = text ?: ""
             return this
         }
 
+        /**
+         * Set message for the dialog
+         * @param text - dialog's message
+         * @return current builder instance
+         */
         fun setMessage(text: String?): Builder {
             dialog.message = text ?: ""
             return this
         }
 
 
+        /**
+         * Define with the dialog will be cancellable
+         * @param cancelable - true to make if cancellable
+         * @return current builder instance
+         */
         fun setCancelable(cancelable: Boolean): Builder {
             dialog.setCancelable(cancelable)
             return this
         }
 
+        /**
+         * Specify a callback when dialog is cancelled
+         * @param onCancel - callback when dialogs is cancelled
+         * @return current builder instance
+         */
         fun setOnCancelListener(onCancel: () -> Unit) : Builder {
             dialog.cancelListener = onCancel
             return this
         }
 
+        /**
+         * Build & show the dialog
+         */
         fun show() {
             dialog.show()
         }
 
+        /**
+         * Build dialog
+         * @return setup dialog
+         */
         fun build(): Dialog {
             return dialog
         }
