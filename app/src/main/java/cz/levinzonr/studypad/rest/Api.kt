@@ -17,7 +17,7 @@ interface Api {
 
 
     @POST("$AUTH/register")
-    fun createAccountAsync(@Body createAccountRequest: CreateAccountRequest) : Deferred<FirebaseResponse>
+    fun createAccountAsync(@Body createAccountRequest: CreateAccountRequest) : Deferred<FirebaseAuthResponse>
 
     @GET("$API/university/find")
     fun getUniversitiesAsync(@Query("query") query: String) : Deferred<List<University>>
