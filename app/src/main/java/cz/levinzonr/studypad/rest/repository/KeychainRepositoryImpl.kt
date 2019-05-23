@@ -11,6 +11,11 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
+/**
+ * Keychain repository Implementation
+ * @param api - retrofit api instance
+ * @see KeychainRepository
+ */
 class KeychainRepositoryImpl(private val api: Api,
                              private val userManager: UserManager) :
     KeychainRepository {

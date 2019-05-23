@@ -5,6 +5,12 @@ import cz.levinzonr.studypad.domain.managers.PrefManager
 import cz.levinzonr.studypad.domain.models.UserProfile
 import cz.levinzonr.studypad.domain.repository.UserProfileRepository
 
+/**
+ * UserProfile repository implementation
+ * @see UserProfileRepository
+ * @param gson - Gson instance to serilialze object
+ * @param prefManager - preferences manager
+ */
 class UserProfileRepositoryImpl(val gson: Gson, private val prefManager: PrefManager) :
     UserProfileRepository {
 
