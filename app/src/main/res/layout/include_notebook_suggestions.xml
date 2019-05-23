@@ -38,9 +38,10 @@
 
 
         <com.google.android.material.chip.Chip
-                app:chipIconTint="@color/white"
+                app:chipIcon="@drawable/ic_subject"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/blue"
+                app:chipIconTint="@color/white"
+                app:chipBackgroundColor="@color/blue"
                 android:layout_marginStart="@dimen/space_normal"
                 android:layout_marginTop="@dimen/space_big"
                 android:id="@+id/notebookSuggestionShowAllBtn"
@@ -48,7 +49,6 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:chipIcon="@drawable/ic_subject"
                 android:text="@string/sharinghub_dets_suggestions_view"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/notebookSuggestionsMessage"
