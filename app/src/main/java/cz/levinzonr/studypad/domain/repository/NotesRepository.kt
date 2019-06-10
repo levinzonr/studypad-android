@@ -3,6 +3,10 @@ package cz.levinzonr.studypad.domain.repository
 import androidx.lifecycle.LiveData
 import cz.levinzonr.studypad.domain.models.Note
 
+/**
+ * Notes repository to operate on the note entity
+ * @see Note
+ */
 interface NotesRepository {
 
     fun findById(id: Long) : LiveData<Note>

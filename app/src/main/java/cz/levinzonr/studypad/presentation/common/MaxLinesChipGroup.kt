@@ -10,12 +10,18 @@ import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.buildTags
 import timber.log.Timber
 
+/**
+ * Chip group that auto allows to specify how many lines of chips are gonna be rendered
+ */
 class MaxLinesChipGroup @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyle: Int = 0
 ) : ChipGroup(context, attributeSet, defStyle) {
 
+    /**
+     * Defines the highest possible lines count to render
+     */
     val maxLines: Int
 
     init {
@@ -24,8 +30,9 @@ class MaxLinesChipGroup @JvmOverloads constructor(
         attrsSet.recycle()
     }
 
-    var prevLinesWidth = 0
-    var lines = -1
+    private var prevLinesWidth = 0
+    private var lines = -1
+
 
     private fun addChip(chip: Chip): Boolean {
         val parent = parent as ViewGroup
@@ -49,6 +56,9 @@ class MaxLinesChipGroup @JvmOverloads constructor(
     }
 
 
+    /**
+     * Add list of strings as chips
+     */
     fun addAll(list: List<String>) {
         val itemsLeft = list.buildTags(context)
             .map { addChip(it) }.also { Timber.d("LEft : $it") }

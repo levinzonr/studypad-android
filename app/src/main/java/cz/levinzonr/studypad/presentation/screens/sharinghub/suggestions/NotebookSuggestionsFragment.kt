@@ -20,7 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 
-class NotebookSuggestionsFragment : BaseFragment() {
+class NotebookSuggestionsFragment : BaseFragment(), SuggestionsAdapter.SuggestionItemListener {
 
     override val viewModel: NotebookSuggestionsViewModel by viewModel { parametersOf(args.notes, args.notebookId, args.authoredByMe) }
 
@@ -60,6 +60,10 @@ class NotebookSuggestionsFragment : BaseFragment() {
         viewModel.refresh()
     }
 
+    override fun onSuggestionClicked(suggestionItem: SuggestionsModels.SuggestionItem) {
+        SuggestionsInfoDialog.show(childFragmentManager, suggestionItem)
+    }
+
     override fun showNetworkUnavailableError() {
         emptyView.setVisible(true)
         suggestionsRv.setVisible(false)
@@ -69,6 +73,7 @@ class NotebookSuggestionsFragment : BaseFragment() {
     private fun setupRecyclerView() {
         suggestionsRv.adapter = adapter
         suggestionsRv.layoutManager = LinearLayoutManager(context)
+        adapter.listener = this
         suggestionsRv.addItemDecoration(VerticalSpaceItemDecoration(8.dp))
     }
     

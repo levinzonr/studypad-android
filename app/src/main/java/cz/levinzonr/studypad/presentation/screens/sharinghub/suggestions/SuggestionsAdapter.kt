@@ -17,6 +17,7 @@ class SuggestionsAdapter : ListAdapter<SuggestionsModels.SuggestionItem, Suggest
     DiffCalback()
 ) {
 
+    var listener: SuggestionItemListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_suggestion, parent, false)
@@ -48,6 +49,7 @@ class SuggestionsAdapter : ListAdapter<SuggestionsModels.SuggestionItem, Suggest
                 else -> null
             }
             view.suggestionChageContentTv.background = background
+            view.setOnClickListener { listener?.onSuggestionClicked(modification) }
         }
 
     }
@@ -68,5 +70,9 @@ class SuggestionsAdapter : ListAdapter<SuggestionsModels.SuggestionItem, Suggest
         }
     }
 
+
+    interface SuggestionItemListener {
+        fun onSuggestionClicked(suggestionItem: SuggestionsModels.SuggestionItem)
+    }
 
 }

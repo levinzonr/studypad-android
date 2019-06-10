@@ -4,6 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 
+
 object PublishedNotebook {
     @Parcelize
     data class Feed(
