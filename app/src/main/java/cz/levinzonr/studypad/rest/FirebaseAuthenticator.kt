@@ -26,7 +26,7 @@ class FirebaseAuthenticator(val repo: TokenRepository)  : Authenticator, KoinCom
     override fun authenticate(route: Route?, response: Response): Request? {
 
         // We are interested in 401
-        if (response.code() == 401) {
+        if (response.code == 401) {
 
             val user = FirebaseAuth.getInstance().currentUser
             // We have the user logged in
@@ -40,7 +40,7 @@ class FirebaseAuthenticator(val repo: TokenRepository)  : Authenticator, KoinCom
                 Timber.d("Token refreshed")
 
                 // Return the old request with refreshed token
-                return response.request().newBuilder()
+                return response.request.newBuilder()
                     .header("Firebase", token.token ?: "")
                     .build()
             } else {

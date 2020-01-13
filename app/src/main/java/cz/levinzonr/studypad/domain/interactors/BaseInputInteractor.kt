@@ -64,7 +64,7 @@ abstract class BaseInputInteractor<in I, O> {
     private fun handleException(e: Exception) : ApplicationError {
         return when(e) {
             is HttpException -> {
-                val errorBody = e.response().errorBody()?.string() ?: ""
+                val errorBody = e.response()?.errorBody()?.string() ?: ""
                 val errorResponse = Gson().fromJson<ErrorResponse>(errorBody)
                 return if (e.code() < 500 && errorResponse != null)
                     ApplicationError.ApiError(errorResponse.message)
