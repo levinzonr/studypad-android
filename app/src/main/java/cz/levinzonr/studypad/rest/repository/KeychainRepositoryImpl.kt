@@ -24,9 +24,9 @@ class KeychainRepositoryImpl(private val api: Api,
 
     override suspend fun login(email: String, password: String) {
         val result = firebaseAuth.loginWithPassword(email, password)
-        val userToken = result.user.getCurrentToken()
+        val userToken = result.user?.getCurrentToken()
         Timber.d("user tokent $userToken")
-        val response = api.loginAsync(userToken.token!!).await()
+        val response = api.loginAsync(userToken?.token!!).await()
         userManager.afterSuccessfulLogin(response, userToken.token!!)
     }
 
@@ -35,8 +35,8 @@ class KeychainRepositoryImpl(private val api: Api,
     override suspend fun loginViaFacebook(token: String) : UserProfile {
         val credentials = FacebookAuthProvider.getCredential(token)
         val authResult =  firebaseAuth.loginWithCredentials(credentials)
-        val userToken = authResult.user.getCurrentToken()
-        val response = api.loginAsync(userToken.token!!).await()
+        val userToken = authResult.user?.getCurrentToken()
+        val response = api.loginAsync(userToken?.token!!).await()
         userManager.afterSuccessfulLogin(response, userToken.token!!)
         return response
     }
@@ -44,8 +44,8 @@ class KeychainRepositoryImpl(private val api: Api,
     override suspend fun loginViaGoogle(token: String): UserProfile {
         val credential = GoogleAuthProvider.getCredential(token, null)
         val authResult =  firebaseAuth.loginWithCredentials(credential)
-        val userToken = authResult.user.getCurrentToken()
-        val response = api.loginAsync(userToken.token!!).await()
+        val userToken = authResult.user?.getCurrentToken()
+        val response = api.loginAsync(userToken?.token!!).await()
         userManager.afterSuccessfulLogin(response, userToken.token!!)
         return response
     }
@@ -55,8 +55,8 @@ class KeychainRepositoryImpl(private val api: Api,
         val response =  api.createAccountAsync(request).await()
         val result = firebaseAuth.loginWihtCustomToken(response.token)
 
-        val userToken = result.user.getCurrentToken()
-        userManager.afterSuccessfulLogin(response.user, userToken.token!!)
+        val userToken = result.user?.getCurrentToken()
+        userManager.afterSuccessfulLogin(response.user, userToken?.token!!)
         return response.user
     }
 

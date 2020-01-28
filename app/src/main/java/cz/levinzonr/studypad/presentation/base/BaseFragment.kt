@@ -129,7 +129,7 @@ abstract class BaseFragment : Fragment() {
         val label = "StudyPad"
         val clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText(label, text)
-        clipboard.primaryClip = clip
+        clipboard.setPrimaryClip(clip)
         showToast(getString(R.string.default_copied))
     }
 

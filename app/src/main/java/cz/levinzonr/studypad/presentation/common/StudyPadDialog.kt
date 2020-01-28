@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.dialog_generic.*
 /**
  * Generic dialog that is used across the application
  */
-class StudyPadDialog(context: Context?) : Dialog(context) {
+class StudyPadDialog(context: Context?) : Dialog(requireNotNull(context)) {
 
     private var negativeButtonText: String? = null
     private var negativeButtonListener: ((Dialog) -> Unit)? = null

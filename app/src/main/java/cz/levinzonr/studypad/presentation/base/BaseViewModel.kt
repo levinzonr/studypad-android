@@ -21,7 +21,7 @@ import org.koin.standalone.inject
  * Base ViewModel that is used for others to extend
  *
  */
-abstract class BaseViewModel : ViewModel(), KoinComponent {
+abstract class  BaseViewModel : ViewModel(), KoinComponent {
 
     /**
      * Android resource abstrac that is used to get the translation directly from the viewModel

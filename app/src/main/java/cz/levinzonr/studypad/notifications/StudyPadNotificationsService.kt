@@ -32,7 +32,7 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
 
     private val userManager: UserManager by inject()
 
-    override fun onMessageReceived(message: RemoteMessage?) {
+    override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
         message ?: return
         Timber.d("Message Receivde: $message")
@@ -85,10 +85,10 @@ class StudyPadNotificationsService : FirebaseMessagingService() {
         }
     }
 
-    override fun onNewToken(token: String?) {
+    override fun onNewToken(token: String) {
         super.onNewToken(token)
         Timber.d("New Tokent: $token")
-        token?.let(tokenRepository::putToken)
+        tokenRepository.putToken(token)
     }
 
 
