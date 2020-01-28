@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import cz.levinzonr.studypad.R
 import cz.levinzonr.studypad.onTextChanged
 import cz.levinzonr.studypad.presentation.base.BaseFragment
@@ -15,7 +14,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import cz.levinzonr.studypad.observeNonNull
-import cz.levinzonr.studypad.setVisible
 import timber.log.Timber
 
 
